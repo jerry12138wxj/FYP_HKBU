@@ -10,6 +10,47 @@ downstream tool (profiling, evaluation, sweep) can be reused unchanged:
     loader() -> (run_fn, load_seconds, info)
     run_fn(mix_stereo: (N, 2) float32 @ 44.1 kHz) -> {target: (N, 2) float32}
 
+🔴 输入契约细节（2026-09-23 实测，写死以免再踩）
+------------------------------------------------
+传入 `run_fn` 的数组**必须恒为 (N, 2) 立体声**，即使模型原生是单声道：
+
+  * mel_roformer  : 底层 `assert stereo`，传 (N,1) 直接 AssertionError。
+  * denoiser      : 传 (N,1) 也能跑，但会走另一条分支 —— 实测 (N,1) 与
+                    (N,2) 双声道相同的结果**逐样本一致**，即输出与输入通道数无关；
+                    传单声道只是「碰巧能跑」，不能作为契约使用。
+
+🔴🔴 **采样率契约（2026-09-23 修掉一个严重 bug，务必读完）**
+--------------------------------------------------------
+数组**还必须已经在契约采样率上**。denoiser 的 wrapper 内部写死
+`convert_audio(wav, 44100, 16000, 1)` —— 它**假定收到的是 44.1 kHz**。
+
+因此调用方**绝不能**把已经重采样到评测率的信号直接喂进来：
+
+    评测口径 16 kHz 时（错误做法）：
+      load_mono(path, 16000) -> (N,2) -> run_fn
+      wrapper 认为这是 44.1k，再做一次 44100->16000
+      => 实际被降采样两次，音频被**加速 2.76 倍**（48000->16000 再当 44100->16000）
+      => 音高整体上移，超出模型训练分布
+      => 实测后果：denoiser 出现高达 34% 的「电平塌陷」假象（level_ratio < 0.2）
+
+    正确做法：先把输入重采样到 `run_fn.contract_sr`（= 44100），再叠双声道。
+
+每个 loader 返回的 `run_fn` 都带 `contract_sr` 属性，调用方**应当读它**：
+
+    csr = getattr(run_fn, "contract_sr", 44100)
+    x = resample(x, sr_target, csr)
+    out = run_fn(np.stack([x, x], axis=-1))
+    est = resample(out["enhanced"][:, 0], csr, sr_target)
+
+⚠️ 影响范围（已用 `_audit_sr_bug.py` 核实）：
+  * 若某个 run_fn 的**原生率恰好等于评测口径**，它就不会触发二次重采样。
+    mel_roformer 原生 44.1k、评测 44.1k -> 正确；**但评测 16k 时同样是错的**
+    （它内部没有转换，所以只是「碰巧」不受影响 —— 见下方 mel 的说明）。
+  * **16 kHz 口径下所有非 44.1k 原生的模型都会被污染**；44.1 kHz 口径下不受影响。
+
+⚠️ denoiser 输出比输入**短 2 个样本**（48000 -> 47998），调用方必须用
+`min(len)` 对齐，不要假设等长。
+
 The 44.1 kHz stereo wrapper is deliberate: it makes board-1 and board-2 models
 addressable by exactly the same code, and the cascade experiment (stage 6) needs
 precisely this -- feed one noisy mixture to any model, in any order.  Native
@@ -94,6 +135,10 @@ def _make_mel_loader(folder, ckpt, yaml, label):
                 return {targets[0]: out.T}
             return {t: out[i].T for i, t in enumerate(targets)}
 
+        # 契约采样率：mel_roformer 同样是 44.1 kHz 输入契约（见模块 docstring）。
+        # 显式声明，避免调用方依赖 getattr 默认值（P19 铁律）。
+        run.contract_sr = int(native_sr)
+
         return run, dt, {
             "kind": "deep", "repo": "ZFTurbo/Music-Source-Separation-Training",
             "arch": "MelBandRoformer", "label": label,
@@ -139,6 +184,8 @@ def _make_denoiser_loader(fname, hidden):
             import torchaudio.functional as AF
             back = AF.resample(torch.as_tensor(y), 16000, SR).numpy()
             return {"enhanced": np.stack([back, back], axis=-1).astype(np.float32)}
+
+        run.contract_sr = SR      # 契约采样率；调用方必须把输入重采样到该率
 
         return run, dt, {
             "kind": "deep", "repo": "facebookresearch/denoiser",

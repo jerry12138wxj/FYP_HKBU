@@ -1,0 +1,2207 @@
+{
+ "task": "T4.3 分离模型在混响混音上的退化",
+ "metric": "museval BSSEval v4 SDR（mono，默认窗 2 s/hop 1.5 s），每片段 4 轨 SDR 均值 = avg4，跨 3 片段取中位数",
+ "reference": "干 GT stem（dry/<stem>.wav）",
+ "models": [
+  "demucs",
+  "umx",
+  "mdx",
+  "convtasnet",
+  "mmdenselstm",
+  "bsrnn_all"
+ ],
+ "conditions": [
+  "dry",
+  "wet_small",
+  "wet_hall"
+ ],
+ "n_cells": 54,
+ "n_pass": 52,
+ "summary_by_model": {
+  "demucs": {
+   "n_dry": 3,
+   "sdr_dry": 6.918,
+   "n_wet_small": 3,
+   "sdr_wet_small": 1.27,
+   "d_wet_small": -5.648,
+   "failed_wet_small": [],
+   "n_wet_hall": 3,
+   "sdr_wet_hall": -8.73,
+   "d_wet_hall": -15.648,
+   "failed_wet_hall": []
+  },
+  "umx": {
+   "n_dry": 3,
+   "sdr_dry": 3.831,
+   "n_wet_small": 3,
+   "sdr_wet_small": 0.481,
+   "d_wet_small": -3.35,
+   "failed_wet_small": [],
+   "n_wet_hall": 3,
+   "sdr_wet_hall": -7.619,
+   "d_wet_hall": -11.45,
+   "failed_wet_hall": []
+  },
+  "mdx": {
+   "n_dry": 3,
+   "sdr_dry": 7.375,
+   "n_wet_small": 3,
+   "sdr_wet_small": 1.435,
+   "d_wet_small": -5.94,
+   "failed_wet_small": [],
+   "n_wet_hall": 3,
+   "sdr_wet_hall": -7.856,
+   "d_wet_hall": -15.231,
+   "failed_wet_hall": []
+  },
+  "convtasnet": {
+   "n_dry": 3,
+   "sdr_dry": 4.489,
+   "n_wet_small": 3,
+   "sdr_wet_small": 1.013,
+   "d_wet_small": -3.476,
+   "failed_wet_small": [],
+   "n_wet_hall": 3,
+   "sdr_wet_hall": -6.194,
+   "d_wet_hall": -10.683,
+   "failed_wet_hall": []
+  },
+  "mmdenselstm": {
+   "n_dry": 3,
+   "sdr_dry": 5.023,
+   "n_wet_small": 3,
+   "sdr_wet_small": 1.056,
+   "d_wet_small": -3.967,
+   "failed_wet_small": [],
+   "n_wet_hall": 3,
+   "sdr_wet_hall": -8.514,
+   "d_wet_hall": -13.537,
+   "failed_wet_hall": []
+  },
+  "bsrnn_all": {
+   "n_dry": 3,
+   "sdr_dry": 7.542,
+   "n_wet_small": 3,
+   "sdr_wet_small": 1.698,
+   "d_wet_small": -5.844,
+   "failed_wet_small": [],
+   "n_wet_hall": 1,
+   "sdr_wet_hall": -7.002,
+   "d_wet_hall": -14.544,
+   "failed_wet_hall": [
+    "Bobby Nobody - Sti",
+    "The Easton Ellises"
+   ]
+  }
+ },
+ "results": [
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.27,
+   "sdr_avg4": 6.359,
+   "si_sdr_avg4": 5.708,
+   "per_stem": {
+    "vocals": {
+     "sdr": 5.127,
+     "si_sdr": 3.789
+    },
+    "drums": {
+     "sdr": 5.948,
+     "si_sdr": 7.3
+    },
+    "bass": {
+     "sdr": 10.646,
+     "si_sdr": 10.014
+    },
+    "other": {
+     "sdr": 3.716,
+     "si_sdr": 1.728
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3759,
+     "drums": 0.4437,
+     "bass": 0.4915,
+     "other": 0.4824
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.152508
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.26,
+   "sdr_avg4": 0.881,
+   "si_sdr_avg4": -1.762,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.006,
+     "si_sdr": -4.508
+    },
+    "drums": {
+     "sdr": 1.698,
+     "si_sdr": 0.468
+    },
+    "bass": {
+     "sdr": 0.102,
+     "si_sdr": 2.211
+    },
+    "other": {
+     "sdr": 0.718,
+     "si_sdr": -5.22
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.2985,
+     "drums": 0.428,
+     "bass": 0.6859,
+     "other": 0.3268
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.176997
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.28,
+   "sdr_avg4": -4.348,
+   "si_sdr_avg4": -21.841,
+   "per_stem": {
+    "vocals": {
+     "sdr": -2.068,
+     "si_sdr": -18.64
+    },
+    "drums": {
+     "sdr": -0.128,
+     "si_sdr": -25.786
+    },
+    "bass": {
+     "sdr": -0.092,
+     "si_sdr": -19.845
+    },
+    "other": {
+     "sdr": -15.105,
+     "si_sdr": -23.095
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3118,
+     "drums": 0.2272,
+     "bass": 0.0174,
+     "other": 0.805
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.497025
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.27,
+   "sdr_avg4": 9.236,
+   "si_sdr_avg4": 7.46,
+   "per_stem": {
+    "vocals": {
+     "sdr": 10.434,
+     "si_sdr": 9.145
+    },
+    "drums": {
+     "sdr": 8.175,
+     "si_sdr": 7.029
+    },
+    "bass": {
+     "sdr": 12.968,
+     "si_sdr": 9.48
+    },
+    "other": {
+     "sdr": 5.367,
+     "si_sdr": 4.184
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4466,
+     "drums": 0.4674,
+     "bass": 0.5031,
+     "other": 0.3997
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.113443
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.26,
+   "sdr_avg4": 1.627,
+   "si_sdr_avg4": -0.547,
+   "per_stem": {
+    "vocals": {
+     "sdr": 2.651,
+     "si_sdr": -0.926
+    },
+    "drums": {
+     "sdr": 2.173,
+     "si_sdr": 0.044
+    },
+    "bass": {
+     "sdr": 0.39,
+     "si_sdr": 1.551
+    },
+    "other": {
+     "sdr": 1.293,
+     "si_sdr": -2.857
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3416,
+     "drums": 0.4542,
+     "bass": 0.6059,
+     "other": 0.3653
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.13396
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.27,
+   "sdr_avg4": -8.73,
+   "si_sdr_avg4": -19.946,
+   "per_stem": {
+    "vocals": {
+     "sdr": -9.465,
+     "si_sdr": -12.421
+    },
+    "drums": {
+     "sdr": -8.887,
+     "si_sdr": -18.981
+    },
+    "bass": {
+     "sdr": -0.106,
+     "si_sdr": -20.244
+    },
+    "other": {
+     "sdr": -16.464,
+     "si_sdr": -28.139
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3076,
+     "drums": 0.2902,
+     "bass": 0.024,
+     "other": 0.7696
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.51391
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.26,
+   "sdr_avg4": 6.918,
+   "si_sdr_avg4": 4.988,
+   "per_stem": {
+    "vocals": {
+     "sdr": 6.184,
+     "si_sdr": 4.198
+    },
+    "drums": {
+     "sdr": 8.677,
+     "si_sdr": 8.065
+    },
+    "bass": {
+     "sdr": 9.854,
+     "si_sdr": 7.222
+    },
+    "other": {
+     "sdr": 2.957,
+     "si_sdr": 0.468
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3986,
+     "drums": 0.4388,
+     "bass": 0.5407,
+     "other": 0.4236
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.136062
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.24,
+   "sdr_avg4": 1.27,
+   "si_sdr_avg4": -0.759,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.512,
+     "si_sdr": -2.339
+    },
+    "drums": {
+     "sdr": 1.917,
+     "si_sdr": 2.681
+    },
+    "bass": {
+     "sdr": 1.677,
+     "si_sdr": 2.082
+    },
+    "other": {
+     "sdr": -0.027,
+     "si_sdr": -5.461
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3133,
+     "drums": 0.4933,
+     "bass": 0.6199,
+     "other": 0.3567
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.18081
+  },
+  {
+   "model": "demucs",
+   "label": "Demucs (htdemucs)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.27,
+   "sdr_avg4": -8.875,
+   "si_sdr_avg4": -19.25,
+   "per_stem": {
+    "vocals": {
+     "sdr": -10.915,
+     "si_sdr": -10.995
+    },
+    "drums": {
+     "sdr": -5.132,
+     "si_sdr": -27.674
+    },
+    "bass": {
+     "sdr": -6.402,
+     "si_sdr": -12.092
+    },
+    "other": {
+     "sdr": -13.051,
+     "si_sdr": -26.24
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4231,
+     "drums": 0.1668,
+     "bass": 0.4025,
+     "other": 0.5366
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.522891
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.18,
+   "sdr_avg4": 3.831,
+   "si_sdr_avg4": 2.198,
+   "per_stem": {
+    "vocals": {
+     "sdr": 3.482,
+     "si_sdr": 2.503
+    },
+    "drums": {
+     "sdr": 3.154,
+     "si_sdr": 3.544
+    },
+    "bass": {
+     "sdr": 7.175,
+     "si_sdr": 6.346
+    },
+    "other": {
+     "sdr": 1.514,
+     "si_sdr": -3.602
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.5555,
+     "drums": 0.4416,
+     "bass": 0.47,
+     "other": 0.27
+    },
+    "dry_floor_ok": false
+   },
+   "mixture_rms": 0.152508
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.22,
+   "sdr_avg4": 0.378,
+   "si_sdr_avg4": -4.112,
+   "per_stem": {
+    "vocals": {
+     "sdr": -0.257,
+     "si_sdr": -5.514
+    },
+    "drums": {
+     "sdr": 1.209,
+     "si_sdr": -0.152
+    },
+    "bass": {
+     "sdr": 0.348,
+     "si_sdr": 1.46
+    },
+    "other": {
+     "sdr": 0.212,
+     "si_sdr": -12.242
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4715,
+     "drums": 0.4203,
+     "bass": 0.6618,
+     "other": 0.0667
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.176997
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.22,
+   "sdr_avg4": -7.619,
+   "si_sdr_avg4": -23.759,
+   "per_stem": {
+    "vocals": {
+     "sdr": -12.098,
+     "si_sdr": -16.11
+    },
+    "drums": {
+     "sdr": -0.091,
+     "si_sdr": -41.815
+    },
+    "bass": {
+     "sdr": -11.509,
+     "si_sdr": -13.666
+    },
+    "other": {
+     "sdr": -6.778,
+     "si_sdr": -23.445
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.6261,
+     "drums": 0.0744,
+     "bass": 0.5785,
+     "other": 0.2649
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.497025
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.22,
+   "sdr_avg4": 6.398,
+   "si_sdr_avg4": 3.809,
+   "per_stem": {
+    "vocals": {
+     "sdr": 8.397,
+     "si_sdr": 6.765
+    },
+    "drums": {
+     "sdr": 5.235,
+     "si_sdr": 3.013
+    },
+    "bass": {
+     "sdr": 8.714,
+     "si_sdr": 4.906
+    },
+    "other": {
+     "sdr": 3.245,
+     "si_sdr": 0.551
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4352,
+     "drums": 0.4627,
+     "bass": 0.5203,
+     "other": 0.3233
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.113443
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.22,
+   "sdr_avg4": 1.301,
+   "si_sdr_avg4": -2.288,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.875,
+     "si_sdr": -1.882
+    },
+    "drums": {
+     "sdr": 1.427,
+     "si_sdr": -1.563
+    },
+    "bass": {
+     "sdr": 0.706,
+     "si_sdr": -0.282
+    },
+    "other": {
+     "sdr": 1.197,
+     "si_sdr": -5.426
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3564,
+     "drums": 0.4598,
+     "bass": 0.612,
+     "other": 0.2346
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.13396
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.21,
+   "sdr_avg4": -9.782,
+   "si_sdr_avg4": -15.505,
+   "per_stem": {
+    "vocals": {
+     "sdr": -9.777,
+     "si_sdr": -14.724
+    },
+    "drums": {
+     "sdr": -2.982,
+     "si_sdr": -21.576
+    },
+    "bass": {
+     "sdr": -15.115,
+     "si_sdr": -11.421
+    },
+    "other": {
+     "sdr": -11.255,
+     "si_sdr": -14.298
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.339,
+     "drums": 0.1206,
+     "bass": 0.6803,
+     "other": 0.3987
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.51391
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.22,
+   "sdr_avg4": 3.745,
+   "si_sdr_avg4": 1.106,
+   "per_stem": {
+    "vocals": {
+     "sdr": 4.166,
+     "si_sdr": 0.987
+    },
+    "drums": {
+     "sdr": 4.666,
+     "si_sdr": 2.869
+    },
+    "bass": {
+     "sdr": 5.519,
+     "si_sdr": 3.379
+    },
+    "other": {
+     "sdr": 0.63,
+     "si_sdr": -2.813
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3244,
+     "drums": 0.3699,
+     "bass": 0.5777,
+     "other": 0.4386
+    },
+    "dry_floor_ok": false
+   },
+   "mixture_rms": 0.136062
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.21,
+   "sdr_avg4": 0.481,
+   "si_sdr_avg4": -2.714,
+   "per_stem": {
+    "vocals": {
+     "sdr": 0.972,
+     "si_sdr": -4.322
+    },
+    "drums": {
+     "sdr": 1.607,
+     "si_sdr": 0.587
+    },
+    "bass": {
+     "sdr": 0.13,
+     "si_sdr": 0.615
+    },
+    "other": {
+     "sdr": -0.784,
+     "si_sdr": -7.737
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.2792,
+     "drums": 0.4352,
+     "bass": 0.6468,
+     "other": 0.3231
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.18081
+  },
+  {
+   "model": "umx",
+   "label": "Open-Unmix (umxhq)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.22,
+   "sdr_avg4": -7.6,
+   "si_sdr_avg4": -18.243,
+   "per_stem": {
+    "vocals": {
+     "sdr": -7.236,
+     "si_sdr": -13.496
+    },
+    "drums": {
+     "sdr": -0.016,
+     "si_sdr": -29.874
+    },
+    "bass": {
+     "sdr": -11.279,
+     "si_sdr": -14.948
+    },
+    "other": {
+     "sdr": -11.869,
+     "si_sdr": -14.653
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3186,
+     "drums": 0.0415,
+     "bass": 0.6548,
+     "other": 0.4804
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.522891
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 2.15,
+   "sdr_avg4": 7.317,
+   "si_sdr_avg4": 7.237,
+   "per_stem": {
+    "vocals": {
+     "sdr": 7.465,
+     "si_sdr": 6.373
+    },
+    "drums": {
+     "sdr": 5.953,
+     "si_sdr": 7.983
+    },
+    "bass": {
+     "sdr": 10.937,
+     "si_sdr": 10.763
+    },
+    "other": {
+     "sdr": 4.915,
+     "si_sdr": 3.831
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4063,
+     "drums": 0.4462,
+     "bass": 0.4775,
+     "other": 0.4601
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.152508
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 2.14,
+   "sdr_avg4": 1.141,
+   "si_sdr_avg4": -1.44,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.078,
+     "si_sdr": -5.696
+    },
+    "drums": {
+     "sdr": 1.905,
+     "si_sdr": 1.766
+    },
+    "bass": {
+     "sdr": 0.964,
+     "si_sdr": 2.713
+    },
+    "other": {
+     "sdr": 0.619,
+     "si_sdr": -4.541
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.2596,
+     "drums": 0.4612,
+     "bass": 0.6539,
+     "other": 0.3582
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.176997
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 2.07,
+   "sdr_avg4": -5.542,
+   "si_sdr_avg4": -19.455,
+   "per_stem": {
+    "vocals": {
+     "sdr": -5.631,
+     "si_sdr": -16.353
+    },
+    "drums": {
+     "sdr": -0.775,
+     "si_sdr": -25.205
+    },
+    "bass": {
+     "sdr": -1.471,
+     "si_sdr": -13.477
+    },
+    "other": {
+     "sdr": -14.289,
+     "si_sdr": -22.785
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3223,
+     "drums": 0.1736,
+     "bass": 0.0947,
+     "other": 0.7518
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.497025
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 2.07,
+   "sdr_avg4": 10.136,
+   "si_sdr_avg4": 8.528,
+   "per_stem": {
+    "vocals": {
+     "sdr": 11.169,
+     "si_sdr": 9.487
+    },
+    "drums": {
+     "sdr": 9.286,
+     "si_sdr": 7.87
+    },
+    "bass": {
+     "sdr": 13.947,
+     "si_sdr": 11.307
+    },
+    "other": {
+     "sdr": 6.143,
+     "si_sdr": 5.449
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4411,
+     "drums": 0.4795,
+     "bass": 0.4986,
+     "other": 0.4107
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.113443
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 2.14,
+   "sdr_avg4": 2.101,
+   "si_sdr_avg4": -0.565,
+   "per_stem": {
+    "vocals": {
+     "sdr": 2.676,
+     "si_sdr": -1.003
+    },
+    "drums": {
+     "sdr": 2.247,
+     "si_sdr": 0.002
+    },
+    "bass": {
+     "sdr": 2.587,
+     "si_sdr": 1.825
+    },
+    "other": {
+     "sdr": 0.894,
+     "si_sdr": -3.084
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3282,
+     "drums": 0.4524,
+     "bass": 0.5888,
+     "other": 0.4098
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.13396
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 2.17,
+   "sdr_avg4": -8.328,
+   "si_sdr_avg4": -17.342,
+   "per_stem": {
+    "vocals": {
+     "sdr": -8.976,
+     "si_sdr": -12.302
+    },
+    "drums": {
+     "sdr": -0.928,
+     "si_sdr": -19.849
+    },
+    "bass": {
+     "sdr": -6.977,
+     "si_sdr": -9.528
+    },
+    "other": {
+     "sdr": -16.431,
+     "si_sdr": -27.691
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3022,
+     "drums": 0.0694,
+     "bass": 0.1857,
+     "other": 0.7612
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.51391
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 2.1,
+   "sdr_avg4": 7.375,
+   "si_sdr_avg4": 6.05,
+   "per_stem": {
+    "vocals": {
+     "sdr": 6.821,
+     "si_sdr": 5.247
+    },
+    "drums": {
+     "sdr": 9.079,
+     "si_sdr": 8.575
+    },
+    "bass": {
+     "sdr": 10.057,
+     "si_sdr": 8.225
+    },
+    "other": {
+     "sdr": 3.541,
+     "si_sdr": 2.153
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.409,
+     "drums": 0.4369,
+     "bass": 0.5117,
+     "other": 0.4012
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.136062
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 2.05,
+   "sdr_avg4": 1.435,
+   "si_sdr_avg4": -0.429,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.495,
+     "si_sdr": -2.029
+    },
+    "drums": {
+     "sdr": 1.973,
+     "si_sdr": 3.105
+    },
+    "bass": {
+     "sdr": 2.181,
+     "si_sdr": 2.116
+    },
+    "other": {
+     "sdr": 0.091,
+     "si_sdr": -4.91
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3217,
+     "drums": 0.4944,
+     "bass": 0.5856,
+     "other": 0.3488
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.18081
+  },
+  {
+   "model": "mdx",
+   "label": "MDX-Net (mdx_extra)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 2.15,
+   "sdr_avg4": -7.856,
+   "si_sdr_avg4": -18.887,
+   "per_stem": {
+    "vocals": {
+     "sdr": -9.87,
+     "si_sdr": -10.065
+    },
+    "drums": {
+     "sdr": -0.343,
+     "si_sdr": -21.637
+    },
+    "bass": {
+     "sdr": -6.569,
+     "si_sdr": -10.906
+    },
+    "other": {
+     "sdr": -14.642,
+     "si_sdr": -32.942
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3885,
+     "drums": 0.0328,
+     "bass": 0.337,
+     "other": 0.6284
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.522891
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.18,
+   "sdr_avg4": 4.343,
+   "si_sdr_avg4": 2.948,
+   "per_stem": {
+    "vocals": {
+     "sdr": 4.493,
+     "si_sdr": 2.506
+    },
+    "drums": {
+     "sdr": 2.852,
+     "si_sdr": 3.717
+    },
+    "bass": {
+     "sdr": 7.547,
+     "si_sdr": 6.661
+    },
+    "other": {
+     "sdr": 2.479,
+     "si_sdr": -1.094
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4701,
+     "drums": 0.3908,
+     "bass": 0.4877,
+     "other": 0.3183
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.152508
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.11,
+   "sdr_avg4": 0.604,
+   "si_sdr_avg4": -2.989,
+   "per_stem": {
+    "vocals": {
+     "sdr": 0.493,
+     "si_sdr": -5.649
+    },
+    "drums": {
+     "sdr": 1.389,
+     "si_sdr": -0.128
+    },
+    "bass": {
+     "sdr": -0.166,
+     "si_sdr": 1.358
+    },
+    "other": {
+     "sdr": 0.698,
+     "si_sdr": -7.538
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.363,
+     "drums": 0.3863,
+     "bass": 0.6771,
+     "other": 0.1604
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.176997
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.12,
+   "sdr_avg4": -4.437,
+   "si_sdr_avg4": -21.439,
+   "per_stem": {
+    "vocals": {
+     "sdr": -14.651,
+     "si_sdr": -18.704
+    },
+    "drums": {
+     "sdr": -0.902,
+     "si_sdr": -24.966
+    },
+    "bass": {
+     "sdr": -1.889,
+     "si_sdr": -16.32
+    },
+    "other": {
+     "sdr": -0.305,
+     "si_sdr": -25.766
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.8672,
+     "drums": 0.0996,
+     "bass": 0.1116,
+     "other": 0.0515
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.497025
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.13,
+   "sdr_avg4": 7.057,
+   "si_sdr_avg4": 4.316,
+   "per_stem": {
+    "vocals": {
+     "sdr": 8.359,
+     "si_sdr": 6.564
+    },
+    "drums": {
+     "sdr": 5.996,
+     "si_sdr": 4.518
+    },
+    "bass": {
+     "sdr": 10.482,
+     "si_sdr": 5.192
+    },
+    "other": {
+     "sdr": 3.391,
+     "si_sdr": 0.991
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4285,
+     "drums": 0.4344,
+     "bass": 0.5121,
+     "other": 0.3337
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.113443
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.11,
+   "sdr_avg4": 1.384,
+   "si_sdr_avg4": -2.164,
+   "per_stem": {
+    "vocals": {
+     "sdr": 2.064,
+     "si_sdr": -1.767
+    },
+    "drums": {
+     "sdr": 1.658,
+     "si_sdr": -1.671
+    },
+    "bass": {
+     "sdr": 0.664,
+     "si_sdr": -0.465
+    },
+    "other": {
+     "sdr": 1.151,
+     "si_sdr": -4.753
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3254,
+     "drums": 0.4065,
+     "bass": 0.6442,
+     "other": 0.2556
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.13396
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.11,
+   "sdr_avg4": -8.899,
+   "si_sdr_avg4": -17.139,
+   "per_stem": {
+    "vocals": {
+     "sdr": -1.856,
+     "si_sdr": -16.476
+    },
+    "drums": {
+     "sdr": -7.008,
+     "si_sdr": -18.187
+    },
+    "bass": {
+     "sdr": -11.163,
+     "si_sdr": -11.732
+    },
+    "other": {
+     "sdr": -15.57,
+     "si_sdr": -22.159
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.1453,
+     "drums": 0.2078,
+     "bass": 0.4652,
+     "other": 0.505
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.51391
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.12,
+   "sdr_avg4": 4.489,
+   "si_sdr_avg4": 2.273,
+   "per_stem": {
+    "vocals": {
+     "sdr": 4.18,
+     "si_sdr": 1.508
+    },
+    "drums": {
+     "sdr": 5.97,
+     "si_sdr": 5.017
+    },
+    "bass": {
+     "sdr": 6.121,
+     "si_sdr": 4.688
+    },
+    "other": {
+     "sdr": 1.686,
+     "si_sdr": -2.122
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3284,
+     "drums": 0.3986,
+     "bass": 0.554,
+     "other": 0.3601
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.136062
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.12,
+   "sdr_avg4": 1.013,
+   "si_sdr_avg4": -2.366,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.303,
+     "si_sdr": -4.465
+    },
+    "drums": {
+     "sdr": 2.005,
+     "si_sdr": 1.513
+    },
+    "bass": {
+     "sdr": 0.568,
+     "si_sdr": 1.084
+    },
+    "other": {
+     "sdr": 0.175,
+     "si_sdr": -7.595
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.2581,
+     "drums": 0.4325,
+     "bass": 0.6453,
+     "other": 0.2649
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.18081
+  },
+  {
+   "model": "convtasnet",
+   "label": "Conv-TasNet (musdb18)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.12,
+   "sdr_avg4": -6.194,
+   "si_sdr_avg4": -19.985,
+   "per_stem": {
+    "vocals": {
+     "sdr": -0.742,
+     "si_sdr": -14.808
+    },
+    "drums": {
+     "sdr": -0.04,
+     "si_sdr": -30.839
+    },
+    "bass": {
+     "sdr": -8.624,
+     "si_sdr": -13.384
+    },
+    "other": {
+     "sdr": -15.369,
+     "si_sdr": -20.909
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.0861,
+     "drums": 0.0151,
+     "bass": 0.4414,
+     "other": 0.6975
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.522891
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.44,
+   "sdr_avg4": 5.023,
+   "si_sdr_avg4": 3.904,
+   "per_stem": {
+    "vocals": {
+     "sdr": 5.834,
+     "si_sdr": 4.087
+    },
+    "drums": {
+     "sdr": 3.792,
+     "si_sdr": 4.468
+    },
+    "bass": {
+     "sdr": 7.35,
+     "si_sdr": 6.683
+    },
+    "other": {
+     "sdr": 3.118,
+     "si_sdr": 0.378
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4851,
+     "drums": 0.3979,
+     "bass": 0.4835,
+     "other": 0.3973
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.152508
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.46,
+   "sdr_avg4": 0.991,
+   "si_sdr_avg4": -2.4,
+   "per_stem": {
+    "vocals": {
+     "sdr": 0.904,
+     "si_sdr": -4.879
+    },
+    "drums": {
+     "sdr": 1.196,
+     "si_sdr": 0.021
+    },
+    "bass": {
+     "sdr": 1.14,
+     "si_sdr": 1.518
+    },
+    "other": {
+     "sdr": 0.724,
+     "si_sdr": -6.261
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.35,
+     "drums": 0.4349,
+     "bass": 0.6261,
+     "other": 0.28
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.176997
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.35,
+   "sdr_avg4": -7.432,
+   "si_sdr_avg4": -19.963,
+   "per_stem": {
+    "vocals": {
+     "sdr": -11.93,
+     "si_sdr": -15.903
+    },
+    "drums": {
+     "sdr": -3.097,
+     "si_sdr": -28.376
+    },
+    "bass": {
+     "sdr": -11.047,
+     "si_sdr": -13.907
+    },
+    "other": {
+     "sdr": -3.653,
+     "si_sdr": -21.665
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.6042,
+     "drums": 0.1728,
+     "bass": 0.5698,
+     "other": 0.1839
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.497025
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.35,
+   "sdr_avg4": 6.833,
+   "si_sdr_avg4": 4.415,
+   "per_stem": {
+    "vocals": {
+     "sdr": 8.492,
+     "si_sdr": 6.885
+    },
+    "drums": {
+     "sdr": 5.744,
+     "si_sdr": 3.895
+    },
+    "bass": {
+     "sdr": 9.536,
+     "si_sdr": 5.227
+    },
+    "other": {
+     "sdr": 3.561,
+     "si_sdr": 1.653
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4457,
+     "drums": 0.4513,
+     "bass": 0.5047,
+     "other": 0.3604
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.113443
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.4,
+   "sdr_avg4": 1.4,
+   "si_sdr_avg4": -1.77,
+   "per_stem": {
+    "vocals": {
+     "sdr": 2.189,
+     "si_sdr": -1.722
+    },
+    "drums": {
+     "sdr": 1.313,
+     "si_sdr": -1.535
+    },
+    "bass": {
+     "sdr": 1.108,
+     "si_sdr": 0.478
+    },
+    "other": {
+     "sdr": 0.992,
+     "si_sdr": -4.3
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3378,
+     "drums": 0.4567,
+     "bass": 0.5573,
+     "other": 0.3342
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.13396
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.43,
+   "sdr_avg4": -8.951,
+   "si_sdr_avg4": -20.093,
+   "per_stem": {
+    "vocals": {
+     "sdr": -11.517,
+     "si_sdr": -14.223
+    },
+    "drums": {
+     "sdr": -3.469,
+     "si_sdr": -20.502
+    },
+    "bass": {
+     "sdr": -13.9,
+     "si_sdr": -13.59
+    },
+    "other": {
+     "sdr": -6.92,
+     "si_sdr": -32.056
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4178,
+     "drums": 0.1517,
+     "bass": 0.6371,
+     "other": 0.2435
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.51391
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 0.35,
+   "sdr_avg4": 4.592,
+   "si_sdr_avg4": 1.966,
+   "per_stem": {
+    "vocals": {
+     "sdr": 5.101,
+     "si_sdr": 2.715
+    },
+    "drums": {
+     "sdr": 5.298,
+     "si_sdr": 3.638
+    },
+    "bass": {
+     "sdr": 6.007,
+     "si_sdr": 3.385
+    },
+    "other": {
+     "sdr": 1.964,
+     "si_sdr": -1.872
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3615,
+     "drums": 0.3951,
+     "bass": 0.565,
+     "other": 0.3863
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.136062
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 0.34,
+   "sdr_avg4": 1.056,
+   "si_sdr_avg4": -1.993,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.155,
+     "si_sdr": -3.626
+    },
+    "drums": {
+     "sdr": 1.468,
+     "si_sdr": 0.584
+    },
+    "bass": {
+     "sdr": 1.393,
+     "si_sdr": 0.84
+    },
+    "other": {
+     "sdr": 0.209,
+     "si_sdr": -5.769
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.276,
+     "drums": 0.4545,
+     "bass": 0.6043,
+     "other": 0.3113
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.18081
+  },
+  {
+   "model": "mmdenselstm",
+   "label": "MMDenseLSTM (musdb18)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 0.4,
+   "sdr_avg4": -8.514,
+   "si_sdr_avg4": -20.696,
+   "per_stem": {
+    "vocals": {
+     "sdr": -8.544,
+     "si_sdr": -12.562
+    },
+    "drums": {
+     "sdr": -2.684,
+     "si_sdr": -28.582
+    },
+    "bass": {
+     "sdr": -10.199,
+     "si_sdr": -13.566
+    },
+    "other": {
+     "sdr": -12.627,
+     "si_sdr": -28.073
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3098,
+     "drums": 0.1687,
+     "bass": 0.4744,
+     "other": 0.5286
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.522891
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 4.59,
+   "sdr_avg4": 7.542,
+   "si_sdr_avg4": 6.755,
+   "per_stem": {
+    "vocals": {
+     "sdr": 7.985,
+     "si_sdr": 7.431
+    },
+    "drums": {
+     "sdr": 6.483,
+     "si_sdr": 7.132
+    },
+    "bass": {
+     "sdr": 10.273,
+     "si_sdr": 8.471
+    },
+    "other": {
+     "sdr": 5.427,
+     "si_sdr": 3.986
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.468,
+     "drums": 0.4472,
+     "bass": 0.4616,
+     "other": 0.4252
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.152508
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 3.34,
+   "sdr_avg4": 1.698,
+   "si_sdr_avg4": -1.252,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.826,
+     "si_sdr": -3.338
+    },
+    "drums": {
+     "sdr": 1.851,
+     "si_sdr": 1.408
+    },
+    "bass": {
+     "sdr": 1.891,
+     "si_sdr": 1.872
+    },
+    "other": {
+     "sdr": 1.223,
+     "si_sdr": -4.951
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3301,
+     "drums": 0.4773,
+     "bass": 0.5554,
+     "other": 0.3391
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.176997
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "status": "FAIL",
+   "load_s": 3.3,
+   "sdr_avg4": -4.833,
+   "si_sdr_avg4": -27.189,
+   "per_stem": {
+    "vocals": {
+     "sdr": -7.4,
+     "si_sdr": -15.233
+    },
+    "drums": {
+     "sdr": -3.427,
+     "si_sdr": -38.069
+    },
+    "bass": {
+     "sdr": -0.0,
+     "si_sdr": -34.847
+    },
+    "other": {
+     "sdr": -8.506,
+     "si_sdr": -20.606
+    }
+   },
+   "gate": {
+    "level_ok": false,
+    "levels": {
+     "vocals": 0.3919,
+     "drums": 0.2993,
+     "bass": 0.0001,
+     "other": 0.4116
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.497025
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 3.27,
+   "sdr_avg4": 9.362,
+   "si_sdr_avg4": 8.476,
+   "per_stem": {
+    "vocals": {
+     "sdr": 11.716,
+     "si_sdr": 10.948
+    },
+    "drums": {
+     "sdr": 8.714,
+     "si_sdr": 7.509
+    },
+    "bass": {
+     "sdr": 11.639,
+     "si_sdr": 10.542
+    },
+    "other": {
+     "sdr": 5.38,
+     "si_sdr": 4.904
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.4504,
+     "drums": 0.4748,
+     "bass": 0.4869,
+     "other": 0.4229
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.113443
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 3.29,
+   "sdr_avg4": 1.973,
+   "si_sdr_avg4": -0.411,
+   "per_stem": {
+    "vocals": {
+     "sdr": 2.823,
+     "si_sdr": -0.441
+    },
+    "drums": {
+     "sdr": 2.04,
+     "si_sdr": 0.367
+    },
+    "bass": {
+     "sdr": 1.763,
+     "si_sdr": 1.436
+    },
+    "other": {
+     "sdr": 1.267,
+     "si_sdr": -3.004
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.343,
+     "drums": 0.4844,
+     "bass": 0.5701,
+     "other": 0.3871
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.13396
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "status": "FAIL",
+   "load_s": 3.39,
+   "sdr_avg4": -8.843,
+   "si_sdr_avg4": -19.375,
+   "per_stem": {
+    "vocals": {
+     "sdr": -9.196,
+     "si_sdr": -11.711
+    },
+    "drums": {
+     "sdr": -10.634,
+     "si_sdr": -16.65
+    },
+    "bass": {
+     "sdr": -0.001,
+     "si_sdr": -19.444
+    },
+    "other": {
+     "sdr": -15.542,
+     "si_sdr": -29.695
+    }
+   },
+   "gate": {
+    "level_ok": false,
+    "levels": {
+     "vocals": 0.3052,
+     "drums": 0.3033,
+     "bass": 0.0034,
+     "other": 0.6829
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.51391
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "dry",
+   "status": "PASS",
+   "load_s": 3.26,
+   "sdr_avg4": 6.915,
+   "si_sdr_avg4": 5.256,
+   "per_stem": {
+    "vocals": {
+     "sdr": 6.382,
+     "si_sdr": 4.623
+    },
+    "drums": {
+     "sdr": 8.361,
+     "si_sdr": 7.895
+    },
+    "bass": {
+     "sdr": 9.758,
+     "si_sdr": 8.419
+    },
+    "other": {
+     "sdr": 3.161,
+     "si_sdr": 0.087
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.3853,
+     "drums": 0.4277,
+     "bass": 0.5278,
+     "other": 0.3787
+    },
+    "dry_floor_ok": true
+   },
+   "mixture_rms": 0.136062
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "status": "PASS",
+   "load_s": 3.21,
+   "sdr_avg4": 1.681,
+   "si_sdr_avg4": -0.306,
+   "per_stem": {
+    "vocals": {
+     "sdr": 1.722,
+     "si_sdr": -2.083
+    },
+    "drums": {
+     "sdr": 2.118,
+     "si_sdr": 2.694
+    },
+    "bass": {
+     "sdr": 1.634,
+     "si_sdr": 1.885
+    },
+    "other": {
+     "sdr": 1.252,
+     "si_sdr": -3.719
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.2933,
+     "drums": 0.4811,
+     "bass": 0.6061,
+     "other": 0.2934
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.18081
+  },
+  {
+   "model": "bsrnn_all",
+   "label": "BSRNN (oBSRNN, 4-stem)",
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "status": "PASS",
+   "load_s": 3.31,
+   "sdr_avg4": -7.002,
+   "si_sdr_avg4": -15.062,
+   "per_stem": {
+    "vocals": {
+     "sdr": -7.275,
+     "si_sdr": -9.749
+    },
+    "drums": {
+     "sdr": -4.856,
+     "si_sdr": -28.02
+    },
+    "bass": {
+     "sdr": -6.549,
+     "si_sdr": -9.169
+    },
+    "other": {
+     "sdr": -9.327,
+     "si_sdr": -13.31
+    }
+   },
+   "gate": {
+    "level_ok": true,
+    "levels": {
+     "vocals": 0.2673,
+     "drums": 0.1743,
+     "bass": 0.2087,
+     "other": 0.3569
+    },
+    "dry_floor_ok": null
+   },
+   "mixture_rms": 0.522891
+  }
+ ],
+ "generated": "2026-09-23 03:41:55",
+ "status": "PARTIAL"
+}

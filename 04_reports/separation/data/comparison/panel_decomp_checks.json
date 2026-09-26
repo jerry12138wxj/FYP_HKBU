@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-23 02:16:20",
+  "generated": "2026-09-27 02:18:14",
   "stem": "vocals",
   "dur": 20.0,
   "filters_len": 512,
@@ -173,5 +173,5 @@
     }
   ],
   "status": "PASS",
-  "elapsed_s": 134.6
+  "elapsed_s": 69.8
 }

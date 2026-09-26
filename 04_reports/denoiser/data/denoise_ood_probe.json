@@ -1,0 +1,983 @@
+{
+ "task": "T5.7 降噪器域外失效探针",
+ "analysis_sr": 16000,
+ "contract_sr": 44100,
+ "n_items": 6,
+ "probes": {
+  "mel_roformer_denoise": {
+   "native_sr": 44100,
+   "A_clean_passthrough": [
+    {
+     "id": "p257_030_s-05",
+     "ratio": 0.9958369070746557,
+     "hf_in": 0.1699608415365219,
+     "hf_out": 0.16405680775642395
+    },
+    {
+     "id": "p257_206_s-05",
+     "ratio": 0.9958381314199051,
+     "hf_in": 0.1597239375114441,
+     "hf_out": 0.1553715467453003
+    },
+    {
+     "id": "p232_074_s-05",
+     "ratio": 0.9987674029025759,
+     "hf_in": 0.11991048604249954,
+     "hf_out": 0.1186334416270256
+    },
+    {
+     "id": "p232_319_s-05",
+     "ratio": 0.9989209877133988,
+     "hf_in": 0.27726688981056213,
+     "hf_out": 0.2692893445491791
+    },
+    {
+     "id": "p232_277_s-05",
+     "ratio": 0.9984143370639422,
+     "hf_in": 0.28729432821273804,
+     "hf_out": 0.2834778130054474
+    },
+    {
+     "id": "p232_011_s-05",
+     "ratio": 0.9988071495727358,
+     "hf_in": 0.22132737934589386,
+     "hf_out": 0.21406136453151703
+    }
+   ],
+   "B_noise_passthrough": [
+    {
+     "id": "p257_030_s-05",
+     "ratio": 0.0238206674724091,
+     "suppression_db": -32.46092144992947
+    },
+    {
+     "id": "p257_206_s-05",
+     "ratio": 0.8702904388856266,
+     "suppression_db": -1.2067157523084695
+    },
+    {
+     "id": "p232_074_s-05",
+     "ratio": 0.997579223058634,
+     "suppression_db": -0.021052087476907025
+    },
+    {
+     "id": "p232_319_s-05",
+     "ratio": 0.9980527573582121,
+     "suppression_db": -0.016930017217611847
+    },
+    {
+     "id": "p232_277_s-05",
+     "ratio": 0.9943176800704209,
+     "suppression_db": -0.049496764225553484
+    },
+    {
+     "id": "p232_011_s-05",
+     "ratio": 0.9981765991521743,
+     "suppression_db": -0.015852315345415945
+    }
+   ],
+   "C_gain_sweep": [
+    {
+     "id": "p257_030_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -7.637,
+     "d_si_sdr_vs_gt": 25.611,
+     "level_ratio": 0.1684,
+     "hf_in": 0.1328,
+     "hf_out": 0.1616
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 2.321,
+     "d_si_sdr_vs_gt": 20.687,
+     "level_ratio": 0.4842,
+     "hf_in": 0.1474,
+     "hf_out": 0.1633
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 12.025,
+     "d_si_sdr_vs_gt": 14.463,
+     "level_ratio": 0.8681,
+     "hf_in": 0.1622,
+     "hf_out": 0.1644
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 18.919,
+     "d_si_sdr_vs_gt": 5.749,
+     "level_ratio": 0.9803,
+     "hf_in": 0.1682,
+     "hf_out": 0.1647
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": 6.566,
+     "d_si_sdr_vs_gt": 1.483,
+     "level_ratio": 0.8486,
+     "hf_in": 0.3751,
+     "hf_out": 0.378
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 8.007,
+     "d_si_sdr_vs_gt": 1.436,
+     "level_ratio": 0.8864,
+     "hf_in": 0.3391,
+     "hf_out": 0.3391
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 18.174,
+     "d_si_sdr_vs_gt": 0.97,
+     "level_ratio": 0.9743,
+     "hf_in": 0.2516,
+     "hf_out": 0.2461
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 14.325,
+     "d_si_sdr_vs_gt": 4.28,
+     "level_ratio": 0.9785,
+     "hf_in": 0.1816,
+     "hf_out": 0.1492
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": 33.528,
+     "d_si_sdr_vs_gt": 0.021,
+     "level_ratio": 0.9977,
+     "hf_in": 0.4581,
+     "hf_out": 0.4506
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 33.864,
+     "d_si_sdr_vs_gt": 0.021,
+     "level_ratio": 0.998,
+     "hf_in": 0.407,
+     "hf_out": 0.3998
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 30.202,
+     "d_si_sdr_vs_gt": 0.029,
+     "level_ratio": 0.9983,
+     "hf_in": 0.2895,
+     "hf_out": 0.2831
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 15.383,
+     "d_si_sdr_vs_gt": 6.535,
+     "level_ratio": 0.9825,
+     "hf_in": 0.1743,
+     "hf_out": 0.1095
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": 35.014,
+     "d_si_sdr_vs_gt": 0.017,
+     "level_ratio": 0.9981,
+     "hf_in": 0.4045,
+     "hf_out": 0.3976
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 34.986,
+     "d_si_sdr_vs_gt": 0.017,
+     "level_ratio": 0.9984,
+     "hf_in": 0.3662,
+     "hf_out": 0.3592
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 34.466,
+     "d_si_sdr_vs_gt": 0.015,
+     "level_ratio": 0.9991,
+     "hf_in": 0.3085,
+     "hf_out": 0.3004
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 17.862,
+     "d_si_sdr_vs_gt": 3.384,
+     "level_ratio": 0.989,
+     "hf_in": 0.2798,
+     "hf_out": 0.2635
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": 26.994,
+     "d_si_sdr_vs_gt": 0.053,
+     "level_ratio": 0.9938,
+     "hf_in": 0.3797,
+     "hf_out": 0.3712
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 27.83,
+     "d_si_sdr_vs_gt": 0.054,
+     "level_ratio": 0.9946,
+     "hf_in": 0.3524,
+     "hf_out": 0.3439
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 28.312,
+     "d_si_sdr_vs_gt": 0.039,
+     "level_ratio": 0.9974,
+     "hf_in": 0.3068,
+     "hf_out": 0.2999
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 30.19,
+     "d_si_sdr_vs_gt": -0.044,
+     "level_ratio": 0.9989,
+     "hf_in": 0.2882,
+     "hf_out": 0.2825
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": 24.002,
+     "d_si_sdr_vs_gt": 0.028,
+     "level_ratio": 0.9966,
+     "hf_in": 0.3463,
+     "hf_out": 0.3412
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 22.884,
+     "d_si_sdr_vs_gt": 0.025,
+     "level_ratio": 0.9965,
+     "hf_in": 0.3166,
+     "hf_out": 0.3119
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 28.019,
+     "d_si_sdr_vs_gt": 0.0,
+     "level_ratio": 0.9981,
+     "hf_in": 0.2593,
+     "hf_out": 0.2528
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 25.063,
+     "d_si_sdr_vs_gt": -0.363,
+     "level_ratio": 0.9977,
+     "hf_in": 0.2281,
+     "hf_out": 0.2216
+    }
+   ],
+   "summary": {
+    "A_clean_ratio_med": 0.9986,
+    "A_hf_in_med": 0.1956,
+    "A_hf_out_med": 0.1891,
+    "B_noise_ratio_med": 0.9959,
+    "B_suppression_db_med": -0.0353,
+    "C_si_sdr_vs_mix_med": 24.5325,
+    "C_d_si_sdr_vs_gt_med": 0.046,
+    "C_level_ratio_med": 0.9956
+   }
+  },
+  "denoiser_dns48": {
+   "native_sr": 16000,
+   "A_clean_passthrough": [
+    {
+     "id": "p257_030_s-05",
+     "ratio": 0.9887582653699702,
+     "hf_in": 0.1699189394712448,
+     "hf_out": 0.15918847918510437
+    },
+    {
+     "id": "p257_206_s-05",
+     "ratio": 0.9931818382850758,
+     "hf_in": 0.15925104916095734,
+     "hf_out": 0.15102548897266388
+    },
+    {
+     "id": "p232_074_s-05",
+     "ratio": 1.0006322487041992,
+     "hf_in": 0.11989584565162659,
+     "hf_out": 0.11698191612958908
+    },
+    {
+     "id": "p232_319_s-05",
+     "ratio": 0.9971073879031044,
+     "hf_in": 0.2774356007575989,
+     "hf_out": 0.2634142339229584
+    },
+    {
+     "id": "p232_277_s-05",
+     "ratio": 0.9965681674818851,
+     "hf_in": 0.28737521171569824,
+     "hf_out": 0.2798454165458679
+    },
+    {
+     "id": "p232_011_s-05",
+     "ratio": 0.9972421968149665,
+     "hf_in": 0.22151896357536316,
+     "hf_out": 0.21092388033866882
+    }
+   ],
+   "B_noise_passthrough": [
+    {
+     "id": "p257_030_s-05",
+     "ratio": 0.0051082512026479,
+     "suppression_db": -45.83455499395797
+    },
+    {
+     "id": "p257_206_s-05",
+     "ratio": 0.030485357082857264,
+     "suppression_db": -30.318174245362176
+    },
+    {
+     "id": "p232_074_s-05",
+     "ratio": 0.017828025986504566,
+     "suppression_db": -34.977934529580175
+    },
+    {
+     "id": "p232_319_s-05",
+     "ratio": 0.014310322489514813,
+     "suppression_db": -36.887011145845044
+    },
+    {
+     "id": "p232_277_s-05",
+     "ratio": 0.046394440098325745,
+     "suppression_db": -26.670681212919128
+    },
+    {
+     "id": "p232_011_s-05",
+     "ratio": 0.5427854623974111,
+     "suppression_db": -5.307435853921739
+    }
+   ],
+   "C_gain_sweep": [
+    {
+     "id": "p257_030_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -7.754,
+     "d_si_sdr_vs_gt": 23.488,
+     "level_ratio": 0.1755,
+     "hf_in": 0.1328,
+     "hf_out": 0.1388
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 2.207,
+     "d_si_sdr_vs_gt": 19.699,
+     "level_ratio": 0.4911,
+     "hf_in": 0.1474,
+     "hf_out": 0.1538
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 11.775,
+     "d_si_sdr_vs_gt": 12.411,
+     "level_ratio": 0.8676,
+     "hf_in": 0.1623,
+     "hf_out": 0.1579
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 19.641,
+     "d_si_sdr_vs_gt": 5.451,
+     "level_ratio": 0.9757,
+     "hf_in": 0.1682,
+     "hf_out": 0.1589
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -15.936,
+     "d_si_sdr_vs_gt": 16.965,
+     "level_ratio": 0.113,
+     "hf_in": 0.3745,
+     "hf_out": 0.2803
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.484,
+     "d_si_sdr_vs_gt": 14.725,
+     "level_ratio": 0.4802,
+     "hf_in": 0.3386,
+     "hf_out": 0.1388
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.984,
+     "d_si_sdr_vs_gt": 7.517,
+     "level_ratio": 0.8767,
+     "hf_in": 0.2511,
+     "hf_out": 0.1428
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 17.203,
+     "d_si_sdr_vs_gt": 3.385,
+     "level_ratio": 0.9862,
+     "hf_in": 0.1812,
+     "hf_out": 0.1564
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -11.853,
+     "d_si_sdr_vs_gt": 18.025,
+     "level_ratio": 0.1434,
+     "hf_in": 0.458,
+     "hf_out": 0.2343
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.175,
+     "d_si_sdr_vs_gt": 14.195,
+     "level_ratio": 0.4825,
+     "hf_in": 0.407,
+     "hf_out": 0.1398
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.608,
+     "d_si_sdr_vs_gt": 9.76,
+     "level_ratio": 0.8746,
+     "hf_in": 0.2895,
+     "hf_out": 0.0896
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 16.4,
+     "d_si_sdr_vs_gt": 5.903,
+     "level_ratio": 0.9875,
+     "hf_in": 0.1741,
+     "hf_out": 0.1054
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -12.335,
+     "d_si_sdr_vs_gt": 19.278,
+     "level_ratio": 0.1527,
+     "hf_in": 0.4042,
+     "hf_out": 0.2959
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.29,
+     "d_si_sdr_vs_gt": 15.291,
+     "level_ratio": 0.469,
+     "hf_in": 0.3662,
+     "hf_out": 0.2138
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.472,
+     "d_si_sdr_vs_gt": 10.409,
+     "level_ratio": 0.8617,
+     "hf_in": 0.3088,
+     "hf_out": 0.2576
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 15.996,
+     "d_si_sdr_vs_gt": 6.208,
+     "level_ratio": 0.9814,
+     "hf_in": 0.2802,
+     "hf_out": 0.2598
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -17.262,
+     "d_si_sdr_vs_gt": 18.243,
+     "level_ratio": 0.1283,
+     "hf_in": 0.3816,
+     "hf_out": 0.2136
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.819,
+     "d_si_sdr_vs_gt": 17.398,
+     "level_ratio": 0.4821,
+     "hf_in": 0.3543,
+     "hf_out": 0.2212
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.197,
+     "d_si_sdr_vs_gt": 12.724,
+     "level_ratio": 0.8685,
+     "hf_in": 0.3076,
+     "hf_out": 0.2693
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 15.399,
+     "d_si_sdr_vs_gt": 7.643,
+     "level_ratio": 0.9838,
+     "hf_in": 0.2885,
+     "hf_out": 0.2789
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -2.204,
+     "d_si_sdr_vs_gt": 7.002,
+     "level_ratio": 0.4561,
+     "hf_in": 0.3459,
+     "hf_out": 0.122
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -0.189,
+     "d_si_sdr_vs_gt": 7.108,
+     "level_ratio": 0.568,
+     "hf_in": 0.3166,
+     "hf_out": 0.1828
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 7.165,
+     "d_si_sdr_vs_gt": 5.882,
+     "level_ratio": 0.893,
+     "hf_in": 0.2595,
+     "hf_out": 0.201
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 15.406,
+     "d_si_sdr_vs_gt": 5.304,
+     "level_ratio": 0.9864,
+     "hf_in": 0.2282,
+     "hf_out": 0.2091
+    }
+   ],
+   "summary": {
+    "A_clean_ratio_med": 0.9968,
+    "A_hf_in_med": 0.1957,
+    "A_hf_out_med": 0.1851,
+    "B_noise_ratio_med": 0.0242,
+    "B_suppression_db_med": -32.6481,
+    "C_si_sdr_vs_mix_med": 3.702,
+    "C_d_si_sdr_vs_gt_med": 11.41,
+    "C_level_ratio_med": 0.7148
+   }
+  },
+  "denoiser_master64": {
+   "native_sr": 16000,
+   "A_clean_passthrough": [
+    {
+     "id": "p257_030_s-05",
+     "ratio": 0.9904332420960144,
+     "hf_in": 0.1699189394712448,
+     "hf_out": 0.1586376577615738
+    },
+    {
+     "id": "p257_206_s-05",
+     "ratio": 0.9938436634546004,
+     "hf_in": 0.15925104916095734,
+     "hf_out": 0.15083271265029907
+    },
+    {
+     "id": "p232_074_s-05",
+     "ratio": 1.000822819843999,
+     "hf_in": 0.11989584565162659,
+     "hf_out": 0.11721519380807877
+    },
+    {
+     "id": "p232_319_s-05",
+     "ratio": 0.9987218250097519,
+     "hf_in": 0.2774356007575989,
+     "hf_out": 0.26318007707595825
+    },
+    {
+     "id": "p232_277_s-05",
+     "ratio": 0.9994852475511203,
+     "hf_in": 0.28737521171569824,
+     "hf_out": 0.2787017524242401
+    },
+    {
+     "id": "p232_011_s-05",
+     "ratio": 0.9985617564590464,
+     "hf_in": 0.22151896357536316,
+     "hf_out": 0.2099839746952057
+    }
+   ],
+   "B_noise_passthrough": [
+    {
+     "id": "p257_030_s-05",
+     "ratio": 0.023590021134489193,
+     "suppression_db": -32.54543338155385
+    },
+    {
+     "id": "p257_206_s-05",
+     "ratio": 0.017431515928123385,
+     "suppression_db": -35.173296811487226
+    },
+    {
+     "id": "p232_074_s-05",
+     "ratio": 0.002069968856118625,
+     "suppression_db": -53.68072117831596
+    },
+    {
+     "id": "p232_319_s-05",
+     "ratio": 0.0018739083298353273,
+     "suppression_db": -54.54502983344025
+    },
+    {
+     "id": "p232_277_s-05",
+     "ratio": 0.004262663141290812,
+     "suppression_db": -47.40637940891341
+    },
+    {
+     "id": "p232_011_s-05",
+     "ratio": 0.8016950044157987,
+     "suppression_db": -1.9198164518950243
+    }
+   ],
+   "C_gain_sweep": [
+    {
+     "id": "p257_030_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -6.747,
+     "d_si_sdr_vs_gt": 23.705,
+     "level_ratio": 0.1741,
+     "hf_in": 0.1328,
+     "hf_out": 0.1475
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 3.404,
+     "d_si_sdr_vs_gt": 17.71,
+     "level_ratio": 0.4931,
+     "hf_in": 0.1474,
+     "hf_out": 0.1549
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 13.044,
+     "d_si_sdr_vs_gt": 13.586,
+     "level_ratio": 0.8665,
+     "hf_in": 0.1623,
+     "hf_out": 0.1594
+    },
+    {
+     "id": "p257_030_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 22.095,
+     "d_si_sdr_vs_gt": 7.129,
+     "level_ratio": 0.9771,
+     "hf_in": 0.1682,
+     "hf_out": 0.1589
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -13.181,
+     "d_si_sdr_vs_gt": 18.636,
+     "level_ratio": 0.1607,
+     "hf_in": 0.3745,
+     "hf_out": 0.1116
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.474,
+     "d_si_sdr_vs_gt": 14.768,
+     "level_ratio": 0.4733,
+     "hf_in": 0.3386,
+     "hf_out": 0.1178
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.944,
+     "d_si_sdr_vs_gt": 9.714,
+     "level_ratio": 0.8616,
+     "hf_in": 0.2511,
+     "hf_out": 0.1639
+    },
+    {
+     "id": "p257_206_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 17.452,
+     "d_si_sdr_vs_gt": 4.017,
+     "level_ratio": 0.9802,
+     "hf_in": 0.1812,
+     "hf_out": 0.1574
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -13.18,
+     "d_si_sdr_vs_gt": 16.35,
+     "level_ratio": 0.1066,
+     "hf_in": 0.458,
+     "hf_out": 0.0748
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -3.75,
+     "d_si_sdr_vs_gt": 13.534,
+     "level_ratio": 0.5006,
+     "hf_in": 0.407,
+     "hf_out": 0.0642
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.787,
+     "d_si_sdr_vs_gt": 9.668,
+     "level_ratio": 0.886,
+     "hf_in": 0.2895,
+     "hf_out": 0.0716
+    },
+    {
+     "id": "p232_074_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 16.346,
+     "d_si_sdr_vs_gt": 5.829,
+     "level_ratio": 1.0025,
+     "hf_in": 0.1741,
+     "hf_out": 0.1071
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -13.77,
+     "d_si_sdr_vs_gt": 18.607,
+     "level_ratio": 0.1407,
+     "hf_in": 0.4042,
+     "hf_out": 0.0609
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.515,
+     "d_si_sdr_vs_gt": 15.196,
+     "level_ratio": 0.4729,
+     "hf_in": 0.3662,
+     "hf_out": 0.2234
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.567,
+     "d_si_sdr_vs_gt": 10.468,
+     "level_ratio": 0.8755,
+     "hf_in": 0.3088,
+     "hf_out": 0.2625
+    },
+    {
+     "id": "p232_319_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 16.037,
+     "d_si_sdr_vs_gt": 6.473,
+     "level_ratio": 0.9931,
+     "hf_in": 0.2802,
+     "hf_out": 0.2652
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -14.241,
+     "d_si_sdr_vs_gt": 21.091,
+     "level_ratio": 0.1601,
+     "hf_in": 0.3816,
+     "hf_out": 0.1827
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": -4.606,
+     "d_si_sdr_vs_gt": 17.699,
+     "level_ratio": 0.4979,
+     "hf_in": 0.3543,
+     "hf_out": 0.24
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.322,
+     "d_si_sdr_vs_gt": 13.098,
+     "level_ratio": 0.8816,
+     "hf_in": 0.3076,
+     "hf_out": 0.2721
+    },
+    {
+     "id": "p232_277_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 15.593,
+     "d_si_sdr_vs_gt": 9.043,
+     "level_ratio": 0.9893,
+     "hf_in": 0.2885,
+     "hf_out": 0.2788
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": -10.0,
+     "snr_db_eff": -15.0,
+     "si_sdr_vs_mix": -2.19,
+     "d_si_sdr_vs_gt": 5.41,
+     "level_ratio": 0.5401,
+     "hf_in": 0.3459,
+     "hf_out": 0.1158
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 0.0,
+     "snr_db_eff": -5.0,
+     "si_sdr_vs_mix": 0.963,
+     "d_si_sdr_vs_gt": 5.14,
+     "level_ratio": 0.649,
+     "hf_in": 0.3166,
+     "hf_out": 0.1833
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 10.0,
+     "snr_db_eff": 5.0,
+     "si_sdr_vs_mix": 5.786,
+     "d_si_sdr_vs_gt": 8.983,
+     "level_ratio": 0.8807,
+     "hf_in": 0.2595,
+     "hf_out": 0.2086
+    },
+    {
+     "id": "p232_011_s-05",
+     "extra_db": 20.0,
+     "snr_db_eff": 15.0,
+     "si_sdr_vs_mix": 15.604,
+     "d_si_sdr_vs_gt": 6.292,
+     "level_ratio": 0.9853,
+     "hf_in": 0.2282,
+     "hf_out": 0.2099
+    }
+   ],
+   "summary": {
+    "A_clean_ratio_med": 0.9986,
+    "A_hf_in_med": 0.1957,
+    "A_hf_out_med": 0.1843,
+    "B_noise_ratio_med": 0.0108,
+    "B_suppression_db_med": -41.2898,
+    "C_si_sdr_vs_mix_med": 4.363,
+    "C_d_si_sdr_vs_gt_med": 11.783,
+    "C_level_ratio_med": 0.7553
+   }
+  }
+ }
+}

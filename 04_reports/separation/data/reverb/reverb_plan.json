@@ -1,0 +1,104 @@
+{
+ "task": "T4 混响 / 去混响 / 去回声",
+ "clips": [
+  {
+   "song": "The Easton Ellises - Falcon 69",
+   "offset": 162.1,
+   "dur": 20.0,
+   "clip_id": "The Easton Ellises - Falcon 69@162s"
+  },
+  {
+   "song": "Bobby Nobody - Stitch Up",
+   "offset": 172.5,
+   "dur": 20.0,
+   "clip_id": "Bobby Nobody - Stitch Up@172s"
+  },
+  {
+   "song": "Raft Monk - Tiring",
+   "offset": 27.5,
+   "dur": 20.0,
+   "clip_id": "Raft Monk - Tiring@27s"
+  }
+ ],
+ "conditions": {
+  "dry": "MUSDB18-HQ test 干 stem（GT）",
+  "wet_small": "dry ⊛ 小房间 RIR（实测 T60 0.600 s）",
+  "wet_hall": "dry ⊛ 大厅 RIR（实测 T60 1.205 s）"
+ },
+ "rir_sources": {
+  "small_0p6": "E:\\FYP_HKBU\\02_databases\\DNS-Challenge\\impulse_responses\\datasets_fullband\\impulse_responses\\SLR26\\simulated_rirs_48k\\smallroom\\Room186\\Room186-00041.wav",
+  "hall_1p2": "E:\\FYP_HKBU\\02_databases\\DNS-Challenge\\impulse_responses\\datasets_fullband\\impulse_responses\\SLR28\\RIRS_NOISES\\real_rirs_isotropic_noises\\RWCP_type2_rir_cirline_e2b_imp050.wav"
+ },
+ "audio_root": "E:\\FYP_HKBU\\03_outputs\\_reverb",
+ "combos_audio": [
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "condition": "dry"
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "condition": "wet_small"
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "condition": "wet_hall"
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "condition": "dry"
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "condition": "wet_small"
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "condition": "wet_hall"
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "condition": "dry"
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "condition": "wet_small"
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "condition": "wet_hall"
+  }
+ ],
+ "n_audio_files": 45,
+ "n_separation_combos": 72,
+ "n_dereverb_combos": 12,
+ "gpu_plan": "T4.3 夜挂：分离 72 组合 + 去混响 12 组合（走 schtasks，不用后台任务）",
+ "generated": "2026-09-23 03:17:35",
+ "status": "PASS"
+}

@@ -1,0 +1,300 @@
+{
+ "task": "T5.2 降噪评测口径诊断",
+ "sr": 16000,
+ "phenomenon": "SI-SDR 与 PESQ/STOI 方向相反",
+ "controlled_snr_scan": [
+  {
+   "model": "denoiser_dns48",
+   "points": [
+    {
+     "snr_in_nominal": 20,
+     "si_sdr_in": 25.11,
+     "si_sdr_improve": -8.543,
+     "pesq_in": 1.75,
+     "pesq_out": 2.057,
+     "stoi_in": 0.8908,
+     "stoi_out": 0.8595,
+     "hf_ratio_in": 0.2744,
+     "hf_ratio_out": 0.0646
+    },
+    {
+     "snr_in_nominal": 10,
+     "si_sdr_in": 15.109,
+     "si_sdr_improve": 0.465,
+     "pesq_in": 1.305,
+     "pesq_out": 1.789,
+     "stoi_in": 0.8628,
+     "stoi_out": 0.8309,
+     "hf_ratio_in": 0.3476,
+     "hf_ratio_out": 0.0432
+    },
+    {
+     "snr_in_nominal": 5,
+     "si_sdr_in": 10.108,
+     "si_sdr_improve": 4.358,
+     "pesq_in": 1.179,
+     "pesq_out": 1.677,
+     "stoi_in": 0.8309,
+     "stoi_out": 0.7978,
+     "hf_ratio_in": 0.4292,
+     "hf_ratio_out": 0.0339
+    },
+    {
+     "snr_in_nominal": 0,
+     "si_sdr_in": 5.106,
+     "si_sdr_improve": 7.894,
+     "pesq_in": 1.076,
+     "pesq_out": 1.586,
+     "stoi_in": 0.7781,
+     "stoi_out": 0.7612,
+     "hf_ratio_in": 0.5296,
+     "hf_ratio_out": 0.0231
+    },
+    {
+     "snr_in_nominal": -5,
+     "si_sdr_in": 0.102,
+     "si_sdr_improve": 10.933,
+     "pesq_in": 1.053,
+     "pesq_out": 1.562,
+     "stoi_in": 0.7201,
+     "stoi_out": 0.7237,
+     "hf_ratio_in": 0.62,
+     "hf_ratio_out": 0.0175
+    }
+   ]
+  },
+  {
+   "model": "denoiser_dns64",
+   "points": [
+    {
+     "snr_in_nominal": 20,
+     "si_sdr_in": 25.11,
+     "si_sdr_improve": -8.47,
+     "pesq_in": 1.75,
+     "pesq_out": 2.252,
+     "stoi_in": 0.8908,
+     "stoi_out": 0.8585,
+     "hf_ratio_in": 0.2744,
+     "hf_ratio_out": 0.068
+    },
+    {
+     "snr_in_nominal": 10,
+     "si_sdr_in": 15.109,
+     "si_sdr_improve": 0.777,
+     "pesq_in": 1.305,
+     "pesq_out": 1.69,
+     "stoi_in": 0.8628,
+     "stoi_out": 0.8232,
+     "hf_ratio_in": 0.3476,
+     "hf_ratio_out": 0.0602
+    },
+    {
+     "snr_in_nominal": 5,
+     "si_sdr_in": 10.108,
+     "si_sdr_improve": 4.708,
+     "pesq_in": 1.179,
+     "pesq_out": 1.554,
+     "stoi_in": 0.8309,
+     "stoi_out": 0.8043,
+     "hf_ratio_in": 0.4292,
+     "hf_ratio_out": 0.0477
+    },
+    {
+     "snr_in_nominal": 0,
+     "si_sdr_in": 5.106,
+     "si_sdr_improve": 8.155,
+     "pesq_in": 1.076,
+     "pesq_out": 1.453,
+     "stoi_in": 0.7781,
+     "stoi_out": 0.7835,
+     "hf_ratio_in": 0.5296,
+     "hf_ratio_out": 0.0406
+    },
+    {
+     "snr_in_nominal": -5,
+     "si_sdr_in": 0.102,
+     "si_sdr_improve": 11.268,
+     "pesq_in": 1.053,
+     "pesq_out": 1.398,
+     "stoi_in": 0.7201,
+     "stoi_out": 0.7468,
+     "hf_ratio_in": 0.62,
+     "hf_ratio_out": 0.0367
+    }
+   ]
+  },
+  {
+   "model": "denoiser_master64",
+   "points": [
+    {
+     "snr_in_nominal": 20,
+     "si_sdr_in": 25.11,
+     "si_sdr_improve": -8.715,
+     "pesq_in": 1.75,
+     "pesq_out": 2.021,
+     "stoi_in": 0.8908,
+     "stoi_out": 0.8615,
+     "hf_ratio_in": 0.2744,
+     "hf_ratio_out": 0.0557
+    },
+    {
+     "snr_in_nominal": 10,
+     "si_sdr_in": 15.109,
+     "si_sdr_improve": 0.712,
+     "pesq_in": 1.305,
+     "pesq_out": 1.785,
+     "stoi_in": 0.8628,
+     "stoi_out": 0.8365,
+     "hf_ratio_in": 0.3476,
+     "hf_ratio_out": 0.0542
+    },
+    {
+     "snr_in_nominal": 5,
+     "si_sdr_in": 10.108,
+     "si_sdr_improve": 4.55,
+     "pesq_in": 1.179,
+     "pesq_out": 1.555,
+     "stoi_in": 0.8309,
+     "stoi_out": 0.8011,
+     "hf_ratio_in": 0.4292,
+     "hf_ratio_out": 0.0368
+    },
+    {
+     "snr_in_nominal": 0,
+     "si_sdr_in": 5.106,
+     "si_sdr_improve": 8.126,
+     "pesq_in": 1.076,
+     "pesq_out": 1.427,
+     "stoi_in": 0.7781,
+     "stoi_out": 0.7796,
+     "hf_ratio_in": 0.5296,
+     "hf_ratio_out": 0.021
+    },
+    {
+     "snr_in_nominal": -5,
+     "si_sdr_in": 0.102,
+     "si_sdr_improve": 11.118,
+     "pesq_in": 1.053,
+     "pesq_out": 1.283,
+     "stoi_in": 0.7201,
+     "stoi_out": 0.7285,
+     "hf_ratio_in": 0.62,
+     "hf_ratio_out": 0.0093
+    }
+   ]
+  }
+ ],
+ "real_set_by_snr_bin": [
+  {
+   "model": "denoiser_dns48",
+   "snr_bin": "5-15dB",
+   "n": 20,
+   "si_sdr_in": 10.3525,
+   "si_sdr_improve": 5.6918,
+   "pesq_gain": -0.3007,
+   "stoi_gain": -0.0851,
+   "hf_ratio_in": 0.2266,
+   "hf_ratio_clean": 0.2379,
+   "hf_ratio_out": 0.0481
+  },
+  {
+   "model": "denoiser_dns48",
+   "snr_bin": "<5dB",
+   "n": 11,
+   "si_sdr_in": 1.5772,
+   "si_sdr_improve": 9.969,
+   "pesq_gain": 0.3249,
+   "stoi_gain": -0.0268,
+   "hf_ratio_in": 0.249,
+   "hf_ratio_clean": 0.2554,
+   "hf_ratio_out": 0.0553
+  },
+  {
+   "model": "denoiser_dns48",
+   "snr_bin": ">=15dB",
+   "n": 9,
+   "si_sdr_in": 16.5627,
+   "si_sdr_improve": -0.4357,
+   "pesq_gain": -0.4478,
+   "stoi_gain": -0.0488,
+   "hf_ratio_in": 0.2183,
+   "hf_ratio_clean": 0.2211,
+   "hf_ratio_out": 0.0503
+  },
+  {
+   "model": "denoiser_dns64",
+   "snr_bin": "5-15dB",
+   "n": 20,
+   "si_sdr_in": 10.3525,
+   "si_sdr_improve": 5.875,
+   "pesq_gain": -0.1788,
+   "stoi_gain": -0.0623,
+   "hf_ratio_in": 0.2266,
+   "hf_ratio_clean": 0.2379,
+   "hf_ratio_out": 0.0544
+  },
+  {
+   "model": "denoiser_dns64",
+   "snr_bin": "<5dB",
+   "n": 11,
+   "si_sdr_in": 1.5772,
+   "si_sdr_improve": 10.8867,
+   "pesq_gain": 0.386,
+   "stoi_gain": -0.0163,
+   "hf_ratio_in": 0.249,
+   "hf_ratio_clean": 0.2554,
+   "hf_ratio_out": 0.0557
+  },
+  {
+   "model": "denoiser_dns64",
+   "snr_bin": ">=15dB",
+   "n": 9,
+   "si_sdr_in": 16.5627,
+   "si_sdr_improve": -0.1044,
+   "pesq_gain": -0.4697,
+   "stoi_gain": -0.0365,
+   "hf_ratio_in": 0.2183,
+   "hf_ratio_clean": 0.2211,
+   "hf_ratio_out": 0.0514
+  },
+  {
+   "model": "denoiser_master64",
+   "snr_bin": "5-15dB",
+   "n": 20,
+   "si_sdr_in": 10.3525,
+   "si_sdr_improve": 5.5704,
+   "pesq_gain": -0.2406,
+   "stoi_gain": -0.0577,
+   "hf_ratio_in": 0.2266,
+   "hf_ratio_clean": 0.2379,
+   "hf_ratio_out": 0.0534
+  },
+  {
+   "model": "denoiser_master64",
+   "snr_bin": "<5dB",
+   "n": 11,
+   "si_sdr_in": 1.5772,
+   "si_sdr_improve": 9.8724,
+   "pesq_gain": 0.4,
+   "stoi_gain": 0.0061,
+   "hf_ratio_in": 0.249,
+   "hf_ratio_clean": 0.2554,
+   "hf_ratio_out": 0.0711
+  },
+  {
+   "model": "denoiser_master64",
+   "snr_bin": ">=15dB",
+   "n": 9,
+   "si_sdr_in": 16.5627,
+   "si_sdr_improve": 0.3449,
+   "pesq_gain": -0.3209,
+   "stoi_gain": -0.0362,
+   "hf_ratio_in": 0.2183,
+   "hf_ratio_clean": 0.2211,
+   "hf_ratio_out": 0.0525
+  }
+ ],
+ "verdict": "机理已锁定：模型施加【与输入 SNR 无关的固定强度低通式抑制】。证据：真实集上 hf_ratio 无论输入档位（0.218~0.249）如何，输出恒为 0.048~0.071；受控扫描中 ΔSI-SDR 随输入 SNR 单调增大（-8.5 -> +11.0 dB），而 ΔPESQ 始终为正。→ 低 SNR（<5 dB）时该抑制是必要降噪、两指标同向改善；高 SNR（>=15 dB）时输入的语音高频被一起铲掉，ΔSI-SDR 转负、ΔPESQ 显著为负。结论：**降噪评测必须按输入 SNR 分层**，否则总体中位数会把相反趋势相互抵消，产生「SI-SDR 改善 +5.9 dB 但 PESQ 下降 0.16」这类无法解释的结论。",
+ "figure": "E:\\FYP_HKBU\\04_reports\\denoiser\\figures\\fig_denoise_metric_divergence.png",
+ "generated": "2026-09-23 12:42:01"
+}

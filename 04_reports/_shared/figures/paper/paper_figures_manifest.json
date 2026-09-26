@@ -1,0 +1,1926 @@
+{
+ "target_dpi": 300,
+ "width_single_in": 3.35,
+ "width_double_in": 7.0,
+ "need_px_single": 1005,
+ "need_px_double": 2100,
+ "boards": {
+  "1": [
+   {
+    "id": "fig-arch-irm",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "IRM / IBM Oracle 结构（解析基线）",
+    "src": "_shared/figures/model_arch/arch_01_irm_ibm_oracle.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-irm.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-rpca",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "RPCA (Inexact-ALM) 流程",
+    "src": "_shared/figures/model_arch/arch_02_rpca_inexact_alm.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-rpca.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-convtasnet",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "Conv-TasNet（时域分离）",
+    "src": "_shared/figures/model_arch/arch_03_conv_tasnet.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-convtasnet.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-dprnn",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "DPRNN（自训）",
+    "src": "_shared/figures/model_arch/arch_04_dprnn.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-dprnn.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-mmdenselstm",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "MMDenseLSTM",
+    "src": "_shared/figures/model_arch/arch_05_mmdenselstm.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-mmdenselstm.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-umx",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "Open-Unmix (umxhq)",
+    "src": "_shared/figures/model_arch/arch_06_open_unmix_umxhq.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-umx.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-demucs",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "Demucs v4 / HTDemucs",
+    "src": "_shared/figures/model_arch/arch_07_demucs_v4_htdemucs.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-demucs.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-mdx",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "MDX-Net (KUIELAB mdx_extra)",
+    "src": "_shared/figures/model_arch/arch_08_mdx_net_kuielab_mdx_extra.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-mdx.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-bsroformer",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "BS-RoFormer",
+    "src": "_shared/figures/model_arch/arch_09_bs_roformer.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-bsroformer.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-bsrnn",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "BSRNN（oBSRNN）",
+    "src": "_shared/figures/model_arch/arch_10_bsrnn.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-bsrnn.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-denoiser",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "denoiser（板 2）",
+    "src": "_shared/figures/model_arch/arch_11_denoiser.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-denoiser.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-melden",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "Mel-Band-RoFormer-Denoise (aufr33)",
+    "src": "_shared/figures/model_arch/arch_12_mel_band_roformer_denoise_aufr33.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-melden.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-dereverb",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "Mel-Band-RoFormer-Dereverb (anvuew)",
+    "src": "_shared/figures/model_arch/arch_13_mel_band_roformer_dereverb_anvuew.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-dereverb.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-arch-dereverb-echo",
+    "board": 1,
+    "group": "G-ARCH",
+    "title": "Mel-Band-RoFormer-Dereverb-Echo (sucial)",
+    "src": "_shared/figures/model_arch/arch_14_mel_band_roformer_dereverb_echo_sucial.png",
+    "out": "04_reports/_shared/figures/paper/fig-arch-dereverb-echo.png",
+    "px": [
+     4680,
+     2850
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_arch.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-profile-params-flops",
+    "board": 1,
+    "group": "G-PROFILE",
+    "title": "参数量 / FLOPs 对比",
+    "src": "_shared/figures/model_arch/profile_params_flops.png",
+    "out": "04_reports/_shared/figures/paper/fig-profile-params-flops.png",
+    "px": [
+     4073,
+     2594
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_profile.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-profile-pareto",
+    "board": 1,
+    "group": "G-PROFILE",
+    "title": "成本—容量 Pareto",
+    "src": "_shared/figures/model_arch/profile_pareto.png",
+    "out": "04_reports/_shared/figures/paper/fig-profile-pareto.png",
+    "px": [
+     3271,
+     2047
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_model_profile.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-acc-main-table",
+    "board": 1,
+    "group": "G-ACC",
+    "title": "分离精度主表（重绘）",
+    "src": "separation/figures/comparison/fig_avg_sdr_table.png",
+    "out": "04_reports/_shared/figures/paper/fig-acc-main-table.png",
+    "px": [
+     2989,
+     2667
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_sdr_table.py",
+    "render": true,
+    "note": "脚本已写死 `dpi=300`，原生达标"
+   },
+   {
+    "id": "fig-acc-bars",
+    "board": 1,
+    "group": "G-ACC",
+    "title": "分模型 SDR 中位条形图",
+    "src": "separation/figures/comparison/fig_median_sdr_bars.png",
+    "out": "04_reports/_shared/figures/paper/fig-acc-bars.png",
+    "px": [
+     2738,
+     1464
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "plot_median_summary.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-acc-per-stem",
+    "board": 1,
+    "group": "G-ACC",
+    "title": "逐轨 SDR 中位",
+    "src": "separation/figures/comparison/fig_median_per_stem.png",
+    "out": "04_reports/_shared/figures/paper/fig-acc-per-stem.png",
+    "px": [
+     2757,
+     1587
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "plot_median_summary.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-acc-pareto",
+    "board": 1,
+    "group": "G-ACC",
+    "title": "精度—速度 Pareto",
+    "src": "separation/figures/comparison/fig_median_pareto.png",
+    "out": "04_reports/_shared/figures/paper/fig-acc-pareto.png",
+    "px": [
+     2653,
+     1563
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "plot_median_summary.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-acc-dsdr",
+    "board": 1,
+    "group": "G-ACC",
+    "title": "与基线对照的 ΔSDR",
+    "src": "separation/figures/comparison/fig_compare_dsdr.png",
+    "out": "04_reports/_shared/figures/paper/fig-acc-dsdr.png",
+    "px": [
+     1650,
+     909
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "compare_separation_methods.py",
+    "render": false,
+    "note": "脚本 `import torch` 且写死 `dpi=150` → **不重跑**（会触发重算与数据改写）"
+   },
+   {
+    "id": "fig-rev-degradation",
+    "board": 1,
+    "group": "G-REV",
+    "title": "混响 T60 → ΔSDR 退化曲线",
+    "src": "separation/figures/comparison/fig_reverb_degradation.png",
+    "out": "04_reports/_shared/figures/paper/fig-rev-degradation.png",
+    "px": [
+     4500,
+     1800
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_reverb_curve.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-rev-rir-t60",
+    "board": 1,
+    "group": "G-REV",
+    "title": "RIR 本体与 T60 估计（已剔直达声）",
+    "src": "separation/figures/comparison/fig_rir_t60.png",
+    "out": "04_reports/_shared/figures/paper/fig-rev-rir-t60.png",
+    "px": [
+     4650,
+     2460
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_rir.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-echo-degradation",
+    "board": 1,
+    "group": "G-REV",
+    "title": "回声延迟/增益 → ΔSDR 退化曲线",
+    "src": "separation/figures/comparison/fig_echo_degradation.png",
+    "out": "04_reports/_shared/figures/paper/fig-echo-degradation.png",
+    "px": [
+     4500,
+     1800
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_echo_curve.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-stage4-summary",
+    "board": 1,
+    "group": "G-S4",
+    "title": "阶段 4 答辩一页图",
+    "src": "separation/figures/comparison/fig_stage4_summary.png",
+    "out": "04_reports/_shared/figures/paper/fig-stage4-summary.png",
+    "px": [
+     4800,
+     2700
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_stage4_summary.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-time-per-song",
+    "board": 1,
+    "group": "G-COST",
+    "title": "逐曲推理耗时",
+    "src": "separation/figures/figs_time/fig1_time_per_song.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-time-per-song.png",
+    "px": [
+     1846,
+     962
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-cumulative",
+    "board": 1,
+    "group": "G-COST",
+    "title": "累计耗时",
+    "src": "separation/figures/figs_time/fig2_time_cumulative.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-cumulative.png",
+    "px": [
+     1625,
+     901
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-rtf",
+    "board": 1,
+    "group": "G-COST",
+    "title": "逐曲 RTF",
+    "src": "separation/figures/figs_time/fig3_rtf_per_song.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-rtf.png",
+    "px": [
+     1851,
+     962
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-dist",
+    "board": 1,
+    "group": "G-COST",
+    "title": "耗时分布",
+    "src": "separation/figures/figs_time/fig4_time_distribution.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-dist.png",
+    "px": [
+     1148,
+     874
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-vs-acc",
+    "board": 1,
+    "group": "G-COST",
+    "title": "耗时 vs 精度",
+    "src": "separation/figures/figs_time/fig5_time_vs_accuracy.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-vs-acc.png",
+    "px": [
+     1854,
+     910
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-panels",
+    "board": 1,
+    "group": "G-COST",
+    "title": "成本多面板对比",
+    "src": "separation/figures/figs_time/fig6_compare_panels.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-panels.png",
+    "px": [
+     1742,
+     1371
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cost-pareto",
+    "board": 1,
+    "group": "G-COST",
+    "title": "速度—精度 Pareto",
+    "src": "separation/figures/figs_time/fig7_pareto_speed_accuracy.png",
+    "out": "04_reports/_shared/figures/paper/fig-cost-pareto.png",
+    "px": [
+     1499,
+     1001
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "plot_bench_10songs.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-spec-mixture",
+    "board": 1,
+    "group": "G-SPEC",
+    "title": "混音时频谱",
+    "src": "separation/figures/audio_analysis/fig3_spectrogram_mixture.png",
+    "out": "04_reports/_shared/figures/paper/fig-spec-mixture.png",
+    "px": [
+     2100,
+     750
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_spectrogram_panels.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-spec-vocals",
+    "board": 1,
+    "group": "G-SPEC",
+    "title": "人声轨时频谱",
+    "src": "separation/figures/audio_analysis/fig3_spectrogram_vocals.png",
+    "out": "04_reports/_shared/figures/paper/fig-spec-vocals.png",
+    "px": [
+     2100,
+     750
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_spectrogram_panels.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-spec-win1024",
+    "board": 1,
+    "group": "G-SPEC",
+    "title": "窗长对比：win 1024",
+    "src": "separation/figures/audio_analysis/fig4_spectrogram_win1024.png",
+    "out": "04_reports/_shared/figures/paper/fig-spec-win1024.png",
+    "px": [
+     2250,
+     750
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_spectrogram_panels.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-spec-win128",
+    "board": 1,
+    "group": "G-SPEC",
+    "title": "窗长对比：win 128",
+    "src": "separation/figures/audio_analysis/fig4_spectrogram_win128.png",
+    "out": "04_reports/_shared/figures/paper/fig-spec-win128.png",
+    "px": [
+     2250,
+     750
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_spectrogram_panels.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-spec-waveform",
+    "board": 1,
+    "group": "G-SPEC",
+    "title": "波形：混音 vs 人声",
+    "src": "separation/figures/audio_analysis/fig1_waveform_mixture_vocals.png",
+    "out": "04_reports/_shared/figures/paper/fig-spec-waveform.png",
+    "px": [
+     2100,
+     900
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_spectrogram_panels.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-spec-sr",
+    "board": 1,
+    "group": "G-SPEC",
+    "title": "采样率对比波形",
+    "src": "separation/figures/audio_analysis/fig2_waveform_sr_compare.png",
+    "out": "04_reports/_shared/figures/paper/fig-spec-sr.png",
+    "px": [
+     2100,
+     1350
+    ],
+    "dpi": 150.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_make_spectrogram_panels.py",
+    "render": true,
+    "note": ""
+   }
+  ],
+  "2": [
+   {
+    "id": "fig-dn-suppression",
+    "board": 2,
+    "group": "G-DN",
+    "title": "降噪抑制量（按模型 / SNR 档）",
+    "src": "denoiser/figures/fig_denoise_suppression.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-suppression.png",
+    "px": [
+     4500,
+     1920
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-dn-synth-gain",
+    "board": 2,
+    "group": "G-DN",
+    "title": "合成集增益（干净语音 + 瞬态噪声）",
+    "src": "denoiser/figures/fig_denoise_synth_gain.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-synth-gain.png",
+    "px": [
+     3120,
+     1920
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-dn-domain-reversal",
+    "board": 2,
+    "group": "G-DN",
+    "title": "噪声域反转（真实噪声 vs 合成噪声）",
+    "src": "denoiser/figures/fig_denoise_noise_domain_reversal.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-domain-reversal.png",
+    "px": [
+     4500,
+     1980
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-dn-metric-divergence",
+    "board": 2,
+    "group": "G-DN",
+    "title": "三指标分歧诊断",
+    "src": "denoiser/figures/fig_denoise_metric_divergence.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-metric-divergence.png",
+    "px": [
+     4500,
+     1920
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_denoise_diagnosis.py",
+    "render": false,
+    "note": "脚本载入 `_denoise_registry` 做推理 -> **不重跑**（避免与已归档结果分歧）"
+   },
+   {
+    "id": "fig-dn-drywet",
+    "board": 2,
+    "group": "G-DN",
+    "title": "dry/wet 强度旋钮曲线",
+    "src": "denoiser/figures/fig_denoise_drywet.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-drywet.png",
+    "px": [
+     4680,
+     1980
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise_drywet.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-dn-spec-master64-val",
+    "board": 2,
+    "group": "G-DN",
+    "title": "频谱前后对比：master64 × valentini",
+    "src": "denoiser/figures/denoise/t5_6_denoiser_master64_valentini_spectral.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-spec-master64-val.png",
+    "px": [
+     2240,
+     1596
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise_spectral.py",
+    "render": false,
+    "note": "脚本载入 `_denoise_registry` 做推理 -> **不重跑**"
+   },
+   {
+    "id": "fig-dn-spec-master64-syn",
+    "board": 2,
+    "group": "G-DN",
+    "title": "频谱前后对比：master64 × synth",
+    "src": "denoiser/figures/denoise/t5_6_denoiser_master64_synth_spectral.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-spec-master64-syn.png",
+    "px": [
+     2240,
+     1596
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise_spectral.py",
+    "render": false,
+    "note": "同上"
+   },
+   {
+    "id": "fig-dn-spec-mel-val",
+    "board": 2,
+    "group": "G-DN",
+    "title": "频谱前后对比：mel-roformer × valentini",
+    "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_valentini_spectral.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-spec-mel-val.png",
+    "px": [
+     2240,
+     1596
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise_spectral.py",
+    "render": false,
+    "note": "同上"
+   },
+   {
+    "id": "fig-dn-spec-mel-syn",
+    "board": 2,
+    "group": "G-DN",
+    "title": "频谱前后对比：mel-roformer × synth",
+    "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_synth_spectral.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-spec-mel-syn.png",
+    "px": [
+     2240,
+     1596
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_denoise_spectral.py",
+    "render": false,
+    "note": "同上"
+   },
+   {
+    "id": "fig-dn-dspec-master64-val",
+    "board": 2,
+    "group": "G-DN",
+    "title": "平均谱差：master64 × valentini",
+    "src": "denoiser/figures/denoise/t5_6_denoiser_master64_valentini_delta_spectrum.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-dspec-master64-val.png",
+    "px": [
+     1484,
+     854
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "_plot_denoise_spectrum_delta.py",
+    "render": false,
+    "note": "脚本载入 `_denoise_registry` 做推理 -> **不重跑**"
+   },
+   {
+    "id": "fig-dn-dspec-master64-syn",
+    "board": 2,
+    "group": "G-DN",
+    "title": "平均谱差：master64 × synth",
+    "src": "denoiser/figures/denoise/t5_6_denoiser_master64_synth_delta_spectrum.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-dspec-master64-syn.png",
+    "px": [
+     1484,
+     854
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "_plot_denoise_spectrum_delta.py",
+    "render": false,
+    "note": "同上"
+   },
+   {
+    "id": "fig-dn-dspec-mel-val",
+    "board": 2,
+    "group": "G-DN",
+    "title": "平均谱差：mel-roformer × valentini",
+    "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_valentini_delta_spectrum.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-dspec-mel-val.png",
+    "px": [
+     1484,
+     854
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "_plot_denoise_spectrum_delta.py",
+    "render": false,
+    "note": "同上"
+   },
+   {
+    "id": "fig-dn-dspec-mel-syn",
+    "board": 2,
+    "group": "G-DN",
+    "title": "平均谱差：mel-roformer × synth",
+    "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_synth_delta_spectrum.png",
+    "out": "04_reports/_shared/figures/paper/fig-dn-dspec-mel-syn.png",
+    "px": [
+     1484,
+     854
+    ],
+    "dpi": 140.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": false,
+    "script": "_plot_denoise_spectrum_delta.py",
+    "render": false,
+    "note": "同上"
+   },
+   {
+    "id": "fig-cas-delta-matrix",
+    "board": 2,
+    "group": "G-CAS",
+    "title": "级联 ΔSDR 主矩阵（4 SNR × 4 模型 × 6 链路）",
+    "src": "cascade/figures/fig_cascade_delta_matrix.png",
+    "out": "04_reports/_shared/figures/paper/fig-cas-delta-matrix.png",
+    "px": [
+     4230,
+     1650
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_cascade.py",
+    "render": true,
+    "note": ""
+   },
+   {
+    "id": "fig-cas-decomposition",
+    "board": 2,
+    "group": "G-CAS",
+    "title": "级联净动作分解（L1 vs L1b vs L1−L1b）",
+    "src": "cascade/figures/fig_cascade_decomposition.png",
+    "out": "04_reports/_shared/figures/paper/fig-cas-decomposition.png",
+    "px": [
+     4260,
+     1590
+    ],
+    "dpi": 300.0,
+    "meets_300dpi": true,
+    "meets_300dpi_double": true,
+    "script": "_plot_cascade.py",
+    "render": true,
+    "note": ""
+   }
+  ]
+ },
+ "n": 53,
+ "n_meet": 53,
+ "n_meet_double": 41,
+ "figures": [
+  {
+   "id": "fig-arch-irm",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "IRM / IBM Oracle 结构（解析基线）",
+   "src": "_shared/figures/model_arch/arch_01_irm_ibm_oracle.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-irm.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-rpca",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "RPCA (Inexact-ALM) 流程",
+   "src": "_shared/figures/model_arch/arch_02_rpca_inexact_alm.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-rpca.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-convtasnet",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "Conv-TasNet（时域分离）",
+   "src": "_shared/figures/model_arch/arch_03_conv_tasnet.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-convtasnet.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-dprnn",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "DPRNN（自训）",
+   "src": "_shared/figures/model_arch/arch_04_dprnn.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-dprnn.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-mmdenselstm",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "MMDenseLSTM",
+   "src": "_shared/figures/model_arch/arch_05_mmdenselstm.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-mmdenselstm.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-umx",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "Open-Unmix (umxhq)",
+   "src": "_shared/figures/model_arch/arch_06_open_unmix_umxhq.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-umx.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-demucs",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "Demucs v4 / HTDemucs",
+   "src": "_shared/figures/model_arch/arch_07_demucs_v4_htdemucs.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-demucs.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-mdx",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "MDX-Net (KUIELAB mdx_extra)",
+   "src": "_shared/figures/model_arch/arch_08_mdx_net_kuielab_mdx_extra.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-mdx.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-bsroformer",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "BS-RoFormer",
+   "src": "_shared/figures/model_arch/arch_09_bs_roformer.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-bsroformer.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-bsrnn",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "BSRNN（oBSRNN）",
+   "src": "_shared/figures/model_arch/arch_10_bsrnn.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-bsrnn.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-denoiser",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "denoiser（板 2）",
+   "src": "_shared/figures/model_arch/arch_11_denoiser.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-denoiser.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-melden",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "Mel-Band-RoFormer-Denoise (aufr33)",
+   "src": "_shared/figures/model_arch/arch_12_mel_band_roformer_denoise_aufr33.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-melden.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-dereverb",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "Mel-Band-RoFormer-Dereverb (anvuew)",
+   "src": "_shared/figures/model_arch/arch_13_mel_band_roformer_dereverb_anvuew.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-dereverb.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-arch-dereverb-echo",
+   "board": 1,
+   "group": "G-ARCH",
+   "title": "Mel-Band-RoFormer-Dereverb-Echo (sucial)",
+   "src": "_shared/figures/model_arch/arch_14_mel_band_roformer_dereverb_echo_sucial.png",
+   "out": "04_reports/_shared/figures/paper/fig-arch-dereverb-echo.png",
+   "px": [
+    4680,
+    2850
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_arch.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-profile-params-flops",
+   "board": 1,
+   "group": "G-PROFILE",
+   "title": "参数量 / FLOPs 对比",
+   "src": "_shared/figures/model_arch/profile_params_flops.png",
+   "out": "04_reports/_shared/figures/paper/fig-profile-params-flops.png",
+   "px": [
+    4073,
+    2594
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_profile.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-profile-pareto",
+   "board": 1,
+   "group": "G-PROFILE",
+   "title": "成本—容量 Pareto",
+   "src": "_shared/figures/model_arch/profile_pareto.png",
+   "out": "04_reports/_shared/figures/paper/fig-profile-pareto.png",
+   "px": [
+    3271,
+    2047
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_model_profile.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-acc-main-table",
+   "board": 1,
+   "group": "G-ACC",
+   "title": "分离精度主表（重绘）",
+   "src": "separation/figures/comparison/fig_avg_sdr_table.png",
+   "out": "04_reports/_shared/figures/paper/fig-acc-main-table.png",
+   "px": [
+    2989,
+    2667
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_sdr_table.py",
+   "render": true,
+   "note": "脚本已写死 `dpi=300`，原生达标"
+  },
+  {
+   "id": "fig-acc-bars",
+   "board": 1,
+   "group": "G-ACC",
+   "title": "分模型 SDR 中位条形图",
+   "src": "separation/figures/comparison/fig_median_sdr_bars.png",
+   "out": "04_reports/_shared/figures/paper/fig-acc-bars.png",
+   "px": [
+    2738,
+    1464
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "plot_median_summary.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-acc-per-stem",
+   "board": 1,
+   "group": "G-ACC",
+   "title": "逐轨 SDR 中位",
+   "src": "separation/figures/comparison/fig_median_per_stem.png",
+   "out": "04_reports/_shared/figures/paper/fig-acc-per-stem.png",
+   "px": [
+    2757,
+    1587
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "plot_median_summary.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-acc-pareto",
+   "board": 1,
+   "group": "G-ACC",
+   "title": "精度—速度 Pareto",
+   "src": "separation/figures/comparison/fig_median_pareto.png",
+   "out": "04_reports/_shared/figures/paper/fig-acc-pareto.png",
+   "px": [
+    2653,
+    1563
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "plot_median_summary.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-acc-dsdr",
+   "board": 1,
+   "group": "G-ACC",
+   "title": "与基线对照的 ΔSDR",
+   "src": "separation/figures/comparison/fig_compare_dsdr.png",
+   "out": "04_reports/_shared/figures/paper/fig-acc-dsdr.png",
+   "px": [
+    1650,
+    909
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "compare_separation_methods.py",
+   "render": false,
+   "note": "脚本 `import torch` 且写死 `dpi=150` → **不重跑**（会触发重算与数据改写）"
+  },
+  {
+   "id": "fig-rev-degradation",
+   "board": 1,
+   "group": "G-REV",
+   "title": "混响 T60 → ΔSDR 退化曲线",
+   "src": "separation/figures/comparison/fig_reverb_degradation.png",
+   "out": "04_reports/_shared/figures/paper/fig-rev-degradation.png",
+   "px": [
+    4500,
+    1800
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_reverb_curve.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-rev-rir-t60",
+   "board": 1,
+   "group": "G-REV",
+   "title": "RIR 本体与 T60 估计（已剔直达声）",
+   "src": "separation/figures/comparison/fig_rir_t60.png",
+   "out": "04_reports/_shared/figures/paper/fig-rev-rir-t60.png",
+   "px": [
+    4650,
+    2460
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_rir.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-echo-degradation",
+   "board": 1,
+   "group": "G-REV",
+   "title": "回声延迟/增益 → ΔSDR 退化曲线",
+   "src": "separation/figures/comparison/fig_echo_degradation.png",
+   "out": "04_reports/_shared/figures/paper/fig-echo-degradation.png",
+   "px": [
+    4500,
+    1800
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_echo_curve.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-stage4-summary",
+   "board": 1,
+   "group": "G-S4",
+   "title": "阶段 4 答辩一页图",
+   "src": "separation/figures/comparison/fig_stage4_summary.png",
+   "out": "04_reports/_shared/figures/paper/fig-stage4-summary.png",
+   "px": [
+    4800,
+    2700
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_stage4_summary.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-time-per-song",
+   "board": 1,
+   "group": "G-COST",
+   "title": "逐曲推理耗时",
+   "src": "separation/figures/figs_time/fig1_time_per_song.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-time-per-song.png",
+   "px": [
+    1846,
+    962
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-cumulative",
+   "board": 1,
+   "group": "G-COST",
+   "title": "累计耗时",
+   "src": "separation/figures/figs_time/fig2_time_cumulative.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-cumulative.png",
+   "px": [
+    1625,
+    901
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-rtf",
+   "board": 1,
+   "group": "G-COST",
+   "title": "逐曲 RTF",
+   "src": "separation/figures/figs_time/fig3_rtf_per_song.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-rtf.png",
+   "px": [
+    1851,
+    962
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-dist",
+   "board": 1,
+   "group": "G-COST",
+   "title": "耗时分布",
+   "src": "separation/figures/figs_time/fig4_time_distribution.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-dist.png",
+   "px": [
+    1148,
+    874
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-vs-acc",
+   "board": 1,
+   "group": "G-COST",
+   "title": "耗时 vs 精度",
+   "src": "separation/figures/figs_time/fig5_time_vs_accuracy.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-vs-acc.png",
+   "px": [
+    1854,
+    910
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-panels",
+   "board": 1,
+   "group": "G-COST",
+   "title": "成本多面板对比",
+   "src": "separation/figures/figs_time/fig6_compare_panels.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-panels.png",
+   "px": [
+    1742,
+    1371
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cost-pareto",
+   "board": 1,
+   "group": "G-COST",
+   "title": "速度—精度 Pareto",
+   "src": "separation/figures/figs_time/fig7_pareto_speed_accuracy.png",
+   "out": "04_reports/_shared/figures/paper/fig-cost-pareto.png",
+   "px": [
+    1499,
+    1001
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "plot_bench_10songs.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-spec-mixture",
+   "board": 1,
+   "group": "G-SPEC",
+   "title": "混音时频谱",
+   "src": "separation/figures/audio_analysis/fig3_spectrogram_mixture.png",
+   "out": "04_reports/_shared/figures/paper/fig-spec-mixture.png",
+   "px": [
+    2100,
+    750
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_spectrogram_panels.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-spec-vocals",
+   "board": 1,
+   "group": "G-SPEC",
+   "title": "人声轨时频谱",
+   "src": "separation/figures/audio_analysis/fig3_spectrogram_vocals.png",
+   "out": "04_reports/_shared/figures/paper/fig-spec-vocals.png",
+   "px": [
+    2100,
+    750
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_spectrogram_panels.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-spec-win1024",
+   "board": 1,
+   "group": "G-SPEC",
+   "title": "窗长对比：win 1024",
+   "src": "separation/figures/audio_analysis/fig4_spectrogram_win1024.png",
+   "out": "04_reports/_shared/figures/paper/fig-spec-win1024.png",
+   "px": [
+    2250,
+    750
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_spectrogram_panels.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-spec-win128",
+   "board": 1,
+   "group": "G-SPEC",
+   "title": "窗长对比：win 128",
+   "src": "separation/figures/audio_analysis/fig4_spectrogram_win128.png",
+   "out": "04_reports/_shared/figures/paper/fig-spec-win128.png",
+   "px": [
+    2250,
+    750
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_spectrogram_panels.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-spec-waveform",
+   "board": 1,
+   "group": "G-SPEC",
+   "title": "波形：混音 vs 人声",
+   "src": "separation/figures/audio_analysis/fig1_waveform_mixture_vocals.png",
+   "out": "04_reports/_shared/figures/paper/fig-spec-waveform.png",
+   "px": [
+    2100,
+    900
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_spectrogram_panels.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-spec-sr",
+   "board": 1,
+   "group": "G-SPEC",
+   "title": "采样率对比波形",
+   "src": "separation/figures/audio_analysis/fig2_waveform_sr_compare.png",
+   "out": "04_reports/_shared/figures/paper/fig-spec-sr.png",
+   "px": [
+    2100,
+    1350
+   ],
+   "dpi": 150.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_make_spectrogram_panels.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-dn-suppression",
+   "board": 2,
+   "group": "G-DN",
+   "title": "降噪抑制量（按模型 / SNR 档）",
+   "src": "denoiser/figures/fig_denoise_suppression.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-suppression.png",
+   "px": [
+    4500,
+    1920
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-dn-synth-gain",
+   "board": 2,
+   "group": "G-DN",
+   "title": "合成集增益（干净语音 + 瞬态噪声）",
+   "src": "denoiser/figures/fig_denoise_synth_gain.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-synth-gain.png",
+   "px": [
+    3120,
+    1920
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-dn-domain-reversal",
+   "board": 2,
+   "group": "G-DN",
+   "title": "噪声域反转（真实噪声 vs 合成噪声）",
+   "src": "denoiser/figures/fig_denoise_noise_domain_reversal.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-domain-reversal.png",
+   "px": [
+    4500,
+    1980
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-dn-metric-divergence",
+   "board": 2,
+   "group": "G-DN",
+   "title": "三指标分歧诊断",
+   "src": "denoiser/figures/fig_denoise_metric_divergence.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-metric-divergence.png",
+   "px": [
+    4500,
+    1920
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_denoise_diagnosis.py",
+   "render": false,
+   "note": "脚本载入 `_denoise_registry` 做推理 -> **不重跑**（避免与已归档结果分歧）"
+  },
+  {
+   "id": "fig-dn-drywet",
+   "board": 2,
+   "group": "G-DN",
+   "title": "dry/wet 强度旋钮曲线",
+   "src": "denoiser/figures/fig_denoise_drywet.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-drywet.png",
+   "px": [
+    4680,
+    1980
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise_drywet.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-dn-spec-master64-val",
+   "board": 2,
+   "group": "G-DN",
+   "title": "频谱前后对比：master64 × valentini",
+   "src": "denoiser/figures/denoise/t5_6_denoiser_master64_valentini_spectral.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-spec-master64-val.png",
+   "px": [
+    2240,
+    1596
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise_spectral.py",
+   "render": false,
+   "note": "脚本载入 `_denoise_registry` 做推理 -> **不重跑**"
+  },
+  {
+   "id": "fig-dn-spec-master64-syn",
+   "board": 2,
+   "group": "G-DN",
+   "title": "频谱前后对比：master64 × synth",
+   "src": "denoiser/figures/denoise/t5_6_denoiser_master64_synth_spectral.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-spec-master64-syn.png",
+   "px": [
+    2240,
+    1596
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise_spectral.py",
+   "render": false,
+   "note": "同上"
+  },
+  {
+   "id": "fig-dn-spec-mel-val",
+   "board": 2,
+   "group": "G-DN",
+   "title": "频谱前后对比：mel-roformer × valentini",
+   "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_valentini_spectral.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-spec-mel-val.png",
+   "px": [
+    2240,
+    1596
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise_spectral.py",
+   "render": false,
+   "note": "同上"
+  },
+  {
+   "id": "fig-dn-spec-mel-syn",
+   "board": 2,
+   "group": "G-DN",
+   "title": "频谱前后对比：mel-roformer × synth",
+   "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_synth_spectral.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-spec-mel-syn.png",
+   "px": [
+    2240,
+    1596
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_denoise_spectral.py",
+   "render": false,
+   "note": "同上"
+  },
+  {
+   "id": "fig-dn-dspec-master64-val",
+   "board": 2,
+   "group": "G-DN",
+   "title": "平均谱差：master64 × valentini",
+   "src": "denoiser/figures/denoise/t5_6_denoiser_master64_valentini_delta_spectrum.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-dspec-master64-val.png",
+   "px": [
+    1484,
+    854
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "_plot_denoise_spectrum_delta.py",
+   "render": false,
+   "note": "脚本载入 `_denoise_registry` 做推理 -> **不重跑**"
+  },
+  {
+   "id": "fig-dn-dspec-master64-syn",
+   "board": 2,
+   "group": "G-DN",
+   "title": "平均谱差：master64 × synth",
+   "src": "denoiser/figures/denoise/t5_6_denoiser_master64_synth_delta_spectrum.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-dspec-master64-syn.png",
+   "px": [
+    1484,
+    854
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "_plot_denoise_spectrum_delta.py",
+   "render": false,
+   "note": "同上"
+  },
+  {
+   "id": "fig-dn-dspec-mel-val",
+   "board": 2,
+   "group": "G-DN",
+   "title": "平均谱差：mel-roformer × valentini",
+   "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_valentini_delta_spectrum.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-dspec-mel-val.png",
+   "px": [
+    1484,
+    854
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "_plot_denoise_spectrum_delta.py",
+   "render": false,
+   "note": "同上"
+  },
+  {
+   "id": "fig-dn-dspec-mel-syn",
+   "board": 2,
+   "group": "G-DN",
+   "title": "平均谱差：mel-roformer × synth",
+   "src": "denoiser/figures/denoise/t5_6_mel_roformer_denoise_synth_delta_spectrum.png",
+   "out": "04_reports/_shared/figures/paper/fig-dn-dspec-mel-syn.png",
+   "px": [
+    1484,
+    854
+   ],
+   "dpi": 140.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": false,
+   "script": "_plot_denoise_spectrum_delta.py",
+   "render": false,
+   "note": "同上"
+  },
+  {
+   "id": "fig-cas-delta-matrix",
+   "board": 2,
+   "group": "G-CAS",
+   "title": "级联 ΔSDR 主矩阵（4 SNR × 4 模型 × 6 链路）",
+   "src": "cascade/figures/fig_cascade_delta_matrix.png",
+   "out": "04_reports/_shared/figures/paper/fig-cas-delta-matrix.png",
+   "px": [
+    4230,
+    1650
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_cascade.py",
+   "render": true,
+   "note": ""
+  },
+  {
+   "id": "fig-cas-decomposition",
+   "board": 2,
+   "group": "G-CAS",
+   "title": "级联净动作分解（L1 vs L1b vs L1−L1b）",
+   "src": "cascade/figures/fig_cascade_decomposition.png",
+   "out": "04_reports/_shared/figures/paper/fig-cas-decomposition.png",
+   "px": [
+    4260,
+    1590
+   ],
+   "dpi": 300.0,
+   "meets_300dpi": true,
+   "meets_300dpi_double": true,
+   "script": "_plot_cascade.py",
+   "render": true,
+   "note": ""
+  }
+ ]
+}

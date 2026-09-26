@@ -1,0 +1,414 @@
+{
+ "purpose": "量化「evaluate() 未传 window/hop -> museval 默认 2s/1.5s」与文档声称 1s 窗的实际偏差",
+ "call_site": "tools/compare_separation_methods.py::evaluate -> museval.metrics.bss_eval",
+ "subset": "test",
+ "clips": [
+  {
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 10.0
+  },
+  {
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 10.0
+  },
+  {
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 10.0
+  }
+ ],
+ "clip_source": "panel_song_selection.json（T3.1 数据驱动选出的高能量均衡片段）",
+ "museval_signature_default": {
+  "window": 88200,
+  "hop": 66150
+ },
+ "doc_claimed": {
+  "window": 44100,
+  "hop": 44100
+ },
+ "aggregation": "np.nanmedian over frames; mono=mean over channels; compute_permutation=False",
+ "target_energy_gate": 0.12,
+ "models": [
+  "demucs",
+  "mdx",
+  "umx"
+ ],
+ "generated": "2026-09-23 03:10:27",
+ "summary": {
+  "n_cells": 33,
+  "n_skipped": 1,
+  "delta_mean": -0.077,
+  "delta_median": 0.0085,
+  "abs_delta_mean": 0.2674,
+  "abs_delta_max": 1.1053,
+  "abs_delta_p90": 0.7037,
+  "per_stem": {
+   "vocals": {
+    "n": 9,
+    "delta_mean": 0.0713,
+    "delta_median": 0.0922,
+    "abs_delta_max": 0.763
+   },
+   "drums": {
+    "n": 6,
+    "delta_mean": -0.0707,
+    "delta_median": -0.0915,
+    "abs_delta_max": 0.7158
+   },
+   "bass": {
+    "n": 9,
+    "delta_mean": -0.2961,
+    "delta_median": -0.2617,
+    "abs_delta_max": 1.1053
+   },
+   "other": {
+    "n": 9,
+    "delta_mean": -0.0106,
+    "delta_median": 0.0085,
+    "abs_delta_max": 0.126
+   }
+  }
+ },
+ "cells": [
+  {
+   "model": "demucs",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "vocals",
+   "offset_s": 162.1,
+   "target_energy_share": 0.3172,
+   "sdr_default": 6.8224,
+   "sdr_1s": 6.8592,
+   "delta": -0.0368
+  },
+  {
+   "model": "mdx",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "vocals",
+   "offset_s": 162.1,
+   "target_energy_share": 0.3172,
+   "sdr_default": 8.4986,
+   "sdr_1s": 9.2616,
+   "delta": -0.763
+  },
+  {
+   "model": "umx",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "vocals",
+   "offset_s": 162.1,
+   "target_energy_share": 0.3172,
+   "sdr_default": 3.7017,
+   "sdr_1s": 3.572,
+   "delta": 0.1297
+  },
+  {
+   "model": "demucs",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "bass",
+   "offset_s": 162.1,
+   "target_energy_share": 0.3303,
+   "sdr_default": 11.5773,
+   "sdr_1s": 12.0137,
+   "delta": -0.4364
+  },
+  {
+   "model": "mdx",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "bass",
+   "offset_s": 162.1,
+   "target_energy_share": 0.3303,
+   "sdr_default": 11.5885,
+   "sdr_1s": 11.8502,
+   "delta": -0.2617
+  },
+  {
+   "model": "umx",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "bass",
+   "offset_s": 162.1,
+   "target_energy_share": 0.3303,
+   "sdr_default": 8.865,
+   "sdr_1s": 8.9514,
+   "delta": -0.0864
+  },
+  {
+   "model": "demucs",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "other",
+   "offset_s": 162.1,
+   "target_energy_share": 0.2363,
+   "sdr_default": 5.0756,
+   "sdr_1s": 5.0129,
+   "delta": 0.0627
+  },
+  {
+   "model": "mdx",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "other",
+   "offset_s": 162.1,
+   "target_energy_share": 0.2363,
+   "sdr_default": 6.38,
+   "sdr_1s": 6.4948,
+   "delta": -0.1148
+  },
+  {
+   "model": "umx",
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "other",
+   "offset_s": 162.1,
+   "target_energy_share": 0.2363,
+   "sdr_default": 1.4823,
+   "sdr_1s": 1.4496,
+   "delta": 0.0327
+  },
+  {
+   "model": "demucs",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "vocals",
+   "offset_s": 172.5,
+   "target_energy_share": 0.2295,
+   "sdr_default": 9.0928,
+   "sdr_1s": 8.6005,
+   "delta": 0.4923
+  },
+  {
+   "model": "mdx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "vocals",
+   "offset_s": 172.5,
+   "target_energy_share": 0.2295,
+   "sdr_default": 9.1269,
+   "sdr_1s": 9.0347,
+   "delta": 0.0922
+  },
+  {
+   "model": "umx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "vocals",
+   "offset_s": 172.5,
+   "target_energy_share": 0.2295,
+   "sdr_default": 7.1007,
+   "sdr_1s": 6.7754,
+   "delta": 0.3253
+  },
+  {
+   "model": "demucs",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "drums",
+   "offset_s": 172.5,
+   "target_energy_share": 0.2954,
+   "sdr_default": 7.4078,
+   "sdr_1s": 7.1603,
+   "delta": 0.2475
+  },
+  {
+   "model": "mdx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "drums",
+   "offset_s": 172.5,
+   "target_energy_share": 0.2954,
+   "sdr_default": 8.1524,
+   "sdr_1s": 7.8819,
+   "delta": 0.2705
+  },
+  {
+   "model": "umx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "drums",
+   "offset_s": 172.5,
+   "target_energy_share": 0.2954,
+   "sdr_default": 4.0837,
+   "sdr_1s": 3.4282,
+   "delta": 0.6555
+  },
+  {
+   "model": "demucs",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "bass",
+   "offset_s": 172.5,
+   "target_energy_share": 0.1471,
+   "sdr_default": 5.2398,
+   "sdr_1s": 6.3451,
+   "delta": -1.1053
+  },
+  {
+   "model": "mdx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "bass",
+   "offset_s": 172.5,
+   "target_energy_share": 0.1471,
+   "sdr_default": 7.1646,
+   "sdr_1s": 7.1577,
+   "delta": 0.0069
+  },
+  {
+   "model": "umx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "bass",
+   "offset_s": 172.5,
+   "target_energy_share": 0.1471,
+   "sdr_default": 0.097,
+   "sdr_1s": 0.8874,
+   "delta": -0.7904
+  },
+  {
+   "model": "demucs",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "other",
+   "offset_s": 172.5,
+   "target_energy_share": 0.3076,
+   "sdr_default": 6.0454,
+   "sdr_1s": 6.049,
+   "delta": -0.0036
+  },
+  {
+   "model": "mdx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "other",
+   "offset_s": 172.5,
+   "target_energy_share": 0.3076,
+   "sdr_default": 6.4929,
+   "sdr_1s": 6.6189,
+   "delta": -0.126
+  },
+  {
+   "model": "umx",
+   "song": "Bobby Nobody - Stitch Up",
+   "stem": "other",
+   "offset_s": 172.5,
+   "target_energy_share": 0.3076,
+   "sdr_default": 2.9585,
+   "sdr_1s": 2.95,
+   "delta": 0.0085
+  },
+  {
+   "model": "demucs",
+   "song": "Raft Monk - Tiring",
+   "stem": "vocals",
+   "offset_s": 27.5,
+   "target_energy_share": 0.2344,
+   "sdr_default": 6.0629,
+   "sdr_1s": 6.0397,
+   "delta": 0.0232
+  },
+  {
+   "model": "mdx",
+   "song": "Raft Monk - Tiring",
+   "stem": "vocals",
+   "offset_s": 27.5,
+   "target_energy_share": 0.2344,
+   "sdr_default": 6.9545,
+   "sdr_1s": 6.6603,
+   "delta": 0.2942
+  },
+  {
+   "model": "umx",
+   "song": "Raft Monk - Tiring",
+   "stem": "vocals",
+   "offset_s": 27.5,
+   "target_energy_share": 0.2344,
+   "sdr_default": 3.7667,
+   "sdr_1s": 3.6821,
+   "delta": 0.0846
+  },
+  {
+   "model": "demucs",
+   "song": "Raft Monk - Tiring",
+   "stem": "drums",
+   "offset_s": 27.5,
+   "target_energy_share": 0.2367,
+   "sdr_default": 7.9069,
+   "sdr_1s": 8.3375,
+   "delta": -0.4306
+  },
+  {
+   "model": "mdx",
+   "song": "Raft Monk - Tiring",
+   "stem": "drums",
+   "offset_s": 27.5,
+   "target_energy_share": 0.2367,
+   "sdr_default": 8.1854,
+   "sdr_1s": 8.9012,
+   "delta": -0.7158
+  },
+  {
+   "model": "umx",
+   "song": "Raft Monk - Tiring",
+   "stem": "drums",
+   "offset_s": 27.5,
+   "target_energy_share": 0.2367,
+   "sdr_default": 3.5046,
+   "sdr_1s": 3.9556,
+   "delta": -0.451
+  },
+  {
+   "model": "demucs",
+   "song": "Raft Monk - Tiring",
+   "stem": "bass",
+   "offset_s": 27.5,
+   "target_energy_share": 0.3595,
+   "sdr_default": 8.5135,
+   "sdr_1s": 8.4037,
+   "delta": 0.1098
+  },
+  {
+   "model": "mdx",
+   "song": "Raft Monk - Tiring",
+   "stem": "bass",
+   "offset_s": 27.5,
+   "target_energy_share": 0.3595,
+   "sdr_default": 8.8504,
+   "sdr_1s": 8.6021,
+   "delta": 0.2483
+  },
+  {
+   "model": "umx",
+   "song": "Raft Monk - Tiring",
+   "stem": "bass",
+   "offset_s": 27.5,
+   "target_energy_share": 0.3595,
+   "sdr_default": 4.8208,
+   "sdr_1s": 5.1702,
+   "delta": -0.3494
+  },
+  {
+   "model": "demucs",
+   "song": "Raft Monk - Tiring",
+   "stem": "other",
+   "offset_s": 27.5,
+   "target_energy_share": 0.1809,
+   "sdr_default": 2.796,
+   "sdr_1s": 2.7588,
+   "delta": 0.0372
+  },
+  {
+   "model": "mdx",
+   "song": "Raft Monk - Tiring",
+   "stem": "other",
+   "offset_s": 27.5,
+   "target_energy_share": 0.1809,
+   "sdr_default": 3.2669,
+   "sdr_1s": 3.2471,
+   "delta": 0.0198
+  },
+  {
+   "model": "umx",
+   "song": "Raft Monk - Tiring",
+   "stem": "other",
+   "offset_s": 27.5,
+   "target_energy_share": 0.1809,
+   "sdr_default": 0.4359,
+   "sdr_1s": 0.4482,
+   "delta": -0.0123
+  }
+ ],
+ "skipped": [
+  {
+   "song": "The Easton Ellises - Falcon 69",
+   "stem": "drums",
+   "why": "目标轨能量占比 11.6% < 12.0%（稀疏目标，两窗都退化）"
+  }
+ ],
+ "status": "PASS"
+}

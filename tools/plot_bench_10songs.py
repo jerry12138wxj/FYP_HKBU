@@ -181,8 +181,10 @@ def fig4_dist(d):
     for box, c in zip(bp["boxes"], (C_UMX, C_DEM)):
         box.set_facecolor(c)
         box.set_alpha(0.65)
+    # 固定种子：散点水平抖动只是视觉位移，**不得**让同一输入产出不同字节（T8.5 实测抓出）
+    rng = np.random.default_rng(20260927)
     for i, data in enumerate([tu, td], 1):
-        ax.scatter(np.full(len(data), i) + np.random.uniform(-0.06, 0.06, len(data)),
+        ax.scatter(np.full(len(data), i) + rng.uniform(-0.06, 0.06, len(data)),
                    data, color="black", s=28, zorder=3, alpha=0.7)
     ax.set_ylabel("推理时间 (秒 / 30s)", fontsize=11)
     ax.set_title("图4  运行时长分布 — 10 首歌的离散程度", fontsize=13, fontweight="bold")

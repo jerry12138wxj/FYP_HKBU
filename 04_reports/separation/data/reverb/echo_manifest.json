@@ -1,0 +1,129 @@
+{
+ "task": "T4.6 回声实验（生成）",
+ "echo": {
+  "echo_short": {
+   "delay_ms": 80,
+   "gain": 0.6
+  },
+  "echo_long": {
+   "delay_ms": 250,
+   "gain": 0.8
+  }
+ },
+ "clips": [
+  "The Easton Ellises - Falcon 69@162s",
+  "Bobby Nobody - Stitch Up@172s",
+  "Raft Monk - Tiring@27s"
+ ],
+ "made": [
+  "The Easton Ellises - Falcon 69@162s|echo_short",
+  "The Easton Ellises - Falcon 69@162s|echo_long",
+  "Bobby Nobody - Stitch Up@172s|echo_short",
+  "Bobby Nobody - Stitch Up@172s|echo_long",
+  "Raft Monk - Tiring@27s|echo_short",
+  "Raft Monk - Tiring@27s|echo_long"
+ ],
+ "n_gates": 12,
+ "n_failed": 0,
+ "gates": [
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "echo_short",
+   "gate": "sum_stems_eq_mixture",
+   "value": 3.5e-08,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "echo_short",
+   "gate": "echo_formula_roundtrip",
+   "value": 2.384185793236071e-08,
+   "threshold": 1e-06,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "echo_long",
+   "gate": "sum_stems_eq_mixture",
+   "value": 3.5e-08,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "echo_long",
+   "gate": "echo_formula_roundtrip",
+   "value": 4.768371586472142e-08,
+   "threshold": 1e-06,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "echo_short",
+   "gate": "sum_stems_eq_mixture",
+   "value": 3.5e-08,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "echo_short",
+   "gate": "echo_formula_roundtrip",
+   "value": 4.768371586472142e-08,
+   "threshold": 1e-06,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "echo_long",
+   "gate": "sum_stems_eq_mixture",
+   "value": 3.5e-08,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "echo_long",
+   "gate": "echo_formula_roundtrip",
+   "value": 2.384185793236071e-08,
+   "threshold": 1e-06,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "echo_short",
+   "gate": "sum_stems_eq_mixture",
+   "value": 3.5e-08,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "echo_short",
+   "gate": "echo_formula_roundtrip",
+   "value": 2.384185793236071e-08,
+   "threshold": 1e-06,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "echo_long",
+   "gate": "sum_stems_eq_mixture",
+   "value": 3.5e-08,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "echo_long",
+   "gate": "echo_formula_roundtrip",
+   "value": 4.768371586472142e-08,
+   "threshold": 1e-06,
+   "pass": true
+  }
+ ],
+ "formula": "y[n] = x[n] + gain * x[n - delay_samples]",
+ "generated": "2026-09-23 03:45:09",
+ "status": "PASS"
+}

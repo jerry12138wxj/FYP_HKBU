@@ -1,0 +1,46 @@
+{
+ "task": "T5.7 降噪器域外失效探针",
+ "sr": 16000,
+ "n_items": 6,
+ "probes": {
+  "mel_roformer_denoise": {
+   "native_sr": 44100,
+   "A_clean_passthrough": [],
+   "B_noise_passthrough": [],
+   "C_gain_sweep": [],
+   "summary": {
+    "A_clean_ratio_med": null,
+    "A_hf_in_med": null,
+    "A_hf_out_med": null,
+    "B_noise_ratio_med": null,
+    "B_suppression_db_med": null
+   }
+  },
+  "denoiser_dns48": {
+   "native_sr": 16000,
+   "A_clean_passthrough": [],
+   "B_noise_passthrough": [],
+   "C_gain_sweep": [],
+   "summary": {
+    "A_clean_ratio_med": null,
+    "A_hf_in_med": null,
+    "A_hf_out_med": null,
+    "B_noise_ratio_med": null,
+    "B_suppression_db_med": null
+   }
+  },
+  "denoiser_master64": {
+   "native_sr": 16000,
+   "A_clean_passthrough": [],
+   "B_noise_passthrough": [],
+   "C_gain_sweep": [],
+   "summary": {
+    "A_clean_ratio_med": null,
+    "A_hf_in_med": null,
+    "A_hf_out_med": null,
+    "B_noise_ratio_med": null,
+    "B_suppression_db_med": null
+   }
+  }
+ }
+}

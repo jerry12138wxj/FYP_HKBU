@@ -1,0 +1,573 @@
+{
+ "task": "T6 级联实验（分离 -> 降噪）",
+ "question": "把语音降噪器接在音乐源分离前面，SDR 是涨还是跌？",
+ "songs": [
+  {
+   "song": "The Easton Ellises - Falcon 69",
+   "slug": "The-Easton-Ellises-Falcon-69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "min_share_pct": 22.944994373139128
+  },
+  {
+   "song": "Bobby Nobody - Stitch Up",
+   "slug": "Bobby-Nobody-Stitch-Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "min_share_pct": 22.815380895552874
+  },
+  {
+   "song": "Raft Monk - Tiring",
+   "slug": "Raft-Monk-Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "min_share_pct": 22.50864723531372
+  },
+  {
+   "song": "The Doppler Shift - Atrophy",
+   "slug": "The-Doppler-Shift-Atrophy",
+   "offset_s": 222.5,
+   "dur_s": 20.0,
+   "min_share_pct": 21.691255746721804
+  },
+  {
+   "song": "Enda Reilly - Cur An Long Ag Seol",
+   "slug": "Enda-Reilly-Cur-An-Long-Ag-Seol",
+   "offset_s": 95.4,
+   "dur_s": 20.0,
+   "min_share_pct": 21.47375962395681
+  },
+  {
+   "song": "Al James - Schoolboy Facination",
+   "slug": "Al-James-Schoolboy-Facination",
+   "offset_s": 25.8,
+   "dur_s": 20.0,
+   "min_share_pct": 20.106453932612304
+  },
+  {
+   "song": "Georgia Wonder - Siren",
+   "slug": "Georgia-Wonder-Siren",
+   "offset_s": 175.9,
+   "dur_s": 20.0,
+   "min_share_pct": 19.64725040044247
+  },
+  {
+   "song": "The Long Wait - Dark Horses",
+   "slug": "The-Long-Wait-Dark-Horses",
+   "offset_s": 122.5,
+   "dur_s": 20.0,
+   "min_share_pct": 19.00252828804878
+  },
+  {
+   "song": "AM Contra - Heart Peripheral",
+   "slug": "AM-Contra-Heart-Peripheral",
+   "offset_s": 108.6,
+   "dur_s": 20.0,
+   "min_share_pct": 18.25177310286112
+  },
+  {
+   "song": "Moosmusic - Big Dummy Shake",
+   "slug": "Moosmusic-Big-Dummy-Shake",
+   "offset_s": 76.7,
+   "dur_s": 20.0,
+   "min_share_pct": 17.90524544696524
+  }
+ ],
+ "song_source": "E:\\FYP_HKBU\\04_reports\\separation\\data\\comparison\\panel_song_selection.json",
+ "snr_levels": [
+  -5.0,
+  0.0,
+  5.0,
+  10.0
+ ],
+ "noise_source": "02_databases\\DNS-Challenge\\noise\\freesound",
+ "n_noise": 2308,
+ "cells": [
+  {
+   "cell_id": "The-Easton-Ellises-Falcon-69__snrm05",
+   "song": "The Easton Ellises - Falcon 69",
+   "clip_id": "The-Easton-Ellises-Falcon-69@162s",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 0,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_106245_1.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_413503_3.wav"
+  },
+  {
+   "cell_id": "The-Easton-Ellises-Falcon-69__snrp00",
+   "song": "The Easton Ellises - Falcon 69",
+   "clip_id": "The-Easton-Ellises-Falcon-69@162s",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 37,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_273979_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_420389_0.wav"
+  },
+  {
+   "cell_id": "The-Easton-Ellises-Falcon-69__snrp05",
+   "song": "The Easton Ellises - Falcon 69",
+   "clip_id": "The-Easton-Ellises-Falcon-69@162s",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 74,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_393022_1.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_427108_3.wav"
+  },
+  {
+   "cell_id": "The-Easton-Ellises-Falcon-69__snrp10",
+   "song": "The Easton Ellises - Falcon 69",
+   "clip_id": "The-Easton-Ellises-Falcon-69@162s",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 111,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\copy-machine_Freesound_validated_425222_15.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_433996_2.wav"
+  },
+  {
+   "cell_id": "Bobby-Nobody-Stitch-Up__snrm05",
+   "song": "Bobby Nobody - Stitch Up",
+   "clip_id": "Bobby-Nobody-Stitch-Up@172s",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 13,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_202073_2.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_414067_5.wav"
+  },
+  {
+   "cell_id": "Bobby-Nobody-Stitch-Up__snrp00",
+   "song": "Bobby Nobody - Stitch Up",
+   "clip_id": "Bobby-Nobody-Stitch-Up@172s",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 50,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_335775_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_425090_0.wav"
+  },
+  {
+   "cell_id": "Bobby-Nobody-Stitch-Up__snrp05",
+   "song": "Bobby Nobody - Stitch Up",
+   "clip_id": "Bobby-Nobody-Stitch-Up@172s",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 87,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_409192_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_429727_0.wav"
+  },
+  {
+   "cell_id": "Bobby-Nobody-Stitch-Up__snrp10",
+   "song": "Bobby Nobody - Stitch Up",
+   "clip_id": "Bobby-Nobody-Stitch-Up@172s",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 124,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_106128_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_436553_1.wav"
+  },
+  {
+   "cell_id": "Raft-Monk-Tiring__snrm05",
+   "song": "Raft Monk - Tiring",
+   "clip_id": "Raft-Monk-Tiring@27s",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 26,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_233137_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_414849_1.wav"
+  },
+  {
+   "cell_id": "Raft-Monk-Tiring__snrp00",
+   "song": "Raft Monk - Tiring",
+   "clip_id": "Raft-Monk-Tiring@27s",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 63,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_360424_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_426320_1.wav"
+  },
+  {
+   "cell_id": "Raft-Monk-Tiring__snrp05",
+   "song": "Raft Monk - Tiring",
+   "clip_id": "Raft-Monk-Tiring@27s",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 100,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_455440_10.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_432680_0.wav"
+  },
+  {
+   "cell_id": "Raft-Monk-Tiring__snrp10",
+   "song": "Raft Monk - Tiring",
+   "clip_id": "Raft-Monk-Tiring@27s",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 137,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_112982_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_439434_1.wav"
+  },
+  {
+   "cell_id": "The-Doppler-Shift-Atrophy__snrm05",
+   "song": "The Doppler Shift - Atrophy",
+   "clip_id": "The-Doppler-Shift-Atrophy@222s",
+   "offset_s": 222.5,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 39,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_274769_1.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_422262_0.wav"
+  },
+  {
+   "cell_id": "The-Doppler-Shift-Atrophy__snrp00",
+   "song": "The Doppler Shift - Atrophy",
+   "clip_id": "The-Doppler-Shift-Atrophy@222s",
+   "offset_s": 222.5,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 76,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_399291_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_427109_2.wav"
+  },
+  {
+   "cell_id": "The-Doppler-Shift-Atrophy__snrp05",
+   "song": "The Doppler Shift - Atrophy",
+   "clip_id": "The-Doppler-Shift-Atrophy@222s",
+   "offset_s": 222.5,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 113,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\copy-machine_Freesound_validated_425222_25.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_434341_1.wav"
+  },
+  {
+   "cell_id": "The-Doppler-Shift-Atrophy__snrp10",
+   "song": "The Doppler Shift - Atrophy",
+   "clip_id": "The-Doppler-Shift-Atrophy@222s",
+   "offset_s": 222.5,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 150,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_119479_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_442417_4.wav"
+  },
+  {
+   "cell_id": "Enda-Reilly-Cur-An-Long-Ag-Seol__snrm05",
+   "song": "Enda Reilly - Cur An Long Ag Seol",
+   "clip_id": "Enda-Reilly-Cur-An-Long-Ag-Seol@95s",
+   "offset_s": 95.4,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 52,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_340985_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_425183_11.wav"
+  },
+  {
+   "cell_id": "Enda-Reilly-Cur-An-Long-Ag-Seol__snrp00",
+   "song": "Enda Reilly - Cur An Long Ag Seol",
+   "clip_id": "Enda-Reilly-Cur-An-Long-Ag-Seol@95s",
+   "offset_s": 95.4,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 89,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_409747_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_429909_0.wav"
+  },
+  {
+   "cell_id": "Enda-Reilly-Cur-An-Long-Ag-Seol__snrp05",
+   "song": "Enda Reilly - Cur An Long Ag Seol",
+   "clip_id": "Enda-Reilly-Cur-An-Long-Ag-Seol@95s",
+   "offset_s": 95.4,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 126,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_108467_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_437209_11.wav"
+  },
+  {
+   "cell_id": "Enda-Reilly-Cur-An-Long-Ag-Seol__snrp10",
+   "song": "Enda Reilly - Cur An Long Ag Seol",
+   "clip_id": "Enda-Reilly-Cur-An-Long-Ag-Seol@95s",
+   "offset_s": 95.4,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 163,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_131438_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_444268_0.wav"
+  },
+  {
+   "cell_id": "Al-James-Schoolboy-Facination__snrm05",
+   "song": "Al James - Schoolboy Facination",
+   "clip_id": "Al-James-Schoolboy-Facination@25s",
+   "offset_s": 25.8,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 65,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_361140_3.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_426589_0.wav"
+  },
+  {
+   "cell_id": "Al-James-Schoolboy-Facination__snrp00",
+   "song": "Al James - Schoolboy Facination",
+   "clip_id": "Al-James-Schoolboy-Facination@25s",
+   "offset_s": 25.8,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 102,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_455440_5.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_433558_0.wav"
+  },
+  {
+   "cell_id": "Al-James-Schoolboy-Facination__snrp05",
+   "song": "Al James - Schoolboy Facination",
+   "clip_id": "Al-James-Schoolboy-Facination@25s",
+   "offset_s": 25.8,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 139,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_113129_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_439735_1.wav"
+  },
+  {
+   "cell_id": "Al-James-Schoolboy-Facination__snrp10",
+   "song": "Al James - Schoolboy Facination",
+   "clip_id": "Al-James-Schoolboy-Facination@25s",
+   "offset_s": 25.8,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 176,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_135428_1.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_447151_2.wav"
+  },
+  {
+   "cell_id": "Georgia-Wonder-Siren__snrm05",
+   "song": "Georgia Wonder - Siren",
+   "clip_id": "Georgia-Wonder-Siren@175s",
+   "offset_s": 175.9,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 78,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_402126_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_427109_4.wav"
+  },
+  {
+   "cell_id": "Georgia-Wonder-Siren__snrp00",
+   "song": "Georgia Wonder - Siren",
+   "clip_id": "Georgia-Wonder-Siren@175s",
+   "offset_s": 175.9,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 115,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\copy-machine_Freesound_validated_425222_3.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_434632_22.wav"
+  },
+  {
+   "cell_id": "Georgia-Wonder-Siren__snrp05",
+   "song": "Georgia Wonder - Siren",
+   "clip_id": "Georgia-Wonder-Siren@175s",
+   "offset_s": 175.9,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 152,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_119495_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_442487_11.wav"
+  },
+  {
+   "cell_id": "Georgia-Wonder-Siren__snrp10",
+   "song": "Georgia Wonder - Siren",
+   "clip_id": "Georgia-Wonder-Siren@175s",
+   "offset_s": 175.9,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 189,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_144943_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_449467_0.wav"
+  },
+  {
+   "cell_id": "The-Long-Wait-Dark-Horses__snrm05",
+   "song": "The Long Wait - Dark Horses",
+   "clip_id": "The-Long-Wait-Dark-Horses@122s",
+   "offset_s": 122.5,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 91,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_412854_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_429994_0.wav"
+  },
+  {
+   "cell_id": "The-Long-Wait-Dark-Horses__snrp00",
+   "song": "The Long Wait - Dark Horses",
+   "clip_id": "The-Long-Wait-Dark-Horses@122s",
+   "offset_s": 122.5,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 128,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_109122_2.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_437209_3.wav"
+  },
+  {
+   "cell_id": "The-Long-Wait-Dark-Horses__snrp05",
+   "song": "The Long Wait - Dark Horses",
+   "clip_id": "The-Long-Wait-Dark-Horses@122s",
+   "offset_s": 122.5,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 165,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_131552_2.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_444387_0.wav"
+  },
+  {
+   "cell_id": "The-Long-Wait-Dark-Horses__snrp10",
+   "song": "The Long Wait - Dark Horses",
+   "clip_id": "The-Long-Wait-Dark-Horses@122s",
+   "offset_s": 122.5,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 202,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_153198_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_450815_0.wav"
+  },
+  {
+   "cell_id": "AM-Contra-Heart-Peripheral__snrm05",
+   "song": "AM Contra - Heart Peripheral",
+   "clip_id": "AM-Contra-Heart-Peripheral@108s",
+   "offset_s": 108.6,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 104,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\breath_spit_Freesound_validated_456037_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_433883_0.wav"
+  },
+  {
+   "cell_id": "AM-Contra-Heart-Peripheral__snrp00",
+   "song": "AM Contra - Heart Peripheral",
+   "clip_id": "AM-Contra-Heart-Peripheral@108s",
+   "offset_s": 108.6,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 141,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_113138_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_440965_1.wav"
+  },
+  {
+   "cell_id": "AM-Contra-Heart-Peripheral__snrp05",
+   "song": "AM Contra - Heart Peripheral",
+   "clip_id": "AM-Contra-Heart-Peripheral@108s",
+   "offset_s": 108.6,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 178,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_136534_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_447157_0.wav"
+  },
+  {
+   "cell_id": "AM-Contra-Heart-Peripheral__snrp10",
+   "song": "AM Contra - Heart Peripheral",
+   "clip_id": "AM-Contra-Heart-Peripheral@108s",
+   "offset_s": 108.6,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 215,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_157256_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_452591_2.wav"
+  },
+  {
+   "cell_id": "Moosmusic-Big-Dummy-Shake__snrm05",
+   "song": "Moosmusic - Big Dummy Shake",
+   "clip_id": "Moosmusic-Big-Dummy-Shake@76s",
+   "offset_s": 76.7,
+   "dur_s": 20.0,
+   "snr_db": -5.0,
+   "noise_idx": 117,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\copy-machine_Freesound_validated_425222_8.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_434632_31.wav"
+  },
+  {
+   "cell_id": "Moosmusic-Big-Dummy-Shake__snrp00",
+   "song": "Moosmusic - Big Dummy Shake",
+   "clip_id": "Moosmusic-Big-Dummy-Shake@76s",
+   "offset_s": 76.7,
+   "dur_s": 20.0,
+   "snr_db": 0.0,
+   "noise_idx": 154,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_123017_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_442487_5.wav"
+  },
+  {
+   "cell_id": "Moosmusic-Big-Dummy-Shake__snrp05",
+   "song": "Moosmusic - Big Dummy Shake",
+   "clip_id": "Moosmusic-Big-Dummy-Shake@76s",
+   "offset_s": 76.7,
+   "dur_s": 20.0,
+   "snr_db": 5.0,
+   "noise_idx": 191,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_145210_0.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_450578_0.wav"
+  },
+  {
+   "cell_id": "Moosmusic-Big-Dummy-Shake__snrp10",
+   "song": "Moosmusic - Big Dummy Shake",
+   "clip_id": "Moosmusic-Big-Dummy-Shake@76s",
+   "offset_s": 76.7,
+   "dur_s": 20.0,
+   "snr_db": 10.0,
+   "noise_idx": 228,
+   "noise_l": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_162532_7.wav",
+   "noise_r": "02_databases\\DNS-Challenge\\noise\\freesound\\datasets_fullband\\noise_fullband\\door_Freesound_validated_452708_0.wav"
+  }
+ ],
+ "n_cells": 40,
+ "links": {
+  "L0": "noisy mixture -> SEP（基线）",
+  "L1": "noisy mixture -> denoiser -> SEP",
+  "L1b": "noisy mixture -> 仅16k/mono往返(不降噪) -> SEP（★对照：纯代价）",
+  "L1m": "noisy mixture -> mel_roformer -> SEP（★对照臂：无带宽代价）",
+  "L2": "noisy mixture -> SEP -> 对 vocals 降噪",
+  "L2b": "noisy mixture -> SEP -> 对 vocals 仅限带（★对照）",
+  "L3": "noisy mixture -> denoiser -> SEP -> 对 vocals 降噪"
+ },
+ "variants": {
+  "Vdry": "干 mixture（无噪声）——**锚点**，用于校验 loader/口径未漂移",
+  "V0": "带噪 mixture（L0 基线输入）",
+  "V1den": "带噪 mixture -> denoiser 降噪（L1/L3 输入）",
+  "V1mel": "带噪 mixture -> mel_roformer 降噪（L1m 输入，★对照臂）",
+  "V1bl": "带噪 mixture -> **仅 16k/mono 往返、不降噪**（L1b 输入，★对照）"
+ },
+ "sep_models": [
+  "demucs",
+  "mdx",
+  "bsrnn_all",
+  "umx"
+ ],
+ "sep_model_labels": {
+  "demucs": "Demucs (htdemucs)",
+  "mdx": "MDX-Net (mdx_extra)",
+  "bsrnn_all": "oBSRNN (4 ckpt, 4-stem)",
+  "umx": "Open-Unmix (umxhq)"
+ },
+ "den_model": "denoiser_master64",
+ "mel_model": "mel_roformer_denoise",
+ "metric": "museval BSSEval v4 SDR（mono，默认窗 2 s/hop 1.5 s），每格 4 轨均值=avg4，跨 10 曲取中位数",
+ "reference": "MUSDB 干 GT stem（噪声只加到 mixture）",
+ "n_separation_cells": 640,
+ "n_target": "计划书 D8：L0×L1×L2×L3 × 4 SNR 全格填满，每格标可复现命令",
+ "constraints": {
+  "P7": "不得预设降噪有用；变差照报（R12）",
+  "P17": "噪声=DNS freesound（与 T5.4 synth 同源）-> 两模型族都跑，把『有效域互补』从模型级提升到系统级；噪声类型由 G5 门禁当场验证",
+  "P19": "契约采样率链；不原地覆盖源数组"
+ },
+ "deviation_from_plan": {
+  "BSRNN-opt -> bsrnn_all": "计划书写『BSRNN-opt』，但注册表 `bsrnn` 是人声单轨，与『四轨完整组代表』矛盾且违反 R10 分组纪律；改用四轨的 `bsrnn_all`(oBSRNN 4ckpt)，T4 已验证可用",
+  "片段长度 20 s（非整曲）": "与 T4/T5 口径一致、与 museval 2 s 窗匹配、算力可控；整曲成本高 12 倍且对本问题无额外信息"
+ },
+ "generated": "2026-09-24 11:23:18",
+ "status": "PASS"
+}

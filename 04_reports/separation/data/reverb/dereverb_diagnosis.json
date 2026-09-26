@@ -1,0 +1,86 @@
+{
+ "task": "T4.3(诊断) 去混响复现性诊断",
+ "source": "separation/data/reverb/dereverb_results.json + 官方 inference 路径对照",
+ "loader_summary_by_model": {
+  "mel_roformer_dereverb": {
+   "n": 6,
+   "n_pass": 5,
+   "gains": [
+    -0.301,
+    1.464,
+    0.044,
+    0.333,
+    -2.977
+   ],
+   "fails": [
+    "Raft Monk - Tiring@27s/wet_hall rms_ratio=0.1631"
+   ],
+   "gain_median": 0.044,
+   "gain_min": -2.977,
+   "gain_max": 1.464
+  },
+  "mel_roformer_dereverb_echo": {
+   "n": 6,
+   "n_pass": 1,
+   "gains": [
+    -0.449
+   ],
+   "fails": [
+    "The Easton Ellises - Falco/wet_small rms_ratio=0.0326",
+    "The Easton Ellises - Falco/wet_hall rms_ratio=0.0001",
+    "Bobby Nobody - Stitch Up@1/wet_hall rms_ratio=0.1536",
+    "Raft Monk - Tiring@27s/wet_small rms_ratio=0.003",
+    "Raft Monk - Tiring@27s/wet_hall rms_ratio=0.0"
+   ],
+   "gain_median": -0.449,
+   "gain_min": -0.449,
+   "gain_max": -0.449
+  }
+ },
+ "official_vs_loader": [
+  {
+   "model": "mel_roformer_dereverb",
+   "cell": "The Easton Ellises - Falco|wet_hall",
+   "wet_vs_dry_db": -13.257,
+   "official_stem": "noreverb",
+   "official_si_vs_dry_db": -11.651,
+   "loader_si_vs_dry_db": -11.793,
+   "delta_official_minus_loader_db": 0.142
+  },
+  {
+   "model": "mel_roformer_dereverb_echo",
+   "cell": "The Easton Ellises - Falco|wet_hall",
+   "wet_vs_dry_db": -13.257,
+   "official_stem": "dry",
+   "official_si_vs_dry_db": -34.023,
+   "loader_si_vs_dry_db": -44.402,
+   "delta_official_minus_loader_db": 10.379
+  }
+ ],
+ "dry_passthrough_check": [
+  {
+   "model": "mel_roformer_dereverb",
+   "input": "dry vocals",
+   "target_stem": "noreverb",
+   "in_rms": 0.080108,
+   "out_rms": 0.070632,
+   "out_over_in": 0.8817,
+   "si_vs_dry_db": 11.416
+  },
+  {
+   "model": "mel_roformer_dereverb_echo",
+   "input": "dry vocals",
+   "target_stem": "dry",
+   "in_rms": 0.080108,
+   "out_rms": 0.010562,
+   "out_over_in": 0.1318,
+   "si_vs_dry_db": -8.738
+  }
+ ],
+ "verdict": {
+  "mel_roformer_dereverb": "anvuew 去混响器：在本探针上去混响能力【很弱】。湿信号 si(dry|wet) 已退化到 −10~−13 dB（wet_hall），模型仅回收 +0.04~+1.46 dB（约损失的 3~11%）；喂【干】信号时输出≈干（近恒等），说明不是乱改，而是几乎不改。官方分块路径与整段前向结果一致 → 不是我们 loader 少分块。",
+  "mel_roformer_dereverb_echo": "echo 去混响器（2-stem [dry, other]）：在本探针上【不可用】。无论输入干/湿，6 格中 5 格 dry 支 rms 塌到 1e-5~2e-3（约等于静音），能量全部落在 other 支，且 other ≈ 输入（si vs 输入 +30~+44 dB，即直通）。官方分块路径复现同一现象 → checkpoint 固有行为（该模型面向回声/PA 残响而非房间混响，且输出分配异常）。"
+ },
+ "conclusion": "两个社区去混响 checkpoint 在本项目探针（MUSDB 人声 ⊛ RIR）上均不能提供可用的去混响增益：anvuew 弱（约 0~1.5 dB），echo 塌陷（dry 支静音、other 支直通）。已用官方分块推理路径交叉验证，排除【我们的 loader 缺分块】这一嫌疑。→ 板2 的去混响结论应写为负结果 + 域不匹配分析，不得声称级联去混响有收益。",
+ "generated": "2026-09-23 03:28:23"
+}

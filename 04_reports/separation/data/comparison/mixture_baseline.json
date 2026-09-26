@@ -1,0 +1,94 @@
+{
+ "purpose": "mixture 基线：把 mixture 自身当估计信号，按主表同一口径算 SDR",
+ "subset": "train",
+ "clips": [
+  {
+   "song": "ANiMAL - Clinic A",
+   "offset_s": 140.0,
+   "dur_s": 10.0
+  },
+  {
+   "song": "Creepoid - OldTree",
+   "offset_s": 60.0,
+   "dur_s": 10.0
+  },
+  {
+   "song": "Dark Ride - Burning Bridges",
+   "offset_s": 180.0,
+   "dur_s": 10.0
+  }
+ ],
+ "window": {
+  "window": 88200,
+  "hop": 66150,
+  "note": "museval bss_eval 签名默认值，即主表实际口径"
+ },
+ "aggregation": "np.nanmedian over frames; mono=mean over channels; compute_permutation=False",
+ "generated": "2026-09-23 03:10:43",
+ "per_clip": [
+  {
+   "song": "ANiMAL - Clinic A",
+   "offset_s": 140.0,
+   "vocals": -5.2921,
+   "drums": -5.8757,
+   "bass": -5.252,
+   "other": -2.7816
+  },
+  {
+   "song": "Creepoid - OldTree",
+   "offset_s": 60.0,
+   "vocals": -2.0861,
+   "drums": -6.9257,
+   "bass": -4.0092,
+   "other": -6.8285
+  },
+  {
+   "song": "Dark Ride - Burning Bridges",
+   "offset_s": 180.0,
+   "vocals": -8.0887,
+   "drums": -3.293,
+   "bass": -4.0644,
+   "other": -5.9851
+  }
+ ],
+ "per_stem": {
+  "vocals": {
+   "median": -5.292,
+   "mean": -5.156,
+   "values": [
+    -5.2921,
+    -2.0861,
+    -8.0887
+   ]
+  },
+  "drums": {
+   "median": -5.876,
+   "mean": -5.365,
+   "values": [
+    -5.8757,
+    -6.9257,
+    -3.293
+   ]
+  },
+  "bass": {
+   "median": -4.064,
+   "mean": -4.442,
+   "values": [
+    -5.252,
+    -4.0092,
+    -4.0644
+   ]
+  },
+  "other": {
+   "median": -5.985,
+   "mean": -5.198,
+   "values": [
+    -2.7816,
+    -6.8285,
+    -5.9851
+   ]
+  }
+ },
+ "avg4": -5.304,
+ "status": "PASS"
+}

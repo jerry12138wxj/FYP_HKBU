@@ -1,0 +1,47 @@
+{
+ "task": "T5.6 平均谱差（分段带）",
+ "method": "mean_over_clips[20log10|STFT(est)|] - mean_over_clips[...(noisy)]",
+ "sr": 16000,
+ "n_fft": 1024,
+ "hop": 256,
+ "max_clips": 120,
+ "valid_band_note": "16 kHz 下 Nyquist=8 kHz，只统计 0~7.8 kHz；8 kHz 以上是重采样伪影，不纳入",
+ "rows": [
+  {
+   "model": "denoiser_master64",
+   "subset": "valentini",
+   "n": 120,
+   "b_0_1k": -2.471,
+   "b_1_4k": -1.532,
+   "b_4_7k8": -6.146,
+   "tilt": -4.614
+  },
+  {
+   "model": "denoiser_master64",
+   "subset": "synth",
+   "n": 120,
+   "b_0_1k": -4.579,
+   "b_1_4k": -7.192,
+   "b_4_7k8": -12.794,
+   "tilt": -5.602
+  },
+  {
+   "model": "mel_roformer_denoise",
+   "subset": "valentini",
+   "n": 120,
+   "b_0_1k": -2.014,
+   "b_1_4k": -0.715,
+   "b_4_7k8": -4.218,
+   "tilt": -3.503
+  },
+  {
+   "model": "mel_roformer_denoise",
+   "subset": "synth",
+   "n": 120,
+   "b_0_1k": -2.318,
+   "b_1_4k": -2.456,
+   "b_4_7k8": -5.01,
+   "tilt": -2.554
+  }
+ ]
+}

@@ -40,3 +40,7 @@ tools/_logs/
 !01_models/*/README.md
 !04_reports/
 !tools/
+# ---- 事故期备份与杂散嵌套克隆（T8.6 增补）----
+*.bak
+*.bak-*
+/FYP_HKBU/

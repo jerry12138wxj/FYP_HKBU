@@ -1,0 +1,244 @@
+{
+ "task": "T4.2 干/湿音频生成",
+ "clips": [
+  {
+   "song": "The Easton Ellises - Falcon 69",
+   "offset": 162.1,
+   "dur": 20.0,
+   "clip_id": "The Easton Ellises - Falcon 69@162s"
+  },
+  {
+   "song": "Bobby Nobody - Stitch Up",
+   "offset": 172.5,
+   "dur": 20.0,
+   "clip_id": "Bobby Nobody - Stitch Up@172s"
+  },
+  {
+   "song": "Raft Monk - Tiring",
+   "offset": 27.5,
+   "dur": 20.0,
+   "clip_id": "Raft Monk - Tiring@27s"
+  }
+ ],
+ "files": [
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "condition": "dry",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\The Easton Ellises - Falcon 69@162s\\dry",
+   "n_samples": 882000,
+   "rms_dbfs": -16.33
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "condition": "wet_small",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\The Easton Ellises - Falcon 69@162s\\wet_small",
+   "n_samples": 882000,
+   "rms_dbfs": -15.04
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "song": "The Easton Ellises - Falcon 69",
+   "offset_s": 162.1,
+   "dur_s": 20.0,
+   "condition": "wet_hall",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\The Easton Ellises - Falcon 69@162s\\wet_hall",
+   "n_samples": 882000,
+   "rms_dbfs": -6.07
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "condition": "dry",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\Bobby Nobody - Stitch Up@172s\\dry",
+   "n_samples": 882000,
+   "rms_dbfs": -18.9
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "condition": "wet_small",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\Bobby Nobody - Stitch Up@172s\\wet_small",
+   "n_samples": 882000,
+   "rms_dbfs": -17.46
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "song": "Bobby Nobody - Stitch Up",
+   "offset_s": 172.5,
+   "dur_s": 20.0,
+   "condition": "wet_hall",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\Bobby Nobody - Stitch Up@172s\\wet_hall",
+   "n_samples": 882000,
+   "rms_dbfs": -5.78
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "condition": "dry",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\Raft Monk - Tiring@27s\\dry",
+   "n_samples": 882000,
+   "rms_dbfs": -17.33
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "condition": "wet_small",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\Raft Monk - Tiring@27s\\wet_small",
+   "n_samples": 882000,
+   "rms_dbfs": -14.86
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "song": "Raft Monk - Tiring",
+   "offset_s": 27.5,
+   "dur_s": 20.0,
+   "condition": "wet_hall",
+   "dir": "E:\\FYP_HKBU\\03_outputs\\_reverb\\Raft Monk - Tiring@27s\\wet_hall",
+   "n_samples": 882000,
+   "rms_dbfs": -5.63
+  }
+ ],
+ "gates": [
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "gate": "sum_stems_eq_mixture",
+   "value": 0.00031263,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "gate": "conv_selfcheck_np_vs_fft",
+   "value": 1.6653345369377348e-16,
+   "threshold": 0.0001,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_small",
+   "gate": "rir_t60_roundtrip",
+   "value": 0.4915,
+   "target": 0.5998,
+   "threshold": 0.3,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "gate": "conv_selfcheck_np_vs_fft",
+   "value": 6.661338147750939e-16,
+   "threshold": 0.0001,
+   "pass": true
+  },
+  {
+   "clip_id": "The Easton Ellises - Falcon 69@162s",
+   "condition": "wet_hall",
+   "gate": "rir_t60_roundtrip",
+   "value": 1.0265,
+   "target": 1.2054,
+   "threshold": 0.3,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "gate": "sum_stems_eq_mixture",
+   "value": 0.00046505,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "gate": "conv_selfcheck_np_vs_fft",
+   "value": 2.220446049250313e-16,
+   "threshold": 0.0001,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_small",
+   "gate": "rir_t60_roundtrip",
+   "value": 0.4915,
+   "target": 0.5998,
+   "threshold": 0.3,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "gate": "conv_selfcheck_np_vs_fft",
+   "value": 5.551115123125783e-16,
+   "threshold": 0.0001,
+   "pass": true
+  },
+  {
+   "clip_id": "Bobby Nobody - Stitch Up@172s",
+   "condition": "wet_hall",
+   "gate": "rir_t60_roundtrip",
+   "value": 1.0265,
+   "target": 1.2054,
+   "threshold": 0.3,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "gate": "sum_stems_eq_mixture",
+   "value": 0.00037396,
+   "threshold": 0.001,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "gate": "conv_selfcheck_np_vs_fft",
+   "value": 1.3877787807814457e-16,
+   "threshold": 0.0001,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_small",
+   "gate": "rir_t60_roundtrip",
+   "value": 0.4915,
+   "target": 0.5998,
+   "threshold": 0.3,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "gate": "conv_selfcheck_np_vs_fft",
+   "value": 5.551115123125783e-16,
+   "threshold": 0.0001,
+   "pass": true
+  },
+  {
+   "clip_id": "Raft Monk - Tiring@27s",
+   "condition": "wet_hall",
+   "gate": "rir_t60_roundtrip",
+   "value": 1.0265,
+   "target": 1.2054,
+   "threshold": 0.3,
+   "pass": true
+  }
+ ],
+ "n_gates": 15,
+ "n_failed": 0,
+ "generated": "2026-09-23 03:18:34",
+ "status": "PASS"
+}
