@@ -22,6 +22,11 @@ $PY tools/reproduce.py --all-report                # 重建全部报告产物（
 **完整清单（图 → 命令 → 产物落点）见 `04_reports/_shared/docs/REPRODUCE.md`（自动生成，`--verify` 可逐字节校验）。**
 含 GPU 推理的目标默认锁死，需显式 `--force-heavy` 才会跑。
 
+> ⚠️ **复现边界（T8.6 实测）**：以上命令假设你在**完整工程机**上（`01_models/` `02_databases/` `03_outputs/` 在位）。
+> 若仅 `git clone` 本仓库（**不含数据与权重**），15 个「重建」目标中 **10 个可逐字节复现**，5 个不行：
+> `arch.figures`（读本地权重清单）、`sep.panels`（读原始音频），以及内嵌架构图的
+> `report.dashboards` / `paper.figures` / `report.slides`。明细见 `REPRODUCE.md` §6 与本仓 `reproduce.py --check`。
+
 ---
 
 ## ① 五大模块（顶层只有这 5 项）

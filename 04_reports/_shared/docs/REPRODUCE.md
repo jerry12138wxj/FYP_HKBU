@@ -355,6 +355,22 @@ $PY tools/reproduce.py --all-report     # 跑全部「重建」目标（由归�
 - `--check` 会强制要求 **53/53 张图都有复现归属**，清单漂移即 FAIL。
 - **重测 ≠ 重建**：`profile.measure` / `arch.trace` 会重新量测（含 `latency_s` 等计时列），其结果**本就不会逐字节相同**；故物理上仍读其产物的图（如画像图）只需保证**数据不变时逐字节一致**，不以「重测后也一致」为契约。
 
+## 6. 复现边界（fresh clone 实测）
+
+把 HEAD 导出到**不含本地数据树**的目录再跑 `--all-report`，以四级判定（逐字节 / 仅行尾 / 仅时间戳 / 仅计时）比对，结论：**10/15 个重建目标可逐字节复现**；下列目标**不可**，原因如下（实测证据见计划书 §9.13）：
+
+| 目标 | 类别 | 原因 |
+|:--|:--|:--|
+| `arch.figures` | 🔒 需本地数据 | 渲染 01_models/_weights/** 的**本地**权重清单（文件名 + 体积） |
+| `paper.figures` | ↳ 下游产物 | 把 arch.figures 的 12 张图镜像到 figures/paper/ |
+| `report.dashboards` | ↳ 下游产物 | 内嵌 arch.figures 的 12 张架构图（base64） |
+| `report.slides` | ↳ 下游产物 | 答辩 slides 内嵌架构图（base64） |
+| `sep.panels` | 🔒 需本地数据 | 读 02_databases/MUSDB18-HQ/*.wav 与 03_outputs/<Model>/*.flac |
+
+- **需本地数据**：生成时读 `01_models/` `02_databases/` `03_outputs/` 等未入库路径 —— 在完整工程机上照常逐字节复现，clone 机上会缺内容、`sep.panels` 直接 FAIL。
+- **下游产物**：自身不读原始数据，但内嵌了上面的图，故随之变化。
+- 另有 1 类**移植性缺陷**已在 T8.6 修复：生成器曾把**本机绝对路径**（`str(FIG)`）写进 JSON，换目录即变字节；现改为相对 `PROJECT_ROOT` 的 POSIX 路径。（实验日志类 JSON 中的原始绝对路径属**溯源记录**，有意保留。）
+
 ---
 
 _重建目标 15 个 / 重测目标 2 个 / 重跑目标 11 个 / 论文图 53 张。_

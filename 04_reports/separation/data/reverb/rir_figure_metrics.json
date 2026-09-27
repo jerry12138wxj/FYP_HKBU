@@ -22,6 +22,6 @@
    "sr": 44100
   }
  ],
- "figure": "E:\\FYP_HKBU\\04_reports\\separation\\figures\\comparison\\fig_rir_t60.png",
+ "figure": "04_reports/separation/figures/comparison/fig_rir_t60.png",
  "note": "T60 = 2 x T30(-5~-25 dB) 最小二乘，拟合前把峰值 ±2.5 ms 直达声窗置零；t60_full 为含直达声对照。"
 }

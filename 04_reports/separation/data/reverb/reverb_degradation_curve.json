@@ -5,7 +5,7 @@
   0.4915,
   1.0265
  ],
- "figure": "E:\\FYP_HKBU\\04_reports\\separation\\figures\\comparison\\fig_reverb_degradation.png",
+ "figure": "04_reports/separation/figures/comparison/fig_reverb_degradation.png",
  "delta_sdr_by_model": {
   "demucs": {
    "wet_small": -5.648,

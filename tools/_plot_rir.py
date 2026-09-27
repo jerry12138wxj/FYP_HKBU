@@ -12,7 +12,21 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import paths as _paths  # noqa: E402
+import paths as _paths
+
+def _relfig(p):
+    """把工程内路径写成相对 PROJECT_ROOT 的 POSIX 串。
+
+    交付物（JSON / MD / HTML）中**不得**出现本机绝对路径：否则换目录就变字节，
+    破坏「clone 后可复现」。T8.6 实测抓出（见计划书 §9.13）。
+    刻意不依赖模块级 `Path` 名（部分脚本只用 `/` 运算符，未 import Path）。
+    """
+    import os as _os
+    try:
+        return _os.path.relpath(str(p), str(_paths.PROJECT_ROOT)).replace(_os.sep, "/")
+    except ValueError:                      # 跨盘符时 relpath 会抛 ValueError
+        return str(p).replace(_os.sep, "/")
+  # noqa: E402
 
 _paths.setup_env()
 
@@ -166,7 +180,7 @@ def main() -> int:
     fig.savefig(str(FIG))
     out = REV / "rir_figure_metrics.json"
     out.write_text(json.dumps({"task": "T4.4 RIR 本体图", "metrics": rows,
-                               "figure": str(FIG),
+                               "figure": _relfig(FIG),
                                "note": "T60 = 2 x T30(-5~-25 dB) 最小二乘，拟合前把峰值 "
                                        "±2.5 ms 直达声窗置零；t60_full 为含直达声对照。"},
                               ensure_ascii=False, indent=1), encoding="utf-8")

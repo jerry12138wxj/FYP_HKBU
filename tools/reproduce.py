@@ -221,6 +221,34 @@ TARGETS: list[dict] = [
 
 BY_NAME = {t["name"]: t for t in TARGETS}
 
+# ------------------------------------------------------------------ 复现边界
+# 「本机可复现」≠「clone 可复现」。下表是 T8.6 用**真 git clone（无本地数据树）**
+# 跑 `--all-report` 后、以四级判定（逐字节 / 仅行尾 / 仅时间戳 / 仅计时）比对得到的结论。
+# 证据与明细见计划书 §9.13。
+#   data       = 生成时读 01_models/ 02_databases/ 03_outputs/ 等**未入库**路径
+#   downstream = 自身不读原始数据，但内嵌了上面目标的图，故随之变化
+CLONE_BOUNDARY = {
+    "arch.figures": ("data", "渲染 01_models/_weights/** 的**本地**权重清单（文件名 + 体积）"),
+    "sep.panels": ("data", "读 02_databases/MUSDB18-HQ/*.wav 与 03_outputs/<Model>/*.flac"),
+    "report.dashboards": ("downstream", "内嵌 arch.figures 的 12 张架构图（base64）"),
+    "paper.figures": ("downstream", "把 arch.figures 的 12 张图镜像到 figures/paper/"),
+    "report.slides": ("downstream", "答辩 slides 内嵌架构图（base64）"),
+}
+CLONE_KIND = {"data": "🔒 需本地数据", "downstream": "↳ 下游产物"}
+
+
+def _check_clone_boundary() -> list:
+    """复现边界表自洽：键必须存在于 TARGETS，且必须是「重建」级目标。"""
+    bad = []
+    for name in sorted(CLONE_BOUNDARY):
+        t = BY_NAME.get(name)
+        if t is None:
+            bad.append("边界表目标不存在: %s" % name)
+        elif t["level"] != LIGHT:
+            bad.append("边界表目标非重建级: %s(%s)" % (name, t["level"]))
+    return bad
+
+
 
 def _uscore(t: dict, *keys):
     return "".join(str(t[k]) for k in keys)
@@ -341,6 +369,14 @@ def check() -> int:
         else:
             npass += 1
 
+    # 3d 复现边界表自洽（fresh clone 实测的边界必须指回真实的重建目标）
+    bad_bd = _check_clone_boundary()
+    if bad_bd:
+        nfail += 1
+        fails.append("复现边界表不自洽: " + "; ".join(bad_bd))
+    else:
+        npass += 1
+
     # 4 目标计数
     nl = sum(1 for t in TARGETS if t["level"] == LIGHT)
     nm = sum(1 for t in TARGETS if t["level"] == MEASURE)
@@ -371,6 +407,8 @@ def do_manifest() -> int:
             "outputs": [{"glob": o, "min": n} for o, n in t["outputs"]],
             "figures": sorted(fid for fid in load_figure_map() if figure_owner(fid) is t),
         } for t in TARGETS],
+        "clone_boundary": {k: {"kind": v[0], "why": v[1]}
+                           for k, v in CLONE_BOUNDARY.items()},
         "n_targets": len(TARGETS),
         "n_figures": len(load_figure_map()),
     }, ensure_ascii=False, indent=1))
@@ -533,6 +571,26 @@ def build_readme() -> str:
     A("- **重测 ≠ 重建**：`profile.measure` / `arch.trace` 会重新量测（含 `latency_s` 等计时列），"
       "其结果**本就不会逐字节相同**；故物理上仍读其产物的图（如画像图）只需保证"
       "**数据不变时逐字节一致**，不以「重测后也一致」为契约。")
+    A("")
+    A("## 6. 复现边界（fresh clone 实测）")
+    A("")
+    A("把 HEAD 导出到**不含本地数据树**的目录再跑 `--all-report`，以四级判定"
+      "（逐字节 / 仅行尾 / 仅时间戳 / 仅计时）比对，结论：**%d/%d 个重建目标可逐字节复现**；"
+      "下列目标**不可**，原因如下（实测证据见计划书 §9.13）："
+      % (n_light - len(CLONE_BOUNDARY), n_light))
+    A("")
+    A("| 目标 | 类别 | 原因 |")
+    A("|:--|:--|:--|")
+    for _n in sorted(CLONE_BOUNDARY):
+        _k, _w = CLONE_BOUNDARY[_n]
+        A("| `%s` | %s | %s |" % (_n, CLONE_KIND.get(_k, _k), _w))
+    A("")
+    A("- **需本地数据**：生成时读 `01_models/` `02_databases/` `03_outputs/` 等未入库路径 —— "
+      "在完整工程机上照常逐字节复现，clone 机上会缺内容、`sep.panels` 直接 FAIL。")
+    A("- **下游产物**：自身不读原始数据，但内嵌了上面的图，故随之变化。")
+    A("- 另有 1 类**移植性缺陷**已在 T8.6 修复：生成器曾把**本机绝对路径**"
+      "（`str(FIG)`）写进 JSON，换目录即变字节；现改为相对 `PROJECT_ROOT` 的 POSIX 路径。"
+      "（实验日志类 JSON 中的原始绝对路径属**溯源记录**，有意保留。）")
     A("")
     A("---")
     A("")

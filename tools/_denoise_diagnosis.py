@@ -24,7 +24,21 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import paths as _paths  # noqa: E402
+import paths as _paths
+
+def _relfig(p):
+    """把工程内路径写成相对 PROJECT_ROOT 的 POSIX 串。
+
+    交付物（JSON / MD / HTML）中**不得**出现本机绝对路径：否则换目录就变字节，
+    破坏「clone 后可复现」。T8.6 实测抓出（见计划书 §9.13）。
+    刻意不依赖模块级 `Path` 名（部分脚本只用 `/` 运算符，未 import Path）。
+    """
+    import os as _os
+    try:
+        return _os.path.relpath(str(p), str(_paths.PROJECT_ROOT)).replace(_os.sep, "/")
+    except ValueError:                      # 跨盘符时 relpath 会抛 ValueError
+        return str(p).replace(_os.sep, "/")
+  # noqa: E402
 
 _paths.setup_env()
 
@@ -218,7 +232,7 @@ def main() -> int:
     fig.tight_layout(rect=(0, 0.055, 1, 0.945))
     fig.savefig(str(OUT_FIG))
 
-    rep["figure"] = str(OUT_FIG)
+    rep["figure"] = _relfig(OUT_FIG)
     rep["generated"] = time.strftime("%Y-%m-%d %H:%M:%S")
     OUT_JSON.write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
 
