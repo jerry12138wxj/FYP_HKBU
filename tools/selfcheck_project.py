@@ -9,7 +9,7 @@
 
 用法：
     python tools/selfcheck_project.py
-    python tools/selfcheck_project.py --md > 04_reports/_shared/data/STRUCTURE_SELFCHECK.md
+    python tools/selfcheck_project.py --md > 04_reports/00_shared/data/STRUCTURE_SELFCHECK.md
 """
 from __future__ import annotations
 

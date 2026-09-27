@@ -3,8 +3,8 @@
 ================================================================================
  运行时长基准 -> HTML 汇报 PPT (自包含, 图片 base64 内联)
 --------------------------------------------------------------------------------
- 输入 : 04_reports/separation/data/comparison/bench_10songs.json + figs_time/*.png
- 输出 : 04_reports/separation/html/RUNTIME_BENCH_PPT.html
+ 输入 : 04_reports/01_separation/data/comparison/bench_10songs.json + figs_time/*.png
+ 输出 : 04_reports/01_separation/html/RUNTIME_BENCH_PPT.html
 --------------------------------------------------------------------------------
  运行: python tools/make_bench_ppt.py
 ================================================================================
@@ -364,8 +364,8 @@ def main():
       <tr><td>2</td><td>补测 RTX 4070 上的真实延迟（GPU 口径）</td><td>我</td><td>2026-09-19</td></tr>
       <tr><td>3</td><td>加分块流式 RTF 测试，验证「实时」不只是整段批处理</td><td>我</td><td>2026-09-19</td></tr>
     </table>
-    <div class="foot">数据文件：04_reports/separation/data/comparison/bench_10songs.json / .csv ·
-      图表：04_reports/separation/data/comparison/figs_time/ · 生成脚本：tools/benchmark_models_10songs.py</div>
+    <div class="foot">数据文件：04_reports/01_separation/data/comparison/bench_10songs.json / .csv ·
+      图表：04_reports/01_separation/data/comparison/figs_time/ · 生成脚本：tools/benchmark_models_10songs.py</div>
   </section>
 
 </div>

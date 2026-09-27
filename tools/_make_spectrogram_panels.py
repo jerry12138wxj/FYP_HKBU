@@ -3,8 +3,8 @@
 
 读 : 02_databases/MUSDB18-HQ/test/<Song>/{mixture,vocals,drums,bass,other}.wav
      03_outputs/<Model>/test/<Song>/*.flac        （整曲分离结果，**不重推理**）
-写 : 04_reports/separation/figures/spectrograms/panel_*.png
-     04_reports/separation/data/comparison/panel_decomp_checks.json
+写 : 04_reports/01_separation/figures/spectrograms/panel_*.png
+     04_reports/01_separation/data/comparison/panel_decomp_checks.json
 
 产出三类图
 ----------

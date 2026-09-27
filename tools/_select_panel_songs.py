@@ -16,7 +16,7 @@
 3. 在这些窗里取「四轨占比最小值」最大的那个作为该歌的代表片段（越均衡越好）；
 4. 歌曲按该分数排序，取 Top-N。
 
-产出 : 04_reports/separation/data/comparison/panel_song_selection.json
+产出 : 04_reports/01_separation/data/comparison/panel_song_selection.json
 用法 : python tools/_select_panel_songs.py --stem vocals --top 3
 """
 

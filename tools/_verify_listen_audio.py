@@ -18,12 +18,12 @@ import numpy as np
 import soundfile as sf
 
 ROOT = r"E:\FYP_HKBU"
-HTML = os.path.join(ROOT, "04_reports", "separation", "html", "listen_compare.html")
-BASE = os.path.join(ROOT, "04_reports", "separation", "html")
+HTML = os.path.join(ROOT, "04_reports", "01_separation", "html", "listen_compare.html")
+BASE = os.path.join(ROOT, "04_reports", "01_separation", "html")
 
 
 def main():
-    man = json.load(open(os.path.join(ROOT, "04_reports", "separation", "data", "comparison",
+    man = json.load(open(os.path.join(ROOT, "04_reports", "01_separation", "data", "comparison",
                                      "listen_manifest.json"), encoding="utf-8"))
     bad = []
     silent = []
@@ -67,7 +67,7 @@ def main():
     for label, sr, ch, dur, rms, peak, nclip in rows:
         print("%-56s %6d %5d %8.2f %8.4f %8.4f %9d" % (label[:56], sr, ch, dur, rms, peak, nclip))
 
-    out = os.path.join(ROOT, "04_reports", "separation", "data", "comparison", "listen_audio_qc.json")
+    out = os.path.join(ROOT, "04_reports", "01_separation", "data", "comparison", "listen_audio_qc.json")
     with open(out, "w", encoding="utf-8") as fh:
         json.dump(qc, fh, ensure_ascii=False, indent=1)
 

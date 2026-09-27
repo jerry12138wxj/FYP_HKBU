@@ -1,0 +1,45 @@
+{
+ "task": "T4.6 echo -> ΔSDR",
+ "conditions": [
+  "dry",
+  "echo_short",
+  "echo_long"
+ ],
+ "echo": {
+  "echo_short": {
+   "delay_ms": 80,
+   "gain": 0.6
+  },
+  "echo_long": {
+   "delay_ms": 250,
+   "gain": 0.8
+  }
+ },
+ "figure": "04_reports/01_separation/figures/comparison/fig_echo_degradation.png",
+ "delta_sdr_by_model": {
+  "demucs": {
+   "echo_short": -4.215,
+   "echo_long": -5.868
+  },
+  "umx": {
+   "echo_short": -2.318,
+   "echo_long": -3.329
+  },
+  "mdx": {
+   "echo_short": -4.324,
+   "echo_long": -5.966
+  },
+  "convtasnet": {
+   "echo_short": -2.598,
+   "echo_long": -3.57
+  },
+  "mmdenselstm": {
+   "echo_short": -2.716,
+   "echo_long": -3.944
+  },
+  "bsrnn_all": {
+   "echo_short": -4.589,
+   "echo_long": -6.037
+  }
+ }
+}

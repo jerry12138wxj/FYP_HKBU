@@ -25,8 +25,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 R = ROOT / "04_reports"
-S = R / "_shared" / "data" / "model_analysis"
-OUT = R / "_shared" / "docs" / "summaries"
+S = R / "00_shared" / "data" / "model_analysis"
+OUT = R / "00_shared" / "docs" / "summaries"
 STAMP = "2026-09-26"
 
 STEMS = ("vocals", "drums", "bass", "other")
@@ -130,7 +130,7 @@ def build_model_profile() -> str:
             "模型画像表 D1 的论文取值版",
             "model",
             [prof.relative_to(ROOT), thop.relative_to(ROOT), gate.relative_to(ROOT)],
-            "`_shared/docs/MODEL_PROFILE_2026-09-22.md`",
+            "`00_shared/docs/MODEL_PROFILE_2026-09-22.md`",
         ),
         "\n---\n\n## 1. 口径三要素（引用本表必须一并声明）\n",
         md_table(
@@ -217,15 +217,15 @@ def build_model_profile() -> str:
 
 # ---------------------------------------------------------------- 2 · 分离
 
-REVERB_DETAIL = "`separation/docs/STAGE4_SUMMARY.md` · `separation/docs/MEDIAN_TABLE_REDRAWN.md`"
+REVERB_DETAIL = "`01_separation/docs/STAGE4_SUMMARY.md` · `01_separation/docs/MEDIAN_TABLE_REDRAWN.md`"
 
 
 def build_separation() -> str:
-    med_p = R / "separation" / "data" / "comparison" / "model_runs_median.json"
-    mix_p = R / "separation" / "data" / "comparison" / "mixture_baseline.json"
-    rev_p = R / "separation" / "data" / "reverb" / "stage4_summary.json"
-    cost_p = R / "separation" / "data" / "comparison" / "test_run_model_summary.csv"
-    ana_p = R / "separation" / "data" / "comparison" / "test_run_analysis.json"
+    med_p = R / "01_separation" / "data" / "comparison" / "model_runs_median.json"
+    mix_p = R / "01_separation" / "data" / "comparison" / "mixture_baseline.json"
+    rev_p = R / "01_separation" / "data" / "reverb" / "stage4_summary.json"
+    cost_p = R / "01_separation" / "data" / "comparison" / "test_run_model_summary.csv"
+    ana_p = R / "01_separation" / "data" / "comparison" / "test_run_analysis.json"
     pro_p = S / "model_profile.csv"
 
     md = rd_json(med_p)
@@ -344,7 +344,7 @@ def build_separation() -> str:
             ["l", "l"],
         ),
         "\n> 结论：两社区 ckpt 在本探针**不可用**；已用官方推理路径交叉验证"
-        "→ **非我方实现错误**。详见 `denoiser/docs/DEREVERB_NEGATIVE_RESULT.md`。\n",
+        "→ **非我方实现错误**。详见 `02_denoising/docs/DEREVERB_NEGATIVE_RESULT.md`。\n",
         "\n---\n\n## 6. 复现\n",
         "```bash\npython tools/_build_summaries.py --only separation   # 重建本表\n```\n",
     ]
@@ -353,19 +353,19 @@ def build_separation() -> str:
 
 # ---------------------------------------------------------------- 3 · 降噪
 
-DENOISE_DETAIL = ("`denoiser/docs/T5_DENOISE_STRATIFIED.md` · "
-                  "`denoiser/docs/T5_5_T5_6_DRYWET_AND_SPECTRA.md` · "
-                  "`denoiser/docs/T5_7_OOD_NOISE_NEGATIVE.md` · "
-                  "`denoiser/docs/P19_SAMPLE_RATE_CONTRACT_BUG.md`")
+DENOISE_DETAIL = ("`02_denoising/docs/T5_DENOISE_STRATIFIED.md` · "
+                  "`02_denoising/docs/T5_5_T5_6_DRYWET_AND_SPECTRA.md` · "
+                  "`02_denoising/docs/T5_7_OOD_NOISE_NEGATIVE.md` · "
+                  "`02_denoising/docs/P19_SAMPLE_RATE_CONTRACT_BUG.md`")
 
 
 def build_denoise() -> str:
-    p44 = R / "denoiser" / "data" / "denoise_eval_44k.csv"
-    p16 = R / "denoiser" / "data" / "denoise_eval_16k.csv"
-    pdw = R / "denoiser" / "data" / "denoise_drywet.csv"
-    pman = R / "denoiser" / "data" / "denoise_manifest.json"
-    pood = R / "denoiser" / "data" / "denoise_ood_probe.json"
-    psp = R / "denoiser" / "data" / "denoise_spectral_delta.json"
+    p44 = R / "02_denoising" / "data" / "denoise_eval_44k.csv"
+    p16 = R / "02_denoising" / "data" / "denoise_eval_16k.csv"
+    pdw = R / "02_denoising" / "data" / "denoise_drywet.csv"
+    pman = R / "02_denoising" / "data" / "denoise_manifest.json"
+    pood = R / "02_denoising" / "data" / "denoise_ood_probe.json"
+    psp = R / "02_denoising" / "data" / "denoise_spectral_delta.json"
 
     r44 = rd_csv(p44)
     r16 = rd_csv(p16)
@@ -531,13 +531,13 @@ LINK_LEGEND = {
     "L3": "前置 + 后置",
 }
 
-CASCADE_DETAIL = "`cascade/docs/T6_CASCADE_DENOISE_BEFORE_SEPARATION.md`"
+CASCADE_DETAIL = "`03_cascade/docs/T6_CASCADE_DENOISE_BEFORE_SEPARATION.md`"
 
 
 def build_cascade() -> str:
-    pcsv = R / "cascade" / "data" / "cascade_eval.csv"
-    pjson = R / "cascade" / "data" / "cascade_eval.json"
-    pman = R / "cascade" / "data" / "cascade_manifest.json"
+    pcsv = R / "03_cascade" / "data" / "cascade_eval.csv"
+    pjson = R / "03_cascade" / "data" / "cascade_eval.json"
+    pman = R / "03_cascade" / "data" / "cascade_manifest.json"
 
     rows = rd_csv(pcsv)
     ev = rd_json(pjson)
@@ -695,7 +695,7 @@ def build_cascade() -> str:
         ),
         "\n> 锚点判据：本口径下四模型中位须与**历史整曲扫描**逐一对上，"
         "口径不同的历史数值**不在本表混列**"
-        "（见 `separation/docs/MUSDB18_TEST_SWEEP_2026-09-22.md`）。"
+        "（见 `01_separation/docs/MUSDB18_TEST_SWEEP_2026-09-22.md`）。"
         "**锚点不成立 ⇒ 整张矩阵作废。**\n",
         "\n---\n\n## 8. 门禁与诚实性检查\n",
         md_table(

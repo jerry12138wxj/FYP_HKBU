@@ -2,9 +2,9 @@
 """Aggregate the 50-song MUSDB18 test sweep into multi-dimensional per-model stats.
 
 Outputs:
-  04_reports/separation/data/comparison/test_run_analysis.json
-  04_reports/separation/data/comparison/test_run_per_song.csv
-  04_reports/separation/data/comparison/test_run_model_summary.csv
+  04_reports/01_separation/data/comparison/test_run_analysis.json
+  04_reports/01_separation/data/comparison/test_run_per_song.csv
+  04_reports/01_separation/data/comparison/test_run_model_summary.csv
 """
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ import statistics as st
 from collections import Counter, defaultdict
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CMP = os.path.join(_ROOT, "04_reports", "separation", "data", "comparison")
+CMP = os.path.join(_ROOT, "04_reports", "01_separation", "data", "comparison")
 OUT_ROOT = os.path.join(_ROOT, "03_outputs", "_test_run")
 
 LABEL = {

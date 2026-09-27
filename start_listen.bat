@@ -9,7 +9,7 @@ setlocal
 set PY=C:\Users\jerry\.workbuddy\binaries\python\envs\fyp_audio\Scripts\python.exe
 set ROOT=E:\FYP_HKBU
 set PORT=8123
-set PAGE=http://127.0.0.1:%PORT%/04_reports/separation/html/listen_compare.html
+set PAGE=http://127.0.0.1:%PORT%/04_reports/01_separation/html/listen_compare.html
 
 if not exist "%PY%" set PY=python
 

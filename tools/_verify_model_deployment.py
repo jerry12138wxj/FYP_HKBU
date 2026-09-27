@@ -17,7 +17,7 @@
 用法::
 
     python tools/_verify_model_deployment.py
-    python tools/_verify_model_deployment.py --json 04_reports/_shared/data/model_deployment_audit.json
+    python tools/_verify_model_deployment.py --json 04_reports/00_shared/data/model_deployment_audit.json
 """
 from __future__ import annotations
 

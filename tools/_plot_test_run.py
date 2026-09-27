@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Render the multi-dimensional figures for the 50-song MUSDB18 test sweep.
 
-Reads  : 04_reports/separation/data/comparison/test_run_analysis.json, test_sweep_ledger.json,
+Reads  : 04_reports/01_separation/data/comparison/test_run_analysis.json, test_sweep_ledger.json,
          test_run_per_song.csv, musdb_test_manifest.json
-Writes : 04_reports/separation/figures/test_run/*.png
+Writes : 04_reports/01_separation/figures/test_run/*.png
 """
 from __future__ import annotations
 
@@ -29,8 +29,8 @@ plt.rcParams["grid.linestyle"] = ":"
 plt.rcParams["axes.axisbelow"] = True
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CMP = os.path.join(_ROOT, "04_reports", "separation", "data", "comparison")
-FIG = os.path.join(_ROOT, "04_reports", "separation", "figures", "test_run")
+CMP = os.path.join(_ROOT, "04_reports", "01_separation", "data", "comparison")
+FIG = os.path.join(_ROOT, "04_reports", "01_separation", "figures", "test_run")
 os.makedirs(FIG, exist_ok=True)
 
 TIMEOUT = 180.0

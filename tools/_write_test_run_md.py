@@ -9,8 +9,8 @@ from collections import defaultdict
 import statistics as st
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CMP = os.path.join(_ROOT, "04_reports", "separation", "data", "comparison")
-OUT = os.path.join(_ROOT, "04_reports", "separation", "docs", "MUSDB18_TEST_SWEEP_2026-09-22.md")
+CMP = os.path.join(_ROOT, "04_reports", "01_separation", "data", "comparison")
+OUT = os.path.join(_ROOT, "04_reports", "01_separation", "docs", "MUSDB18_TEST_SWEEP_2026-09-22.md")
 
 AN = json.load(open(os.path.join(CMP, "test_run_analysis.json"), encoding="utf-8"))
 MODELS = AN["models"]
@@ -135,9 +135,9 @@ DPRNN（自训）SDR 均 **{MODELS['dprnn']['sdr_mean']['median']:.2f} dB（负�
 
 ## 5. 产物与脚本
 
-- 图表（10 张，PNG）：`04_reports/separation/figures/test_run/`
-- 自包含看板（含全部图 + 表，可离线打开）：`04_reports/separation/html/test_run_dashboard.html`
-- 数据：`04_reports/separation/data/comparison/test_run_analysis.json` ·
+- 图表（10 张，PNG）：`04_reports/01_separation/figures/test_run/`
+- 自包含看板（含全部图 + 表，可离线打开）：`04_reports/01_separation/html/test_run_dashboard.html`
+- 数据：`04_reports/01_separation/data/comparison/test_run_analysis.json` ·
   `test_run_per_song.csv`（逐 (模型,歌)）· `test_run_model_summary.csv`（逐模型）
 - 账本：`test_sweep_ledger.json`；原始结果：`model_runs_run.json`
 - 脚本：`tools/_analyze_test_run.py`（聚合）· `tools/_plot_test_run.py`（出图）·

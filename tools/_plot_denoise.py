@@ -19,9 +19,9 @@
         -> 回答「降噪器到底在什么输入条件下才真正有用」
 
 产出：
-  denoiser/figures/fig_denoise_metric_divergence.png
-  denoiser/figures/fig_denoise_suppression.png
-  denoiser/figures/fig_denoise_synth_gain.png
+  02_denoising/figures/fig_denoise_metric_divergence.png
+  02_denoising/figures/fig_denoise_suppression.png
+  02_denoising/figures/fig_denoise_synth_gain.png
 """
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
 ROOT = _paths.PROJECT_ROOT
-DEN = ROOT / "04_reports" / "denoiser"
+DEN = ROOT / "04_reports" / "02_denoising"
 DATA = DEN / "data"
 FIGS = DEN / "figures"
 
@@ -348,7 +348,7 @@ def fig4_reversal(cells):
                     fontsize=9.5, fontweight="bold",
                     color="#8e2b27" if m_is_den(models[i]) else "#1d4e89")
     fig.suptitle("T5.7  The ranking REVERSES with noise type  —  "
-                 "no single \"best denoiser\" exists",
+                 "no single \"best 02_denoising\" exists",
                  fontsize=14.5, y=0.975)
     fig.tight_layout(rect=(0, 0.055, 1, 0.945))
     out = FIGS / "fig_denoise_noise_domain_reversal.png"

@@ -11,9 +11,9 @@ import os
 from collections import defaultdict
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CMP = os.path.join(_ROOT, "04_reports", "separation", "data", "comparison")
-FIG = os.path.join(_ROOT, "04_reports", "separation", "figures", "test_run")
-OUT = os.path.join(_ROOT, "04_reports", "separation", "html", "test_run_dashboard.html")
+CMP = os.path.join(_ROOT, "04_reports", "01_separation", "data", "comparison")
+FIG = os.path.join(_ROOT, "04_reports", "01_separation", "figures", "test_run")
+OUT = os.path.join(_ROOT, "04_reports", "01_separation", "html", "test_run_dashboard.html")
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 AN = json.load(open(os.path.join(CMP, "test_run_analysis.json"), encoding="utf-8"))
@@ -318,7 +318,7 @@ Girls Under Glass We Feel Alright）都刚好越过 180 s。另有 DPRNN 1 次�
 口径说明：SDR = museval BSSEval v4，1 s 窗，取<b>中位数</b>；RTF = 推理秒数 ÷ 音频秒数（不含固定开销）；
 "固定开销" = 墙钟秒数 − 推理秒数，含解释器启动、torch/CUDA 导入、museval 评测、GT/mixture 读写。
 所有耗时均为<b>本机 RTX 4070 Laptop 8 GiB 实测墙钟</b>，非论文引用值，非网络数据。
-原始数据：<code>04_reports/separation/data/comparison/test_run_analysis.json</code> ·
+原始数据：<code>04_reports/01_separation/data/comparison/test_run_analysis.json</code> ·
 <code>test_run_per_song.csv</code> · <code>test_run_model_summary.csv</code> ·
 账本 <code>test_sweep_ledger.json</code>。图表脚本 <code>tools/_plot_test_run.py</code>。
 </div>

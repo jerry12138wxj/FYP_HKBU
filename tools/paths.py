@@ -18,7 +18,8 @@ FYP_HKBU 路径中枢（single source of truth）。
                     + 共享层 _third_party / _weights / _selfimpl
     02_databases/   ② 数据：MUSDB18-HQ、DNS-Challenge、Valentini
     03_outputs/     ③ 产物：**每个模型一个独立文件夹**（test/ + stage0_gate/）
-    04_reports/     ④ 报告：按板块 —— separation / denoiser / cascade / _shared
+    04_reports/     ④ 报告：按板块 —— 00_shared / 01_separation / 02_denoising
+                                        / 03_cascade / 04_defense
                     每个板块下再分 docs / figures / data / html
     tools/          ⑤ 工具：脚本 + _logs + _scratch(含 torch·hf 缓存) + _bat
 
@@ -27,13 +28,13 @@ FYP_HKBU 路径中枢（single source of truth）。
 * 2026-09-16：`05_misc/` 撤销 → `tools/_logs` `tools/_scratch` `tools/_bat`；
   无关子项目 lyrics-game 与历史归档移出到 `E:\\FYP_HKBU_evicted\\`。
 * 2026-09-23（第二次）：`04_reports/` 由「按文件类型」改为「按板块」
-  （板 1 `separation/`、板 2 `denoiser/`、级联 `cascade/`、跨板 `_shared/`）；
+  （板 1 `01_separation/`、板 2 `02_denoising/`、级联 `03_cascade/`、跨板 `00_shared/`）；
   `03_outputs/_test_run/<模型>/` → `03_outputs/<模型>/test/`。
 * 2026-09-23（第三次，本次）：`01_models/<模型>/` → `01_models/<板块>/<模型>/`
   （板块 = `separation` / `denoising`）。同时**移除两个冗余层**：
   - `<模型>/weights/`（只是 `_weights/` 的目录联接/硬链接，脚本从不读它）——权重统一在 `WEIGHTS`；
   - `<模型>/README.md` 模型卡——内容并入 `01_models/<板块>/README.md` 与
-    `04_reports/_shared/data/model_analysis/model_profile.csv`，
+    `04_reports/00_shared/data/model_analysis/model_profile.csv`，
     原文归档在 `tools/_scratch/_archive_model_cards_2026-09-23/`。
 
 用法
@@ -45,7 +46,7 @@ FYP_HKBU 路径中枢（single source of truth）。
     _paths.model_code_dir("Demucs")         # 01_models/separation/Demucs/code
     _paths.board_of_model("Demucs")         # "separation"
     _paths.out_dir("BS-RoFormer-L12")       # 03_outputs/BS-RoFormer-L12
-    _paths.board_dir("denoiser")            # 04_reports/denoiser
+    _paths.board_dir("denoiser")            # 04_reports/02_denoising
 """
 from __future__ import annotations
 
@@ -111,11 +112,11 @@ OUTPUTS = PROJECT_ROOT / "03_outputs"
 
 # ---------------------------------------------------------------- ④ 报告（按板块）
 REPORTS = PROJECT_ROOT / "04_reports"
-SEPARATION = REPORTS / "separation"      # 板 1 分离
-DENOISER = REPORTS / "denoiser"          # 板 2 降噪 / 去混响
-CASCADE = REPORTS / "cascade"            # 级联实验
-SHARED = REPORTS / "_shared"             # 跨板块共用（总纲、模型画像、架构图、门禁）
-SLIDES = REPORTS / "slides"
+SEPARATION = REPORTS / "01_separation"      # 板 1 分离
+DENOISER = REPORTS / "02_denoising"          # 板 2 降噪 / 去混响
+CASCADE = REPORTS / "03_cascade"            # 级联实验
+SHARED = REPORTS / "00_shared"             # 跨板块共用（总纲、模型画像、架构图、门禁）
+SLIDES = REPORTS / "04_defense"
 
 BOARD_NAMES = ("separation", "denoiser", "cascade", "_shared")
 
@@ -267,7 +268,7 @@ def resolve(*candidates: Path | str) -> Path:
 
 
 def comparison_dir() -> Path:
-    """跨模型对比数据目录（新：04_reports/separation/data/comparison；旧：outputs/comparison）。"""
+    """跨模型对比数据目录（新：04_reports/01_separation/data/comparison；旧：outputs/comparison）。"""
     return resolve(DATA_COMPARISON, PROJECT_ROOT / "outputs" / "comparison")
 
 

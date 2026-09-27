@@ -1,7 +1,7 @@
 # 模型注册表 MODEL_REGISTRY
 
 > 更新：2026-09-17 ｜ 维护规则：每次新增 / 替换 / 跑通一个模型，都在本表登记
-> 对应产物：`03_outputs/<模型名>/` ｜ 指标数据：`04_reports/separation/data/comparison/`
+> 对应产物：`03_outputs/<模型名>/` ｜ 指标数据：`04_reports/01_separation/data/comparison/`
 > 统一基准工具：`tools/benchmark_model_universal.py`（每次实测自动更新 `model_runs.json`）
 
 > 🔄 **目录布局变更（2026-09-23 第三次重组）**：模型已按板块分类 ——
@@ -53,7 +53,7 @@
 > ⚠️ **RTF 的两个陷阱**：
 > ① **受机器负载影响极大** —— `RPCA` 是纯 numpy/scipy、**完全不用 GPU**，两次测量却在 1.6~4.6 之间跳，
 >    据此不要给单一数字，要报区间。② **别只报 CPU 数字**：装上 CUDA 后深度模型普遍快 **3~22×**，
->    实时性结论完全改写（见 §5 与 `04_reports/separation/docs/MEDIAN_TABLE.md`）。
+>    实时性结论完全改写（见 §5 与 `04_reports/01_separation/docs/MEDIAN_TABLE.md`）。
 >
 > 🔴 **8 GiB 显存的隐形陷阱**：本机 NVIDIA 驱动开了 **CUDA sysmem fallback** —— 超过显存**不报错**，
 > 只是把张量悄悄放系统内存，步耗时暴涨 10~100×（实测 DPRNN batch 16：0.37 s → 27 s/步）。
@@ -69,7 +69,7 @@
 **项目里另外保留的对比模型**（不在你这 11 个清单内，但历史实验已有产物）：
 `Open-Unmix`（RTF 0.11，四轨 6.65）、`Baseline`（不分离基线）、`HPSS`、`NMF`、`ICA`。
 
-**配套图表**（`04_reports/separation/figures/comparison/`，`tools/plot_median_summary.py` 生成）：
+**配套图表**（`04_reports/01_separation/figures/comparison/`，`tools/plot_median_summary.py` 生成）：
 
 | 图 | 文件 |
 |---|---|
@@ -165,7 +165,7 @@ $PY tools/median_over_clips.py
 | ~~SAC 拦 `llvmlite.dll`~~ | ✅ **已自行消失** | — | 拦截面已恢复，见 §3-4 |
 | ⭐ ~~装 CUDA 后重跑全部模型的 RTF~~ | ✅ **已完成 2026-09-17** | 我 | 12 模型 × 3 片段全部在 CUDA 上重跑；深度方案提速 **3~22×**，见 §1 与 §5.1 |
 | MUSDB18 官方 **test 集 50 首整曲**评测 | ⏳ 未做 | 我 | 当前只用 train 的 3 个 10 s 片段；要出可发表成绩需跑 test 集 |
-| 模型对比补图（精度/速度散点） | ✅ **已完成** | 我 | `04_reports/separation/figures/comparison/` 3 张图，见 §1 |
+| 模型对比补图（精度/速度散点） | ✅ **已完成** | 我 | `04_reports/01_separation/figures/comparison/` 3 张图，见 §1 |
 
 ### 5.1 CUDA 带来的实时性改写（2026-09-17 实测）
 
@@ -267,7 +267,7 @@ BS-RoFormer L12 也从「RTF 11 的离线模型」变成 **RTF 0.49 的实时模
 - **RTF 0.03 是真实的**（推理极快），短板全在训练侧。
 - 若要提升：需 CUDA 级算力（非笔记本 4070）、更长的训练（数十小时级）、
   以及 MUSDB18 标准增强（source remixing / channel swap）。
-- 训练曲线：`04_reports/separation/figures/dprnn/training_curve.png`；训练历史：`04_reports/separation/data/dprnn_training.json`。
+- 训练曲线：`04_reports/01_separation/figures/dprnn/training_curve.png`；训练历史：`04_reports/01_separation/data/dprnn_training.json`。
 
 
 ### 6.4 复现

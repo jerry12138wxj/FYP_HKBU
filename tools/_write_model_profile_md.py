@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Generate the citable markdown summary of the model-profile table (D1).
 
-Reads  : 04_reports/_shared/data/model_analysis/model_profile.csv
-Writes : 04_reports/_shared/docs/MODEL_PROFILE_2026-09-22.md
+Reads  : 04_reports/00_shared/data/model_analysis/model_profile.csv
+Writes : 04_reports/00_shared/docs/MODEL_PROFILE_2026-09-22.md
 
 Numbers are emitted straight from the CSV so the document cannot drift from the
 data.  The protocol block is printed verbatim because the single most common
@@ -15,8 +15,8 @@ import json
 import os
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(_ROOT, "04_reports", "_shared", "data", "model_analysis", "model_profile.csv")
-OUT = os.path.join(_ROOT, "04_reports", "_shared", "docs", "MODEL_PROFILE_2026-09-22.md")
+CSV_PATH = os.path.join(_ROOT, "04_reports", "00_shared", "data", "model_analysis", "model_profile.csv")
+OUT = os.path.join(_ROOT, "04_reports", "00_shared", "docs", "MODEL_PROFILE_2026-09-22.md")
 
 GROUP_TITLE = {
     "4-stem": "四轨分离模型",
@@ -74,7 +74,7 @@ def main():
     A = L.append
     A("# 模型本体画像：参数量 · 计算量 · 显存 · 时延\n")
     A("> 生成日：2026-09-22 ｜ 交付物：**D1 模型画像表** ｜ 数据源："
-      "`04_reports/_shared/data/model_analysis/model_profile.csv`\n")
+      "`04_reports/00_shared/data/model_analysis/model_profile.csv`\n")
     A("> 本表回答的是「模型要花多少代价」，与「分离得准不准」（见 `MEDIAN_TABLE*.md`）互为补充。\n")
 
     A("\n## 1. 测量口径（引用本表时必须一并声明）\n")
@@ -97,7 +97,7 @@ def main():
     A("> 但实测时延只差 **16 倍**（4.52 s vs 0.279 s）——差额就来自未被计入的算子。\n")
 
     A("\n### FLOPs 交叉验证：与 thop 的独立第二口径\n")
-    thop_p = os.path.join(_ROOT, "04_reports", "_shared", "data", "model_analysis", "thop_crosscheck.json")
+    thop_p = os.path.join(_ROOT, "04_reports", "00_shared", "data", "model_analysis", "thop_crosscheck.json")
     if os.path.exists(thop_p):
         tc = json.load(open(thop_p, encoding="utf-8")).get("cases", {})
         bykey = {r["model_key"]: r for r in rows}
@@ -164,12 +164,12 @@ def main():
     A("\n> ⚠️ **「输出轨」列不可直接当「目标 stem」读。** BS-RoFormer 的 L6 权重其 yaml 声明为 ")
     A("> `other`，但实际输出是 **mixture − drums − bass**（即 vocals + other 的合成残差），")
     A("> 与 `L12` 的单目标 `vocals` 不是同一口径。凡引用本列做跨模型比较，必须回查 ")
-    A("> `04_reports/separation/docs/MEDIAN_TABLE_TEST.md` 的目标定义，不可仅看数字。\n")
+    A("> `04_reports/01_separation/docs/MEDIAN_TABLE_TEST.md` 的目标定义，不可仅看数字。\n")
 
     A("\n### 配套图表\n")
-    A("- `04_reports/_shared/figures/model_arch/profile_params_flops.png` —— 双面板条形图：参数量 vs "
+    A("- `04_reports/00_shared/figures/model_arch/profile_params_flops.png` —— 双面板条形图：参数量 vs "
       "对数坐标 FLOPs，按分组着色。")
-    A("- `04_reports/_shared/figures/model_arch/profile_pareto.png` —— 气泡图：x = 时延（对数），"
+    A("- `04_reports/00_shared/figures/model_arch/profile_pareto.png` —— 气泡图：x = 时延（对数），"
       "y = 参数量，气泡面积 = 峰值显存。\n")
 
     A("\n## 3. 分组观察\n")
@@ -218,7 +218,7 @@ def main():
       % fmt(_r(rows, "rpca")["_l"], 2))
 
     A("\n## 4. 板 2 门禁结果（`stage0_gate.json`）\n")
-    gate_p = os.path.join(_ROOT, "04_reports", "_shared", "data", "model_analysis", "stage0_gate.json")
+    gate_p = os.path.join(_ROOT, "04_reports", "00_shared", "data", "model_analysis", "stage0_gate.json")
     gate_label = [
         ("mel_roformer_denoise", "降噪", "Mel-RoFormer denoise"),
         ("mel_roformer_denoise_aggr", "降噪", "Mel-RoFormer denoise (aggr)"),

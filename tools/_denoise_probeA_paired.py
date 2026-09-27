@@ -5,7 +5,7 @@ full-manifest hf_clean median is 0.221. That 0.025 gap means those 6 items canno
 rule out a genuine low-pass. This probe takes N>=100 real clean_testset_wav files
 and measures the paired dHF on exactly those.
 
-Output: denoiser/data/denoise_probeA_paired.json
+Output: 02_denoising/data/denoise_probeA_paired.json
 """
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ import torchaudio.functional as AF  # noqa: E402
 import _denoise_registry as REG  # noqa: E402
 
 ROOT = _paths.PROJECT_ROOT
-OUT = ROOT / "04_reports" / "denoiser" / "data" / "denoise_probeA_paired.json"
+OUT = ROOT / "04_reports" / "02_denoising" / "data" / "denoise_probeA_paired.json"
 VAL_CLEAN = ROOT / "02_databases" / "Valentini" / "clean_testset_wav"
 CONTRACT_SR, ANA_SR = 44100, 16000
 N = 120

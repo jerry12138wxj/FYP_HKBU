@@ -360,7 +360,7 @@ def step_models(dry: bool) -> None:
                      "`torch.utils.flop_counter.FlopCounterMode` 实测，是**下界**（STFT 与融合"
                      "注意力不计入），跨架构比较必须配合时延看。")
             L.append("")
-            L.append("数据源：`04_reports/_shared/data/model_analysis/model_profile.csv`")
+            L.append("数据源：`04_reports/00_shared/data/model_analysis/model_profile.csv`")
         else:
             L.append("（画像数据待补）")
         L.append("")
@@ -368,7 +368,7 @@ def step_models(dry: bool) -> None:
         L.append("")
         b1 = "board-1" if board == "separation" else "board-2"
         L.append("- 产物目录：`03_outputs/%s/`" % folder)
-        L.append("- 架构原理图：`04_reports/_shared/figures/model_arch/`")
+        L.append("- 架构原理图：`04_reports/00_shared/figures/model_arch/`")
         L.append("- 主结果表：`04_reports/%s/docs/`" % (
             "separation" if board == "separation" else "denoiser"))
         L.append("- 板块标签：`%s`" % b1)
@@ -587,7 +587,7 @@ def step_reports(dry: bool) -> None:
     for extra in ["README.md"]:
         src = rep / "figures" / extra
         if src.is_file():
-            move(src, rep / "_shared" / "figures" / extra, dry)
+            move(src, rep / "00_shared" / "figures" / extra, dry)
     if not dry and (rep / "figures").exists():
         left = sorted(p.name for p in (rep / "figures").iterdir())
         if not left:
@@ -605,7 +605,7 @@ def step_reports(dry: bool) -> None:
             move(src, tgt, dry)
     for p in sorted((rep / "data").glob("*.json")) if (rep / "data").exists() else []:
         # dprnn_training*.json 是自训记录 -> separation
-        move(p, rep / "separation" / "data" / p.name, dry)
+        move(p, rep / "01_separation" / "data" / p.name, dry)
     if not dry and (rep / "data").exists():
         left = sorted(p.name for p in (rep / "data").iterdir())
         if not left:
@@ -617,9 +617,9 @@ def step_reports(dry: bool) -> None:
     # ---- html ----
     for name, board in HTML_MAP.items():
         move(rep / "html" / name, rep / board / "html" / name, dry)
-    mkdir(rep / "_shared" / "html" / "_superseded", dry)
+    mkdir(rep / "00_shared" / "html" / "_superseded", dry)
     for name in HTML_SUPERSEDED:
-        move(rep / "html" / name, rep / "_shared" / "html" / "_superseded" / name, dry)
+        move(rep / "html" / name, rep / "00_shared" / "html" / "_superseded" / name, dry)
     if not dry and (rep / "html").exists():
         left = sorted(p.name for p in (rep / "html").iterdir())
         if not left:
@@ -635,11 +635,11 @@ def write_reports_index(rep: Path) -> None:
     L = ["# ④ 报告模块", "",
          "按**板块**分文件夹，每个板块下再分 `docs / figures / data / html` 四类。", "",
          "| 文件夹 | 归属 | 计划阶段 |", "|---|---|---|",
-         "| `separation/` | **板 1 · 分离** | 阶段 1-4（模型画像、架构图、频谱面板、混响鲁棒性）|",
-         "| `denoiser/` | **板 2 · 降噪** | 阶段 5-7（降噪评测、去混响/去回声）|",
-         "| `cascade/` | **级联**（板 2 收尾）| 阶段 6-7（分离→降噪串联）|",
-         "| `_shared/` | 跨板块共用 | 总纲文档、模型画像、架构图、门禁数据 |",
-         "| `slides/` | 答辩材料 | 阶段 8 |",
+         "| `01_separation/` | **板 1 · 分离** | 阶段 1-4（模型画像、架构图、频谱面板、混响鲁棒性）|",
+         "| `02_denoising/` | **板 2 · 降噪** | 阶段 5-7（降噪评测、去混响/去回声）|",
+         "| `03_cascade/` | **级联**（板 2 收尾）| 阶段 6-7（分离→降噪串联）|",
+         "| `00_shared/` | 跨板块共用 | 总纲文档、模型画像、架构图、门禁数据 |",
+         "| `04_defense/` | 答辩材料 | 阶段 8 |",
          "", "## 各板块内容", ""]
     for b, desc in [("separation", "板 1：模型本体画像、14 张架构原理图、频谱面板、混响/去混响实验"),
                     ("denoiser", "板 2：降噪双口径评测表、去混响与去回声模型结果"),

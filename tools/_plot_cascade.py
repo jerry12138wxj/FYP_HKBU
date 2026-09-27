@@ -36,8 +36,8 @@ import numpy as np  # noqa: E402
 from matplotlib.colors import TwoSlopeNorm  # noqa: E402
 
 ROOT = _paths.PROJECT_ROOT
-DATA = ROOT / "04_reports" / "cascade" / "data"
-FIGS = ROOT / "04_reports" / "cascade" / "figures"
+DATA = ROOT / "04_reports" / "03_cascade" / "data"
+FIGS = ROOT / "04_reports" / "03_cascade" / "figures"
 CSV = DATA / "cascade_eval.csv"
 
 plt.rcParams.update({"font.family": "DejaVu Sans", "axes.grid": True,

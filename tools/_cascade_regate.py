@@ -27,8 +27,8 @@ import paths as _paths  # noqa: E402
 _paths.setup_env()
 
 ROOT = Path(_paths.PROJECT_ROOT)
-EVAL_JSON = ROOT / "04_reports" / "cascade" / "data" / "cascade_eval.json"
-PARTIAL = ROOT / "04_reports" / "cascade" / "data" / "cascade_eval.partial.jsonl"
+EVAL_JSON = ROOT / "04_reports" / "03_cascade" / "data" / "cascade_eval.json"
+PARTIAL = ROOT / "04_reports" / "03_cascade" / "data" / "cascade_eval.partial.jsonl"
 
 
 def regate_levels(levels: dict) -> tuple:

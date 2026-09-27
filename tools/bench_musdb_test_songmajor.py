@@ -466,7 +466,7 @@ def report() -> int:
         n = sum(len(v) for v in d.get("runs", {}).values())
         print(f"  结果 JSON: {RUNS_JSON}（{n} 条记录）")
     print()
-    print("  ⚠️ 慢因分析请见 04_reports/separation/docs/ 下的专项报告")
+    print("  ⚠️ 慢因分析请见 04_reports/01_separation/docs/ 下的专项报告")
     return 0
 
 

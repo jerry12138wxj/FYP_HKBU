@@ -9,8 +9,8 @@
 数据全部读已有 JSON，不重算、不重跑推理。
 
 产出：
-  separation/figures/comparison/fig_stage4_summary.png
-  separation/data/reverb/stage4_summary.json
+  01_separation/figures/comparison/fig_stage4_summary.png
+  01_separation/data/reverb/stage4_summary.json
 """
 from __future__ import annotations
 
@@ -41,8 +41,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.patches import FancyBboxPatch  # noqa: E402
 
-REV = _paths.PROJECT_ROOT / "04_reports" / "separation" / "data" / "reverb"
-FIG = (_paths.PROJECT_ROOT / "04_reports" / "separation" / "figures"
+REV = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "data" / "reverb"
+FIG = (_paths.PROJECT_ROOT / "04_reports" / "01_separation" / "figures"
        / "comparison" / "fig_stage4_summary.png")
 
 PRETTY = {"demucs": "Demucs", "umx": "Open-Unmix", "mdx": "MDX-Net",

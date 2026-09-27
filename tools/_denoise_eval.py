@@ -24,7 +24,7 @@
 4. **denoiser 输出恒为单声道**（原生 16 kHz mono）-> 与立体声参考比指标前先下混，
    且 `info["native_sr"]` 必须显式记录。
 
-产出（全部落 `04_reports/denoiser/data/`）
+产出（全部落 `04_reports/02_denoising/data/`）
 ------------------------------------------
   denoise_eval_<sr>k.csv          主/副口径指标表
   denoise_eval_<sr>k.json         同内容 + provenance + 每格可复现命令

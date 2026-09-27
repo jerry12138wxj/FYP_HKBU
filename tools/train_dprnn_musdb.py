@@ -23,9 +23,9 @@ DPRNN 自训（MUSDB18-HQ，4 stem）—— 填补 12 模型清单里唯一「�
 产物
 ----
     ckpt : 01_models/_weights/dprnn_musdb/{last,best}.pt
-    历史 : 04_reports/separation/data/dprnn_training.json
+    历史 : 04_reports/01_separation/data/dprnn_training.json
     日志 : tools/_logs/train_dprnn_musdb.txt
-    曲线 : 04_reports/separation/figures/dprnn/training_curve.png
+    曲线 : 04_reports/01_separation/figures/dprnn/training_curve.png
 
 用法
 ----
@@ -457,7 +457,7 @@ def train(args):
 
 
 def _plot(hist):
-    """训练曲线 → 04_reports/separation/figures/dprnn/training_curve.png"""
+    """训练曲线 → 04_reports/01_separation/figures/dprnn/training_curve.png"""
     try:
         import matplotlib
         matplotlib.use("Agg")

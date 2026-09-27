@@ -76,7 +76,7 @@ from compare_separation_methods import (  # noqa: E402
 
 DATA_ROOT = _paths.MUSDB18_ROOT
 OUTPUTS_ROOT = _paths.OUTPUTS
-COMPARISON_DIR = _paths.comparison_dir()   # → 04_reports/separation/data/comparison
+COMPARISON_DIR = _paths.comparison_dir()   # → 04_reports/01_separation/data/comparison
 RUNS_JSON = COMPARISON_DIR / "model_runs.json"
 LOGS_DIR = _paths.LOGS
 

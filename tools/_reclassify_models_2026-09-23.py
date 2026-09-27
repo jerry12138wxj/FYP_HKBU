@@ -58,7 +58,7 @@ MODELS = _paths.MODELS
 WEIGHTS = _paths.WEIGHTS
 THIRD_PARTY = _paths.THIRD_PARTY
 ARCHIVE = ROOT / "tools" / "_scratch" / "_archive_model_cards_2026-09-23"
-MANIFEST = ROOT / "04_reports" / "_shared" / "data" / "_reclassify_manifest.json"
+MANIFEST = ROOT / "04_reports" / "00_shared" / "data" / "_reclassify_manifest.json"
 
 BOARD_DIRNAME = {"separation": "separation", "denoising": "denoising"}
 BOARD_LABEL = {"separation": "板 1 · 分离（separation）",
@@ -272,7 +272,7 @@ def build_board_index(board: str, entries: list[dict]) -> str:
         L.append("- 目录：`01_models/%s/%s/`（`code/` 为目录联接）" % (board, e["name"]))
         L.append("- 产物：`03_outputs/%s/`" % e["name"])
         L.append("- 主结果表：`04_reports/%s/docs/`" % ("separation" if board == "separation" else "denoiser"))
-        L.append("- 架构原理图：`04_reports/_shared/figures/model_arch/`")
+        L.append("- 架构原理图：`04_reports/00_shared/figures/model_arch/`")
         L.append("")
     return "\n".join(L)
 
@@ -292,7 +292,7 @@ def build_models_readme(by_board: dict) -> str:
          "每个 `<板块>/<模型>/` 下**只有 `code/`** —— 指向 `01_models/_third_party/<repo>` 的",
          "**目录联接（junction）**，零额外占用。", "",
          "```",
-         "separation/Demucs/",
+         "01_separation/Demucs/",
          "  code/",
          "    demucs -> 01_models/_third_party/demucs",
          "```", "",
@@ -323,13 +323,13 @@ def build_models_readme(by_board: dict) -> str:
           "$PY tools/_model_deploy_layout.py",
           "",
           "# 2) 核验：模型目录 + 代码联接 + 权重真源",
-          "$PY tools/_verify_model_deployment.py --json 04_reports/_shared/data/model_deployment_audit.json",
+          "$PY tools/_verify_model_deployment.py --json 04_reports/00_shared/data/model_deployment_audit.json",
           "```", "",
           "**环境依赖**：项目根 `requirements-frozen-2026-09-23.txt`（pip freeze 快照）。",
           "⚠️ 该快照**不含** PESQ（conda-forge 手工解包）与 CUDA 版 torch/torchaudio（须走",
           "`--index-url https://download.pytorch.org/whl/cu126`），文件头已注明。", "",
           "> 版 3（2026-09-23）：按板块分类 `separation/` + `denoising/`，",
-          "> 移除模型卡与 `weights/` 联接层；详见 `04_reports/_shared/docs/MODEL_DEPLOYMENT_2026-09-23.md`。", ""]
+          "> 移除模型卡与 `weights/` 联接层；详见 `04_reports/00_shared/docs/MODEL_DEPLOYMENT_2026-09-23.md`。", ""]
     return "\n".join(L)
 
 

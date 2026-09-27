@@ -5,7 +5,7 @@ x = 混响强度（T60，秒）；y = avg4 SDR（museval，参考=干 GT stem）
 右图直接画 ΔSDR = SDR(T60) - SDR(dry)。
 
 产出：
-  separation/figures/comparison/fig_reverb_degradation.png
+  01_separation/figures/comparison/fig_reverb_degradation.png
 """
 from __future__ import annotations
 
@@ -35,8 +35,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
-REV = _paths.PROJECT_ROOT / "04_reports" / "separation" / "data" / "reverb"
-FIG = (_paths.PROJECT_ROOT / "04_reports" / "separation" / "figures"
+REV = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "data" / "reverb"
+FIG = (_paths.PROJECT_ROOT / "04_reports" / "01_separation" / "figures"
        / "comparison" / "fig_reverb_degradation.png")
 
 PRETTY = {"demucs": "Demucs (htdemucs)", "umx": "Open-Unmix (umxhq)",

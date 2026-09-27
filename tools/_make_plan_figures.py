@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """_make_plan_figures.py —— FYP 计划书的甘特图 + 依赖关系图。
 
-输出（04_reports/_shared/figures/plan/）：
+输出（04_reports/00_shared/figures/plan/）：
     gantt_fyp.png        5 周排期甘特图（含 5 个里程碑与 3 个夜间 GPU 窗口）
     wbs_dependency.png   阶段依赖关系图（含关键路径）
 

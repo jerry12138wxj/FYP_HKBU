@@ -29,7 +29,7 @@ DNS `dev_testset` 官方只发 `noisy_testclips`（921 条），**没有 clean G
 4. 噪声按索引循环，保证不同语音配到不同噪声。
 
 产出：
-  denoiser/data/synth_pairs_manifest.json
+  02_denoising/data/synth_pairs_manifest.json
 """
 from __future__ import annotations
 

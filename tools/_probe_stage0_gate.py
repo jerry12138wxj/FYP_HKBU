@@ -44,7 +44,7 @@ W = os.path.join(ROOT, "01_models", "_weights")
 ZF = os.path.join(ROOT, "01_models", "_third_party", "Music-Source-Separation-Training")
 DEN = os.path.join(ROOT, "01_models", "_third_party", "denoiser")
 OUT_AUDIO = os.path.join(ROOT, "03_outputs", "_stage0_gate")
-OUT_JSON = os.path.join(ROOT, "04_reports", "_shared", "data", "model_analysis", "stage0_gate.json")
+OUT_JSON = os.path.join(ROOT, "04_reports", "00_shared", "data", "model_analysis", "stage0_gate.json")
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 
 PROBE_SONG = "p232_001.wav"

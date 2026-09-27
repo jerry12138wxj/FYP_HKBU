@@ -9,7 +9,7 @@ forward pass and records, for every `nn.Module` that fired:
     module path  |  class name  |  #params  |  input shapes  |  output shapes
 
 so every shape printed on a figure can be traced back to a JSON in
-`04_reports/_shared/data/model_analysis/graph_<key>.json`.  That traceability is the
+`04_reports/00_shared/data/model_analysis/graph_<key>.json`.  That traceability is the
 acceptance criterion for D2 ("shape 可溯源；参数量占比之和 = 100%").
 
 Wrappers are a known trap: several loaders return a `run_fn` closure over the
@@ -61,7 +61,7 @@ import benchmark_model_universal as B  # noqa: E402
 from _measure_model_profile import extract_modules, _all_reg  # noqa: E402
 
 ROOT_DIR = str(_paths.PROJECT_ROOT)
-OUT_DIR = os.path.join(ROOT_DIR, "04_reports", "_shared", "data", "model_analysis")
+OUT_DIR = os.path.join(ROOT_DIR, "04_reports", "00_shared", "data", "model_analysis")
 PROFILE_CSV = os.path.join(OUT_DIR, "model_profile.csv")
 SR = 44100
 CH = 2

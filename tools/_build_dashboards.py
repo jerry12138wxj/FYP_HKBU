@@ -16,9 +16,9 @@
 
 输出
 ----
-    04_reports/_shared/html/model_analysis_dashboard.html   (T7.1)
-    04_reports/denoiser/html/denoise_dashboard.html         (T7.2，待建)
-    04_reports/cascade/html/cascade_dashboard.html          (T7.2，待建)
+    04_reports/00_shared/html/model_analysis_dashboard.html   (T7.1)
+    04_reports/02_denoising/html/denoise_dashboard.html         (T7.2，待建)
+    04_reports/03_cascade/html/cascade_dashboard.html          (T7.2，待建)
 """
 from __future__ import annotations
 
@@ -534,16 +534,16 @@ def build_model_analysis(d):
 
     # ---- §8 产物与复现
     sec.append(h2('s7', '7', '产物与复现'))
-    sec.append(note('<b>数据</b>：<code>04_reports/separation/data/comparison/</code>'
+    sec.append(note('<b>数据</b>：<code>04_reports/01_separation/data/comparison/</code>'
                     '（<code>model_runs_median.json</code> 主表、<code>mixture_baseline.json</code> 基线、'
                     '<code>test_run_analysis.json</code> 整曲扫描）+ '
                     '<code>data/reverb/stage4_summary.json</code> + '
-                    '<code>_shared/data/model_analysis/model_profile.csv</code><br>'
+                    '<code>00_shared/data/model_analysis/model_profile.csv</code><br>'
                     '<b>文档</b>：<code>docs/MEDIAN_TABLE_REDRAWN.md</code>（主表+口径）、'
                     '<code>docs/MUSDB18_TEST_SWEEP_2026-09-22.md</code>（整曲扫描）、'
                     '<code>docs/STAGE4_SUMMARY.md</code>（阶段 4 小结）、'
-                    '<code>_shared/docs/MODEL_PROFILE_2026-09-22.md</code>（画像）、'
-                    '<code>_shared/docs/MODEL_DEPLOYMENT_2026-09-23.md</code>（部署）<br>'
+                    '<code>00_shared/docs/MODEL_PROFILE_2026-09-22.md</code>（画像）、'
+                    '<code>00_shared/docs/MODEL_DEPLOYMENT_2026-09-23.md</code>（部署）<br>'
                     '<b>重建本页</b>：<code>python tools/_build_dashboards.py --only model</code>'))
 
     toc = [('s0', '0 总览'), ('s1', '1 供给与画像'), ('s2', '2 架构图 ×14'), ('s3', '3 精度主表'),

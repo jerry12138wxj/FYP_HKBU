@@ -26,7 +26,7 @@ _paths.setup_env()
 import numpy as np  # noqa: E402
 import soundfile as sf  # noqa: E402
 
-REV = _paths.PROJECT_ROOT / "04_reports" / "separation" / "data" / "reverb"
+REV = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "data" / "reverb"
 AUDIO = _paths.OUTPUTS / "_reverb"
 MANIFEST = REV / "reverb_manifest.json"
 OUT_JSON = REV / "echo_manifest.json"

@@ -54,8 +54,8 @@
 
 - 目录：`01_models/separation/BS-RoFormer-L12/`（`code/` 为目录联接）
 - 产物：`03_outputs/BS-RoFormer-L12/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### BS-RoFormer-L6
 
@@ -85,8 +85,8 @@
 
 - 目录：`01_models/separation/BS-RoFormer-L6/`（`code/` 为目录联接）
 - 产物：`03_outputs/BS-RoFormer-L6/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### BSRNN-large
 
@@ -116,8 +116,8 @@
 
 - 目录：`01_models/separation/BSRNN-large/`（`code/` 为目录联接）
 - 产物：`03_outputs/BSRNN-large/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### BSRNN-opt
 
@@ -147,8 +147,8 @@
 
 - 目录：`01_models/separation/BSRNN-opt/`（`code/` 为目录联接）
 - 产物：`03_outputs/BSRNN-opt/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### BSRNN-SIMO
 
@@ -177,8 +177,8 @@
 
 - 目录：`01_models/separation/BSRNN-SIMO/`（`code/` 为目录联接）
 - 产物：`03_outputs/BSRNN-SIMO/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Conv-TasNet
 
@@ -207,8 +207,8 @@
 
 - 目录：`01_models/separation/Conv-TasNet/`（`code/` 为目录联接）
 - 产物：`03_outputs/Conv-TasNet/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Demucs
 
@@ -237,8 +237,8 @@
 
 - 目录：`01_models/separation/Demucs/`（`code/` 为目录联接）
 - 产物：`03_outputs/Demucs/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### DPRNN
 
@@ -267,8 +267,8 @@
 
 - 目录：`01_models/separation/DPRNN/`（`code/` 为目录联接）
 - 产物：`03_outputs/DPRNN/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### MDX-Net
 
@@ -298,8 +298,8 @@
 
 - 目录：`01_models/separation/MDX-Net/`（`code/` 为目录联接）
 - 产物：`03_outputs/MDX-Net/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### MMDenseLSTM
 
@@ -328,8 +328,8 @@
 
 - 目录：`01_models/separation/MMDenseLSTM/`（`code/` 为目录联接）
 - 产物：`03_outputs/MMDenseLSTM/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Open-Unmix
 
@@ -361,8 +361,8 @@
 
 - 目录：`01_models/separation/Open-Unmix/`（`code/` 为目录联接）
 - 产物：`03_outputs/Open-Unmix/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Oracle-IRM
 
@@ -387,8 +387,8 @@
 
 - 目录：`01_models/separation/Oracle-IRM/`（`code/` 为目录联接）
 - 产物：`03_outputs/Oracle-IRM/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### RPCA
 
@@ -413,5 +413,5 @@
 
 - 目录：`01_models/separation/RPCA/`（`code/` 为目录联接）
 - 产物：`03_outputs/RPCA/`
-- 主结果表：`04_reports/separation/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/01_separation/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`

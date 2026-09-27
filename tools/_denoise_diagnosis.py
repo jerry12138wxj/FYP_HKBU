@@ -13,8 +13,8 @@ T5.1 首次冒烟测试（4 条 Valentini）出现不可能的结果：
   3. 真实集分层：Valentini 824 条按【输入 SI-SDR】分档，看增益是否随档变化
 
 产出：
-  denoiser/data/denoise_diagnosis.json
-  denoiser/figures/fig_denoise_metric_divergence.png
+  02_denoising/data/denoise_diagnosis.json
+  02_denoising/figures/fig_denoise_metric_divergence.png
 """
 from __future__ import annotations
 

@@ -82,10 +82,10 @@ P7 / P17 / P19 三条约束的落实
 
 落点
 ----
-  04_reports/cascade/data/cascade_plan.json
-  04_reports/cascade/data/cascade_manifest.json
-  04_reports/cascade/data/cascade_eval.json
-  04_reports/cascade/data/cascade_eval.csv
+  04_reports/03_cascade/data/cascade_plan.json
+  04_reports/03_cascade/data/cascade_manifest.json
+  04_reports/03_cascade/data/cascade_eval.json
+  04_reports/03_cascade/data/cascade_eval.csv
   03_outputs/_cascade/{_front,_vocals,_post}/
 """
 from __future__ import annotations
@@ -111,7 +111,7 @@ PROJECT = Path(_paths.PROJECT_ROOT)
 MUSDB_TEST = _paths.musdb_root() / "test"
 NOISE_DIR = PROJECT / "02_databases" / "DNS-Challenge" / "noise" / "freesound"
 
-CASC_DATA = PROJECT / "04_reports" / "cascade" / "data"
+CASC_DATA = PROJECT / "04_reports" / "03_cascade" / "data"
 CASC_DATA.mkdir(parents=True, exist_ok=True)
 PLAN_JSON = CASC_DATA / "cascade_plan.json"
 MAN_JSON = CASC_DATA / "cascade_manifest.json"

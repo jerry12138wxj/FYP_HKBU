@@ -4,13 +4,13 @@
 为什么必须单独一套（而不是直接复用 bench_multisong.py）
 -----------------------------------------------------
 `benchmark_model_universal.py` 的结果是**按 model -> song 覆盖**写进
-`04_reports/separation/data/comparison/model_runs.json`，而该文件正是
+`04_reports/01_separation/data/comparison/model_runs.json`，而该文件正是
 `median_over_clips.py` 生成论文主表 （`model_runs_median.json` / `MEDIAN_TABLE.md`）的数据源。
 它靠「歌名」挑片段 —— 如果 test 集的 50 首歌混进同一个 json，
 主表的中位数会被**静默污染**（train 的 3 个均衡片段 + test 的 50 首整曲混在一起聚合）。
 
 因此本脚本：
-  * 结果写**独立文件** `04_reports/separation/data/comparison/model_runs_test.json`
+  * 结果写**独立文件** `04_reports/01_separation/data/comparison/model_runs_test.json`
   * 音频写**独立目录树** `03_outputs/<模型>/_musdb18_test/<歌曲>/`
   * 绝不触碰 `model_runs.json` / `model_runs_median.json`
 
@@ -57,7 +57,7 @@ LOGS = _paths.LOGS
 LOCK = LOGS / "_bench_musdb_test.lock"
 
 # ---- 符合新规则的模型（原生直接输出分离音轨，无需我们改造权重/网络）----
-# 详见 04_reports/separation/docs/MODEL_RULE_AUDIT_2026-09-19.md
+# 详见 04_reports/01_separation/docs/MODEL_RULE_AUDIT_2026-09-19.md
 ELIGIBLE = [
     "oracle",          # IRM/IBM 解析上界（非模型，作为天花板参照）
     "umx",             # Open-Unmix umxhq

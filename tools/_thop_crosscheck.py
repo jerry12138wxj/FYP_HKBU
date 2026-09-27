@@ -50,8 +50,8 @@ import torch  # noqa: E402
 from _measure_model_profile import extract_modules, _all_reg  # noqa: E402
 
 ROOT = str(_paths.PROJECT_ROOT)
-CSV_PATH = os.path.join(ROOT, "04_reports", "_shared", "data", "model_analysis", "model_profile.csv")
-JSON_OUT = os.path.join(ROOT, "04_reports", "_shared", "data", "model_analysis", "thop_crosscheck.json")
+CSV_PATH = os.path.join(ROOT, "04_reports", "00_shared", "data", "model_analysis", "model_profile.csv")
+JSON_OUT = os.path.join(ROOT, "04_reports", "00_shared", "data", "model_analysis", "thop_crosscheck.json")
 
 NEW_COLS = ["thop_G", "thop_dev_pct", "thop_note"]
 TOL_PCT = 5.0

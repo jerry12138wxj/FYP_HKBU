@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """12 模型精度 / 速度总览图（数据源：model_runs_median.json）。
 
-产图（→ 04_reports/separation/figures/comparison/）
+产图（→ 04_reports/01_separation/figures/comparison/）
 ----------------------------------------
   fig_median_sdr_bars.png    四轨均值 SDR 横向条形（单目标模型单独标注）
   fig_median_pareto.png      精度 vs RTF 散点（对数横轴，标出 RTF=1 实时线）

@@ -7,8 +7,8 @@ metrics from test_run_per_song.csv, and emits one self-contained HTML page
 that references the audio by relative path.
 
 Deliverables
-    04_reports/separation/html/listen_compare.html      <- the page
-    04_reports/separation/data/comparison/listen_manifest.json
+    04_reports/01_separation/html/listen_compare.html      <- the page
+    04_reports/01_separation/data/comparison/listen_manifest.json
 
 Everything is local: no network data is fetched or referenced.
 """
@@ -24,9 +24,9 @@ from urllib.parse import quote
 ROOT = r"E:\FYP_HKBU"
 OUT_DIR = os.path.join(ROOT, "03_outputs", "_test_run")
 DB_DIR = os.path.join(ROOT, "02_databases", "MUSDB18-HQ", "test")
-OUT_HTML = os.path.join(ROOT, "04_reports", "separation", "html", "listen_compare.html")
-OUT_JSON = os.path.join(ROOT, "04_reports", "separation", "data", "comparison", "listen_manifest.json")
-CSV_PATH = os.path.join(ROOT, "04_reports", "separation", "data", "comparison", "test_run_per_song.csv")
+OUT_HTML = os.path.join(ROOT, "04_reports", "01_separation", "html", "listen_compare.html")
+OUT_JSON = os.path.join(ROOT, "04_reports", "01_separation", "data", "comparison", "listen_manifest.json")
+CSV_PATH = os.path.join(ROOT, "04_reports", "01_separation", "data", "comparison", "test_run_per_song.csv")
 
 # ---------------------------------------------------------------- songs ----
 SONGS = [
@@ -143,7 +143,7 @@ def probe(path):
 
 
 def rel_url(abs_path):
-    rel = os.path.relpath(abs_path, os.path.join(ROOT, "04_reports", "separation", "html"))
+    rel = os.path.relpath(abs_path, os.path.join(ROOT, "04_reports", "01_separation", "html"))
     return quote(rel.replace("\\", "/"), safe="/+")
 
 
@@ -278,7 +278,7 @@ def build():
         songs.append(song)
 
     # merge the audio QC produced by _verify_listen_audio.py (if it has run)
-    qc_path = os.path.join(ROOT, "04_reports", "separation", "data", "comparison", "listen_audio_qc.json")
+    qc_path = os.path.join(ROOT, "04_reports", "01_separation", "data", "comparison", "listen_audio_qc.json")
     if os.path.isfile(qc_path):
         with open(qc_path, encoding="utf-8") as fh:
             qc = json.load(fh)
@@ -878,7 +878,7 @@ document.addEventListener("keydown", ev=>{
 
 $("#foot").innerHTML = "数据来源：本机 03_outputs/_test_run/ 与 02_databases/MUSDB18-HQ/test/ 的实测产出 · "
   + "未使用任何网络数据 · 页面生成于 " + new Date().toLocaleString("zh-CN")
-  + "<br>若音频无法播放，请双击 E:\\FYP_HKBU\\start_listen.bat 后访问 http://127.0.0.1:8123/04_reports/separation/html/listen_compare.html";
+  + "<br>若音频无法播放，请双击 E:\\FYP_HKBU\\start_listen.bat 后访问 http://127.0.0.1:8123/04_reports/01_separation/html/listen_compare.html";
 
 select(DB.songs[0].key);
 </script>

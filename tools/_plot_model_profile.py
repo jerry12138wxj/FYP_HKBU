@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Render the model-profile figures (stage 1 deliverable).
 
-Reads  : 04_reports/_shared/data/model_analysis/model_profile.csv
-Writes : 04_reports/_shared/figures/model_arch/profile_params_flops.png
-        04_reports/_shared/figures/model_arch/profile_pareto.png
+Reads  : 04_reports/00_shared/data/model_analysis/model_profile.csv
+Writes : 04_reports/00_shared/figures/model_arch/profile_params_flops.png
+        04_reports/00_shared/figures/model_arch/profile_pareto.png
 
 Protocol is fixed by `_measure_model_profile.py`: 44.1 kHz stereo, 10 s input,
 FLOPs = 2 x MACs, latency = median of 5 runs after 2 warm-ups.
@@ -36,8 +36,8 @@ plt.rcParams["grid.linestyle"] = ":"
 plt.rcParams["axes.axisbelow"] = True
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(_ROOT, "04_reports", "_shared", "data", "model_analysis", "model_profile.csv")
-FIG = os.path.join(_ROOT, "04_reports", "_shared", "figures", "model_arch")
+CSV_PATH = os.path.join(_ROOT, "04_reports", "00_shared", "data", "model_analysis", "model_profile.csv")
+FIG = os.path.join(_ROOT, "04_reports", "00_shared", "figures", "model_arch")
 os.makedirs(FIG, exist_ok=True)
 
 INK = "#1f2937"

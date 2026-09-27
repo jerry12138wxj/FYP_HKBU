@@ -20,8 +20,8 @@
     当 44.1 kHz 重采样到 16 kHz，输入被二次畸变，量出来的 ratio 全无意义。
   ✓ mel_roformer 传 (N,1) 会 assert 失败；denoiser 传 (N,1) 能跑但不能作契约。
 
-产物： denoiser/data/denoise_ood_probe.json
-       denoiser/figures/fig_denoise_ood_probe.png
+产物： 02_denoising/data/denoise_ood_probe.json
+       02_denoising/figures/fig_denoise_ood_probe.png
 
 复现：
   cd tools
@@ -42,8 +42,8 @@ import soundfile as sf  # noqa: E402
 import _denoise_registry as REG  # noqa: E402
 
 ROOT = _paths.PROJECT_ROOT
-OUT_JSON = ROOT / "04_reports" / "denoiser" / "data" / "denoise_ood_probe.json"
-FIGS = ROOT / "04_reports" / "denoiser" / "figures"
+OUT_JSON = ROOT / "04_reports" / "02_denoising" / "data" / "denoise_ood_probe.json"
+FIGS = ROOT / "04_reports" / "02_denoising" / "figures"
 CONTRACT_SR = 44100      # registry 对外契约采样率；run_fn 只接受这个率
 ANALYSIS_SR = 16000      # 分析带宽：判 hf/rms 在统一带宽下才可比
 N_SAMPLES = 6
@@ -82,7 +82,7 @@ def run_contract(run_fn, x_mono, sr_in):
 
 
 def main() -> int:
-    man = json.loads((ROOT / "04_reports" / "denoiser" / "data"
+    man = json.loads((ROOT / "04_reports" / "02_denoising" / "data"
                       / "synth_pairs_manifest.json").read_text(encoding="utf-8"))
     rows = man["rows"]
     # 取 n_speech 条不同语音：每个 clean 只取第一个（-5 dB 档）

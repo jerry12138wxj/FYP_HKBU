@@ -19,7 +19,7 @@ from pathlib import Path  # noqa: E402
 import _denoise_registry as R  # noqa: E402
 
 ROOT = _paths.PROJECT_ROOT
-MAN = ROOT / "04_reports" / "denoiser" / "data" / "denoise_manifest.json"
+MAN = ROOT / "04_reports" / "02_denoising" / "data" / "denoise_manifest.json"
 N = 150
 
 
@@ -66,6 +66,6 @@ for mdl in ["denoiser_dns48", "denoiser_master64", "mel_roformer_denoise"]:
               % (mdl, sr, d["old_med"], d["old_lt02"], d["old_n"],
                  d["new_med"], d["new_lt02"], d["new_n"]))
 
-out = ROOT / "04_reports" / "denoiser" / "data" / "denoise_sr_bug_audit.json"
+out = ROOT / "04_reports" / "02_denoising" / "data" / "denoise_sr_bug_audit.json"
 out.write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
 print("\n[json]", out)

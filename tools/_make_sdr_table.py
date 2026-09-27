@@ -3,8 +3,8 @@
 
 产出
 ----
-    04_reports/separation/docs/MEDIAN_TABLE_REDRAWN.md        <- D5 交付物（主/副表 + 口径脚注）
-    04_reports/separation/figures/comparison/fig_avg_sdr_table.png  <- 论文/答辩可直接贴
+    04_reports/01_separation/docs/MEDIAN_TABLE_REDRAWN.md        <- D5 交付物（主/副表 + 口径脚注）
+    04_reports/01_separation/figures/comparison/fig_avg_sdr_table.png  <- 论文/答辩可直接贴
 
 数据源（全部现读，不写死任何数字）
 ----------------------------------
@@ -12,7 +12,7 @@
 |---|---|
 | `data/comparison/model_runs_median.json` | 主表：3 均衡片段中位数 SDR / SI-SDR / RTF |
 | `data/comparison/model_runs.json` | 每条记录的 `subset`（判定主表跑在 train 还是 test） |
-| `_shared/data/model_analysis/model_profile.csv` | Size (M) / FLOPs (G) / 单次时延 |
+| `00_shared/data/model_analysis/model_profile.csv` | Size (M) / FLOPs (G) / 单次时延 |
 | `data/comparison/test_run_model_summary.csv` | 副表：test 集 50 首整曲耗时 / RTF / 轨数 |
 | `data/comparison/metric_window_probe.json` | 窗宽口径实测偏差（脚注用） |
 | `data/comparison/mixture_baseline.json` | mixture 基线行 |
@@ -301,7 +301,7 @@ def build_md(med, prof, summ, probe, base, subsets) -> str:
         mine = _fmt(ours[k].get("sdr_avg4")) if k in ours else "**无产出**"
         A("| %s | %s | %s | %s |" % (name, refv, mine, why))
     A("")
-    A("> 参考表数值（含 Size 口径）来自用户提供的参考表，登记于 `_shared/docs/FYP_ROADMAP_2026-09-22.md` §7 与 "
+    A("> 参考表数值（含 Size 口径）来自用户提供的参考表，登记于 `00_shared/docs/FYP_ROADMAP_2026-09-22.md` §7 与 "
       "`MODEL_PROFILE_2026-09-22.md` §5，**本文件不对其做任何重新计算**。")
     A(">")
     A("> **三条通用差异**：① **子集不同**（本表 train / 参考表 test）；"
@@ -319,7 +319,7 @@ def build_md(med, prof, summ, probe, base, subsets) -> str:
     A("```bash")
     A("# ① 重算主表（需 GPU；3 片段 × 模型）")
     A("python tools/bench_multisong.py")
-    A("python tools/median_over_clips.py --write 04_reports/separation/docs/MEDIAN_TABLE.md")
+    A("python tools/median_over_clips.py --write 04_reports/01_separation/docs/MEDIAN_TABLE.md")
     A("# ② 口径取证（窗宽偏差 + mixture 基线）")
     A("python tools/_metric_provenance.py all")
     A("# ③ 重绘本表（MD + PNG，纯 CPU）")

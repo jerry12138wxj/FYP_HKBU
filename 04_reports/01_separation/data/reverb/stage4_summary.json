@@ -1,0 +1,63 @@
+{
+ "task": "T4.7 阶段 4 小结",
+ "figure": "04_reports/01_separation/figures/comparison/fig_stage4_summary.png",
+ "reverb": {
+  "t60_small": 0.4915,
+  "t60_hall": 1.0265,
+  "delta_small_by_model": {
+   "bsrnn_all": -5.844,
+   "mdx": -5.94,
+   "demucs": -5.648,
+   "mmdenselstm": -3.967,
+   "convtasnet": -3.476,
+   "umx": -3.35
+  },
+  "delta_hall_by_model": {
+   "bsrnn_all": -14.544,
+   "mdx": -15.231,
+   "demucs": -15.648,
+   "mmdenselstm": -13.537,
+   "convtasnet": -10.683,
+   "umx": -11.45
+  },
+  "mean_curve": [
+   0.0,
+   -4.704166666666667,
+   -13.515500000000001
+  ]
+ },
+ "echo": {
+  "delta_short_by_model": {
+   "bsrnn_all": -4.589,
+   "mdx": -4.324,
+   "demucs": -4.215,
+   "mmdenselstm": -2.716,
+   "convtasnet": -2.598,
+   "umx": -2.318
+  },
+  "delta_long_by_model": {
+   "bsrnn_all": -6.037,
+   "mdx": -5.966,
+   "demucs": -5.868,
+   "mmdenselstm": -3.944,
+   "convtasnet": -3.57,
+   "umx": -3.329
+  },
+  "mean_curve": [
+   0.0,
+   -3.4600000000000004,
+   -4.785666666666667
+  ]
+ },
+ "dereverb": {
+  "anvuew_gain_median": 0.044,
+  "anvuew_gain_max": 1.464,
+  "wet_loss_range_db": [
+   -13.3,
+   -10.4
+  ],
+  "echo_model_verdict": "unusable (dry branch silent)",
+  "official_cross_check_delta_db": 0.142
+ },
+ "verdict": "混响把分离打到负 SDR（Δ -10.7~-15.7 dB，单调）；回声温和（Δ -2.3~-6.0 dB）；两个社区去混响 checkpoint 无效（负结果，官方路径交叉验证通过）。"
+}

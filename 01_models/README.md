@@ -78,7 +78,7 @@ PY="C:\Users\jerry\.workbuddy\binaries\python\envs\fyp_audio\Scripts\python.exe"
 $PY tools/_model_deploy_layout.py
 
 # 2) 核验：模型目录 + 代码联接 + 权重真源
-$PY tools/_verify_model_deployment.py --json 04_reports/_shared/data/model_deployment_audit.json
+$PY tools/_verify_model_deployment.py --json 04_reports/00_shared/data/model_deployment_audit.json
 ```
 
 **环境依赖**：项目根 `requirements-frozen-2026-09-23.txt`（pip freeze 快照）。
@@ -86,4 +86,4 @@ $PY tools/_verify_model_deployment.py --json 04_reports/_shared/data/model_deplo
 `--index-url https://download.pytorch.org/whl/cu126`），文件头已注明。
 
 > 版 3（2026-09-23）：按板块分类 `separation/` + `denoising/`，
-> 移除模型卡与 `weights/` 联接层；详见 `04_reports/_shared/docs/MODEL_DEPLOYMENT_2026-09-23.md`。
+> 移除模型卡与 `weights/` 联接层；详见 `04_reports/00_shared/docs/MODEL_DEPLOYMENT_2026-09-23.md`。

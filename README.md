@@ -19,7 +19,7 @@ $PY tools/reproduce.py --run report.dashboards     # 复现某产物家族（三
 $PY tools/reproduce.py --all-report                # 重建全部报告产物（**不跑推理**）
 ```
 
-**完整清单（图 → 命令 → 产物落点）见 `04_reports/_shared/docs/REPRODUCE.md`（自动生成，`--verify` 可逐字节校验）。**
+**完整清单（图 → 命令 → 产物落点）见 `04_reports/00_shared/docs/REPRODUCE.md`（自动生成，`--verify` 可逐字节校验）。**
 含 GPU 推理的目标默认锁死，需显式 `--force-heavy` 才会跑。
 
 > ⚠️ **复现边界（T8.6 实测）**：以上命令假设你在**完整工程机**上（`01_models/` `02_databases/` `03_outputs/` 在位）。
@@ -59,11 +59,11 @@ E:\FYP_HKBU\
 │   └── _reverb\            混响 / 回声实验中间产物
 │
 ├── 04_reports\         ④ 报告 —— **按板块分文件夹**，每板块下再分 `docs / figures / data / html`
-│   ├── separation\         板 1 · 分离（阶段 1-4）
-│   ├── denoiser\           板 2 · 降噪 + 去混响 / 去回声（阶段 5-7）
-│   ├── cascade\            级联实验（阶段 6-7）
-│   ├── _shared\            跨板块共用（总纲、模型画像、14 张架构图、论文图包、口径章节）
-│   └── slides\             答辩材料（阶段 8）
+│   ├── 01_separation\         板 1 · 分离（阶段 1-4）
+│   ├── 02_denoising\           板 2 · 降噪 + 去混响 / 去回声（阶段 5-7）
+│   ├── 03_cascade\            级联实验（阶段 6-7）
+│   ├── 00_shared\            跨板块共用（总纲、模型画像、14 张架构图、论文图包、口径章节）
+│   └── 04_defense\             答辩材料（阶段 8）
 │
 └── tools\              ⑤ 工具
     ├── *.py                110 个脚本（唯一路径入口 `paths.py`；一键复现入口 `reproduce.py`）
@@ -88,25 +88,25 @@ E:\FYP_HKBU\
 
 | 阶段 | 交付物 | 落点 | 复现目标 |
 |:-:|:--|:--|:--|
-| 1-2 | 模型本体画像（参数量 / FLOPs / 时延） | `_shared/data/model_analysis/model_profile.csv` | `profile.measure` |
-| 2 | **14 张架构原理图** + 画像图 | `_shared/figures/model_arch/arch_*.png` | `arch.figures` |
-| 3 | 分离精度主表（MD + 300 dpi 重绘） | `separation/docs/MEDIAN_TABLE_REDRAWN.md` | `sep.table` |
-| 3 | 中位条形 / 逐轨 / Pareto 三图 | `separation/figures/comparison/fig_median_*.png` | `sep.median_figs` |
-| 3 | 5 张信号级频谱 / 波形面板 | `separation/figures/audio_analysis/fig*.png` | `sep.panels` |
-| 4 | 实机成本 7 图（耗时 / RTF / Pareto） | `separation/figures/figs_time/fig*.png` | `cost.figures` |
-| 4 | 混响 / 回声退化 + RIR + 一页汇总图 | `separation/figures/comparison/fig_reverb_*.png` 等 | `reverb.figures` / `stage4.summary` |
-| 4 | 阶段 4 结论 | `separation/docs/STAGE4_SUMMARY.md` | — |
-| 5 | 降噪双口径评测（16k / 44.1k，16575 格） | `denoiser/data/denoise_eval_*.json` | 🔒 `denoise.eval` |
-| 5 | 降噪结果 4 图（抑制 / 合成增益 / 域反转 / dry-wet） | `denoiser/figures/fig_denoise_*.png` | `denoise.figures` |
-| 5 | 采样率契约 bug 复盘 / 域外探针 | `denoiser/docs/P19_*.md`、`T5_7_*.md` | 🔒 `denoise.ood` |
-| 6 | 级联 ΔSDR 主矩阵 + 净动作分解 | `cascade/figures/fig_cascade_*.png` | `cascade.figures` |
-| 6 | 级联结论（**负结果照报**） | `cascade/docs/T6_CASCADE_DENOISE_BEFORE_SEPARATION.md` | 🔒 `cascade.eval` |
-| 7 | **三块自包含离线看板** | `_shared/html/*.html`、`denoiser/html/`、`cascade/html/` | `report.dashboards` |
-| 7 | 4 份数据摘要（数字零手填） | `_shared/docs/summaries/*.md` | `report.summaries` |
-| 8 | **53 张论文图** + 清单 + 两板图注 | `_shared/figures/paper/` | `paper.figures` |
-| 8 | 口径与差异说明章节 | `_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md` | `paper.scope` |
-| 8 | 答辩 slides（24 页离线 HTML） | `slides/defense_slides.html` | `report.slides` |
-| 8 | **本复现指南** | `_shared/docs/REPRODUCE.md` | `--readme` |
+| 1-2 | 模型本体画像（参数量 / FLOPs / 时延） | `00_shared/data/model_analysis/model_profile.csv` | `profile.measure` |
+| 2 | **14 张架构原理图** + 画像图 | `00_shared/figures/model_arch/arch_*.png` | `arch.figures` |
+| 3 | 分离精度主表（MD + 300 dpi 重绘） | `01_separation/docs/MEDIAN_TABLE_REDRAWN.md` | `sep.table` |
+| 3 | 中位条形 / 逐轨 / Pareto 三图 | `01_separation/figures/comparison/fig_median_*.png` | `sep.median_figs` |
+| 3 | 5 张信号级频谱 / 波形面板 | `01_separation/figures/audio_analysis/fig*.png` | `sep.panels` |
+| 4 | 实机成本 7 图（耗时 / RTF / Pareto） | `01_separation/figures/figs_time/fig*.png` | `cost.figures` |
+| 4 | 混响 / 回声退化 + RIR + 一页汇总图 | `01_separation/figures/comparison/fig_reverb_*.png` 等 | `reverb.figures` / `stage4.summary` |
+| 4 | 阶段 4 结论 | `01_separation/docs/STAGE4_SUMMARY.md` | — |
+| 5 | 降噪双口径评测（16k / 44.1k，16575 格） | `02_denoising/data/denoise_eval_*.json` | 🔒 `denoise.eval` |
+| 5 | 降噪结果 4 图（抑制 / 合成增益 / 域反转 / dry-wet） | `02_denoising/figures/fig_denoise_*.png` | `denoise.figures` |
+| 5 | 采样率契约 bug 复盘 / 域外探针 | `02_denoising/docs/P19_*.md`、`T5_7_*.md` | 🔒 `denoise.ood` |
+| 6 | 级联 ΔSDR 主矩阵 + 净动作分解 | `03_cascade/figures/fig_cascade_*.png` | `cascade.figures` |
+| 6 | 级联结论（**负结果照报**） | `03_cascade/docs/T6_CASCADE_DENOISE_BEFORE_SEPARATION.md` | 🔒 `cascade.eval` |
+| 7 | **三块自包含离线看板** | `00_shared/html/*.html`、`02_denoising/html/`、`03_cascade/html/` | `report.dashboards` |
+| 7 | 4 份数据摘要（数字零手填） | `00_shared/docs/summaries/*.md` | `report.summaries` |
+| 8 | **53 张论文图** + 清单 + 两板图注 | `00_shared/figures/paper/` | `paper.figures` |
+| 8 | 口径与差异说明章节 | `00_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md` | `paper.scope` |
+| 8 | 答辩 slides（24 页离线 HTML） | `04_defense/defense_slides.html` | `report.slides` |
+| 8 | **本复现指南** | `00_shared/docs/REPRODUCE.md` | `--readme` |
 
 > 🔒 = 含 GPU 推理，跑一次数小时；已归档结果**不重跑**，只做判据与图注复核。
 
@@ -129,11 +129,11 @@ E:\FYP_HKBU\
 
 | 文件夹 | 归属 | 覆盖的计划阶段 |
 |---|---|---|
-| `04_reports/separation/` | 板 1 · 分离 | 阶段 1-4：模型画像、14 张架构图、频谱面板、混响鲁棒性 |
-| `04_reports/denoiser/` | 板 2 · 降噪 | 阶段 5-7：降噪双口径评测、去混响、去回声 |
-| `04_reports/cascade/` | 级联 | 阶段 6-7：分离输出 → 降噪输入 |
-| `04_reports/_shared/` | 跨板块 | 总纲、模型画像、架构图数据、论文图包、口径章节 |
-| `04_reports/slides/` | 答辩 | 阶段 8 |
+| `04_reports/01_separation/` | 板 1 · 分离 | 阶段 1-4：模型画像、14 张架构图、频谱面板、混响鲁棒性 |
+| `04_reports/02_denoising/` | 板 2 · 降噪 | 阶段 5-7：降噪双口径评测、去混响、去回声 |
+| `04_reports/03_cascade/` | 级联 | 阶段 6-7：分离输出 → 降噪输入 |
+| `04_reports/00_shared/` | 跨板块 | 总纲、模型画像、架构图数据、论文图包、口径章节 |
+| `04_reports/04_defense/` | 答辩 | 阶段 8 |
 
 每个板块下固定四类子目录：`docs/`（md 报告）、`figures/`（png）、`data/`（json/csv）、`html/`（自包含看板）。
 
@@ -150,7 +150,7 @@ _paths.setup_env()                       # 自动设 TORCH_HOME / HF_HOME / MPLC
 
 _paths.THIRD_PARTY, _paths.WEIGHTS, _paths.MUSDB18_ROOT, _paths.DNS_ROOT, _paths.VALENTINI_ROOT
 _paths.OUTPUTS, _paths.REPORTS
-_paths.board_dir("denoiser")             # 04_reports/denoiser
+_paths.board_dir("denoiser")             # 04_reports/02_denoising
 _paths.board_sub("separation", "figures")
 _paths.model_dir("BS-RoFormer-L12")      # 01_models/separation/BS-RoFormer-L12
 _paths.out_dir("Demucs")                 # 03_outputs/Demucs
@@ -188,7 +188,7 @@ $PY tools/_build_paper_scope.py --verify        # 口径与差异说明章节
 $PY tools/_build_slides.py --verify             # 答辩 slides
 
 # —— 人耳聆听页（双击也行）——
-start_listen.bat          # → http://127.0.0.1:8123/04_reports/separation/html/listen_compare.html
+start_listen.bat          # → http://127.0.0.1:8123/04_reports/01_separation/html/listen_compare.html
 ```
 
 > ⚠️ 解释器**只能用 venv**（`fyp_audio`）。WorkBuddy 默认的 `python` 指向系统 3.13.12，没有 numpy，
@@ -218,7 +218,7 @@ start_listen.bat          # → http://127.0.0.1:8123/04_reports/separation/html
 | 产物按模型独立 | `03_outputs/_test_run/<模型>/` | `03_outputs/<模型>/test/` |
 | 移出项目 | `05_misc/lyrics-game/`（501 MB）等 | `E:\FYP_HKBU_evicted\`（同盘 `mv`，非删除） |
 
-> 逆向清单见 `04_reports/_shared/docs/RESTRUCTURE_2026-09-23.md` 与机器可读的 `_restructure_manifest.json`。
+> 逆向清单见 `04_reports/00_shared/docs/RESTRUCTURE_2026-09-23.md` 与机器可读的 `_restructure_manifest.json`。
 
 ### 2026-09-23 事故记录（磁盘）
 

@@ -3,7 +3,7 @@
 x = 回声条件（dry / echo_short 80 ms·g0.6 / echo_long 250 ms·g0.8）
 y = avg4 SDR（museval，参考 = 干 GT stem）；右图 = ΔSDR。
 
-产出：separation/figures/comparison/fig_echo_degradation.png
+产出：01_separation/figures/comparison/fig_echo_degradation.png
 """
 from __future__ import annotations
 
@@ -32,8 +32,8 @@ import matplotlib  # noqa: E402
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-REV = _paths.PROJECT_ROOT / "04_reports" / "separation" / "data" / "reverb"
-FIG = (_paths.PROJECT_ROOT / "04_reports" / "separation" / "figures"
+REV = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "data" / "reverb"
+FIG = (_paths.PROJECT_ROOT / "04_reports" / "01_separation" / "figures"
        / "comparison" / "fig_echo_degradation.png")
 
 PRETTY = {"demucs": "Demucs (htdemucs)", "umx": "Open-Unmix (umxhq)",

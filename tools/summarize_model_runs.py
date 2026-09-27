@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""把 04_reports/separation/data/comparison/model_runs.json 渲染成报告用的 Markdown 表格。
+"""把 04_reports/01_separation/data/comparison/model_runs.json 渲染成报告用的 Markdown 表格。
 
 用法：
     python tools/summarize_model_runs.py                # 全部

@@ -50,8 +50,8 @@ _paths.setup_env()
 
 ROOT = str(_paths.PROJECT_ROOT)
 TOOLS = os.path.join(ROOT, "tools")
-OUT_CSV = os.path.join(ROOT, "04_reports", "_shared", "data", "model_analysis", "model_profile.csv")
-OUT_JSON = os.path.join(ROOT, "04_reports", "_shared", "data", "model_analysis", "model_profile.json")
+OUT_CSV = os.path.join(ROOT, "04_reports", "00_shared", "data", "model_analysis", "model_profile.csv")
+OUT_JSON = os.path.join(ROOT, "04_reports", "00_shared", "data", "model_analysis", "model_profile.json")
 
 # fixed measurement protocol
 SR = 44100

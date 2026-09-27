@@ -12,7 +12,7 @@ v1.3 rev2（2026-09-16 晚）更新：
   1. 修正 v1.2 残留的「慢 3.3×」为实测口径 2.70×，并加口径提醒；
   2. 在「七 · 汇总…」之前插入新板块（id=s7n），原七改八；
   3. 更新页头版本/日期与导航；
-  4. 新板块的数字全部从 04_reports/separation/data/comparison/model_runs.json 读取，保证可复核。
+  4. 新板块的数字全部从 04_reports/01_separation/data/comparison/model_runs.json 读取，保证可复核。
 """
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ SONG = "A Classic Education - NightOwl"
 STEMS = ["vocals", "drums", "bass", "other"]
 STEM_ZH = {"vocals": "人声", "drums": "鼓", "bass": "贝斯", "other": "其他"}
 
-# 11 模型的静态供给事实（与 04_reports/separation/docs/MODEL_PROVISIONING_REPORT.md 保持一致）
+# 11 模型的静态供给事实（与 04_reports/01_separation/docs/MODEL_PROVISIONING_REPORT.md 保持一致）
 PROVISION = [
     # idx, key(在 model_runs 里的名字), 显示名, 开源, 许可证, 权重, 状态, 备注
     (1, "rpca", "RPCA", "✅ 自研", "—", "不需要（解析法）", "✅", "稀疏分量无天然 stem 归属，见 7.6②"),
@@ -146,7 +146,7 @@ def build_section(runs: dict) -> str:
       </tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
-    <div class="note">RTF 取自机器空闲时的一次连续测量（10 s 片段，<code>04_reports/separation/data/comparison/model_runs.json</code>）。未跑通的模型没有 RTF。</div>
+    <div class="note">RTF 取自机器空闲时的一次连续测量（10 s 片段，<code>04_reports/01_separation/data/comparison/model_runs.json</code>）。未跑通的模型没有 RTF。</div>
     """
 
     # ---------- 7.2 SDR 矩阵 ----------
@@ -289,7 +289,7 @@ def build_section(runs: dict) -> str:
   <p class="lede">对 11 个模型逐一做「是否开源 → 能否完整下载代码与权重 → 在本机能否真的跑出 stem wav → 失败原因」的核查。
   结论摘要：<b>8 个跑通</b>（含 BSRNN 三个变体）、<b>3 个无公开代码或权重</b>。
   另有 <b>Demucs</b> 同样跑通，并已并入同一个基准（同片段、同 museval 口径）→ <b>合计 12 个中 9 个可运行</b>。
-  完整报告见 <code>04_reports/separation/docs/MODEL_PROVISIONING_REPORT.md</code>。</p>
+  完整报告见 <code>04_reports/01_separation/docs/MODEL_PROVISIONING_REPORT.md</code>。</p>
   {kpis}
 
   <h3>7.1　核查总表</h3>

@@ -46,8 +46,8 @@
 
 - 目录：`01_models/denoising/denoiser-dns48/`（`code/` 为目录联接）
 - 产物：`03_outputs/denoiser-dns48/`
-- 主结果表：`04_reports/denoiser/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/02_denoising/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### denoiser-dns64
 
@@ -76,8 +76,8 @@
 
 - 目录：`01_models/denoising/denoiser-dns64/`（`code/` 为目录联接）
 - 产物：`03_outputs/denoiser-dns64/`
-- 主结果表：`04_reports/denoiser/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/02_denoising/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### denoiser-master64
 
@@ -106,8 +106,8 @@
 
 - 目录：`01_models/denoising/denoiser-master64/`（`code/` 为目录联接）
 - 产物：`03_outputs/denoiser-master64/`
-- 主结果表：`04_reports/denoiser/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/02_denoising/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Mel-RoFormer-Denoise
 
@@ -138,8 +138,8 @@
 
 - 目录：`01_models/denoising/Mel-RoFormer-Denoise/`（`code/` 为目录联接）
 - 产物：`03_outputs/Mel-RoFormer-Denoise/`
-- 主结果表：`04_reports/denoiser/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/02_denoising/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Mel-RoFormer-Dereverb
 
@@ -169,8 +169,8 @@
 
 - 目录：`01_models/denoising/Mel-RoFormer-Dereverb/`（`code/` 为目录联接）
 - 产物：`03_outputs/Mel-RoFormer-Dereverb/`
-- 主结果表：`04_reports/denoiser/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/02_denoising/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`
 
 ### Mel-RoFormer-Dereverb-Echo
 
@@ -200,5 +200,5 @@
 
 - 目录：`01_models/denoising/Mel-RoFormer-Dereverb-Echo/`（`code/` 为目录联接）
 - 产物：`03_outputs/Mel-RoFormer-Dereverb-Echo/`
-- 主结果表：`04_reports/denoiser/docs/`
-- 架构原理图：`04_reports/_shared/figures/model_arch/`
+- 主结果表：`04_reports/02_denoising/docs/`
+- 架构原理图：`04_reports/00_shared/figures/model_arch/`

@@ -19,7 +19,7 @@
 
 输出
 ----
-    04_reports/slides/defense_slides.html
+    04_reports/04_defense/defense_slides.html
 '''
 from __future__ import annotations
 
@@ -510,7 +510,7 @@ def build():
         '<b>单轨模型的 SDR 只覆盖人声，跟四轨平均不是一条轴</b>，直接排名是错的。<br>'
         '右边这张图还暴露一个坑：FLOPs 我算的是 2×MACs 下界，'
         '因为 PyTorch 计数器看不到 STFT 和融合注意力。所以跨架构比较我只用「下界 + 实测时延」。',
-        foot='画像表：<code>_shared/data/model_analysis/model_profile.csv</code>（%d 行，含 22 个模型 / 权重）' % n_models))
+        foot='画像表：<code>00_shared/data/model_analysis/model_profile.csv</code>（%d 行，含 22 个模型 / 权重）' % n_models))
 
     # ---- S6 板 1 · 精度主表 --------------------------------------------
     rank = sep_ranked()
@@ -735,7 +735,7 @@ def build():
         '更值得讲的是修复后<b>结论彻底反转</b>：原本我说「三个指标互相矛盾」，'
         '修复后 20 个格子全部同向为正 —— 那个矛盾根本不存在。'
         '<b>能解释一切的叙事，往往就是 bug 在说话。</b>',
-        foot='完整复盘：<code>denoiser/docs/P19_SAMPLE_RATE_CONTRACT_BUG.md</code> ｜ '
+        foot='完整复盘：<code>02_denoising/docs/P19_SAMPLE_RATE_CONTRACT_BUG.md</code> ｜ '
              '本节数字全部来自修复后口径（<code>denoise_eval_16k.json</code>）'))
 
     # ---- S13 板 2 · 降噪主表 --------------------------------------------
@@ -1120,7 +1120,7 @@ def build():
         '我用的是 HTDemucs，不是同一代模型。<br>'
         '我的态度是<b>把差异写清楚，而不是凑一个更像论文的数字</b>。'
         '这份说明覆盖 18 条口径坑和 7 个速答卡，也是论文方法与局限章节的素材。',
-        foot='完整版：<code>_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md</code>（7 节 / 211 行，机器生成，'
+        foot='完整版：<code>00_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md</code>（7 节 / 211 行，机器生成，'
              '<code>--verify</code> 逐字节一致）'))
 
     # ---- S24 收尾 -------------------------------------------------------
@@ -1129,11 +1129,11 @@ def build():
         'Reproducible by Design',
         '交付物一页索引 · 全部可一键复现',
         tbl(['交付物', '路径', '复现命令'], [
-            ('', ['四份数据摘要', '<code>_shared/docs/summaries/*.md</code>', '<code>_build_summaries.py --verify</code>']),
+            ('', ['四份数据摘要', '<code>00_shared/docs/summaries/*.md</code>', '<code>_build_summaries.py --verify</code>']),
             ('', ['三块离线看板', '<code>*/html/*_dashboard.html</code>', '<code>_build_dashboards.py --only all</code>']),
-            ('', ['论文图包 %d 张 + 图注' % n_fig, '<code>_shared/figures/paper/</code>', '<code>_export_paper_figures.py --board 1 check</code>']),
-            ('', ['口径与差异说明', '<code>_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md</code>', '<code>_build_paper_scope.py --verify</code>']),
-            ('', ['答辩 slides（本文件）', '<code>slides/defense_slides.html</code>', '<code>_build_slides.py --verify</code>']),
+            ('', ['论文图包 %d 张 + 图注' % n_fig, '<code>00_shared/figures/paper/</code>', '<code>_export_paper_figures.py --board 1 check</code>']),
+            ('', ['口径与差异说明', '<code>00_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md</code>', '<code>_build_paper_scope.py --verify</code>']),
+            ('', ['答辩 slides（本文件）', '<code>04_defense/defense_slides.html</code>', '<code>_build_slides.py --verify</code>']),
         ], 'sm')
         + '<div class="note good"><b>环境与铁律</b>：解释器固定 venv；'
           '脚本一律 <code>import paths; setup_env()</code>；'

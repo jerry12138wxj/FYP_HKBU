@@ -24,8 +24,8 @@ figure 等版式与图片内嵌工具，自己只负责 T7.2 两块看板的数�
 
 输出
 ----
-    04_reports/denoiser/html/denoise_dashboard.html
-    04_reports/cascade/html/cascade_dashboard.html
+    04_reports/02_denoising/html/denoise_dashboard.html
+    04_reports/03_cascade/html/cascade_dashboard.html
 """
 from __future__ import annotations
 
@@ -489,7 +489,7 @@ def build_denoise(d):
     # ---- 9 产物与复现
     sec.append(B.h2('s9', '9', '产物与复现')
                + B.note(
-                   '<b>数据</b>：<code>denoiser/data/denoise_eval_16k.json</code>、'
+                   '<b>数据</b>：<code>02_denoising/data/denoise_eval_16k.json</code>、'
                    '<code>denoise_eval_44k.json</code>、<code>denoise_drywet.json</code>、'
                    '<code>denoise_manifest.json</code>（16575 cells）、'
                    '<code>denoise_ood_probe.json</code>、<code>denoise_probeA_paired.json</code><br>'
@@ -687,7 +687,7 @@ def build_cascade(d):
     # ---- 7 产物与复现
     sec.append(B.h2('s7', '7', '产物与复现')
                + B.note(
-                   '<b>数据</b>：<code>cascade/data/cascade_plan.json</code>、'
+                   '<b>数据</b>：<code>03_cascade/data/cascade_plan.json</code>、'
                    '<code>cascade_manifest.json</code>（门禁 %d/%d PASS）、'
                    '<code>cascade_eval.json</code>（%d 分离 + %d 后置格）、'
                    '<code>cascade_eval.csv</code>、<code>cascade_eval.partial.jsonl</code>'

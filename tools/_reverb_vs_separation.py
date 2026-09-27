@@ -39,7 +39,7 @@ TOOLS = Path(_paths.TOOLS)
 sys.path.insert(0, str(TOOLS))
 
 SR = 44100
-REV_DIR = _paths.PROJECT_ROOT / "04_reports" / "separation" / "data" / "reverb"
+REV_DIR = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "data" / "reverb"
 AUDIO_ROOT = _paths.OUTPUTS / "_reverb"
 OUT_JSON = REV_DIR / "reverb_vs_sep.json"
 MANIFEST = REV_DIR / "reverb_manifest.json"

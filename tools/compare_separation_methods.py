@@ -118,7 +118,7 @@ DATA_ROOT = _paths.MUSDB18_ROOT
 #       └── realtime_benchmark.json
 # ------------------------------------------------------------------ #
 OUTPUTS_ROOT = _paths.OUTPUTS
-COMPARISON_DIR = _paths.comparison_dir()   # → 04_reports/separation/data/comparison
+COMPARISON_DIR = _paths.comparison_dir()   # → 04_reports/01_separation/data/comparison
 
 SR = 44100
 EPS = 1e-10

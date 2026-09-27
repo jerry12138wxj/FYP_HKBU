@@ -27,8 +27,8 @@
 
 输出
 ----
-    04_reports/separation/data/comparison/metric_window_probe.json
-    04_reports/separation/data/comparison/mixture_baseline.json
+    04_reports/01_separation/data/comparison/metric_window_probe.json
+    04_reports/01_separation/data/comparison/mixture_baseline.json
 
 用法
 ----

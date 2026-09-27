@@ -2,7 +2,7 @@
 """T8.3 · 论文「口径与差异说明」章节生成器（服务 D12 图包 / D13 答辩）
 
 DoD（计划书 §2.3 · T8.3）：**挡掉「为什么和参考表不一样」的提问**。
-产出：`04_reports/_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md`（论文章节素材，可直接引用）。
+产出：`04_reports/00_shared/docs/PAPER_SCOPE_AND_DIVERGENCE.md`（论文章节素材，可直接引用）。
 
 设计铁律（继承 T6「手填 d_L2b 整列全错」事故 + 技能铁律 18 / 22）：
   1. 正文数值**一律从源产物读出或重算**；唯一转录内容是「参考表」列（外部提供，
@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 R = ROOT / "04_reports"
-D = R / "_shared" / "docs"
+D = R / "00_shared" / "docs"
 OUT = D / "PAPER_SCOPE_AND_DIVERGENCE.md"
 STAMP = "2026-09-26"
 
@@ -114,8 +114,8 @@ def ref_rows() -> tuple[list[list[str]], list[str]]:
             continue
         raw.append(cells[:4])
 
-    med = rd_json(R / "separation" / "data" / "comparison" / "model_runs_median.json")
-    prof = {r["model_key"]: r for r in rd_csv(R / "_shared" / "data" / "model_analysis" / "model_profile.csv")}
+    med = rd_json(R / "01_separation" / "data" / "comparison" / "model_runs_median.json")
+    prof = {r["model_key"]: r for r in rd_csv(R / "00_shared" / "data" / "model_analysis" / "model_profile.csv")}
 
     def recalc(item: str):
         if item.startswith("Demucs 参数量"):
@@ -254,7 +254,7 @@ def caveat_counts() -> tuple[dict[str, int], str]:
 # ------------------------------------------------------------------ 图纸与缺口（自动）
 
 def figure_block() -> tuple[dict, list[list[str]], list[list[str]]]:
-    m = rd_json(R / "_shared" / "figures" / "paper" / "paper_figures_manifest.json")
+    m = rd_json(R / "00_shared" / "figures" / "paper" / "paper_figures_manifest.json")
     figs = m["figures"]
     dpi = Counter(f["dpi"] for f in figs)
     stat = {
@@ -278,11 +278,11 @@ def figure_block() -> tuple[dict, list[list[str]], list[list[str]]]:
 # ------------------------------------------------------------------ 事实数字（自动）
 
 def fact_block() -> dict:
-    cas = rd_json(R / "cascade" / "data" / "cascade_eval.json")
-    man = rd_json(R / "cascade" / "data" / "cascade_manifest.json")
-    den = rd_json(R / "denoiser" / "data" / "denoise_manifest.json")
-    e16 = rd_json(R / "denoiser" / "data" / "denoise_eval_16k.json")
-    e44 = rd_json(R / "denoiser" / "data" / "denoise_eval_44k.json")
+    cas = rd_json(R / "03_cascade" / "data" / "cascade_eval.json")
+    man = rd_json(R / "03_cascade" / "data" / "cascade_manifest.json")
+    den = rd_json(R / "02_denoising" / "data" / "denoise_manifest.json")
+    e16 = rd_json(R / "02_denoising" / "data" / "denoise_eval_16k.json")
+    e44 = rd_json(R / "02_denoising" / "data" / "denoise_eval_44k.json")
 
     def hf(doc, key):
         for r in doc["rows"]:
@@ -431,7 +431,7 @@ def build() -> str:
     A("### 4.3 规模与计数（可对账）")
     A("")
     A(md_table(["项", "值", "来源"],
-               [["降噪评测 cells", str(fb["den_cells"]), "`denoiser/data/denoise_manifest.json`"],
+               [["降噪评测 cells", str(fb["den_cells"]), "`02_denoising/data/denoise_manifest.json`"],
                 ["降噪口径 A（44.1 kHz 契约率）行数", str(fb["den_rows44"]), "`denoise_eval_44k.json`"],
                 ["降噪口径 B（16 kHz）行数", str(fb["den_rows16"]), "`denoise_eval_16k.json`"],
                 ["级联门禁", f'{fb["cas_gate"] - fb["cas_gate_fail"]}/{fb["cas_gate"]} PASS', "`cascade_manifest.json`"],
@@ -484,16 +484,16 @@ def build() -> str:
     A("## 6. 数字溯源（引用任何数字前，先看它在哪个文件）")
     A("")
     A(md_table(["数字 / 结论", "源文件", "生成工具"],
-               [["分离主表（Average SDR 等）", "`separation/data/comparison/model_runs_median.json`", "`tools/bench_multisong.py` + `median_over_clips.py`"],
+               [["分离主表（Average SDR 等）", "`01_separation/data/comparison/model_runs_median.json`", "`tools/bench_multisong.py` + `median_over_clips.py`"],
                 ["参考表登记值", f"`{REF_DOC}` §7、`{REF_DOC2}` §5", "（外部提供，不重算）"],
-                ["模型画像（参数量 / FLOPs / 时延）", "`_shared/data/model_analysis/model_profile.csv`", "`tools/_measure_model_profile.py`"],
-                ["降噪评测（双口径）", "`denoiser/data/denoise_eval_16k.json` / `_44k.json`", "`tools/_denoise_eval.py`"],
-                ["dry/wet 旋钮", "`denoiser/data/denoise_drywet.json`", "`tools/_denoise_drywet.py`"],
-                ["域外探针", "`denoiser/data/denoise_ood_probe.json`", "`tools/_denoise_ood_probe.py`"],
-                ["级联矩阵 / 门禁", "`cascade/data/cascade_eval.json` / `cascade_manifest.json`", "`tools/_cascade_experiment.py`"],
-                ["门禁重判", "`cascade/data/cascade_eval.json` · regate", "`tools/_cascade_regate.py`"],
-                ["论文图清单（像素 / dpi / 复现脚本）", "`_shared/figures/paper/paper_figures_manifest.json`", "`tools/_export_paper_figures.py`"],
-                ["四份数据摘要", "`_shared/docs/summaries/*.md`", "`tools/_build_summaries.py`"],
+                ["模型画像（参数量 / FLOPs / 时延）", "`00_shared/data/model_analysis/model_profile.csv`", "`tools/_measure_model_profile.py`"],
+                ["降噪评测（双口径）", "`02_denoising/data/denoise_eval_16k.json` / `_44k.json`", "`tools/_denoise_eval.py`"],
+                ["dry/wet 旋钮", "`02_denoising/data/denoise_drywet.json`", "`tools/_denoise_drywet.py`"],
+                ["域外探针", "`02_denoising/data/denoise_ood_probe.json`", "`tools/_denoise_ood_probe.py`"],
+                ["级联矩阵 / 门禁", "`03_cascade/data/cascade_eval.json` / `cascade_manifest.json`", "`tools/_cascade_experiment.py`"],
+                ["门禁重判", "`03_cascade/data/cascade_eval.json` · regate", "`tools/_cascade_regate.py`"],
+                ["论文图清单（像素 / dpi / 复现脚本）", "`00_shared/figures/paper/paper_figures_manifest.json`", "`tools/_export_paper_figures.py`"],
+                ["四份数据摘要", "`00_shared/docs/summaries/*.md`", "`tools/_build_summaries.py`"],
                 ["口径三要素（本文件 §1）", "`tools/_export_paper_figures.py` · `GROUPS`", "（继承，非重抄）"]],
                align="|:---|:---|:---|"))
     A("> **解释器**：全部脚本须用 venv —— "

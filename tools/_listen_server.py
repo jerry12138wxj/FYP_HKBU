@@ -143,7 +143,7 @@ def main(argv=None):
     def handler(*args, **kw):
         return QuietHandler(*args, directory=root, **kw)
 
-    page = "http://%s:%d/04_reports/separation/html/listen_compare.html" % (a.host, a.port)
+    page = "http://%s:%d/04_reports/01_separation/html/listen_compare.html" % (a.host, a.port)
     print("root :", root)
     print("page :", page)
     print("stop : Ctrl-C")

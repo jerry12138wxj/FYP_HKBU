@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Render the architecture explainer figures (T2.2 / deliverable D2).
 
-Reads  : 04_reports/_shared/data/model_analysis/graph_<key>.json   (from _extract_model_graph.py)
-Writes : 04_reports/_shared/figures/model_arch/arch_<family>.png  x14
+Reads  : 04_reports/00_shared/data/model_analysis/graph_<key>.json   (from _extract_model_graph.py)
+Writes : 04_reports/00_shared/figures/model_arch/arch_<family>.png  x14
 
 Layout of every figure
 ----------------------
@@ -41,8 +41,8 @@ plt.rcParams["axes.unicode_minus"] = False
 plt.rcParams["figure.dpi"] = 130
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(_ROOT, "04_reports", "_shared", "data", "model_analysis")
-FIG = os.path.join(_ROOT, "04_reports", "_shared", "figures", "model_arch")
+DATA = os.path.join(_ROOT, "04_reports", "00_shared", "data", "model_analysis")
+FIG = os.path.join(_ROOT, "04_reports", "00_shared", "figures", "model_arch")
 os.makedirs(FIG, exist_ok=True)
 
 INK = "#111827"
@@ -828,7 +828,7 @@ def render(fam):
         lines.append("本机权重：无（解析算法，不需要权重文件）")
     lines.append("代码落点：" + fam["code"])
     TRACE_NOTE = {
-        "ok": "形状可溯源：右侧所有 in -> out 均取自 04_reports/_shared/data/model_analysis/"
+        "ok": "形状可溯源：右侧所有 in -> out 均取自 04_reports/00_shared/data/model_analysis/"
               "graph_%s.json（status=OK）" % fam["primary"],
         "analytic": "本图为解析算法，`graph_%s.json` 记录 status=NO_MODULE，"
                     "故整张图不标注任何 shape（没有 trace 可溯源就不写数字）" % fam["primary"],

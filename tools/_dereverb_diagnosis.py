@@ -29,7 +29,7 @@ import torch  # noqa: E402
 ROOT = _paths.PROJECT_ROOT
 W = ROOT / "01_models" / "_weights"
 ZF = ROOT / "01_models" / "_third_party" / "Music-Source-Separation-Training"
-REV = ROOT / "04_reports" / "separation" / "data" / "reverb"
+REV = ROOT / "04_reports" / "01_separation" / "data" / "reverb"
 AUDIO = _paths.OUTPUTS / "_reverb"
 SR = 44100
 
@@ -91,7 +91,7 @@ def _official_stems(mk, wet, dry):
 def main() -> int:
     old = json.loads((REV / "dereverb_results.json").read_text(encoding="utf-8"))
     clips = json.loads(
-        (_paths.PROJECT_ROOT / "04_reports/separation/data/reverb/reverb_manifest.json")
+        (_paths.PROJECT_ROOT / "04_reports/01_separation/data/reverb/reverb_manifest.json")
         .read_text(encoding="utf-8"))["clips"]
 
     # ---- A：既有 loader 结果按模型分组 ----
@@ -169,7 +169,7 @@ def main() -> int:
 
     out = {
         "task": "T4.3(诊断) 去混响复现性诊断",
-        "source": "separation/data/reverb/dereverb_results.json + 官方 inference 路径对照",
+        "source": "01_separation/data/reverb/dereverb_results.json + 官方 inference 路径对照",
         "loader_summary_by_model": by_model,
         "official_vs_loader": cross,
         "dry_passthrough_check": thru,

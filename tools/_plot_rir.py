@@ -1,7 +1,7 @@
 """T4.4 RIR 本体图：脉冲响应波形 + Schroeder EDC + T60/C50/DRR 标注。
 
 产出（论文/答辩可直接贴）：
-  separation/figures/comparison/fig_rir_t60.png
+  01_separation/figures/comparison/fig_rir_t60.png
 
 口径与 `_select_rirs.py::_schroeder_t60` 一致：
   - T60 = 2 x T30（-5~-25 dB 最小二乘），**拟合前剔除峰值 ±2.5 ms 直达声窗**；
@@ -38,9 +38,9 @@ import matplotlib  # noqa: E402
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-REV = _paths.PROJECT_ROOT / "04_reports" / "separation" / "data" / "reverb"
+REV = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "data" / "reverb"
 RIR_DIR = REV / "rir"
-FIG = _paths.PROJECT_ROOT / "04_reports" / "separation" / "figures" / "comparison" / "fig_rir_t60.png"
+FIG = _paths.PROJECT_ROOT / "04_reports" / "01_separation" / "figures" / "comparison" / "fig_rir_t60.png"
 SEL = REV / "rir_selection.json"
 
 plt.rcParams.update({"font.family": "DejaVu Sans", "axes.grid": True,
