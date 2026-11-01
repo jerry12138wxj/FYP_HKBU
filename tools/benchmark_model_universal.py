@@ -381,6 +381,63 @@ def load_mdx():
     return run, dt, {"kind": "deep", "device": dev, "bag": "mdx_extra", "weights_src": src}
 
 
+def _load_mdx_bag(name: str, repo_name: str):
+    """加载 demucs 的 MDX 系列袋子模型（mdx_extra / mdx_q / mdx_extra_q）。
+
+    与 load_mdx 同源，仅 get_model 的 name 与本地 repo 目录不同。
+    mdx_q / mdx_extra_q 是 diffq 量化权重，解包依赖纯 Python diffq
+    （site-packages/diffq/bitpack.py，见 MODEL_LIBRARY_UPDATE.md）。
+    """
+    import torch
+    from demucs.pretrained import get_model
+    t0 = time.time()
+    local_repo = _paths.WEIGHTS / "MDX-Net" / repo_name
+
+    _orig_load = torch.load
+
+    def _load_weights_only_false(*a, **kw):
+        kw.setdefault("weights_only", False)
+        return _orig_load(*a, **kw)
+
+    torch.load = _load_weights_only_false
+    try:
+        if (local_repo / f"{repo_name}.yaml").is_file():
+            model = get_model(name, repo=local_repo)
+            src = f"local:{local_repo}"
+        else:  # 回退到远程
+            model = get_model(name)
+            src = "remote"
+    finally:
+        torch.load = _orig_load
+
+    model.eval()
+    dt = time.time() - t0
+    dev = "cuda" if torch.cuda.is_available() else "cpu"
+    model.to(dev)
+
+    def run(mix):
+        from demucs.apply import apply_model
+        wav = torch.as_tensor(np.ascontiguousarray(mix.T), dtype=torch.float32)
+        ref = wav.mean(0)
+        wav = (wav - ref.mean()) / (ref.std() + 1e-8)
+        with torch.no_grad():
+            out = apply_model(model, wav[None].to(dev), device=dev,
+                              progress=False)[0].cpu()
+        out = out * ref.std() + ref.mean()
+        return {s: _to_stereo(out[i].numpy()) for i, s in enumerate(model.sources)}
+    return run, dt, {"kind": "deep", "device": dev, "bag": name, "weights_src": src}
+
+
+def load_mdx_q():
+    """MDX-Net 量化版 mdx_q —— 4 模型集成（diffq 量化，精度≈mdx，掉点<0.1dB）。"""
+    return _load_mdx_bag("mdx_q", "mdx_q")
+
+
+def load_mdx_extra_q():
+    """MDX-Net 量化版 mdx_extra_q —— 4 模型集成（diffq 量化）。"""
+    return _load_mdx_bag("mdx_extra_q", "mdx_extra_q")
+
+
 def load_demucs():
     """Demucs (htdemucs) —— 波形域混合架构，**单模型直接出 4 stem**。
 
@@ -812,6 +869,8 @@ REGISTRY = {
     "rpca":           dict(loader=load_rpca,            needs_gt=False, label="RPCA (Inexact-ALM)", eval_all_stems=True),
     "umx":            dict(loader=load_umx,             needs_gt=False, label="Open-Unmix (umxhq)"),
     "mdx":            dict(loader=load_mdx,             needs_gt=False, label="MDX-Net (mdx_extra)"),
+    "mdx_q":          dict(loader=load_mdx_q,           needs_gt=False, label="MDX-Net (mdx_q, quant)"),
+    "mdx_extra_q":    dict(loader=load_mdx_extra_q,     needs_gt=False, label="MDX-Net (mdx_extra_q, quant)"),
     "convtasnet":     dict(loader=load_convtasnet,      needs_gt=False, label="Conv-TasNet (musdb18)"),
     "mmdenselstm":    dict(loader=load_mmdenselstm,     needs_gt=False, label="MMDenseLSTM (musdb18)"),
     "bsroformer_l12": dict(loader=load_bsroformer_l12,  needs_gt=False, label="BS-RoFormer L12 (ep_317, vocals)"),

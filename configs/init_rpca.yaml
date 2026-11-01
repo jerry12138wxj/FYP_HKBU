@@ -1,0 +1,64 @@
+model: rpca
+label: RPCA (Inexact-ALM)
+task: separation
+kind: analytic
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#rpca
+  architecture_source: tools/compare_separation_methods.py:334-340 (librosa.stft defaults center=True)
+  repo_commit: n/a (in-tree)
+  official_config: none
+audio_contract:
+  sample_rate: 44100
+  channels: 1
+  segment_s: null
+  mono_downmix_internal: true
+  sample_rate_source: model_profile.csv native_sr=44100 / tools/compare_separation_methods.py:334-340 (librosa.stft
+    defaults center=True)
+stft:
+  n_fft: 2048
+  hop_length: 512
+  win_length: 2048
+  window: hann
+  center: true
+  normalized: false
+  n_freq_bins: 1025
+  note: tools/compare_separation_methods.py:334-340 (librosa.stft defaults center=True)
+normalization:
+  scheme: none
+  applied_at: none
+outputs:
+  stems:
+  - sparse(no stem ownership)
+  profile_targets:
+  - vocals
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: null
+  official_release: true
+  files: []
+  primary_sha256: null
+  sha256_status: n/a (no weights)
+  citation_note: 官方发布
+device:
+  device: cuda
+  dtype: float32
+  amp: false
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '0.0'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: not_applicable
+  epochs_frozen: 0
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 0.0
+  params_expected_int: 0
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 1, 0]'
+    expect_output: '[1, 1, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: analytic_ready

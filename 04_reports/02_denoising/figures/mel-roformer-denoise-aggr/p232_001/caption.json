@@ -1,0 +1,27 @@
+{
+  "est_label": "mel-roformer-denoise-aggr (enhanced)",
+  "ref_label": "Valentini clean reference",
+  "sr": 48000,
+  "duration_s": 1.74,
+  "win_lengths": [
+    128,
+    512,
+    1024,
+    2048
+  ],
+  "is_mixed_output": false,
+  "note": "输入 = Valentini noisy p232_001；输出为 stage0_gate 探针",
+  "files": [
+    "fig1_waveform_est_ref_diff.png",
+    "fig2_waveform_sr_compare.png",
+    "fig3_spectrogram_est.png",
+    "fig3_spectrogram_ref.png",
+    "fig4_spectrogram_win1024.png",
+    "fig4_spectrogram_win128.png",
+    "fig4_spectrogram_win2048.png",
+    "fig4_spectrogram_win512.png",
+    "fig5_trim_before_after.png",
+    "fig6_mfcc_est.png",
+    "fig6_mfcc_ref.png"
+  ]
+}

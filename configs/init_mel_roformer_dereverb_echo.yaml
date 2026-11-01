@@ -1,0 +1,71 @@
+model: mel_roformer_dereverb_echo
+label: Dereverb-Echo-Mel-RoFormer
+task: dereverb
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#mel_roformer_dereverb_echo
+  architecture_source: 'config_dereverb-echo_mel_band_roformer.yaml: n_fft=2048 hop=441 dim=256 depth=8 instruments=[dry,other]
+    (2-stem)'
+  repo_commit: 050cae7345f4
+  official_config: 01_models/_weights/mel_roformer_dereverb_echo/config_dereverb-echo_mel_band_roformer.yaml
+audio_contract:
+  sample_rate: 44100
+  channels: 2
+  segment_s: 8.0
+  mono_downmix_internal: false
+  sample_rate_source: 'model_profile.csv native_sr=44100 / config_dereverb-echo_mel_band_roformer.yaml: n_fft=2048
+    hop=441 dim=256 depth=8 instruments=[dry,other] (2-stem)'
+stft:
+  n_fft: 2048
+  hop_length: 441
+  win_length: 2048
+  window: hann
+  center: true
+  normalized: false
+  n_freq_bins: 1025
+  note: 'config_dereverb-echo_mel_band_roformer.yaml: n_fft=2048 hop=441 dim=256 depth=8 instruments=[dry,other]
+    (2-stem)'
+normalization:
+  scheme: none
+  applied_at: none
+outputs:
+  stems:
+  - dry
+  - other
+  profile_targets:
+  - dry
+  - other
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/mel_roformer_dereverb_echo/dereverb-echo_mel_band_roformer_sdr_10.0169.ckpt
+  official_release: false
+  files:
+  - file: 01_models/_weights/mel_roformer_dereverb_echo/dereverb-echo_mel_band_roformer_sdr_10.0169.ckpt
+    mb: 797.3
+    sha256: cd2b737a394cfb80cd48cc9fcbaf89f5f4062f6b93066c2911617a06d8b7860a
+  primary_sha256: cd2b737a394cfb80cd48cc9fcbaf89f5f4062f6b93066c2911617a06d8b7860a
+  sha256_status: verified
+  citation_note: 非官方/社区权重，引用需注明
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '1869.2'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 208.88
+  params_expected_int: 208880000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 2, 352800]'
+    expect_output: '[2, 2, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

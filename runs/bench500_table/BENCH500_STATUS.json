@@ -1,0 +1,31 @@
+{
+ "started": "2026-10-31 06:02:13",
+ "steps": [
+  {
+   "stage": "bench_best",
+   "ok": true
+  },
+  {
+   "stage": "bench_last",
+   "ok": true
+  },
+  {
+   "stage": "table",
+   "rc": 0
+  }
+ ],
+ "status": {
+  "rpca_seg": 500,
+  "rpca_done": true,
+  "dprnn_exited": false,
+  "dprnn_log_stale": true,
+  "dprnn_done": true,
+  "dprnn_best": [
+   "D:\\FYP_HKBU_runs\\dprnn_v2\\checkpoints\\best.pt",
+   14778139
+  ],
+  "dprnn_best_mtime": "2026-10-31 00:57:25"
+ },
+ "finished": "2026-10-31 06:12:59",
+ "result": "OK"
+}

@@ -20,6 +20,7 @@ ckpt 里显式存了 `targets`（stem 顺序）。加载端**必须按 ckpt 记�
 from __future__ import annotations
 
 import importlib.util
+import os
 import sys
 from pathlib import Path
 
@@ -28,7 +29,9 @@ import paths as _paths
 _paths.setup_env()
 
 REPO = _paths.THIRD_PARTY / "Dual-Path-RNN-Pytorch"
-CKPT_DIR = _paths.WEIGHTS / "dprnn_musdb"
+# 默认指向已完成归档的自训权重。重训版本放在别的目录时，用环境变量覆盖，
+# 这样评测可以复用同一套代码，且默认行为完全不变（不设变量 = 老路径）。
+CKPT_DIR = Path(os.environ.get("FYP_DPRNN_CKPT_DIR") or (_paths.WEIGHTS / "dprnn_musdb"))
 SR_TRAIN = 11025                      # 模型原生采样率
 TARGETS = ("vocals", "drums", "bass", "other")
 

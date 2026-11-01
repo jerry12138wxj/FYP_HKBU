@@ -1,0 +1,58 @@
+{
+  "source": "E:\\FYP_HKBU\\04_reports\\01_separation\\data\\comparison\\model_runs_run.json",
+  "model": "RPCA (Inexact-ALM)",
+  "runs": [
+    {
+      "song": "Al James - Schoolboy Facination",
+      "duration_s": 30,
+      "infer_s": 88.483,
+      "rtf": 2.9494,
+      "cross_stem_si_sdr": {
+        "vocals": 0.213,
+        "drums": -6.563,
+        "bass": -8.986,
+        "other": -11.633
+      },
+      "best_match": {
+        "stem": "vocals",
+        "si_sdr": 0.213,
+        "corr": 0.7157
+      },
+      "status": "PASS",
+      "timestamp": "2026-10-31T00:08:50",
+      "out": "E:\\FYP_HKBU\\03_outputs\\_test_run\\RPCA\\Al James - Schoolboy Facination\\vocals.flac",
+      "out_mb": 1.21,
+      "out_sr": 44100,
+      "out_ch": 2,
+      "out_dur_s": 30.0,
+      "peak": 0.3756,
+      "clip_frac": 0.0
+    },
+    {
+      "song": "AM Contra - Heart Peripheral",
+      "duration_s": 30,
+      "infer_s": 87.887,
+      "rtf": 2.9296,
+      "cross_stem_si_sdr": {
+        "vocals": -6.72,
+        "drums": 1.333,
+        "bass": -75.488,
+        "other": -6.626
+      },
+      "best_match": {
+        "stem": "drums",
+        "si_sdr": 1.333,
+        "corr": 0.759
+      },
+      "status": "PASS",
+      "timestamp": "2026-10-31T00:10:31",
+      "out": "E:\\FYP_HKBU\\03_outputs\\_test_run\\RPCA\\AM Contra - Heart Peripheral\\vocals.flac",
+      "out_mb": 1.1,
+      "out_sr": 44100,
+      "out_ch": 2,
+      "out_dur_s": 30.0,
+      "peak": 0.293,
+      "clip_frac": 0.0
+    }
+  ]
+}

@@ -1,0 +1,478 @@
+[
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\BS-RoFormer\\configs\\model_bs_roformer_ep_317_sdr_12.9755.yaml",
+    "keys": {
+      "audio.chunk_size": 352800,
+      "audio.hop_length": 441,
+      "audio.n_fft": 2048,
+      "audio.num_channels": 2,
+      "audio.sample_rate": 44100,
+      "model.dim": 512,
+      "model.depth": 12,
+      "training.instruments": [
+        "vocals",
+        "other"
+      ],
+      "training.target_instrument": "vocals"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\BS-RoFormer\\configs\\model_bs_roformer_ep_937_sdr_10.5309.yaml",
+    "keys": {
+      "audio.chunk_size": 131584,
+      "audio.hop_length": 512,
+      "audio.n_fft": 2048,
+      "audio.num_channels": 2,
+      "audio.sample_rate": 44100,
+      "model.dim": 384,
+      "model.depth": 12,
+      "training.instruments": [
+        "vocals",
+        "other"
+      ],
+      "training.target_instrument": "other"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx\\mdx.yaml",
+    "keys": {
+      "segment": 44
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_extra\\mdx_extra.yaml",
+    "keys": {
+      "segment": 44
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_extra_q\\mdx_extra_q.yaml",
+    "keys": {
+      "segment": 44
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_q\\mdx_q.yaml",
+    "keys": {
+      "segment": 44
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\mel_roformer_denoise\\model_mel_band_roformer_denoise.yaml",
+    "keys": {
+      "audio.chunk_size": 352800,
+      "audio.hop_length": 441,
+      "audio.n_fft": 2048,
+      "audio.num_channels": 2,
+      "audio.sample_rate": 44100,
+      "model.dim": 384,
+      "model.depth": 6,
+      "model.sample_rate": 44100,
+      "training.instruments": [
+        "dry",
+        "other"
+      ],
+      "training.target_instrument": "dry"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\mel_roformer_dereverb\\dereverb_mel_band_roformer_anvuew.yaml",
+    "keys": {
+      "audio.chunk_size": 352800,
+      "audio.hop_length": 441,
+      "audio.n_fft": 2048,
+      "audio.num_channels": 2,
+      "audio.sample_rate": 44100,
+      "model.dim": 384,
+      "model.depth": 6,
+      "model.sample_rate": 44100,
+      "training.instruments": [
+        "noreverb",
+        "reverb"
+      ],
+      "training.target_instrument": "noreverb"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_weights\\mel_roformer_dereverb_echo\\config_dereverb-echo_mel_band_roformer.yaml",
+    "keys": {
+      "audio.chunk_size": 352800,
+      "audio.hop_length": 441,
+      "audio.n_fft": 2048,
+      "audio.num_channels": 2,
+      "audio.sample_rate": 44100,
+      "model.dim": 256,
+      "model.depth": 8,
+      "model.sample_rate": 44100,
+      "training.instruments": [
+        "dry",
+        "other"
+      ],
+      "training.target_instrument": null
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\config.yaml",
+    "keys": {
+      "sources": [
+        "vocals",
+        "bass",
+        "drums",
+        "other"
+      ],
+      "sample_rate": 44100,
+      "n_fft": 2048,
+      "n_hop": 512,
+      "nb_channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\dset\\musdb18hq.yaml",
+    "keys": {
+      "sources": "${sources}",
+      "sample_rate": "${sample_rate}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\dset\\musdb18hq_sad.yaml",
+    "keys": {
+      "sources": "${sources}",
+      "sample_rate": "${sample_rate}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\eval\\default.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\model\\bscnn.yaml",
+    "keys": {
+      "sample_rate": "${sample_rate}",
+      "n_fft": "${n_fft}",
+      "n_hop": "${n_hop}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\model\\bsrnn-large.yaml",
+    "keys": {
+      "sample_rate": "${sample_rate}",
+      "n_fft": "${n_fft}",
+      "n_hop": "${n_hop}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\model\\bsrnn-opt.yaml",
+    "keys": {
+      "sample_rate": "${sample_rate}",
+      "n_fft": "${n_fft}",
+      "n_hop": "${n_hop}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\model\\bsrnn.yaml",
+    "keys": {
+      "sample_rate": "${sample_rate}",
+      "n_fft": "${n_fft}",
+      "n_hop": "${n_hop}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\model\\simo-bsrnn-opt.yaml",
+    "keys": {
+      "sample_rate": "${sample_rate}",
+      "n_fft": "${n_fft}",
+      "n_hop": "${n_hop}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\model\\simo-bsrnn.yaml",
+    "keys": {
+      "sample_rate": "${sample_rate}",
+      "n_fft": "${n_fft}",
+      "n_hop": "${n_hop}",
+      "nb_channels": "${nb_channels}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\optim\\default.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\sad\\default.yaml",
+    "keys": {
+      "sources": "${sources}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\scheduler\\plateau.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\bsrnn\\conf\\scheduler\\step.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\config.yaml",
+    "keys": {
+      "dset.segment": 11,
+      "dset.samplerate": 44100,
+      "dset.channels": 2,
+      "dset.normalize": true,
+      "dset.sources": [
+        "drums",
+        "bass",
+        "other",
+        "vocals"
+      ],
+      "demucs.channels": 64,
+      "demucs.depth": 6,
+      "demucs.normalize": false,
+      "hdemucs.channels": 48,
+      "hdemucs.depth": 6,
+      "torch_hdemucs.channels": 48,
+      "torch_hdemucs.depth": 6,
+      "htdemucs.channels": 48,
+      "htdemucs.depth": 4,
+      "svd.dim": 1
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\aetl.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\auto_extra_test.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\auto_mus.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\extra44.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\extra_mmi_goodclean.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\extra_test.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\musdb44.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\sdx23_bleeding.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\dset\\sdx23_labelnoise.yaml",
+    "keys": {
+      "dset.samplerate": 44100,
+      "dset.channels": 2
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\svd\\base.yaml",
+    "keys": {
+      "svd.dim": 50
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\svd\\base2.yaml",
+    "keys": {
+      "svd.dim": 100
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\variant\\example.yaml",
+    "keys": {
+      "hdemucs.channels": 32
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\demucs\\conf\\variant\\finetune.yaml",
+    "keys": {
+      "dset.segment": 28
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\denoiser\\conf\\config.yaml",
+    "keys": {
+      "sample_rate": 16000,
+      "segment": 4,
+      "demucs.depth": 5,
+      "demucs.normalize": true
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\denoiser\\conf\\dset\\debug.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\denoiser\\conf\\dset\\dns.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\denoiser\\conf\\dset\\valentini.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\callbacks\\default.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\callbacks\\wandb.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\config.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\datamodule\\musdb18_hq.yaml",
+    "keys": {
+      "sample_rate": 44100,
+      "hop_length": "${model.hop_length}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\evaluation.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\debug.yaml",
+    "keys": {
+      "n_fft": 6144,
+      "hop_length": 1024,
+      "model.n_fft": "${n_fft}",
+      "model.hop_length": "${hop_length}",
+      "datamodule.n_fft": "${n_fft}",
+      "datamodule.hop_length": "${hop_length}"
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\mixer.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\multigpu_bass.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\multigpu_default.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\multigpu_drums.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\multigpu_other.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\experiment\\multigpu_vocals.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\hydra\\default.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\logger\\csv.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\logger\\many_loggers.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\logger\\neptune.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\logger\\tensorboard.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\logger\\wandb.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\model\\ConvTDFNet_bass.yaml",
+    "keys": {
+      "n_fft": 16384,
+      "hop_length": 1024
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\model\\ConvTDFNet_drums.yaml",
+    "keys": {
+      "n_fft": 4096,
+      "hop_length": 1024
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\model\\ConvTDFNet_other.yaml",
+    "keys": {
+      "n_fft": 8192,
+      "hop_length": 1024
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\model\\ConvTDFNet_vocals.yaml",
+    "keys": {
+      "n_fft": 6144,
+      "hop_length": 1024
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\model\\Mixer.yaml",
+    "keys": {
+      "hop_length": 1024
+    }
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\trainer\\default.yaml",
+    "keys": {}
+  },
+  {
+    "path": "E:\\FYP_HKBU\\01_models\\_third_party\\mdx-net\\configs\\trainer\\minimal.yaml",
+    "keys": {}
+  }
+]

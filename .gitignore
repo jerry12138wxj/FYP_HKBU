@@ -44,3 +44,33 @@ tools/_logs/
 *.bak
 *.bak-*
 /FYP_HKBU/
+
+# baseline artifacts: numeric arrays are regenerable, do not commit (914 MB)
+baseline/**/*.npy
+# baseline/bench500/results/ 已于 2026-10-31 解禁：16 个 CSV 共 3 MB，是交付物
+# （原规则见 tools/_scratch/backup_1031/.gitignore.bak）
+
+# ============================================================================
+# 2026-10-31 推送 GitHub 前增补：以下合计约 11.9 GB，全部可由脚本重跑生成
+# ============================================================================
+# ---- 图集（9.76 GB；论文图包 00_shared/figures/paper 29 MB 不在此列，保持追踪）----
+04_reports/01_separation/figures/_model_figs/
+04_reports/02_denoising/figures/_model_figs/
+04_reports/02_denoising/figures/dns_snr_compare_v2/
+04_reports/02_denoising/figures/valentini_snr_compare/
+
+# ---- baseline 大二进制（频谱图 914 MB + pseudo-clean 音频 1.1 GB）----
+baseline/spectrograms/
+baseline/dns_pseudo/
+
+# ---- 嵌套开源数据集（88 MB，自带 .git，会把外层仓库搞乱）----
+LibriMix/
+
+# ---- runs/ 里的大二进制（DPRNN 权重 99 MB + Octave 中间数组 56 MB）----
+# 报告 / json / csv / log / 曲线图 仍然追踪
+runs/**/*.pt
+runs/**/*.npy
+runs/**/*.bin
+
+# ---- AI 助手工作记忆（.workbuddy/memory 是会话日志，不属于项目交付物）----
+.workbuddy/

@@ -1,0 +1,693 @@
+=== PAGE 1 ===
+MMDENSELSTM: AN EFFICIENT COMBINATION OF CONVOLUTIONAL AND
+RECURRENT NEURAL NETWORKS FOR AUDIO SOURCE SEPARATION
+Naoya Takahashi1, Nabarun Goswami2, Yuki Mitsufuji1
+1Sony Corporation, Minato-ku, Tokyo, Japan
+2Sony India Software Centre, Bangalore, India
+ABSTRACT
+Deep neural networks have become an indispensable tech-
+nique for audio source separation (ASS). It was recently
+reported that a variant of CNN architecture called MM-
+DenseNet was successfully employed to solve the ASS prob-
+lem of estimating source amplitudes, and state-of-the-art re-
+sults were obtained for DSD100 dataset. To further enhance
+MMDenseNet, here we propose a novel architecture that in-
+tegrates long short-term memory (LSTM) in multiple scales
+with skip connections to efﬁciently model long-term struc-
+tures within an audio context. The experimental results show
+that the proposed method outperforms MMDenseNet, LSTM
+and a blend of the two networks. The number of parameters
+and processing time of the proposed model are signiﬁcantly
+less than those for simple blending. Furthermore, the pro-
+posed method yields better results than those obtained using
+ideal binary masks for a singing voice separation task.
+Index Terms— convolution, recurrent, DenseNet, LSTM,
+audio source separation
+1. INTRODUCTION
+Audio source separation (ASS) has recently been intensively
+studied. Various approaches have been introduced such as lo-
+cal Gaussian modeling [1, 2], non-negative factorization [3–
+5], kernel additive modeling [6] and their combinations [7–
+9]. Recently, deep neural network (DNN) based ASS meth-
+ods have shown a signiﬁcant improvement over conventional
+methods. In [10,11], a standard feedforward fully connected
+network (FNN) was used to estimate source spectra. A com-
+mon way to exploit temporal contexts is to concatenate mul-
+tiple frames as the input. However, the number of frames that
+can be used is limited in practice to avoid the explosion of
+the model size. In [12], long short-term memory (LSTM), a
+type of recurrent neural network (RNN), was used to model
+longer contexts. However, the model size tends to become
+excessively large and the training becomes slow owing to the
+full connection between the layers and the gate mechanism
+in an LSTM cell. Recently, convolutional neural networks
+(CNNs) have been successfully applied to audio modeling of
+spectrograms [13–16], although CNNs were originally intro-
+duced to address the transition-invariant property of images.
+A CNN signiﬁcantly reduces the number of parameters and
+improves generalization by sharing parameters to model lo-
+cal patterns in the input. However, a standard CNN requires
+considerable depth to cover long contexts, making training
+difﬁcult. To address this problem, a multi-scale structure was
+used to adapt a CNN to solve the ASS problem in [17, 18],
+where convolutional layers were applied on multiple scales
+obtained by downsampling feature maps, and low-resolution
+feature maps were progressively upsampled to recover the
+original resolution. Another problem in applying a two di-
+mensional convolution to a spectrogram is the biased distri-
+bution of the local structure in the spectrogram. Unlike an
+image, a spectrogram has different local structures depending
+on the frequency bands. Complete sharing of convolutional
+kernels over the entire frequency range may reduce modeling
+ﬂexibility. In [18], we proposed a multi-band structure where
+each band was linked to a single CNN dedicated to particu-
+lar frequency bands along with a full-band CNN. The novel
+CNN architecture called DenseNet was extended to the multi-
+scale and multi-band structure called MMDenseNet, which
+outperformed an LSTM system and achieved a state-of-the-
+art performance for the DSD100 dataset [19]. Although it has
+been suggested that CNNs often work better than RNNs even
+for sequential data modeling [18, 20], RNNs can also beneﬁt
+from multi-scale and multi-band modeling because they make
+it easier to capture long-term dependencies and can save pa-
+rameters by omitting redundant connections between differ-
+ent bands.
+Moreover, the blending of two systems improves the per-
+formance even when one system consistently performs better
+than the other [12]. Motivated by these observations, here
+we propose a novel network architecture called MMDenseL-
+STM. This combines LSTM and DenseNet in multiple scales
+and multiple bands, improving separation quality while re-
+taining a small model size. There have been several attempts
+to combine CNN and RNN architectures. In [21,22], convolu-
+tional layers and LSTM layers were connected serially . Shi
+et al. proposed convolutional LSTM for the spatio-temporal
+sequence modeling of rainfall prediction [23], where matrix
+multiplications in LSTM cells were replaced with convolu-
+tions.
+In contrast to these methods, in which convolution
+arXiv:1805.02410v2  [cs.SD]  29 May 2018
+
+=== PAGE 2 ===
+DS 
+DS 
+US 
+US 
+DS 
+Downsampling layer 
+US Upsampling layer 
+Output 
+MDenseNet 
+downsampling path 
+upsampling path 
+Input 
+d1 
+s=2 
+s=3 
+s=1 
+s=2 
+s=1 
+dense block 
+d2 
+d3 
+u2 
+u1 
+BN, ReLU, conv. 
+Fig. 1. MDenseNet architecture. Multi-scale dense blocks
+are connected though down- or upsampling layer or through
+block skip connections. The ﬁgure shows the case s = 3.
+and LSTM operate at a single scale, we show that combin-
+ing them at multiple low scales increases the performance
+and efﬁciency. Moreover, we systematically compare sev-
+eral architectures to search for the optimal strategy to combine
+DenseNet and LSTM. Experimental results show that the pro-
+posed method outperforms current state-of-the-art methods
+for the DSD100 and MUSDB18 datasets. Furthermore, MM-
+DenseLSTM even outperforms an ideal binary mask (IBM),
+which is usually considered as an upper baseline, when we
+train the networks with a larger dataset.
+2. MULTI-SCALE MULTI-BAND DENSELSTM
+In this section, we ﬁrst summarize multi-scale multi-band
+DenseNet (MMDenseNet) as our base network architecture.
+Then, we introduce strategies to combine dense block and
+LSTM at multiple scales and multiple bands.
+Finally, we
+discuss the architecture of MMDenseLSTM in detail.
+2.1. MMDenseNet
+Among the various CNN architectures, DenseNet shows ex-
+cellent performance in image recognition tasks [24]. The ba-
+sic idea of DenseNet is to improve the information ﬂow be-
+tween layers by concatenating all preceding layers as, xl =
+Hl([xl−1, xl−2, . . . , x0]), where xl and [. . .] denote the out-
+put of the lth layer and the concatenation operation, respec-
+tively. Hl(·) is a nonlinear transformation consisting of batch
+normalization (BN) followed by ReLU and convolution with
+k feature maps. Such dense connectivity enables all layers
+to receive the gradient directly and also reuse features com-
+puted in preceding layers. To cover the long context required
+for ASS, multi-scale DenseNet (MDenseNet) applies a dense
+block at multiple scales by progressively downsampling its
+output and then progressively upsampling the output to re-
+cover the original resolution, as shown in Fig.1. Here, s is
+the scale index, i.e., the feature maps at scale s are downsam-
+pled s −1 times and have 22(s−1) times lower resolution than
+the original feature maps. To allow forward and backward
+signal ﬂow without passing though lower-resolution blocks,
+an inter-block skip connection, which directly connects two
+dense blocks of the same scale, is also introduced.
+In contrast to an image, in an audio spectrogram, different
+patterns occur in different frequency bands, although a cer-
+tain amount of translation of patterns exists for a relatively
+small pitch shift.
+Therefore, limiting the band that shares
+the kernels is suitable for efﬁciently capturing local patterns.
+MMDenseNet addresses this problem by splitting the input
+into multiple bands and applying band-dedicated MDenseNet
+to each band. MMDenseNet has demonstrated state-of-the-
+art performance for the DSD100 dataset with about 16 times
+fewer parameters than the LSTM model, which obtained the
+best score in SiSEC 2016 [19].
+2.2. Combining LSTM with MMDenseNet
+Uhlich et al. have shown that blending two systems gives
+better performance even when one system consistently out-
+performs the other [12]. The improvement tends to be more
+signiﬁcant when two very different architectures are blended
+such as a CNN and RNN, rather than the same architectures
+with different parameters. However, the blending of archi-
+tectures increases the model size and computational cost in
+an additive manner, which is often undesirable when deploy-
+ing the systems. Therefore, we propose combining the dense
+block and LSTM block in a uniﬁed architecture. The LSTM
+block consists of a 1 × 1 convolution that reduces the number
+of feature maps to 1, followed by a bi-directional LSTM layer,
+which treats the feature map as sequential data along the time
+axis, and ﬁnally a feedforward linear layer that transforms
+back the input frequency dimension f s from the number of
+LSTM units ms. We consider three conﬁgurations with dif-
+ferent combinations of the dense and LSTM blocks as shown
+in Fig. 2. The Sa and Sb conﬁgurations place the LSTM
+block after and before the dense block, respectively, while the
+dense block and LSTM block are placed in parallel and con-
+catenated in the P conﬁguration. We focus on the use of the
+Sa conﬁguration since a CNN is effective at modeling the lo-
+cal structure and the LSTM block beneﬁts from local pattern
+modeling as it covers the entire frequency at once. This claim
+will be empirically validated in Sec. 3.2.
+Naively inserting LSTM blocks at every scale greatly in-
+creases the model size. This is mostly due to the full connec-
+tion between the input and output units of the LSTM block
+in the scale s = 1. To address this problem, we propose the
+insertion of only a small number of LSTM blocks in the up-
+sampling path for low scales (s > 1). This makes it easier
+for LSTM blocks to capture the global structure of the in-
+put with a much smaller number of parameters. On the other
+hand, a CNN is advantageous for modeling ﬁne local struc-
+tures; thus placing only dense block at s = 1 is suitable. The
+multi-band structure is also beneﬁcial for LSTM blocks since
+the compression from the input frequency dimension f s to
+ms LSTM units is relaxed or it even allows the dimension
+
+=== PAGE 3 ===
+Sa: Sequential, LSTM after Dense 
+Sb: Sequential, LSTM before Dense 
+P: Parallel 
+Down sample layer 
+Up sample layer 
+LSTM block 
+dense block 
+Fig. 2. Conﬁgurations with different combinations of dense
+and LSTM blocks. LSTM blocks are inserted at some of the
+scales
+input 
+ band N 
+Full band 
+output 
+… 
+R-MDenseNets 
+ band 1 
+dense 
+block 
+Fig. 3. MMDenseLSTM architecture. Outputs of MDenseL-
+STM dedicated to different frequency band including the full
+band are concatenated and the ﬁnal dense block integrates fea-
+tures from these bands to create the ﬁnal output.
+(f s < ms) to be increased while using fewer LSTM units,
+increasing the modeling capabilities as discussed in [25]. The
+entire proposed architecture is illustrated in Fig. 3. To cap-
+ture the pattern that spans the bands, MDenseLSTM for the
+full band is also built in parallel along with the band dedi-
+cated MDenseLSTM. The outputs of the MDenseLSTMs are
+concatenated and integrated by the ﬁnal dense block, as MM-
+DenseNet.
+2.3. Architectural details
+Details of the proposed network architecture for ASS are de-
+scribed in Table 1.
+We split the input into three bands at
+4.1kHz and 11kHz. The LSTM blocks are only placed at bot-
+tleneck blocks and at some blocks at s = 2 in the upsampling
+path, which greatly reduces the model size. The ﬁnal dense
+block has three layers with growth rate k = 12. The effective
+context size of the architecture is 356 frames. Note that MM-
+DenseLSTM can be applied to an input of arbitrary length
+since it consists of convolution and LSTM layers.
+Table 1.
+The proposed architecture. All dense blocks are
+equipped with 3×3 kernels with growth rate k. l and ms de-
+note the number of layer and LSTM units of LSTM block, re-
+spectively. ds denotes scale s in the downsampling path while
+us is that in the upsampling path.
+band
+k
+scale d1 d2 d3
+d4
+d5 u4 u3
+u2
+u1
+1
+14
+l
+5
+5
+5
+5
+-
+-
+5
+5
+5
+ms
+-
+-
+-
+128
+-
+-
+-
+128
+-
+2
+4
+l
+4
+4
+4
+4
+-
+-
+4
+4
+4
+ms
+-
+-
+-
+32
+-
+-
+-
+-
+-
+3
+2
+l
+1
+1
+-
+-
+-
+-
+-
+1
+1
+ms
+-
+-
+8
+-
+-
+-
+-
+-
+-
+full
+7
+l
+3
+3
+4
+5
+5
+5
+4
+3
+3
+ms
+-
+-
+-
+128
+-
+-
+-
+128
+-
+0.6
+0.65
+0.7
+0.75
+0.8
+5
+10
+15
+20
+25
+30
+35
+40
+45
+d1
+d2
+d3
+bn
+u3
+u2
+u1
+MSE 
+increase in parameters[%] 
+increase in parameters
+MSE
+Fig. 4. Effect of LSTM block at different scales.
+3. EXPERIMENTS
+3.1. Setup
+We evaluated the proposed method on the DSD100 and
+MUSDB18 datasets, prepared for SiSEC 2016 [19] and
+SiSEC 2018 [26], respectively.
+MUSDB18 has 100 and
+50 songs while DSD100 has 50 songs each in the Dev and
+Test sets. In both datasets, a mixture and its four sources,
+bass, drums, other and vocals, recorded in stereo format at
+44.1kHz, are available for each song.
+Short-time Fourier
+transform magnitude frames of the mixture, windowed at
+4096 samples with 75% overlap, with data augmentation [12]
+were used as inputs. The networks were trained to estimate
+the source spectrogram by minimizing the mean square error
+with the Adam optimizer. For the evaluation on MUSDB18,
+we used the museval package [26], while we used the BSSE-
+val v3 toolbox [27] for the evaluation on DSD100 for a fair
+comparison with previously reported results. The SDR values
+are the median of the average SDR of each song.
+3.2. Architecture validation
+In this section we validate the proposed architecture for the
+singing voice separation task on MUSDB18.
+Combination structure
+The SDR values obtained by the
+Sa-, Sb- and P- type MMDenseLSTMs are tabulated in Table
+2. These results validate our claim (Sec. 2.2) that the Sa
+
+=== PAGE 4 ===
+Table 2. Comparison of MMDenseLSTM conﬁgurations.
+type
+Sa
+Sb
+P
+SDR
+2.83
+2.31
+2.47
+Table 3. Comparison of SDR on DSD100 dataset.
+SDR in dB
+Method
+Bass
+Drums
+Other
+Vocals
+Acco.
+DeepNMF [4]
+1.88
+2.11
+2.64
+2.75
+8.90
+NUG [10]
+2.72
+3.89
+3.18
+4.55
+10.29
+BLSTM [12]
+2.89
+4.00
+3.24
+4.86
+11.26
+BLEND [12]
+2.98
+4.13
+3.52
+5.23
+11.70
+MMDenseNet [18]
+3.91
+5.37
+3.81
+6.00
+12.10
+MMDenseLSTM
+3.73
+5.46
+4.33
+6.31
+12.73
+conﬁguration performs the best because the LSTM layer can
+efﬁciently model the global modulations utilizing the local
+features extracted by the dense layers at this scale. Hence-
+forth, all experiments use the Sa conﬁguration.
+LSTM insertion scale
+The efﬁciency of inserting the
+LSTM block at lower scales was validated by comparing
+seven MMDenseLSTMs with a single 64 unit LSTM layer
+inserted at different scales in band 1 (all other LSTM layers in
+Table 1 are omitted). Figure 4 shows the percentage increase
+in the number of parameters compared with that of the base
+architecture and the mean square error (MSE) values for the
+seven networks. It is evident that inserting LSTM layers at
+low scales in the up-scaling path gives the best performance.
+Contribution of dense and LSTM layers
+We further
+compared the l2 norms of the feature maps (Fig.5) in the
+LSTM block d4 of band 1. It can be seen that the norm of the
+LSTM feature map is similar to the highest norm among the
+dense feature maps. Even though some dense feature maps
+have low norms, we conﬁrmed that they tend to learn sparse
+local features.
+3.3. Comparison with state-of-the-art methods
+We next compared the proposed method with ﬁve state-of-
+the-art methods, DeepNMF [4], NUG [10], BLSTM [12],
+Feature Maps
+0
+1
+2
+3
+4
+5
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11 12 13 14
+Norm
+LSTM
+Dense
+Fig. 5. Average l2 norm of feature maps.
+Table 4. Comparison of SDR on MUSDB18 dataset.
+#params
+SDR in dB
+Method
+[×106]
+Bass
+Drums
+Other
+Vocals
+Acco.
+IBM
+-
+5.30
+6.87
+6.42
+7.50
+10.83
+BLSTM [12]
+30.03
+3.99
+5.28
+4.06
+3.43
+14.51
+MMDenseNet [18]
+0.33
+5.19
+6.27
+4.64
+3.87
+15.41
+BLEND2
+30.36
+4.72
+6.25
+4.75
+4.33
+16.04
+MMDenseLSTM
+1.22
+5.19
+6.62
+4.93
+4.94
+16.40
+BLEND [12] and MMDenseNet [18] on DSD100. The task
+was to separate the four sources and accompaniment, which is
+the residual of the vocal extraction, from the mixture. Here,
+the multichannel Wiener ﬁlter was applied to MMDenseL-
+STM outputs as in [12, 18]. Table 3 shows that the proposed
+method improves SDRs by an average of 0.2dB compared
+with MMDenseNet, showing that the MMDenseLSTM archi-
+tecture further improves the performance for most sources.
+To further improve the capability of music source separa-
+tion and utilize the full modeling capability of MMDenseL-
+STM, we next trained models with the MUSDB dev set and
+an internal dataset comprising 800 songs resulting in a 14
+times larger than the DSD100 dev set. The proposed method
+was compared with BLSTM [12], MMDenseNet [18] and
+a blend of these two systems (BLEND2) as in [12].
+All
+baseline networks were trained with the same training set,
+namely 900 songs. For a fair comparison with MMDenseNet,
+we conﬁgured it with the same base architecture as in Table
+1, with an extra layer in the dense blocks, corresponding to
+the LSTM block in our proposed method. We also included
+the IBM as an upper baseline since it uses oracle separation.
+Table 4 shows the result of this experiment. We obtained
+average improvements of 0.43dB over MMDenseNet and
+0.41dB over BLEND2, achieving state-of-the-art results in
+SiSEC2018 [26]. The proposed method even outperformed
+the IBM for accompaniment. Table 4 also shows that MM-
+DenseLSTM can efﬁciently utilize the sequence modeling
+capability of LSTMs in conjunction with MMDenseNet, hav-
+ing 24 times fewer parameters than the naive combination of
+BLSTM and MMDenseNet.
+4. CONCLUSION
+We proposed an efﬁcient way to combine DenseNet and
+LSTM to improve ASS performance. The proposed MM-
+DenseLSTM achieves state-of-the-art results on DSD100 and
+MUSDB18 datasets. MMDenseLSTM outperforms a naive
+combination of BSLTM and MMDenseNet despite having
+much fewer parameters, and even outperforms an IBM for a
+singing voice separation task when the networks were trained
+with 900 songs. The improvement over MMDenseNet is less
+for bass, which will be further investigated in future.
+
+=== PAGE 5 ===
+5. REFERENCES
+[1] N. Q. K. Duong, E. Vincent, and R. Gribonval, “Under-
+determined reverberant audio source separation using a
+full-rank spatial covariance model,” IEEE Trans. Au-
+dio, Speech & Language Processing, vol. 18, no. 7, pp.
+1830–1840, 2010.
+[2] D. Fitzgerald, A. Liutkus, and Roland Badeau, “PRO-
+JET - spatial audio separation using projections,”
+in
+Proc. ICASSP, 2016, pp. 36–40.
+[3] A. Liutkus, D. Fitzgerald, and R. Badeau, “Cauchy non-
+negative matrix factorization,” in Proc. WASPAA, 2015,
+pp. 1–5.
+[4] J. LeRoux, J. R. Hershey, and F. Weninger, “Deep NMF
+for speech separation,” in Proc. ICASSP, 2015, p. 6670.
+[5] Y. Mitsufuji, S. Koyama, and H. Saruwatari, “Multi-
+channel blind source separation based on non-negative
+tensor factorization in wavenumber domain,” in Proc.
+ICASSP, 2016, pp. 56–60.
+[6] A. Liutkus, D. Fitzgerald, Z. Raﬁi, B. Pardo, and
+L. Daudet,
+“Kernel additive models for source sepa-
+ration,” IEEE Trans. Signal Processing, vol. 62, no. 16,
+pp. 4298–4310, 2014.
+[7] A. Ozerov and C. F´evotte, “Multichannel nonnegative
+matrix factorization in convolutive mixtures for audio
+source separation,” IEEE Trans. Audio, Speech & Lan-
+guage Processing, vol. 18, no. 3, pp. 550–563, 2010.
+[8] A. Liutkus, D. Fitzgerald, and Z. Raﬁi, “Scalable au-
+dio separation with light kernel additive modelling,” in
+Proc. ICASSP, 2015, pp. 76–80.
+[9] D. Fitzgerald, A. Liutkus, and R. Badeau, “Projection-
+based demixing of spatial audio,” IEEE/ACM Trans. Au-
+dio, Speech & Language Processing, vol. 24, no. 9, pp.
+1560–1572, 2016.
+[10] A. A. Nugraha, A. Liutkus, and E. Vincent,
+“Multi-
+channel music separation with deep neural networks,”
+in Proc. EUSIPCO, 2015.
+[11] S. Uhlich, F. Giron, and Y. Mitsufuji, “Deep neural net-
+work based instrument extraction from music,” in Proc.
+ICASSP, 2015, pp. 2135–2139.
+[12] S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp,
+N. Takahashi, and Y. Mitsufuji,
+“Improving music
+source separation based on deep networks through data
+augmentation and network blending,” in Proc. ICASSP,
+2017, pp. 261–265.
+[13] T. Sercu, C. Puhrsch, B. Kingsbury, and Y. LeCun,
+“Very deep multilingual convolutional neural networks
+for LVCSR,” in Proc. ICASSP, 2016, pp. 4955–4959.
+[14] N. Takahashi, M. Gygli, B. Pﬁster, and L. Van Gool,
+“Deep Convolutional Neural Networks and Data Aug-
+mentation for Acoustic Event Detection,” in Proc. In-
+terspeech, 2016.
+[15] F. Korzeniowski and G. Widmer, “A fully convolutional
+deep auditory model for musical chord recognition,” in
+Proc. MLSP, 2016.
+[16] N. Takahashi, M. Gygli, and L. Van Gool,
+“Aenet:
+Learning deep audio features for video analysis,” IEEE
+Trans. on Multimedia, vol. 20, pp. 513–524, 2017.
+[17] A. Jansson, E. Humphrey, N. Montecchio, R. Bittner,
+A. Kumar, and T. Weyde,
+“Singing voice separation
+with deep U-Net convolutional Networks,” in Proc. IS-
+MIR, 2017.
+[18] N. Takahashi and Y. Mitsufuji, “Multi-scale multi-band
+DenseNets for audio source separation,” in Proc. WAS-
+PAA, 2017, pp. 261–265.
+[19] A. Liutkus, F. St¨oter, Z. Raﬁi, D. Kitamura, B. Rivet,
+N. Ito, N. Ono, and J. Fontecave, “The 2016 Signal sep-
+aration evaluation campaign,” in Proc. LVA/ICA, 2017,
+pp. 66–70.
+[20] V. Koltun. S. Bai, Z. Kolter, “Convolutional Sequence
+Modeling Revisited,” in Proc. ICLR, 2018.
+[21] T. Sainath, O. Vinyals, A. Senior, and H. Sak, “Convo-
+lutional, long short-term memory, fully connected deep
+neural networks,” in Proc. ICASSP, 2015.
+[22] Ivan Tashev Chin-Hui Lee Han Zhao, Shuayb Zarar,
+“Convolutional-recurrent neural networks for speech
+enhancement,” in Proc. ICASSP, 2018, pp. 2401–2405.
+[23] X. Shi, Z. Chen, H. Wang, and D. Yeung, “Convolu-
+tional LSTM network: A machine learning approach for
+precipitation nowcasting,” in Proc. NIPS, 2015.
+[24] H.Gao, L. Zhuang, and Q. W. Kilian, “Densely con-
+nected convolutional networks,” in Proc. CVPR, 2017.
+[25] S. Zagoruyko and N. Komodakis, “Wide residual net-
+works,” in Proc. BMVC, 2016.
+[26] A. Liutkus, F.-R. St¨oter, and N. Ito,
+“The 2018 sig-
+nal separation evaluation campaign,” in Proc LVA/ICA,
+2018.
+[27] E. Vincent, R. Gribonval, and C. F´evotte, “Performance
+measurement in blind audio source separation,” IEEE
+Trans. on Audio, Speech and Language Processing, vol.
+14, pp. 1462–1469, 2006.

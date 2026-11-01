@@ -1,0 +1,16 @@
+﻿model,family,n_seg,complete,stems,vocals_delta,vocals_raw,vocals_n,drums_delta,drums_raw,drums_n,bass_delta,bass_raw,bass_n,other_delta,other_raw,other_n,avg4_delta,avg4_raw,rtf_median
+mdx_extra_q,4-stem,500,True,vocals+drums+bass+other,14.143,9.832,500,15.538,11.265,500,16.714,9.778,500,11.779,5.793,500,14.822,8.949,0.232
+bsrnn_simo,4-stem,500,True,vocals+drums+bass+other,15.646,11.688,500,15.238,10.229,500,14.472,7.195,500,11.611,5.482,500,14.488,8.473,0.225
+mdx,4-stem,500,True,vocals+drums+bass+other,14.206,9.931,500,14.773,9.848,500,16.053,9.163,500,11.425,5.624,500,14.268,8.415,0.242
+bsrnn_all,4-stem,500,True,vocals+drums+bass+other,14.952,10.818,500,14.384,9.198,500,15.409,7.531,500,9.907,4.033,500,13.812,7.686,0.485
+demucs,4-stem,500,True,vocals+drums+bass+other,13.005,8.8,500,13.819,8.886,500,14.79,7.554,500,9.659,3.636,500,12.877,7.069,0.041
+bsrnn_large_all,4-stem,500,True,vocals+drums+bass+other,14.374,10.226,500,12.89,7.754,500,13.34,5.224,500,9.426,3.62,500,12.837,6.441,0.485
+mdx_q,4-stem,500,True,vocals+drums+bass+other,12.603,8.404,500,12.815,7.651,500,13.253,6.29,500,9.168,3.03,500,12.16,6.169,0.307
+mmdenselstm,4-stem,500,True,vocals+drums+bass+other,11.471,7.264,500,10.125,5.114,500,9.822,2.348,500,7.38,1.345,500,9.841,4.0,0.079
+convtasnet,4-stem,500,True,vocals+drums+bass+other,10.668,6.492,500,10.133,5.335,500,10.845,3.365,500,6.753,0.951,500,9.768,3.867,0.297
+umx,4-stem,500,True,vocals+drums+bass+other,10.864,6.437,500,10.075,5.356,500,9.959,2.94,500,6.781,1.069,500,9.607,3.832,0.054
+dprnn_v2,4-stem,500,True,vocals+drums+bass+other,6.459,2.477,500,6.905,2.346,500,7.634,0.765,500,3.522,-2.961,500,6.135,0.478,0.026
+bsroformer_l12,vocals-only,500,True,vocals,16.287,12.534,500,,,,,,,,,,,,0.418
+bsrnn,vocals-only,500,True,vocals,14.952,10.818,500,,,,,,,,,,,,0.157
+bsrnn_large,vocals-only,500,True,vocals,14.374,10.226,500,,,,,,,,,,,,0.127
+rpca,vocals-only,500,True,vocals,0.289,-3.195,500,,,,,,,,,,,,3.425

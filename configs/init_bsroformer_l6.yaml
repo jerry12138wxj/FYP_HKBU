@@ -1,0 +1,68 @@
+model: bsroformer_l6
+label: BS-RoFormer L6 (ep_937, vocals+other)
+task: separation
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#bsroformer_l6
+  architecture_source: 'configs/model_bs_roformer_ep_937_sdr_10.5309.yaml: n_fft=2048 hop=512 chunk_size=131584
+    dim=384 depth=12'
+  repo_commit: null
+  official_config: null
+audio_contract:
+  sample_rate: 44100
+  channels: 2
+  segment_s: 2.98
+  mono_downmix_internal: false
+  sample_rate_source: 'model_profile.csv native_sr=44100 / configs/model_bs_roformer_ep_937_sdr_10.5309.yaml: n_fft=2048
+    hop=512 chunk_size=131584 dim=384 depth=12'
+stft:
+  n_fft: 2048
+  hop_length: 512
+  win_length: 2048
+  window: hann
+  center: true
+  normalized: false
+  n_freq_bins: 1025
+  note: 'configs/model_bs_roformer_ep_937_sdr_10.5309.yaml: n_fft=2048 hop=512 chunk_size=131584 dim=384 depth=12'
+normalization:
+  scheme: none
+  applied_at: none
+outputs:
+  stems:
+  - vocals+other (mixture-drums-bass)
+  profile_targets:
+  - other
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/BS-RoFormer/model_bs_roformer_ep_937_sdr_10.5309.ckpt
+  official_release: false
+  files:
+  - file: 01_models/_weights/BS-RoFormer/model_bs_roformer_ep_937_sdr_10.5309.ckpt
+    mb: 374.9
+    sha256: a2e825a03bc908cb04dbd88eddeefbf5147dd1cf1f95cebf453d9dbfabec494b
+  primary_sha256: a2e825a03bc908cb04dbd88eddeefbf5147dd1cf1f95cebf453d9dbfabec494b
+  sha256_status: verified
+  citation_note: 非官方/社区权重，引用需注明
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '2087.4'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 98.195
+  params_expected_int: 98195000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 2, 131418]'
+    expect_output: '[1, 2, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

@@ -1,0 +1,23 @@
+model,task,repo,commit,config,sample_rate,channels,output_stems,source_of_truth
+BS-RoFormer-L12,separation,Music-Source-Separation-Training,050cae7345f4,01_models/_weights/BS-RoFormer/configs/model_bs_roformer_ep_317_sdr_12.9755.yaml,44100,2,vocals,01_models/separation/README.md#BS-RoFormer-L12
+BS-RoFormer-L6,separation,Music-Source-Separation-Training,050cae7345f4,01_models/_weights/BS-RoFormer/configs/model_bs_roformer_ep_937_sdr_10.5309.yaml,44100,2,vocals+other (mixture-drums-bass),01_models/separation/README.md#BS-RoFormer-L6
+BSRNN-opt,separation,bsrnn,41e9ce4e7961,none (hydra conf synthesised in tools/_bsrnn_loader.py),44100,2,vocals|drums|bass|other (4 single-target ckpt),01_models/separation/README.md#BSRNN-opt
+BSRNN-large,separation,bsrnn,41e9ce4e7961,none (hydra conf synthesised in tools/_bsrnn_loader.py),44100,2,vocals|drums|bass|other (4 single-target ckpt),01_models/separation/README.md#BSRNN-large
+BSRNN-SIMO,separation,bsrnn,41e9ce4e7961,none (hydra conf synthesised in tools/_bsrnn_loader.py),44100,2,"vocals,drums,bass,other (single 4-output model)",01_models/separation/README.md#BSRNN-SIMO
+Conv-TasNet,separation,DNN-based_source_separation,8663d6fc5c0a,"egs/musdb18/conv-tasnet/{4sec_L20,8sec_L20,8sec_L64}.yaml",44100,2,"vocals,drums,bass,other",01_models/separation/README.md#Conv-TasNet
+DPRNN,separation,Dual-Path-RNN-Pytorch,87b6301bab46,tools/train_dprnn_musdb.py (no official config; self-written),44100,2,"vocals,drums,bass,other (targets stored in ckpt)",01_models/MODEL_REGISTRY.md#6
+Demucs,separation,demucs,e976d93ecc38,htdemucs.yaml (HF cache) / model package embedded,44100,2,"drums,bass,other,vocals",01_models/separation/README.md#Demucs
+MDX-Net,separation,mdx-net,bbd46dbf2ceb,01_models/_weights/MDX-Net/mdx_extra/mdx_extra.yaml,44100,2,"vocals,drums,bass,other",01_models/separation/README.md#MDX-Net
+MDX-Net-quant,separation,demucs,e976d93ecc38,"01_models/_weights/MDX-Net/{mdx_q,mdx_extra_q}/*.yaml",44100,2,"vocals,drums,bass,other",01_models/MODEL_REGISTRY.md#2.1
+MMDenseLSTM,separation,DNN-based_source_separation,8663d6fc5c0a,"n_fft=4096 hop=1024 sections=[380,644,1025] (in code)",44100,2,"vocals,drums,bass,other (4 separate nets)",01_models/separation/README.md#MMDenseLSTM
+Open-Unmix,separation,open-unmix-pytorch,814f144e34b2,"none (package default, n_fft=4096 hop=1024)",44100,2,"vocals,drums,bass,other (4 separate nets)",01_models/separation/README.md#Open-Unmix
+Oracle-IRM,separation,sigsep-mus-oracle,1590b096c3fc,none,44100,2,"vocals,drums,bass,other",01_models/separation/README.md#Oracle-IRM
+RPCA,separation,_selfimpl,n/a (in-tree),none,44100,2,vocals (sparse component),01_models/separation/README.md#RPCA
+denoiser-dns48,denoising,denoiser,8afd7c166699,none (architecture fully in code),16000,1,enhanced,01_models/denoising/README.md#denoiser-dns48
+denoiser-dns64,denoising,denoiser,8afd7c166699,none (architecture fully in code),16000,1,enhanced,01_models/denoising/README.md#denoiser-dns64
+denoiser-master64,denoising,denoiser,8afd7c166699,none (architecture fully in code),16000,1,enhanced,01_models/denoising/README.md#denoiser-master64
+Mel-RoFormer-Denoise,denoising,Music-Source-Separation-Training,050cae7345f4,01_models/_weights/mel_roformer_denoise/model_mel_band_roformer_denoise.yaml,44100,2,enhanced,01_models/denoising/README.md#Mel-RoFormer-Denoise
+Mel-RoFormer-Dereverb,dereverberation,Music-Source-Separation-Training,050cae7345f4,01_models/_weights/mel_roformer_dereverb/dereverb_mel_band_roformer_anvuew.yaml,44100,2,dry,01_models/denoising/README.md#Mel-RoFormer-Dereverb
+Mel-RoFormer-Dereverb-Echo,dereverberation+deecho,Music-Source-Separation-Training,050cae7345f4,01_models/_weights/mel_roformer_dereverb_echo/config_dereverb-echo_mel_band_roformer.yaml,44100,2,"dry,other (2 stems)",01_models/denoising/README.md#Mel-RoFormer-Dereverb-Echo
+RPCA+DRNN,separation,unavailable,unverified,unverified,unverified,unverified,2 stems (vocals/accompaniment),04_reports/01_separation/docs/MODEL_PROVISIONING_REPORT.md#3.2
+Pac-HuBERT-SEP,separation,unavailable (MERL),unverified,unverified,unverified,unverified,unverified,01_models/MODEL_REGISTRY.md#2.2

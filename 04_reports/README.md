@@ -26,11 +26,15 @@
   `FYP_RETROSPECTIVE_2026-09-22.md`、`FYP_Audio_Setup_Guide.md`、`MODEL_PROFILE_2026-09-22.md`、
   `MODEL_DEPLOYMENT_2026-09-23.md`、`RESTRUCTURE_2026-09-23.md`、
   `PAPER_SCOPE_AND_DIVERGENCE.md`、`PAPER_FIGURES_B1.md`、`PAPER_FIGURES_B2.md`、
-  `REPRODUCE.md`（由 `reproduce.py --readme` 自动生成）、`summaries/`（4 份数据摘要）
+  `REPRODUCE.md`（由 `reproduce.py --readme` 自动生成）、`summaries/`（4 份数据摘要）、
+  `MODEL_EVAL_SUMMARY_2026-10-23.docx` / `.pdf`（36 组模型评测总表的结果解读，12 页；
+  由 `tools/_build_eval_report_doc.py` 从 `03_outputs/_eval` 现算生成）
 - `figures/` —— `model_arch/`（16 项：14 张架构原理图 + 2 张基线）、`paper/`（54 项：53 张论文图 + 清单）、
   `plan/`、`_smoketest/`、`README.md`
 - `data/` —— `model_analysis/`（画像 CSV / 图层 / 门禁 / thop 交叉验证）、
   `model_deploy_layout.json`、`model_deployment_audit.json`、`_reclassify_manifest.json`
+- `figures/eval_report/` —— `fig1_sep_sdr.png`、`fig2_cascade_heatmap.png`、
+  `fig3_cascade_rank.png`（评测总表解读配图，200 dpi）
 - `html/` —— `model_analysis_dashboard.html`（模型分析看板）、
   `FYP_PLAN_FULL_2026-09-23.html` 与 `FYP_WORK_CHRONICLE_2026-09-23.html`（**陈旧快照，按原样保留**）、
   `_qa_audio_probe.html`、`_superseded/`

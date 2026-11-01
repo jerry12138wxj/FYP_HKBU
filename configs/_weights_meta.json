@@ -1,0 +1,963 @@
+[
+  {
+    "path": "01_models\\_weights\\BS-RoFormer\\MelBandRoformer_KJ.ckpt",
+    "mb": 870.8,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.0.norm.gamma"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\BS-RoFormer\\model_bs_polarformer_float16.ckpt",
+    "mb": 97.7,
+    "top_keys": [
+      "layers.0.0.layers.0.0.pope_embed.bias",
+      "layers.0.0.layers.0.0.pope_embed.inv_freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\BS-RoFormer\\model_bs_roformer_ep_317_sdr_12.9755.ckpt",
+    "mb": 609.7,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.1.layers.0.0.rotary_embed.freqs"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\BS-RoFormer\\model_bs_roformer_ep_937_sdr_10.5309.ckpt",
+    "mb": 374.9,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.1.layers.0.0.rotary_embed.freqs"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\BS-RoFormer\\model_mel_band_roformer_ep_3005_sdr_11.4360.ckpt",
+    "mb": 961.1,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.0.norm.gamma"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-large\\bsrnn-large\\bass.ckpt",
+    "mb": 375.9,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": "bass",
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 0
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-large\\bsrnn-large\\drums.ckpt",
+    "mb": 470.5,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": "drums",
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 0
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-large\\bsrnn-large\\other.ckpt",
+    "mb": 417.6,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": "other",
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 0
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-large\\bsrnn-large\\vocals.ckpt",
+    "mb": 417.6,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": "vocals",
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 0
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-opt\\bsrnn-opt\\bass.ckpt",
+    "mb": 425.6,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": [
+        "bass"
+      ],
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.nb_channels": 2,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 16
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-opt\\bsrnn-opt\\drums.ckpt",
+    "mb": 522.3,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": [
+        "drums"
+      ],
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.nb_channels": 2,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 16
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-opt\\bsrnn-opt\\other.ckpt",
+    "mb": 468.1,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": [
+        "other"
+      ],
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.nb_channels": 2,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 16
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\bsrnn-opt\\bsrnn-opt\\vocals.ckpt",
+    "mb": 468.1,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets": [
+        "vocals"
+      ],
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.nb_channels": 2,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 16
+    }
+  },
+  {
+    "path": "01_models\\_weights\\BSRNN\\simo-bsrnn-opt\\simo-bsrnn-opt\\separator.ckpt",
+    "mb": 1247.6,
+    "top_keys": [
+      "epoch",
+      "global_step",
+      "pytorch-lightning_version",
+      "state_dict",
+      "loops",
+      "callbacks",
+      "optimizer_states",
+      "lr_schedulers",
+      "hparams_name",
+      "hyper_parameters"
+    ],
+    "params": {
+      "hyper_parameters.hyper_parameters.targets._metadata.optional": true,
+      "hyper_parameters.hyper_parameters.targets._metadata.key": "targets",
+      "hyper_parameters.hyper_parameters.targets._metadata.flags_root": false,
+      "hyper_parameters.hyper_parameters.targets._parent._parent": null,
+      "hyper_parameters.hyper_parameters.targets._parent._flags_cache": null,
+      "hyper_parameters.hyper_parameters.targets._content": [
+        "vocals",
+        "bass",
+        "drums",
+        "other"
+      ],
+      "hyper_parameters.hyper_parameters.targets._flags_cache": null,
+      "hyper_parameters.hyper_parameters.sample_rate": 44100,
+      "hyper_parameters.hyper_parameters.n_fft": 2048,
+      "hyper_parameters.hyper_parameters.n_hop": 512,
+      "hyper_parameters.hyper_parameters.nb_channels": 2,
+      "hyper_parameters.hyper_parameters.feature_dim": 128,
+      "hyper_parameters.hyper_parameters.attn_enc_dim": 16
+    }
+  },
+  {
+    "path": "01_models\\_weights\\Demucs\\955717e8-8726e21a.th",
+    "mb": 80.2,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\denoiser\\dns48-11decc9d8e3f0998.th",
+    "mb": 72.0,
+    "top_keys": [
+      "encoder.0.0.weight",
+      "encoder.0.0.bias",
+      "encoder.0.2.weight",
+      "encoder.0.2.bias",
+      "encoder.1.0.weight",
+      "encoder.1.0.bias",
+      "encoder.1.2.weight",
+      "encoder.1.2.bias",
+      "encoder.2.0.weight",
+      "encoder.2.0.bias",
+      "encoder.2.2.weight",
+      "encoder.2.2.bias"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\denoiser\\dns64-a7761ff99a7d5bb6.th",
+    "mb": 127.9,
+    "top_keys": [
+      "encoder.0.0.weight",
+      "encoder.0.0.bias",
+      "encoder.0.2.weight",
+      "encoder.0.2.bias",
+      "encoder.1.0.weight",
+      "encoder.1.0.bias",
+      "encoder.1.2.weight",
+      "encoder.1.2.bias",
+      "encoder.2.0.weight",
+      "encoder.2.0.bias",
+      "encoder.2.2.weight",
+      "encoder.2.2.bias"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\denoiser\\master64-8a5dfb4bb92753dd.th",
+    "mb": 127.9,
+    "top_keys": [
+      "encoder.0.0.weight",
+      "encoder.0.0.bias",
+      "encoder.0.2.weight",
+      "encoder.0.2.bias",
+      "encoder.1.0.weight",
+      "encoder.1.0.bias",
+      "encoder.1.2.weight",
+      "encoder.1.2.bias",
+      "encoder.2.0.weight",
+      "encoder.2.0.bias",
+      "encoder.2.2.weight",
+      "encoder.2.2.bias"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\denoiser\\valentini_nc-93fc4337.th",
+    "mb": 232.0,
+    "top_keys": [
+      "encoder.0.0.weight",
+      "encoder.0.0.bias",
+      "encoder.0.2.weight",
+      "encoder.0.2.bias",
+      "encoder.1.0.weight",
+      "encoder.1.0.bias",
+      "encoder.1.2.weight",
+      "encoder.1.2.bias",
+      "encoder.2.0.weight",
+      "encoder.2.0.bias",
+      "encoder.2.2.weight",
+      "encoder.2.2.bias"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\ConvTasNet\\musdb18\\sr44100\\4sec_L20\\model\\best.pth",
+    "mb": 51.3,
+    "top_keys": [
+      "in_channels",
+      "n_basis",
+      "kernel_size",
+      "stride",
+      "enc_basis",
+      "dec_basis",
+      "enc_nonlinear",
+      "window_fn",
+      "enc_onesided",
+      "enc_return_complex",
+      "sep_hidden_channels",
+      "sep_bottleneck_channels"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\ConvTasNet\\musdb18\\sr44100\\4sec_L20\\model\\last.pth",
+    "mb": 51.3,
+    "top_keys": [
+      "in_channels",
+      "n_basis",
+      "kernel_size",
+      "stride",
+      "enc_basis",
+      "dec_basis",
+      "enc_nonlinear",
+      "window_fn",
+      "enc_onesided",
+      "enc_return_complex",
+      "sep_hidden_channels",
+      "sep_bottleneck_channels"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\ConvTasNet\\musdb18\\sr44100\\8sec_L20\\model\\best.pth",
+    "mb": 26.2,
+    "top_keys": [
+      "in_channels",
+      "n_basis",
+      "kernel_size",
+      "stride",
+      "enc_basis",
+      "dec_basis",
+      "enc_nonlinear",
+      "window_fn",
+      "enc_onesided",
+      "enc_return_complex",
+      "sep_hidden_channels",
+      "sep_bottleneck_channels"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\ConvTasNet\\musdb18\\sr44100\\8sec_L20\\model\\last.pth",
+    "mb": 26.2,
+    "top_keys": [
+      "in_channels",
+      "n_basis",
+      "kernel_size",
+      "stride",
+      "enc_basis",
+      "dec_basis",
+      "enc_nonlinear",
+      "window_fn",
+      "enc_onesided",
+      "enc_return_complex",
+      "sep_hidden_channels",
+      "sep_bottleneck_channels"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\ConvTasNet\\musdb18\\sr44100\\8sec_L64\\model\\best.pth",
+    "mb": 51.5,
+    "top_keys": [
+      "in_channels",
+      "n_basis",
+      "kernel_size",
+      "stride",
+      "enc_basis",
+      "dec_basis",
+      "enc_nonlinear",
+      "window_fn",
+      "enc_onesided",
+      "enc_return_complex",
+      "sep_hidden_channels",
+      "sep_bottleneck_channels"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\ConvTasNet\\musdb18\\sr44100\\8sec_L64\\model\\last.pth",
+    "mb": 51.5,
+    "top_keys": [
+      "in_channels",
+      "n_basis",
+      "kernel_size",
+      "stride",
+      "enc_basis",
+      "dec_basis",
+      "enc_nonlinear",
+      "window_fn",
+      "enc_onesided",
+      "enc_return_complex",
+      "sep_hidden_channels",
+      "sep_bottleneck_channels"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\bass\\best.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\bass\\last.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\drums\\best.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\drums\\last.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\other\\best.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\other\\last.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\vocals\\best.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\DNN-based_source_separation\\MMDenseLSTM\\musdb18\\sr44100\\paper\\model\\vocals\\last.pth",
+    "mb": 5.5,
+    "top_keys": [
+      "in_channels",
+      "num_features",
+      "growth_rate",
+      "hidden_channels",
+      "kernel_size",
+      "bands",
+      "sections",
+      "scale",
+      "dilated",
+      "norm",
+      "nonlinear",
+      "depth"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\dprnn_musdb\\best.pt",
+    "mb": 14.1,
+    "top_keys": [
+      "state_dict",
+      "cfg",
+      "targets",
+      "sr",
+      "step",
+      "best",
+      "val"
+    ],
+    "params": {
+      "cfg.cfg.kernel_size": 16,
+      "cfg.cfg.in_channels": 64,
+      "cfg.cfg.out_channels": 128,
+      "cfg.cfg.hidden_channels": 128
+    }
+  },
+  {
+    "path": "01_models\\_weights\\dprnn_musdb\\last.pt",
+    "mb": 42.3,
+    "top_keys": [
+      "state_dict",
+      "opt",
+      "cfg",
+      "targets",
+      "sr",
+      "step",
+      "best",
+      "val"
+    ],
+    "params": {
+      "cfg.cfg.kernel_size": 16,
+      "cfg.cfg.in_channels": 64,
+      "cfg.cfg.out_channels": 128,
+      "cfg.cfg.hidden_channels": 128
+    }
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx\\0d19c1c6-0f06f20e.th",
+    "mb": 169.8,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx\\7d865c68-3d5dd56b.th",
+    "mb": 160.1,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx\\7ecf8ec1-70f50cc9.th",
+    "mb": 169.8,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx\\c511e2ab-fe698775.th",
+    "mb": 159.6,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra\\5d2d6c55-db83574e.th",
+    "mb": 159.6,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra\\a1d90b5c-ae9d2452.th",
+    "mb": 159.6,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra\\cfa93e08-61801ae1.th",
+    "mb": 159.6,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra\\e51eebcc-c1b80bdd.th",
+    "mb": 159.6,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra_q\\14fc6a69-a89dd0ee.th",
+    "mb": 36.7,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra_q\\464b36d7-e5a9386e.th",
+    "mb": 37.1,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra_q\\7fd6ef75-a905dd85.th",
+    "mb": 37.6,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_extra_q\\83fc094f-4a16d450.th",
+    "mb": 48.4,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_q\\305bc58f-18378783.th",
+    "mb": 44.7,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_q\\42e558d4-196e0e1b.th",
+    "mb": 55.5,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_q\\6b9c2ca1-3fd82607.th",
+    "mb": 56.9,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mdx_q\\b72baf4e-8778635e.th",
+    "mb": 42.3,
+    "error": "ModuleNotFoundError: No module named 'demucs'"
+  },
+  {
+    "path": "01_models\\_weights\\MDX-Net\\mixer.ckpt",
+    "mb": 0.0,
+    "top_keys": [
+      "linear.weight"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\mel_roformer_denoise\\denoise_mel_band_roformer_aufr33_aggr_sdr_27.9768.ckpt",
+    "mb": 870.8,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.0.norm.gamma"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\mel_roformer_denoise\\denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt",
+    "mb": 870.8,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.0.norm.gamma"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\mel_roformer_dereverb\\dereverb_mel_band_roformer_anvuew_sdr_19.1729.ckpt",
+    "mb": 870.8,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.0.norm.gamma"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\mel_roformer_dereverb_echo\\dereverb-echo_mel_band_roformer_sdr_10.0169.ckpt",
+    "mb": 797.3,
+    "top_keys": [
+      "layers.0.0.layers.0.0.rotary_embed.freqs",
+      "layers.0.0.layers.0.0.norm.gamma",
+      "layers.0.0.layers.0.0.to_qkv.weight",
+      "layers.0.0.layers.0.0.to_gates.weight",
+      "layers.0.0.layers.0.0.to_gates.bias",
+      "layers.0.0.layers.0.0.to_out.0.weight",
+      "layers.0.0.layers.0.1.net.0.gamma",
+      "layers.0.0.layers.0.1.net.1.weight",
+      "layers.0.0.layers.0.1.net.1.bias",
+      "layers.0.0.layers.0.1.net.4.weight",
+      "layers.0.0.layers.0.1.net.4.bias",
+      "layers.0.0.norm.gamma"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\open-unmix\\bass-8d85a5bd.pth",
+    "mb": 34.0,
+    "top_keys": [
+      "input_mean",
+      "input_scale",
+      "output_scale",
+      "output_mean",
+      "sample_rate",
+      "stft.window",
+      "transform.0.window",
+      "fc1.weight",
+      "bn1.weight",
+      "bn1.bias",
+      "bn1.running_mean",
+      "bn1.running_var"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\open-unmix\\drums-9619578f.pth",
+    "mb": 34.0,
+    "top_keys": [
+      "input_mean",
+      "input_scale",
+      "output_scale",
+      "output_mean",
+      "sample_rate",
+      "stft.window",
+      "transform.0.window",
+      "fc1.weight",
+      "bn1.weight",
+      "bn1.bias",
+      "bn1.running_mean",
+      "bn1.running_var"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\open-unmix\\other-b52fbbf7.pth",
+    "mb": 34.0,
+    "top_keys": [
+      "input_mean",
+      "input_scale",
+      "output_scale",
+      "output_mean",
+      "sample_rate",
+      "stft.window",
+      "transform.0.window",
+      "fc1.weight",
+      "bn1.weight",
+      "bn1.bias",
+      "bn1.running_mean",
+      "bn1.running_var"
+    ],
+    "params": {}
+  },
+  {
+    "path": "01_models\\_weights\\open-unmix\\vocals-b62c91ce.pth",
+    "mb": 34.0,
+    "top_keys": [
+      "input_mean",
+      "input_scale",
+      "output_scale",
+      "output_mean",
+      "sample_rate",
+      "stft.window",
+      "transform.0.window",
+      "fc1.weight",
+      "bn1.weight",
+      "bn1.bias",
+      "bn1.running_mean",
+      "bn1.running_var"
+    ],
+    "params": {}
+  }
+]

@@ -1,0 +1,1314 @@
+=== PAGE 1 ===
+1
+Music Source Separation with Band-split RNN
+Yi Luo, Jianwei Yu
+Abstract—The performance of music source separation (MSS)
+models has been greatly improved in recent years thanks to the
+development of novel neural network architectures and training
+pipelines. However, recent model designs for MSS were mainly
+motivated by other audio processing tasks or other research
+ﬁelds, while the intrinsic characteristics and patterns of the music
+signals were not fully discovered. In this paper, we propose band-
+split RNN (BSRNN), a frequency-domain model that explictly
+splits the spectrogram of the mixture into subbands and perform
+interleaved band-level and sequence-level modeling. The choices
+of the bandwidths of the subbands can be determined by a
+priori knowledge or expert knowledge on the characteristics of
+the target source in order to optimize the performance on a
+certain type of target musical instrument. To better make use
+of unlabeled data, we also describe a semi-supervised model
+ﬁnetuning pipeline that can further improve the performance
+of the model. Experiment results show that BSRNN trained
+only on MUSDB18-HQ dataset signiﬁcantly outperforms several
+top-ranking models in Music Demixing (MDX) Challenge 2021,
+and the semi-supervised ﬁnetuning stage further improves the
+performance on all four instrument tracks.
+Keywords—Music separation, Neural network, Deep learning
+I.
+INTRODUCTION
+The task of music source separation (MSS) has drawn more
+and more attention in the community due to its wide appli-
+cation in music remixing [1]–[3], music information retrieval
+(MIR) [4]–[8], and music education [9], [10]. The advances
+in MSS models can also shed light on the investigation of
+novel model designs for other related tasks such as speech
+enhancement and speech separation [11]–[15]. Moreover, since
+music signals are typically recorded at a higher sample rate
+than signals in telecommunication systems (e.g., 44.1k Hz) and
+have been artiﬁcially edited or manipulated by professionals,
+MSS is in general more challenging than narrow-band or wide-
+band speech enhancement and separation tasks. Developing
+high-quality MSS models is thus important and necessary
+towards building a robust universal source separation system
+in diverse and complicated real-world scenarios.
+Modern MSS models are generally built upon deeper
+and more complicated neural network architectures. While
+frequency-domain systems are the mainstream [16]–[26], re-
+cent works have also focused on time-domain systems [27]–
+[30] as well as the fusion of time-domain and frequency-
+domain systems [31], [32]. However, many of the MSS mod-
+els were motivated by existing system architectures in other
+research ﬁelds. For example, models in speech separation
+can be directly applied to MSS without modiﬁcations [18],
+[30], [33]–[36], and architectures in image segmentation [37],
+human pose estimation [38] and image recognition [39] have
+been directly utilized in various recent MSS models. Although
+many of those prior arts have proven effective in terms of
+the separation performance, the question of why they are
+effective in music data and how they can be modiﬁed to
+better explore the intrinsic characteristics of music signals
+is not easy to answer. Moreover, since existing works in
+speech enhancement and separation typically only considers
+narrow-band and wide-band signals, how to adjust them to
+super wide-band music signals is also worth investigating. The
+characteristics of singing voice and speech can also be different
+in terms of fundamental frequency, loudness and formants [40],
+and speech separation models may have the potential to be
+further improved on singing voice if such properties could be
+considered in the modiﬁcation of the models.
+In this paper, we propose band-split RNN (BSRNN), a
+frequency-domain MSS model that is specially designed for
+high sample rate signals with ﬂexible and explicit segregation
+and modeling of different frequency bands. BSRNN splits a
+spectrogram into a series of subband spectrograms with a set
+of predeﬁned bandwidths, and the bandwidths are adjusted for
+different instrument types accordingly. The subband spectro-
+grams are then transformed to generate a series of features with
+a same feature dimension, and stacked residual recurrent neural
+network (RNN) layers are utilized to perform interleaved
+cross-band and cross-sequence modeling similar to dual-path
+networks for speech separation [41]. Each subband feature in
+the output of the last residual RNN layer is then transformed
+by a multilayer perceptron (MLP) to generate its corresponding
+complex-valued time-frequency mask, and the mask is applied
+to the corresponding subband mixture spectrogram to gen-
+erate the estimated target source spectrogram. All estimated
+subband spectrograms are then concatenated to form the full
+spectrogram of the target source. The most important module
+in BSRNN is the band-splitting module, which enable us to
+incorporate prior knowledge on the target source into the model
+design. For example, if we know in advance that the target
+source mainly lies in lower frequency parts with a relatively
+low fundamental frequency, we can perform ﬁne-grained band-
+splitting scheme at lower frequency parts to increase the
+frequency resolution and coarse-grained band-splitting scheme
+at higher frequency parts to save the computational complexity.
+We show by experiments that band-splitting schemes do play
+an important role in the separation performance, and different
+musical instruments do have their own band-splitting scheme
+to obtain a performance gain. By properly selecting the band-
+splitting bandwidths, BSRNN trained only on MUSDB18-HQ
+dataset [42] is able to signiﬁcantly outperform top-ranking
+models in Music Demixing (MDX) Challenge 2021.
+It is well-known that the performance and generalization
+ability of many MSS models can be limited by the size
+of available high-quality clean training data. Several existing
+works have proposed methods for digging valid segments from
+unlabeled data by a source activity detector and using them
+arXiv:2209.15174v1  [eess.AS]  30 Sep 2022
+
+=== PAGE 2 ===
+2
+for data augmentation purpose during training [29], [43], and
+several other works attempted to perform separation on the
+unlabeled data with a pre-trained model to generate pseudo
+labels [44], [45]. We also describe a semi-supervised ﬁnetuning
+pipeline that can be viewed as a mixed pipeline of recent
+works, which bypasses the requirement of a separately trained
+source activity detector by directly using a strong pre-trained
+model as both its own source activity detector and pseudo-
+label generator. A self-boosting scheme is applied to gradually
+improve the quality of the generated pseudo-label signals by
+continuously replacing the pre-trained model by the new best
+model found in the ﬁnetuning stage. This setting allows us to
+use both the clean and noisy signals in the unlabeled data in the
+ﬁnetuning stage. Experiments show that the semi-supervised
+ﬁnetuning pipeline can further improve the performance of the
+model in all instrument tracks.
+The rest of the paper is organized as follows. Section II
+introduces the BSRNN architecture. Section III describes the
+semi-supervised data ﬁnetuning pipeline. Section IV provides
+the detailed conﬁgurations for training and evaluation. Sec-
+tion V presents the experiment results and analysis. Section VI
+concludes the paper.
+II.
+BAND-SPLIT RNN
+Figure 1 (A) shows the overall pipeline of the BSRNN
+model, which contains a band split module, a band and
+sequence modeling module, and a mask estimation module.
+A. Band Split Module
+Figure 1 (B) shows the design of the band split module. The
+module takes the complex-valued spectrogram X ∈CF ×T
+generated by short-time Fourier transform (STFT) as input,
+where F and T are the frequency and temporal dimensions,
+respectively, and split it into K subband spectrograms Bi ∈
+CGi×T , i = 1, . . . , K with predeﬁned bandwidth {Gi}K
+i=1
+satisfying PK
+i=1 Gi = F. The real and imaginary part of each
+subband spectrogram Bi is then concatenated and passed to
+a layer normalization module [46] and a fully-connected (FC)
+layer to generated a real-valued subband feature Zi ∈RN×T .
+Note that since {Gi}K
+i=1 can all be different, each subband
+spectrogram has its own normalization module and FC layer.
+All K subband features {Zi}K
+i=1 are then merged to generate
+a transformed fullband feature tensor Z ∈RN×K×T .
+B. Band and Sequence Modeling Module
+Figure 1 (C) shows the band and sequence modeling module.
+Similar to the dual-path RNN architecture [41], BSRNN per-
+forms interleaved sequence-level and band-level modeling via
+two different residual RNN layers. The sequence-level RNN
+is ﬁrst applied to Z across the temporal dimension T, where
+the K subband features share a same RNN since they have
+the same feature dimension N. This is to save the model
+size and allow parallel processing across subbands. The band-
+level RNN is then applied to Z across the band dimension K,
+where the RNN is assumed to capture the intra-band feature
+dependencies across the K subbands at each frame. Both
+sequence-level and band-level RNNs share a same design,
+where a group normalization module is ﬁrst applied to the
+input of the module, and then a BLSTM layer followed by an
+FC layer is applied to perform the actual modeling. Residual
+connection is added between the input and the output of the FC
+layer. Multiple such RNNs can be stacked to create a deeper
+architecture, and the output of the last layer is denoted by
+Q ∈RN×K×T .
+C. Mask Estimation Module
+The mask estimation module calculates a complex-valued
+time-frequency (T-F) mask to extract the target source. Q
+is ﬁrst split into K features {Qi}K
+i=1 ∈RN×T where each
+feature corresponds to the transformed feature for a subband,
+and each subband feature is passed to a layer normalization
+module followed by a multilayer perceptron (MLP) with one
+hidden layer to generate the real and imaginary parts of the T-F
+masks Mi ∈CGi×T , i = 1, . . . , K. The use of MLP follows
+the observation in [47] where it was reported that a simple
+MLP can effectively estimate better T-F masks compared to a
+plain FC layer. Similar to the band split module, each subband
+feature has its own normalization module and MLP. All Mi
+are then merged into the fullband T-F mask M ∈CF ×T
+and multiplied with X to generate the target spectrogram
+S ∈CF ×T .
+D. Discussion
+It is easy to observe that BSRNN can be connected to recent
+works on dual-path and multi-path networks [48]–[52], group-
+splitting modules [53], [54], and super wideband models [55],
+[56]. Most dual-path architectures split a sequential feature into
+chunks and perform interleaved local and global processing,
+and the additional paths in multi-path models were proposed
+to either split the sequential feature into ﬁner-scale chunks or
+to apply on extra dimensions such as the spatial dimension in
+multi-channel signals. However, as the dual-path architecture
+was originally proposed for time-domain separation systems
+with relatively small window and hop size [41], its necessity
+and importance become less crucial in the successful optimiza-
+tion of the model. We also empirically ﬁnd that replacing the
+plain BLSTM by dual-path RNN for the sequence modeling
+module does not lead to a performance gain in BSRNN.
+Group-splitting modules were mainly proposed to build
+lightweight models with fewer model parameters and com-
+putational cost, where the main idea was to split a feature
+vector into groups and perform group-level sequential mod-
+eling and intra-group dependency modeling [53], [54]. Such
+group splitting and communication scheme was originally
+proposed for time-domain systems where the feature vec-
+tors do not have a clear frequency-dependent pattern, hence
+the intra-group dependency modeling module was designed
+to ignore the sequential order of the grouped sub-features.
+Such group-splitting scheme might not be as effective as
+in speech separation, since different instruments may have
+signiﬁcantly different frequency range and timbres and an
+explicit frequency-dependent feature extraction scheme can be
+
+=== PAGE 3 ===
+3
+Band
+ split
+Sequence
+modeling
+Mask
+estimation
+(A) Overall pipeline
+Band
+modeling
+Band 
+split
+Norm + FC
+Norm + FC
+Norm + FC
+Norm + FC
+Norm + FC
+Norm + FC
+Merge
+(B) Band split module
+(C) Band and sequence modeling module
+(D) Mask estimation module
+Norm
+BLSTM
+FC
++
+Norm
+BLSTM
+FC
++
+RNN across T
+RNN across K
+Split
+Norm + MLP
+Norm + MLP
+Norm + MLP
+Norm + MLP
+Norm + MLP
+Norm + MLP
+Band 
+merge
+Fig. 1.
+(A) The overall pipeline for the BSRNN model, which consists of a band split module, a sequence and band modeling module, and a mask estimation
+module. (B) The design of the band split module. (C) The design of the sequence and band modeling module. (D) The design of the mask estimation module.
+helpful. This serves as the main motivation for us to explicitly
+split the frequency components to subband features and use
+a sequential-order-sensitive module to capture the intra-band
+dependencies. Similar to the group communication models in
+time-domain systems, we still share the sequence modeling
+layer across all subbands, as it allows parallel processing across
+the subbands, saves the model size, and empirically leads to
+better performance compared to using a separate layer for each
+subband.
+Current models for super wideband speech enhancement
+split the frequency componenets into low-frequency and high-
+frequency bands and use either parallel or sequential net-
+work building blocks to process them [55], [56]. Such band-
+splitting schemes are simple and coarse, and the intra-band
+dependencies are not explicitly modeled. BSRNN performs
+a ﬁne-grained band-splitting scheme that attempts to cover
+more detailed harmonic patterns in the music signals. On the
+other hand, BSRNN does not perform strict frequency-bin-
+level modeling as prior works on automatic speech recognition
+[57], [58] and fullband speech enhancement [59], [60] in
+order to save the model complexity, memory footprint and
+processing speed.
+III.
+SEMI-SUPERVISED FINETUNING PIPELINE
+Collecting high-quality realistic training data with all clean
+target sources is challenging for not only music signals but
+a wide range of other types of signals such as environmental
+sounds. More importantly, as the choice of musical instruments
+and their arrangements can be completely different in different
+songs, it is hard to collect clean sources for all possible musical
+instruments with a satisfying quality. However, a model trained
+with a limited amount of labeled data may fail in songs with
+different genres and choices of musical instruments. In this
+section, we describe how we ﬁnetune the model trained with
+labeled data on additional unlabeled data with semi-supervised
+data sampling.
+A. Semi-supervised Data Sampling
+Given a model P trained on a small-scale labeled dataset L
+and a large-scale unlabeled dataset U, we generate new training
+samples by the sampling pipeline described in Figure 2. The
+core concept of our semi-supervised data sampling pipeline
+is that we treat the pre-trained model as both a pseudo-
+label generator [43] and a source activity detector [61]. We
+sample a segment of clean target and residual signals from
+L as the supervised training pipeline, where the “residual”
+signal is deﬁned as the signal that does not contain the target
+
+=== PAGE 4 ===
+4
+Clean target &
+residual
+Mixture
+Separated target &
+residual
+Energy-based data
+filtering
+Clean target /
+residual
+Pseudo target
+/ residual
+Sampling
+Sampling
+Sampled target / residual
+Sampling
+Sampled mixture & target
+Augmentation
+& mixing
+Fig. 2.
+The semi-supervised data sampling pipeline for model ﬁnetuning.
+source (e.g., accompaniment when vocal track is the target).
+We also sample a segment of mixture signal from U and
+pass it to the pre-trained model P to generate the separated
+target and residual signals, where the residual signal is deﬁned
+by subtracting the separated target signal from the mixture.
+We then use an energy-based data ﬁltering method to detect
+whether the separated signals are clean or noisy/distorted:
+1)
+If the energy difference between the mixture and sepa-
+rated target signals, measured on decibel scale, is larger
+than 30 dB, then the mixture segment is treated as a
+clean residual segment.
+2)
+If the energy difference between the mixture and sep-
+arated residual signals, measured on decibel scale, is
+larger than 30 dB, then the mixture segment is treated
+as a clean target segment.
+This simple energy-based method directly used the pre-trained
+model as the target source activity detector. The separated
+signals are not used when the mixture signal is treated as
+a clean target or residual segment, and they are treated as
+pseudo labels when the mixture signal contains both the target
+and residual signals. All clean and pseudo signals are then
+gathered and one target and one residual signal are resampled
+from them. Optional data augmentation and mixing process
+can be applied to the signals, and then the transformed target
+and residual signals are summed to generate the mixture signal
+used for the ﬁnetuning stage.
+During the ﬁnetuning stage, we deﬁne a new model Q
+initialize it by P and train it on samples generated by the
+aforementioned data sampling pipeline. The pre-trained model
+P can be ﬁxed or sequentially updated by the new Q [44],
+and we replace P by the new Q whenever Q achieves a better
+performance than P on the validation set.
+B. Discussion
+The data sampling pipeline described here can be connected
+to a wide range of existing works on knowledge distillation
+[62]–[65], pseudo label generation [66]–[69], and teacher-
+student learning [70]–[72], where a teacher model is used
+to generate pseudo training targets from a large unlabeled
+dataset to improve the performance of a student model. More
+speciﬁcally, existing pipelines for source separation include
+silent source detection [29], pseudo label generation and ﬁl-
+tering [43], and self-boosting [44], [45]. The ﬁrst one trains
+a classiﬁer on segments of unlabeled data to detect whether
+the target source is absent, and if so the segment is used
+as a clean residual signal for data augmentation. However,
+as the activation of different musical instruments can be
+sparse in time, the performance of the classiﬁer may highly
+dependent on whether the training data is balanced, and when
+the classiﬁer fails the model may use a mixture segment that
+also contains the target source as the residual. The second
+one performs standard pseudo label generation pipeline to
+extract pseudo labels from unlabeled data, and trains a frame-
+level separate source activity detector to evaluate whether the
+extracted pseudo labels are high-quality samples. However,
+the experiments were only conducted on 16k Hz sample rate
+data on the vocal-accompaniment separation task, and the
+conﬁguration of the source activity detector was not described
+in detail. Moreover, as the separated pseudo-label signals may
+contain distortions, it may require extra data augmentation and
+training tricks on the optimization of the detectors in order to
+allow them work well on a speciﬁc pre-trained separator. The
+last one also generates pseudo labels for data augmentation,
+while it also continuously improves the teacher by sequentially
+replacing the teacher by the latest student and double the size
+of the student model during training. The robustness against the
+noisy teacher outputs is obtained by generating a large batch
+of noisy samples with a more diverse data remixing paradigm,
+together with an unsupervised training objective. However, it
+was only evaluated on speech enhancement task with 16k Hz
+sample rate either, and the use of large number of pseudo
+label samples as well as the increase of the student model size
+may introduce additional difﬁculties in the application of the
+pipeline on large-scale models.
+As described above, the data sampling pipeline we use can
+be viewed as a combination of all existing pipelines – we
+use both detected clean segments and generated pseudo-label
+signals in the unlabeled dataset via a strong pre-trained model.
+This allows us to not only alleviate the need of an external
+classiﬁer or source activity detector while still able to detect
+clean segments within an unlabeled song, but also make use of
+the pseudo label signals in a similar way as existing pipelines.
+
+=== PAGE 5 ===
+5
+IV.
+EXPERIMENT CONFIGURATIONS
+A. Supervised Training
+1) Data Preprocessing: Similar to existing works, we use
+the MUSDB18-HQ dataset [42] for all experiments. During
+the preparation of the training data, we apply a source activity
+detector (SAD) to remove the silent regions in the sound
+tracks and only lead the salient ones for data mixing. Although
+any existing SAD systems can be directly applied, here we
+introduce a simple unsupervised energy-based thresholding
+method to select salient segments from a full track.
+Given a unsegmented track and a segment length L mea-
+sured by duration (e.g., second), we ﬁrst split the sound track
+into overlapped segments of length L with an overlap ratio
+of 50%. For each segment, we further split it into 10 chunks
+of length L/10 and calculate the energy of them. For silent
+chunks, we set their energy to a small value ϵ = 1e −5. We
+then calculate an energy threshold of the full sound track by
+calculating the maximum value of the 15% quantile of the
+energy of all chunks and another small value γ = 1e −3. If
+there are more than 50% of the chunks in a segment having
+their energy higher than the threshold, then we deﬁne the
+segment as a salient segment and save it as a valid training data
+segment. In our training conﬁguration, we set L = 6 seconds.
+2) On-the-ﬂy Data Simulation: We apply batch-level on-the-
+ﬂy data simulation by randomly mixing sound tracks from
+different songs [73]. Given a training data length T ≤L
+and the type of target source (e.g., vocal, bass, drum or
+other in MUSDB dataset), we ﬁrst randomly sample 1 SAD-
+preprocessed salient segment of length L for all tracks, and
+then randomly select a chunk of length T (We set T = 3
+seconds by default). For each chunk, we randomly rescale its
+energy between [−10, 10] dB compared to its original energy.
+We then randomly drop the each chunk with probability 0.1
+to mimic the segments where the target source is inactive. We
+add up all chunks to form the mixture. To ensure all samples
+are in the same scale, we rescale both the mixture and the
+target by the maximum of the maximum absolute value of
+their samples.
+3) Training Objective: The training objective is deﬁned as
+the sum of a frequency-domain mean-absolute-error (MAE)
+loss and a time-domain MAE loss:
+Lobj = |Sr −¯Sr|1 + |Si −¯Si|1 + |iSTFT(S) −iSTFT(¯S)|1
+(1)
+where ¯S ∈CF ×T denotes the complex-valued spectrogram
+of the clean target, subscript r and l denote the real and
+imaginary parts, respectively, and iSTFT denotes the inverse
+STFT operator.
+4) Hyperparameter Conﬁguration: We set the window size
+and hop size of STFT to 2048 and 512, respectively, and use
+a Hanning window. We set the feature dimension N to be 128
+in all experiments, and use 12 band and sequence modeling
+modules with a total of 24 residual BLSTM layers. We set the
+hidden unit of BLSTM layers to be 2N = 256, the hidden
+size in the mask estimation MLP to be 4N = 512, and use the
+hyperbolic tangent function as the nonlinear activation function
+in the MLP. We use a gated linear unit (GLU) [74] for the
+output layer of the MLP. The band split bandwidth will be
+discussed in Section V-A.
+We train individual models for each of the target tracks,
+which means that we treat the MSS problem as a source
+extraction problem with only one signal-of-interest. All models
+are trained for 100 epochs with the Adam optimizer [75] with
+an initial learning rate of 1e −3, and each epoch contains
+10000 batches of samples with a batch size of 2 and number of
+GPUs of 8. The learning rate is decayed by 0.98 for every two
+epochs, and gradient clipping by a maximum gradient norm of
+5 is applied. Early stopping is applied when the best validation
+is not found in 10 consecutive epochs.
+B. Semi-supervised Finetuning
+We use another private dataset of 1750 songs for the semi-
+supervised ﬁnetuning stage. The data sampling process in the
+on-the-ﬂy simulation pipeline follows the one we described in
+Section III-A, where we set the MUSDB18-HQ dataset as L
+and the private dataset as U. The private dataset is also passed
+to the source activity detector to remove silent segments before
+training. We set the initial learning rate for the ﬁnetuning stage
+to 1e −4, and all other conﬁgurations are kept identical to the
+supervised training stage.
+C. Evaluation
+During the evaluation phase, we split the full song into
+chunks of length T and hop size of P ≤T, and perform zero-
+padding of length L −P at the beginning and the end. All
+chunks are then processed by the trained model, and overlap-
+add is applied to all separated outputs to form the ﬁnal output
+with the original duration. We set P = 0.5 seconds by default
+and discuss the effect of different P in Section V-B. We
+report the model performance on both MUSDB18-HQ and
+MUSDB18 dataset [76].
+D. Metrics
+We evaluate the models with two metrics:
+1)
+uSDR: uSDR corresponds to the modiﬁed utterance-
+level signal-to-distortion ratio metric proposed in [77]
+and used as the default evaluation metric in the Music
+Demixing (MDX) Challenge 2021. The deﬁnition of
+uSDR is identical to the standard signal-to-noise ratio
+(SNR). We report the mean across the SDR scores of
+all songs.
+2)
+cSDR: cSDR corresponds to the chunk-level SDR cal-
+culated by the standard SDR metric in bss eval metrics
+[78] and served as the default evaluation metric in
+the Signal Separation Evaluation Campaign (SiSEC)
+[79]. We use the ofﬁcial implementation1 which reports
+the median across the median SDR over all 1 second
+chunks in each song.
+Both metrics are reported on decibel scale.
+1https://github.com/sigsep/sigsep-mus-eval
+
+=== PAGE 6 ===
+6
+V.
+RESULTS AND ANALYSIS
+A. Effect of Band Split Bandwidth
+The band split bandwidth {Gi}K
+i=1 needs to be manually
+deﬁned and may affect the performance. We ﬁrst select seven
+different options for {Gi}K
+i=1 and compare the models:
+1)
+V1: We evenly split the entire spectrogram by a 1k Hz
+bandwidth (remainders are merged to the last subband).
+This results in 22 subbands.
+2)
+V2: We split the frequency band below 16k Hz by a
+1k Hz bandwidth, the frequency band between 16k Hz
+and 20k Hz by a 2k Hz bandwidth, and treat the rest
+as one subband. This results in 19 subbands.
+3)
+V3: We split the frequency band below 8k Hz by a 1k
+Hz bandwidth, split the frequency band between 8k Hz
+and 16k Hz by a 2k Hz bandwidth, treat the frequency
+band between 16k Hz and 20k Hz as one subband, and
+treat the rest as another subband. This results in 14
+subbands.
+4)
+V4: We split the frequency band below 1k Hz by a 100
+Hz bandwidth, split the frequency band between 1k Hz
+and 8k Hz by a 1k Hz bandwidth, split the frequency
+band between 8k Hz and 16k Hz by a 2k Hz bandwidth,
+treat the frequency band between 16k Hz and 20k Hz
+as one subband, and treat the rest as another subband.
+This results in 23 subbands.
+5)
+V5: We split the frequency band below 1k Hz by a
+100 Hz bandwidth, split the frequency band between
+1k Hz and 16k Hz by a 1k Hz bandwidth, split the
+frequency band between 16k Hz and 20k Hz by a 2k
+Hz bandwidth, and treat the rest as one subband. This
+results in 28 subbands.
+6)
+V6: We split the frequency band below 1k Hz by a 100
+Hz bandwidth, split the frequency band between 1k Hz
+and 4k Hz by a 500 Hz bandwidth, split the frequency
+band between 4k Hz and 8k Hz by a 1k Hz bandwidth,
+split the frequency band between 8k Hz and 16k Hz by
+a 2k Hz bandwidth, treat the frequency band between
+16k Hz and 20k Hz as one subband, and treat the rest
+as another subband. This results in 26 subbands.
+7)
+V7: We split the frequency band below 1k Hz by a 100
+Hz bandwidth, split the frequency band between 1k Hz
+and 4k Hz by a 250 Hz bandwidth, split the frequency
+band between 4k Hz and 8k Hz by a 500 Hz bandwidth,
+split the frequency band between 8k Hz and 16k Hz by
+a 1k Hz bandwidth, split the frequency band between
+16k Hz and 20k Hz by a 2k Hz bandwidth, and treat
+the rest as one subband. This results in 41 subbands.
+Table I provides the vocal extraction performance evaluated
+by the uSDR metric across the MUSDB18-HQ test set. We
+can see that the performance of V1 to V3 remain on par, but
+V4 provides a signiﬁcant gain. Given that the main difference
+between V3 and V4 is the split of ﬁner subbands below 1k
+Hz, it shows that lower frequency bands are important for the
+model to successfully estimate more accurate spectrograms,
+and a possible explanation is that the frequency band below
+1k Hz typically covers the fundamental frequency and the
+ﬁrst few harmonics of the vocal track, which enables the
+band modeling RNN to better capture the F0 information
+and to better estimate higher frequency components. As more
+subbands are split at lower frequency parts from V4 to V7,
+the performance continues to improve, further showing that a
+ﬁne-grained band-splitting scheme is essential for BSRNN to
+get better performance. Moreover, we further perform a small-
+scale grid search and use the following band split bandwidths
+for the bass, drum and other tracks in MUSDB18:
+1)
+Bass: We split the frequency band below 500 Hz by
+a 50 Hz bandwidth, split the frequency band between
+500 Hz and 1k Hz by a 100 Hz bandwidth, split the
+frequency band between 1k Hz and 4k Hz by a 500 Hz
+bandwidth, split the frequency band between 4k Hz and
+8k Hz by a 1k Hz bandwidth, split the frequency band
+between 8k Hz and 16k Hz by a 2k Hz bandwidth,
+and treat the rest as one subband. This results in 30
+subbands.
+2)
+Drum: We split the frequency band below 1k Hz by a 50
+Hz bandwidth, split the frequency band between 1k Hz
+and 2k Hz by a 100 Hz bandwidth, split the frequency
+band between 2k Hz and 4k Hz by a 250 Hz bandwidth,
+split the frequency band between 4k Hz and 8k Hz by
+a 500 Hz bandwidth, split the frequency band between
+8k Hz and 16k Hz by a 1k Hz bandwidth, and treat the
+rest as one subband. This results in 55 subbands.
+3)
+Other: We use the same band split scheme as vocals
+(i.e., V7 above).
+We empirically ﬁnd that different instrument tracks may
+have their own superior band split schemes than that for vocals.
+Given that different instruments can have different frequency
+ranges, harmonic patterns and mixing techniques, the observa-
+tion shows that such a priori knowledge or expert knowledge
+may play an important role in exploring intrinsic characteristics
+of different musical instruments. Note that adjusting the band
+split bandwidths may further improve the model performance,
+and here we do not perform exhaustive grid search for the sake
+of simplicity.
+TABLE I.
+PERFORMANCE ON VOCAL EXTRACTION FOR BSRNN
+MODELS WITH DIFFERENT BAND SPLIT BANDWIDTHS.
+Bandwidth
+V1
+V2
+V3
+V4
+V5
+V6
+V7
+uSDR
+8.15
+8.21
+8.06
+9.51
+9.57
+9.78
+10.04
+TABLE II.
+PERFORMANCE ON VOCAL EXTRACTION FOR BSRNN
+MODELS WITH DIFFERENT EVALUATION SEGMENT HOP SIZES.
+Hop size (s)
+0.5
+1
+1.5
+3
+uSDR
+10.04
+10.00
+9.94
+9.75
+B. Effect of Evaluation Segment Hop Size
+Table I reports model performance with the default eval-
+uation segment hop size of P
+= 0.5 seconds. We also
+report the model performance with different segment hop
+sizes here. Table II shows the uSDR scores with models
+with four different hop sizes and a ﬁxed segment size of
+
+=== PAGE 7 ===
+7
+TABLE III.
+COMPARISON WITH EXISTING MODELS ON MUSDB18-HQ (HQ) AND MUSDB18 (NHQ) DATASET.
+Model
+Vocals
+Bass
+Drum
+Other
+All
+uSDR
+cSDR
+uSDR
+cSDR
+uSDR
+cSDR
+uSDR
+cSDR
+uSDR
+cSDR
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+HQ
+nHQ
+ResUNetDecouple+ [25]
+–
+–
+–
+8.98
+–
+–
+–
+6.04
+–
+–
+–
+6.62
+–
+–
+–
+5.29
+–
+–
+–
+6.73
+CWS-PResUNet [26]
+–
+–
+8.92
+–
+–
+–
+5.93
+–
+–
+–
+6.38
+–
+–
+–
+5.84
+–
+–
+–
+6.77
+–
+KUIELab-MDX-Net [32]
+–
+–
+8.97
+9.00
+–
+–
+7.83
+7.86
+–
+–
+7.20
+7.33
+–
+–
+5.90
+5.95
+–
+–
+7.47
+7.54
+Hybrid Demucs [31]
+–
+–
+8.13
+8.04
+–
+–
+8.76
+8.67
+–
+–
+8.24
+8.58
+–
+–
+5.59
+5.59
+–
+–
+7.68
+7.72
+BSRNN
+10.04
+9.92
+10.01
+10.21
+6.80
+6.77
+7.22
+7.51
+8.92
+8.68
+9.01
+8.58
+6.01
+5.97
+6.70
+6.62
+7.94
+7.84
+8.24
+8.23
++ ﬁnetuning
+10.47
+10.36
+10.47
+10.53
+7.20
+7.17
+8.16
+8.30
+9.66
+9.46
+10.15
+9.65
+6.33
+6.27
+7.08
+7.00
+8.42
+8.32
+8.97
+8.87
+T = 3 seconds. We can see that choosing any P ≤T can
+result in a performance improvement, and the reason can be
+because the overlap-add operation smooths the outputs and
+mitigates the noise or distortion introduced. We can also ﬁnd
+that decreasing P from 1.5 to 0.5 does not provide signiﬁcant
+gain while linearly increases the processing time with the extra
+segments. This shows that although we choose P = 0.5 for
+the experiments here, in practice one can choose P = 1.5 for
+a balance between processing speed and performance.
+C. Comparison with State-of-the-art Systems
+Here we compare the BSRNN model with existing state-
+of-the-art systems on both MUSDB18 and MUSDB18-HQ
+dataset. We choose the top-ranking systems in the Music
+Demixing (MDX) Challenge 2021 [77] as the baselines. We
+report the results before and after the semi-supervised ﬁnetun-
+ing stage for BSRNN for all the four tracks. For the other
+systems, the best reported numbers found in all available
+literatures are reported. Table III presents the results on both
+MUSDB18 and MUSDB18-HQ dataset on both uSDR and
+cSDR metrics. We can observe that BSRNN trained only
+on MUSDB18-HQ dataset outperforms all existing systems
+on vocal, drum and other tracks on both MUSDB18 and
+MUSDB18-HQ dataset, and performs slightly worse on bass
+track. Possible explanations for this observation are that the
+energy rescaling process in our data mixing procedure might
+not be well suited for bass as empirically bass is not as strong
+as other instruments in a song, and the band-split scheme needs
+further investigation to better capture low- and mid-frequency
+range information where bass lies in. Regarding the semi-
+supervised ﬁnetuning stage, we observe that all tracks are able
+to obtain a performance gain, especially for bass and drum
+tracks where we can observe an around 1 dB improvement
+on the cSDR metric. Compared to existing semi-supervised
+methods described in Section III, our self-boosting ﬁnetuning
+pipeline is evaluated on all instrument tracks instead of a vocal
+or speech only task, and the experiments are also conducted
+on 44.1k Hz sample rate signals instead of 16k Hz sample rate
+signals. Moreover, our pipeline does not lead to a gradually
+increased model size as [44], and does not need external
+modules that require separate training procedures as [29], [43].
+This proves that the proposed semi-supervised ﬁnetuning stage
+has the potential to become a more universal pipeline for
+general source extraction or separation tasks.
+VI.
+CONCLUSION AND FUTURE WORKS
+In this paper, we proposed band-split RNN (BSRNN), a
+model architecture that was designed for music source sep-
+aration and general high-sample-rate source separation that
+can take a priori knowledge on the characteristics of the
+source to be separated into account when determining the
+model hyperparameters. BSRNN split the complex-valued
+spectrogram of the input mixture in multiple subbands with
+differend bandwidths, and performed interleaved sequence-
+level and band-level processing via recurrent neural networks.
+We also described a semi-supervised data sampling pipeline for
+ﬁnetuning the model trained on a small-scale labeled dataset
+on a large-scaled unlabeled dataset. Experiment results on
+MUSDB18 and MUDSB18-HQ dataset showed that BSRNN
+can surpass the performance of existing state-of-the-art music
+source separation systems, and the semi-supervised ﬁnetuning
+pipeline can further improve the performance and the robust-
+ness on songs with various genres. Future works include the
+investigation of better and cleverer ways to incorporate a prior
+source-speciﬁc knowledge into the choice of band-splitting
+schemes rather than large-scale grid search, and the validation
+of the model and the pipeline on more types of musical
+instruments and universal audio extraction and separation
+tasks. Moreover, the size of the private dataset we used for
+the semi-supervised ﬁnetuning stage is not large compared to
+prior works [29], and we only used lossless data with .wav
+or .ﬂac formats and removed the songs with all other lossy
+compression formats (e.g., .mp3). As there exists a wide range
+of songs encoded with lossy compression formats, adding such
+data to the pipeline may allow the band-level RNN layer to
+learn to deal with the signals with a distorted higher frequency
+component, and further improve the model performance on
+both the MUSDB18 dataset (with .mp4 format) and other real-
+world recordings. The effects of additional data size and data
+type in both supervised training and semi-supervised ﬁnetuning
+stages are also left for future study.
+REFERENCES
+[1]
+O. Gillet and G. Richard, “Extraction and remixing of drum tracks from
+polyphonic music signals,” in IEEE Workshop on Applications of Signal
+Processing to Audio and Acoustics, 2005.
+IEEE, 2005, pp. 315–318.
+[2]
+J. F. Woodruff, B. Pardo, and R. B. Dannenberg, “Remixing stereo
+music with score-informed source separation.” in ISMIR, 2006, pp. 314–
+319.
+[3]
+J. Pons, J. Janer, T. Rode, and W. Nogueira, “Remixing music using
+source separation algorithms to improve the musical experience of
+cochlear implant users,” The Journal of the Acoustical Society of
+America, vol. 140, no. 6, pp. 4338–4349, 2016.
+
+=== PAGE 8 ===
+8
+[4]
+N. Ono, K. Miyamoto, H. Kameoka, J. L. Roux, Y. Uchiyama,
+E. Tsunoo, T. Nishimoto, and S. Sagayama, “Harmonic and percussive
+sound separation and its application to MIR-related tasks,” in Advances
+in music information retrieval.
+Springer, 2010, pp. 213–236.
+[5]
+A. Mesaros and T. Virtanen, “Automatic recognition of lyrics in
+singing,” EURASIP Journal on Audio, Speech, and Music Processing,
+vol. 2010, pp. 1–11, 2010.
+[6]
+K. Itoyama, M. Goto, K. Komatani, T. Ogata, and H. G. Okuno, “Query-
+by-example music information retrieval by score-informed source sep-
+aration and remixing technologies,” EURASIP journal on Advances in
+Signal Processing, vol. 2010, pp. 1–14, 2011.
+[7]
+A. Rosner, B. Kostek, and B. Schuller, “Classiﬁcation of music genres
+based on music separation into harmonic and drum components,”
+Archives of Acoustics, pp. 629–638, 2014.
+[8]
+L. Lin, Q. Kong, J. Jiang, and G. Xia, “A uniﬁed model for zero-shot
+music source separation, transcription and synthesis,” in Proceedings of
+21st International Conference on Music Information Retrieval, ISMIR,
+2021.
+[9]
+C. Dittmar, E. Cano, J. Abeßer, and S. Grollmisch, “Music information
+retrieval meets music education,” in Dagstuhl Follow-Ups, vol. 3.
+Schloss Dagstuhl-Leibniz-Zentrum fuer Informatik, 2012.
+[10]
+E. Cano, G. Schuller, and C. Dittmar, “Pitch-informed solo and accom-
+paniment separation towards its use in music education applications,”
+EURASIP Journal on Advances in Signal Processing, vol. 2014, no. 1,
+pp. 1–19, 2014.
+[11]
+C. Macartney and T. Weyde, “Improved speech enhancement with the
+wave-u-net,” arXiv preprint arXiv:1811.11307, 2018.
+[12]
+R. Giri, U. Isik, and A. Krishnaswamy, “Attention wave-u-net for
+speech enhancement,” in 2019 IEEE Workshop on Applications of
+Signal Processing to Audio and Acoustics (WASPAA).
+IEEE, 2019,
+pp. 249–253.
+[13]
+A. D´efossez, G. Synnaeve, and Y. Adi, “Real time speech enhancement
+in the waveform domain,” Proc. Interspeech, pp. 3291–3295, 2020.
+[14]
+T. Jenrungrot, V. Jayaram, S. Seitz, and I. Kemelmacher-Shlizerman,
+“The cone of silence: Speech separation by localization,” Advances
+in Neural Information Processing Systems, vol. 33, pp. 20 925–20 938,
+2020.
+[15]
+H. Liu, Q. Kong, Q. Tian, Y. Zhao, D. Wang, C. Huang, and Y. Wang,
+“VoiceFixer: Toward general speech restoration with neural vocoder,”
+arXiv preprint arXiv:2109.13731, 2021.
+[16]
+A. A. Nugraha, A. Liutkus, and E. Vincent, “Multichannel music
+separation with deep neural networks,” in 2016 24th European Signal
+Processing Conference (EUSIPCO).
+IEEE, 2016, pp. 1748–1752.
+[17]
+A. Jansson, E. Humphrey, N. Montecchio, R. Bittner, A. Kumar, and
+T. Weyde, “Singing voice separation with deep U-net convolutional
+networks.” in ISMIR, 2017, pp. 745–751.
+[18]
+Y. Luo, Z. Chen, J. R. Hershey, J. Le Roux, and N. Mesgarani, “Deep
+clustering and conventional networks for music separation: Stronger
+together,” in Acoustics, Speech and Signal Processing (ICASSP), 2017
+IEEE International Conference on.
+IEEE, 2017, pp. 61–65.
+[19]
+P. Chandna, M. Miron, J. Janer, and E. G´omez, “Monoaural audio
+source separation using deep convolutional neural networks,” in Inter-
+national conference on latent variable analysis and signal separation.
+Springer, 2017, pp. 258–266.
+[20]
+S. Park, T. Kim, K. Lee, and N. Kwak, “Music source separation using
+stacked hourglass networks.” in ISMIR, 2018, pp. 289–296.
+[21]
+N. Takahashi, N. Goswami, and Y. Mitsufuji, “MMDenseLSTM: An
+efﬁcient combination of convolutional and recurrent neural networks
+for audio source separation,” in 2018 16th International Workshop on
+Acoustic Signal Enhancement (IWAENC).
+IEEE, 2018, pp. 106–110.
+[22]
+N. Takahashi and Y. Mitsufuji, “D3Net: Densely connected mul-
+tidilated DenseNet for music source separation,” arXiv preprint
+arXiv:2010.01733, 2020.
+[23]
+R. Hennequin, A. Khlif, F. Voituret, and M. Moussallam, “Spleeter: a
+fast and efﬁcient music source separation tool with pre-trained models,”
+Journal of Open Source Software, vol. 5, no. 50, p. 2154, 2020.
+[24]
+T. Li, J. Chen, H. Hou, and M. Li, “Sams-net: A sliced attention-based
+neural network for music source separation,” in 2021 12th International
+Symposium on Chinese Spoken Language Processing (ISCSLP). IEEE,
+2021, pp. 1–5.
+[25]
+Q. Kong, Y. Cao, H. Liu, K. Choi, and Y. Wang, “Decoupling magnitude
+and phase estimation with deep resunet for music source separation,”
+arXiv preprint arXiv:2109.05418, 2021.
+[26]
+H. Liu, Q. Kong, and J. Liu, “CWS-PResUNet: Music source separa-
+tion with channel-wise subband phase-aware resunet,” arXiv preprint
+arXiv:2112.04685, 2021.
+[27]
+D. Stoller, S. Ewert, and S. Dixon, “Wave-U-Net: A multi-scale neural
+network for end-to-end audio source separation.” in ISMIR, 2018, pp.
+334–340.
+[28]
+A. D´efossez, N. Usunier, L. Bottou, and F. Bach, “Music source
+separation in the waveform domain,” arXiv preprint arXiv:1911.13254,
+2019.
+[29]
+——, “Demucs: Deep extractor for music sources with extra unlabeled
+data remixed,” arXiv preprint arXiv:1909.01174, 2019.
+[30]
+D. Samuel, A. Ganeshan, and J. Naradowsky, “Meta-learning extractors
+for music source separation,” in Acoustics, Speech and Signal Process-
+ing (ICASSP), 2020 IEEE International Conference on.
+IEEE, 2020,
+pp. 816–820.
+[31]
+A. D´efossez, “Hybrid spectrogram and waveform source separation,” in
+Proceedings of the ISMIR 2021 Workshop on Music Source Separation,
+2021.
+[32]
+M. Kim, W. Choi, J. Chung, D. Lee, and S. Jung, “KUIELab-MDX-
+Net: A two-stream neural network for music demixing,” arXiv preprint
+arXiv:2111.12203, 2021.
+[33]
+P.-S. Huang, M. Kim, M. Hasegawa-Johnson, and P. Smaragdis, “Deep
+learning for monaural speech separation,” in Acoustics, Speech and
+Signal Processing (ICASSP), 2014 IEEE International Conference on.
+IEEE, 2014, pp. 1562–1566.
+[34]
+——, “Joint optimization of masks and deep recurrent neural networks
+for monaural source separation,” IEEE/ACM Transactions on Audio,
+Speech and Language Processing (TASLP), vol. 23, no. 12, pp. 2136–
+2147, 2015.
+[35]
+J. R. Hershey, Z. Chen, J. Le Roux, and S. Watanabe, “Deep clustering:
+Discriminative embeddings for segmentation and separation,” in Acous-
+tics, Speech and Signal Processing (ICASSP), 2016 IEEE International
+Conference on.
+IEEE, 2016, pp. 31–35.
+[36]
+Y. Luo and N. Mesgarani, “Conv-TasNet: Surpassing ideal time–
+frequency magnitude masking for speech separation,” IEEE/ACM Trans-
+actions on Audio, Speech, and Language Processing (TASLP), vol. 27,
+no. 8, pp. 1256–1266, 2019.
+[37]
+O. Ronneberger, P. Fischer, and T. Brox, “U-net: Convolutional net-
+works for biomedical image segmentation,” in International Confer-
+ence on Medical image computing and computer-assisted intervention.
+Springer, 2015, pp. 234–241.
+[38]
+A. Newell, K. Yang, and J. Deng, “Stacked hourglass networks for
+human pose estimation,” in European conference on computer vision.
+Springer, 2016, pp. 483–499.
+[39]
+G. Huang, Z. Liu, L. Van Der Maaten, and K. Q. Weinberger, “Densely
+connected convolutional networks,” in Proceedings of the IEEE confer-
+ence on computer vision and pattern recognition, 2017, pp. 4700–4708.
+[40]
+S. R. Livingstone, K. Peck, and F. A. Russo, “Acoustic differences in the
+speaking and singing voice,” in Proceedings of Meetings on Acoustics
+ICA2013, vol. 19, no. 1.
+Acoustical Society of America, 2013, p.
+035080.
+[41]
+Y. Luo, Z. Chen, and T. Yoshioka, “Dual-path RNN: efﬁcient long
+sequence modeling for time-domain single-channel speech separation,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2020 IEEE
+International Conference on.
+IEEE, 2020, pp. 46–50.
+
+=== PAGE 9 ===
+9
+[42]
+Z. Raﬁi, A. Liutkus, F.-R. St¨oter, S. I. Mimilakis, and R. Bittner,
+“Musdb18-hq - an uncompressed version of musdb18,” Aug. 2019.
+[Online]. Available: https://doi.org/10.5281/zenodo.3338373
+[43]
+Z. Wang, R. Giri, U. Isik, J.-M. Valin, and A. Krishnaswamy, “Semi-
+supervised singing voice separation with noisy self-training,” in Acous-
+tics, Speech and Signal Processing (ICASSP), 2021 IEEE International
+Conference on.
+IEEE, 2021, pp. 31–35.
+[44]
+E. Tzinis, Y. Adi, V. K. Ithapu, B. Xu, P. Smaragdis, and A. Kumar,
+“Remixit: Continual self-training of speech enhancement models via
+bootstrapped remixing,” IEEE Journal of Selected Topics in Signal
+Processing, 2022.
+[45]
+E. Tzinis, Y. Adi, V. K. Ithapu, B. Xu, and A. Kumar, “Continual
+self-training with bootstrapped remixing for speech enhancement,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2022 IEEE
+International Conference on.
+IEEE, 2022, pp. 6947–6951.
+[46]
+J. L. Ba, J. R. Kiros, and G. E. Hinton, “Layer normalization,” arXiv
+preprint arXiv:1607.06450, 2016.
+[47]
+K. Li and Y. Luo, “On the use of deep mask estimation module for
+neural source separation systems,” Proc. Interspeech, 2022.
+[48]
+K. Kinoshita, T. von Neumann, M. Delcroix, T. Nakatani, and R. Haeb-
+Umbach, “Multi-path RNN for hierarchical modeling of long sequential
+data and its application to speaker stream separation,” Proc. Interspeech
+2020, pp. 2652–2656, 2020.
+[49]
+J. Chen, Q. Mao, and D. Liu, “Dual-path transformer network: Direct
+context-aware modeling for end-to-end monaural speech separation,”
+Proc. Interspeech, pp. 2642–2646, 2020.
+[50]
+C. Subakan, M. Ravanelli, S. Cornell, M. Bronzi, and J. Zhong,
+“Attention is all you need in speech separation,” in Acoustics, Speech
+and Signal Processing (ICASSP), 2021 IEEE International Conference
+on.
+IEEE, 2021, pp. 21–25.
+[51]
+F. Dang, H. Chen, and P. Zhang, “DPT-FSNet: Dual-path transformer
+based full-band and sub-band fusion network for speech enhancement,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2022 IEEE
+International Conference on.
+IEEE, 2022, pp. 6857–6861.
+[52]
+A. Pandey, B. Xu, A. Kumar, J. Donley, P. Calamia, and D. Wang,
+“TPARN: Triple-path attentive recurrent network for time-domain
+multichannel speech enhancement,” in Acoustics, Speech and Signal
+Processing (ICASSP), 2022 IEEE International Conference on.
+IEEE,
+2022, pp. 6497–6501.
+[53]
+Y. Luo, C. Han, and N. Mesgarani, “Ultra-lightweight speech separation
+via group communication,” in Acoustics, Speech and Signal Processing
+(ICASSP), 2021 IEEE International Conference on.
+IEEE, 2021, pp.
+16–20.
+[54]
+——, “Group communication with context codec for lightweight source
+separation,” IEEE/ACM Transactions on Audio, Speech, and Language
+Processing (TASLP), vol. 29, pp. 1752–1761, 2021.
+[55]
+X. Zhang, L. Chen, X. Zheng, X. Ren, C. Zhang, L. Guo, and B. Yu, “A
+two-step backward compatible fullband speech enhancement system,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2022 IEEE
+International Conference on.
+IEEE, 2022, pp. 7762–7766.
+[56]
+S. Lv, Y. Fu, M. Xing, J. Sun, L. Xie, J. Huang, Y. Wang, and T. Yu,
+“S-DCCRN: Super wide band DCCRN with learnable complex feature
+for speech enhancement,” in Acoustics, Speech and Signal Processing
+(ICASSP), 2022 IEEE International Conference on.
+IEEE, 2022, pp.
+7767–7771.
+[57]
+J. Li, A. Mohamed, G. Zweig, and Y. Gong, “LSTM time and frequency
+recurrence for automatic speech recognition,” in Automatic Speech
+Recognition and Understanding (ASRU), 2015 IEEE Workshop on.
+IEEE, 2015, pp. 187–191.
+[58]
+——, “Exploring multidimensional LSTMs for large vocabulary ASR,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2016 IEEE
+International Conference on.
+IEEE, 2016, pp. 4940–4944.
+[59]
+X. Hao, X. Su, R. Horaud, and X. Li, “Fullsubnet: A full-band and sub-
+band fusion model for real-time single-channel speech enhancement,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2021 IEEE
+International Conference on.
+IEEE, 2021, pp. 6633–6637.
+[60]
+J. Chen, Z. Wang, D. Tuo, Z. Wu, S. Kang, and H. Meng, “Fullsubnet+:
+Channel attention fullsubnet with complex spectrograms for speech
+enhancement,” in Acoustics, Speech and Signal Processing (ICASSP),
+2022 IEEE International Conference on.
+IEEE, 2022, pp. 7857–7861.
+[61]
+R. Kumar, Y. Luo, and N. Mesgarani, “Music source activity detection
+and separation using deep attractor network,” in Proc. Interspeech,
+2018, pp. 347–351.
+[62]
+G. Hinton, O. Vinyals, and J. Dean, “Distilling the knowledge in a
+neural network,” arXiv preprint arXiv:1503.02531, 2015.
+[63]
+T. Asami, R. Masumura, Y. Yamaguchi, H. Masataki, and Y. Aono,
+“Domain adaptation of DNN acoustic models using knowledge distilla-
+tion,” in Acoustics, Speech and Signal Processing (ICASSP), 2017 IEEE
+International Conference on.
+IEEE, 2017, pp. 5185–5189.
+[64]
+G. Xu, Z. Liu, X. Li, and C. C. Loy, “Knowledge distillation meets self-
+supervision,” in European Conference on Computer Vision.
+Springer,
+2020, pp. 588–604.
+[65]
+J. Gou, B. Yu, S. J. Maybank, and D. Tao, “Knowledge distillation: A
+survey,” International Journal of Computer Vision, vol. 129, no. 6, pp.
+1789–1819, 2021.
+[66]
+D.-H. Lee et al., “Pseudo-label: The simple and efﬁcient semi-
+supervised learning method for deep neural networks,” in Workshop
+on challenges in representation learning, ICML, vol. 3, no. 2, 2013, p.
+896.
+[67]
+Q. Xie, M.-T. Luong, E. Hovy, and Q. V. Le, “Self-training with
+noisy student improves imagenet classiﬁcation,” in Proceedings of the
+IEEE/CVF conference on computer vision and pattern recognition,
+2020, pp. 10 687–10 698.
+[68]
+E. Arazo, D. Ortego, P. Albert, N. E. O’Connor, and K. McGuin-
+ness, “Pseudo-labeling and conﬁrmation bias in deep semi-supervised
+learning,” in 2020 International Joint Conference on Neural Networks
+(IJCNN).
+IEEE, 2020, pp. 1–8.
+[69]
+H. Pham, Z. Dai, Q. Xie, and Q. V. Le, “Meta pseudo labels,” in
+Proceedings of the IEEE/CVF Conference on Computer Vision and
+Pattern Recognition, 2021, pp. 11 557–11 568.
+[70]
+J. Li, M. L. Seltzer, X. Wang, R. Zhao, and Y. Gong, “Large-scale
+domain adaptation via teacher-student learning,” Proc. Interspeech, pp.
+2386–2390, 2017.
+[71]
+T. Matiisen, A. Oliver, T. Cohen, and J. Schulman, “Teacher–student
+curriculum learning,” IEEE Transactions on Neural Networks and
+Learning Systems, vol. 31, no. 9, pp. 3732–3740, 2019.
+[72]
+J. Zhang, C. Zorila, R. Doddipatla, and J. Barker, “Teacher-student
+MixIT for unsupervised and semi-supervised speech separation,” arXiv
+preprint arXiv:2106.07843, 2021.
+[73]
+S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp, N. Takahashi,
+and Y. Mitsufuji, “Improving music source separation based on deep
+neural networks through data augmentation and network blending,”
+in Acoustics, Speech and Signal Processing (ICASSP), 2017 IEEE
+International Conference on.
+IEEE, 2017, pp. 261–265.
+[74]
+Y. N. Dauphin, A. Fan, M. Auli, and D. Grangier, “Language modeling
+with gated convolutional networks,” arXiv preprint arXiv:1612.08083,
+2016.
+[75]
+D. Kingma and J. Ba, “Adam: A method for stochastic optimization,”
+arXiv preprint arXiv:1412.6980, 2014.
+[76]
+Z. Raﬁi, A. Liutkus, F.-R. St¨oter, S. I. Mimilakis, and R. Bittner,
+“The MUSDB18 corpus for music separation,” Dec. 2017. [Online].
+Available: https://doi.org/10.5281/zenodo.1117372
+[77]
+Y. Mitsufuji, G. Fabbro, S. Uhlich, and F.-R. St¨oter, “Music demixing
+challenge 2021,” arXiv preprint arXiv:2108.13559, 2021.
+[78]
+E. Vincent, R. Gribonval, and C. F´evotte, “Performance measurement
+in blind audio source separation,” IEEE/ACM Transactions on Audio,
+Speech, and Language Processing (TASLP), vol. 14, no. 4, pp. 1462–
+1469, 2006.
+
+=== PAGE 10 ===
+10
+[79]
+F.-R. St¨oter, A. Liutkus, and N. Ito, “The 2018 signal separation eval-
+uation campaign,” in Latent Variable Analysis and Signal Separation:
+14th International Conference, LVA/ICA 2018, Surrey, UK, 2018, pp.
+293–305.

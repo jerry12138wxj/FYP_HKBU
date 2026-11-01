@@ -1,0 +1,14 @@
+{
+  "song": "Al James - Schoolboy Facination",
+  "sr": 44100,
+  "n_fft": 2048,
+  "hop": 512,
+  "shape": [
+    1025,
+    2584
+  ],
+  "frames": 2584,
+  "dur_s": 30.0,
+  "wav": "E:\\FYP_HKBU\\02_databases\\MUSDB18-HQ\\test\\Al James - Schoolboy Facination\\mixture.wav",
+  "wav_bytes": 35372968
+}

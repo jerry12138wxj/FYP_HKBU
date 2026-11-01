@@ -1,0 +1,10 @@
+iters=34
+elapsed_s=161.571
+final_rel_resid=7.988433185e-07
+lam=1.967223688e-02
+mu0_norm=2.799409817e-04
+norm2_M=2.976817929e+03
+fro_M=3.920088854e+03
+max_S=83.991250
+max_L=30.902628
+mask_mean=0.169706

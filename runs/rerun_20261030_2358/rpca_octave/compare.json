@@ -1,0 +1,23 @@
+{
+  "shape": [
+    1025,
+    2584
+  ],
+  "numpy_iters": 34,
+  "octave_iters": 34,
+  "numpy_final_rel_resid": 7.988433185416293e-07,
+  "octave_final_rel_resid": 7.988433185e-07,
+  "octave_elapsed_s": 161.571,
+  "rel_err_L": 2.5326222038411574e-08,
+  "rel_err_S": 2.5263023806976915e-08,
+  "rel_err_mask": 5.1034860504975296e-08,
+  "max_abs_err_L": 9.535577554231622e-07,
+  "max_abs_err_S": 3.7990755714645275e-06,
+  "max_abs_err_mask": 1.0937857009118979e-05,
+  "corr_mask": 0.9999999999999889,
+  "mask_mean_py": 0.1697060626720566,
+  "mask_mean_oc": 0.1697060614824295,
+  "waveform_max_abs_diff": 6.424339998867268e-08,
+  "si_sdr_py_vs_oc": 133.67175728928365,
+  "octave_note": "same magnitude matrix; only the IALM loop runs in Octave 11.3.0"
+}

@@ -1,0 +1,18 @@
+method,dataset,stem,n_files,mean_db,median_db,std_db,min_db,max_db,n_finite,finite_ratio,note
+A,DNS-Challenge,speech,200,inf,inf,0.0,inf,inf,0,0.0000,"pipeline self-check; ALL frames non-finite -> metric exact, no distortion"
+A,MUSDB18-HQ,bass,50,inf,inf,0.0,inf,inf,0,0.0000,"pipeline self-check; ALL frames non-finite -> metric exact, no distortion"
+A,MUSDB18-HQ,drums,50,inf,inf,0.0,inf,inf,0,0.0000,"pipeline self-check; ALL frames non-finite -> metric exact, no distortion"
+A,MUSDB18-HQ,other,50,inf,inf,0.0,inf,inf,0,0.0000,"pipeline self-check; ALL frames non-finite -> metric exact, no distortion"
+A,MUSDB18-HQ,vocals,50,inf,inf,0.0,inf,inf,0,0.0000,"pipeline self-check; ALL frames non-finite -> metric exact, no distortion"
+A,Valentini,speech,824,inf,inf,0.0,inf,inf,0,0.0000,"pipeline self-check; ALL frames non-finite -> metric exact, no distortion"
+B,MUSDB18-HQ,bass,50,-6.1279,-5.6130,3.7136,-15.5150,3.0190,50,1.0000,no-separation lower bound (est = mixture)
+B,MUSDB18-HQ,drums,50,-3.6426,-3.8490,4.0248,-11.9620,8.7450,50,1.0000,no-separation lower bound (est = mixture)
+B,MUSDB18-HQ,other,50,-5.8499,-5.1655,4.2326,-19.4850,1.9910,50,1.0000,no-separation lower bound (est = mixture)
+B,MUSDB18-HQ,vocals,50,-7.1440,-5.0945,9.5467,-64.5680,-0.9860,50,1.0000,no-separation lower bound (est = mixture)
+B,Valentini,speech,824,8.8098,8.4775,5.9208,-16.9500,25.2710,824,1.0000,no-separation lower bound (est = mixture)
+C,DNS-Challenge,speech,200,inf,inf,0.0,inf,inf,0,0.0000,"theoretical ceiling reference; identical computation to A, do NOT cite as model SDR"
+C,MUSDB18-HQ,bass,50,inf,inf,0.0,inf,inf,0,0.0000,"theoretical ceiling reference; identical computation to A, do NOT cite as model SDR"
+C,MUSDB18-HQ,drums,50,inf,inf,0.0,inf,inf,0,0.0000,"theoretical ceiling reference; identical computation to A, do NOT cite as model SDR"
+C,MUSDB18-HQ,other,50,inf,inf,0.0,inf,inf,0,0.0000,"theoretical ceiling reference; identical computation to A, do NOT cite as model SDR"
+C,MUSDB18-HQ,vocals,50,inf,inf,0.0,inf,inf,0,0.0000,"theoretical ceiling reference; identical computation to A, do NOT cite as model SDR"
+C,Valentini,speech,824,inf,inf,0.0,inf,inf,0,0.0000,"theoretical ceiling reference; identical computation to A, do NOT cite as model SDR"

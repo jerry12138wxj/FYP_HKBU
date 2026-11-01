@@ -1,0 +1,13 @@
+dprnn_v2_last: 500 segments, 0 already done -> dprnn_v2_last.csv
+  loaded in 3.3 s  info={'kind': 'deep', 'device': 'cuda', 'repo': 'Dual-Path-RNN-Pytorch (自训 ckpt)', 'params': 3685761, 'sources': ['vocals', '
+  50/500  0.5 min
+  100/500  1.0 min
+  150/500  1.5 min
+  200/500  2.0 min
+  250/500  2.4 min
+  300/500  2.9 min
+  350/500  3.3 min
+  400/500  3.9 min
+  450/500  4.4 min
+  500/500  4.9 min
+done dprnn: 500 segments in 4.9 min -> E:\FYP_HKBU\baseline\bench500\results\dprnn_v2_last.csv

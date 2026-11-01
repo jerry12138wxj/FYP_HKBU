@@ -1,0 +1,12 @@
+case,sdr_db,isr_db,n_frames,rule,expected_db,tolerance_db,verdict,file,sample_rate,framewise,win_samples,hop_samples,tool,tool_version
+identity,inf,269.242,1,SDR must be +inf (exact identity),,0.0,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+gain_0.50x,6.021,6.021,1,SDR = -20*log10(|1-g|) = 6.02 dB (gain NOT absorbed),6.021,0.5,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+gain_0.90x,20.000,20.000,1,SDR = -20*log10(|1-g|) = 20.00 dB (gain NOT absorbed),20.000,0.5,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+gain_2.00x,0.000,-0.000,1,SDR = -20*log10(|1-g|) = -0.00 dB (gain NOT absorbed),-0.000,0.5,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+add_white_noise_20dB,19.777,43.297,1,SDR ~= SNR = 20.0 dB,20.000,0.5,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+add_white_noise_40dB,39.792,62.684,1,SDR ~= SNR = 40.0 dB,40.000,0.5,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+add_white_noise_60dB,59.789,82.898,1,SDR ~= SNR = 60.0 dB,60.000,0.5,PASS,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+shift_1_samples,19.788,19.762,1,monotone drop; 1-sample delay is partly absorbed by the 512-tap filter,,0.0,INFO,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+shift_10_samples,5.493,5.488,1,monotone drop; 10-sample delay is partly absorbed by the 512-tap filter,,0.0,INFO,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+shift_100_samples,-3.665,-3.691,1,monotone drop; 100-sample delay is partly absorbed by the 512-tap filter,,0.0,INFO,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1
+resample_48k_16k_48k,31.021,34.627,1,finite 20-40 dB expected: resampling damage is visible,,0.0,INFO,p232_001,48000,True,48000,48000,museval.bss_eval/v4,0.4.1

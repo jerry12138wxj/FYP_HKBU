@@ -3233,7 +3233,412 @@
           "other": "other"
         }
       }
+    },
+    "mdx_q": {
+      "A Classic Education - NightOwl": {
+        "model": "mdx_q",
+        "label": "MDX-Net (mdx_q, 量化)",
+        "song": "A Classic Education - NightOwl",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 0.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 93.527,
+        "infer_s": 1.55,
+        "rtf": 0.155,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 5.778,
+          "bass": 20.15,
+          "other": 8.704,
+          "vocals": 8.541
+        },
+        "si_sdr": {
+          "drums": 4.921,
+          "bass": 20.937,
+          "other": 8.295,
+          "vocals": 8.628
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:36:45",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_q\\A Classic Education - NightOwl",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      },
+      "ANiMAL - Clinic A": {
+        "model": "mdx_q",
+        "label": "MDX-Net (mdx_q, 量化)",
+        "song": "ANiMAL - Clinic A",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 140.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 89.349,
+        "infer_s": 1.579,
+        "rtf": 0.1579,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 11.424,
+          "bass": 13.707,
+          "other": 8.698,
+          "vocals": 7.839
+        },
+        "si_sdr": {
+          "drums": 11.906,
+          "bass": 13.607,
+          "other": 8.589,
+          "vocals": 7.09
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:26:52",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_q\\ANiMAL - Clinic A",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      },
+      "Creepoid - OldTree": {
+        "model": "mdx_q",
+        "label": "MDX-Net (mdx_q, 量化)",
+        "song": "Creepoid - OldTree",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 60.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 94.31,
+        "infer_s": 1.622,
+        "rtf": 0.1622,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 8.539,
+          "bass": 11.852,
+          "other": 6.099,
+          "vocals": 11.014
+        },
+        "si_sdr": {
+          "drums": 7.636,
+          "bass": 11.153,
+          "other": 4.491,
+          "vocals": 11.065
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:30:07",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_q\\Creepoid - OldTree",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      },
+      "Dark Ride - Burning Bridges": {
+        "model": "mdx_q",
+        "label": "MDX-Net (mdx_q, 量化)",
+        "song": "Dark Ride - Burning Bridges",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 180.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 88.371,
+        "infer_s": 1.544,
+        "rtf": 0.1544,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 9.394,
+          "bass": 9.5,
+          "other": 5.668,
+          "vocals": 6.765
+        },
+        "si_sdr": {
+          "drums": 9.808,
+          "bass": 9.211,
+          "other": 3.055,
+          "vocals": 8.427
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:33:30",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_q\\Dark Ride - Burning Bridges",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      }
+    },
+    "mdx_extra_q": {
+      "A Classic Education - NightOwl": {
+        "model": "mdx_extra_q",
+        "label": "MDX-Net (mdx_extra_q, 量化)",
+        "song": "A Classic Education - NightOwl",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 0.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 89.317,
+        "infer_s": 0.782,
+        "rtf": 0.0782,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 4.681,
+          "bass": 19.887,
+          "other": 8.352,
+          "vocals": 8.227
+        },
+        "si_sdr": {
+          "drums": 3.521,
+          "bass": 20.134,
+          "other": 8.015,
+          "vocals": 8.029
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:38:26",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_extra_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_extra_q\\A Classic Education - NightOwl",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_extra_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_extra_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      },
+      "ANiMAL - Clinic A": {
+        "model": "mdx_extra_q",
+        "label": "MDX-Net (mdx_extra_q, 量化)",
+        "song": "ANiMAL - Clinic A",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 140.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 89.603,
+        "infer_s": 0.84,
+        "rtf": 0.084,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 10.499,
+          "bass": 13.103,
+          "other": 8.071,
+          "vocals": 7.386
+        },
+        "si_sdr": {
+          "drums": 10.676,
+          "bass": 13.299,
+          "other": 7.819,
+          "vocals": 6.462
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:28:30",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_extra_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_extra_q\\ANiMAL - Clinic A",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_extra_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_extra_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      },
+      "Creepoid - OldTree": {
+        "model": "mdx_extra_q",
+        "label": "MDX-Net (mdx_extra_q, 量化)",
+        "song": "Creepoid - OldTree",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 60.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 91.758,
+        "infer_s": 0.79,
+        "rtf": 0.079,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 8.003,
+          "bass": 11.452,
+          "other": 5.759,
+          "vocals": 10.874
+        },
+        "si_sdr": {
+          "drums": 7.0,
+          "bass": 10.692,
+          "other": 3.991,
+          "vocals": 10.867
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:31:47",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_extra_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_extra_q\\Creepoid - OldTree",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_extra_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_extra_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      },
+      "Dark Ride - Burning Bridges": {
+        "model": "mdx_extra_q",
+        "label": "MDX-Net (mdx_extra_q, 量化)",
+        "song": "Dark Ride - Burning Bridges",
+        "subset": "train",
+        "duration_s": 10,
+        "offset_s": 180.0,
+        "status": "PASS",
+        "weights_downloaded": true,
+        "load_s": 88.022,
+        "infer_s": 0.839,
+        "rtf": 0.0839,
+        "targets": [
+          "bass",
+          "drums",
+          "other",
+          "vocals"
+        ],
+        "sdr": {
+          "drums": 8.889,
+          "bass": 9.474,
+          "other": 4.932,
+          "vocals": 6.442
+        },
+        "si_sdr": {
+          "drums": 8.989,
+          "bass": 8.779,
+          "other": 2.107,
+          "vocals": 8.183
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-21T15:35:06",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\mdx_extra_q_2026-10-21.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\mdx_extra_q\\Dark Ride - Burning Bridges",
+        "info": {
+          "kind": "deep",
+          "device": "cuda",
+          "bag": "mdx_extra_q",
+          "weights_src": "local:E:\\FYP_HKBU\\01_models\\_weights\\MDX-Net\\mdx_extra_q"
+        },
+        "audio_format": "flac",
+        "ref_used": {
+          "drums": "drums",
+          "bass": "bass",
+          "other": "other",
+          "vocals": "vocals"
+        }
+      }
     }
   },
-  "updated": "2026-09-19T11:21:03"
+  "updated": "2026-10-21T15:39:59",
+  "subset": "train"
 }

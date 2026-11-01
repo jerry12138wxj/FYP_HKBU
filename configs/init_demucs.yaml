@@ -1,0 +1,75 @@
+model: demucs
+label: Demucs (htdemucs)
+task: separation
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#demucs
+  architecture_source: demucs/hdemucs.py:374 nfft=4096 , :468 hop=nfft//4 ; conf/config.yaml segment=11 (train),
+    htdemucs eval 7.8
+  repo_commit: e976d93ecc38
+  official_config: htdemucs.yaml (HF cache) / model package embedded
+audio_contract:
+  sample_rate: 44100
+  channels: 2
+  segment_s: 7.8
+  mono_downmix_internal: false
+  sample_rate_source: model_profile.csv native_sr=44100 / demucs/hdemucs.py:374 nfft=4096 , :468 hop=nfft//4 ; conf/config.yaml
+    segment=11 (train), htdemucs eval 7.8
+stft:
+  n_fft: 4096
+  hop_length: 1024
+  win_length: 4096
+  window: hann
+  center: true
+  normalized: false
+  n_freq_bins: 2049
+  note: demucs/hdemucs.py:374 nfft=4096 , :468 hop=nfft//4 ; conf/config.yaml segment=11 (train), htdemucs eval
+    7.8
+normalization:
+  scheme: per-source std normalize
+  applied_at: per-utterance
+outputs:
+  stems:
+  - drums
+  - bass
+  - other
+  - vocals
+  profile_targets:
+  - bass
+  - drums
+  - other
+  - vocals
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/Demucs/955717e8-8726e21a.th
+  official_release: true
+  files:
+  - file: 01_models/_weights/Demucs/955717e8-8726e21a.th
+    mb: 80.2
+    sha256: 8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4
+  primary_sha256: 8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4
+  sha256_status: verified
+  citation_note: 官方发布
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '599.7'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 41.984
+  params_expected_int: 41984000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 2, 343980]'
+    expect_output: '[4, 2, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

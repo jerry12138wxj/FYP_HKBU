@@ -1,6 +1,6 @@
 # 模型注册表 MODEL_REGISTRY
 
-> 更新：2026-09-17 ｜ 维护规则：每次新增 / 替换 / 跑通一个模型，都在本表登记
+> 更新：2026-10-20 ｜ 维护规则：每次新增 / 替换 / 跑通一个模型，都在本表登记
 > 对应产物：`03_outputs/<模型名>/` ｜ 指标数据：`04_reports/01_separation/data/comparison/`
 > 统一基准工具：`tools/benchmark_model_universal.py`（每次实测自动更新 `model_runs.json`）
 
@@ -43,6 +43,7 @@
 | 8 | **BSRNN** | 频域 DL（Band-Split RNN）| ✅ `_third_party/bsrnn` | ✅ Zenodo 3 包 (4.67 GB) | ✅ | 1.87 / 5.17 / 3.83 | **0.19 / 0.42 / 0.32** | **9.27**(SIMO) / 9.16(4×ckpt) / 8.42(large) |
 | 9 | **IRM / IBM Oracle** | 解析 oracle | ✅ `_third_party/sigsep-mus-oracle` + 自研 | 不需要 | ✅ | 0.01 | 0.01 | 8.30（理论上界）|
 | 10 | **MDX-Net** | 频域 DL | ✅ `_third_party/mdx-net` + 3 个 submission 仓库 | ✅ mdx_extra ×4 | ✅ | 0.88 | **0.13** | 8.96 |
+| 10b | **MDX-Net 量化**（mdx_q / mdx_extra_q）| 频域 DL | ✅ `_third_party/demucs`（`get_model`）| ✅ mdx_q ×4 / mdx_extra_q ×4 | ✅ | — | — | 实测 3 段 × 10 s：mdx_extra **8.96 → mdx_extra_q 8.37 dB（−0.59）**；mdx_q 8.80（属 demucs `mdx` 另一权重族，仅参考）|
 | 11 | **Pac-HuBERT-SEP** | 自监督 + DL | ❌ MERL 未放出 | ❌ | ⛔ | — | — | — |
 | 12 | **Demucs** | 时域 DL（htdemucs）| ✅ `_third_party/demucs` | ✅ htdemucs (84 MB) | ✅ | 0.39 | **0.03** | 8.11（四轨均值）|
 
@@ -93,6 +94,7 @@
 | BS-RoFormer L6 | 同上 | `..._ep_937_*.ckpt` | `03_outputs/BS-RoFormer-L6/` | `--model bsroformer_l6` |
 | BSRNN（3 变体）| `01_models/_third_party/bsrnn` | `01_models/_weights/BSRNN/{bsrnn-opt,bsrnn-large,simo-bsrnn-opt}` | `03_outputs/BSRNN-{opt,large,SIMO}/` | `--model bsrnn_all,bsrnn_large_all,bsrnn_simo` |
 | MDX-Net | `01_models/_third_party/mdx-net` + `mdx-net-submission*` | `01_models/_weights/MDX-Net/mdx_extra/` | `03_outputs/MDX-Net/` | `--model mdx` |
+| MDX-Net 量化（mdx_q / mdx_extra_q）| `01_models/_third_party/demucs`（`get_model(name, repo=Path(...))`，需 `torch.load(weights_only=False)`）| `01_models/_weights/MDX-Net/{mdx_q,mdx_extra_q}/` | （未单独立产物）| 加载脚本 `tools/_archive_mdx_quant.py`；依赖纯 Python `diffq`（见下注）|
 | IRM/IBM Oracle | `01_models/_third_party/sigsep-mus-oracle` + 自研 | — | `03_outputs/Oracle-IRM/` | `--model oracle` |
 | Demucs | `01_models/_third_party/demucs` | `01_models/_weights/Demucs/955717e8-8726e21a.th`（torch.hub 缓存 `tools/_scratch/.cache/torch/hub/checkpoints/` 的同源硬链接） | `03_outputs/Demucs/` | `--model demucs`（基准）／`tools/run_demucs_deepdive.py`（深入分析） |
 

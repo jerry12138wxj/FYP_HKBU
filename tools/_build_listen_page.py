@@ -1,6 +1,8 @@
 """Build the offline A/B listening page for three MUSDB18-HQ test songs.
 
-Scans the locally produced stems under 03_outputs/_test_run/<Model>/<Song>/,
+Scans the locally produced stems under 03_outputs/<Model>/test/<Song>/ (see
+`model_out_dir()` -- the older 03_outputs/_test_run/<Model>/<Song>/ layout is
+still probed as a fallback),
 parses each file's真实音频参数 (FLAC STREAMINFO / WAV fmt chunk -- no decoder
 needed, so Smart App Control cannot break the build), merges the per-song
 metrics from test_run_per_song.csv, and emits one self-contained HTML page
@@ -22,7 +24,8 @@ import sys
 from urllib.parse import quote
 
 ROOT = r"E:\FYP_HKBU"
-OUT_DIR = os.path.join(ROOT, "03_outputs", "_test_run")
+OUT_ROOT = os.path.join(ROOT, "03_outputs")
+OUT_TAG = "test"          # 03_outputs/<Model>/<tag>/<Song>/ —— MUSDB18-HQ test split
 DB_DIR = os.path.join(ROOT, "02_databases", "MUSDB18-HQ", "test")
 OUT_HTML = os.path.join(ROOT, "04_reports", "01_separation", "html", "listen_compare.html")
 OUT_JSON = os.path.join(ROOT, "04_reports", "01_separation", "data", "comparison", "listen_manifest.json")
@@ -142,9 +145,34 @@ def probe(path):
     return None
 
 
+def model_out_dir(folder, key):
+    """某模型在某首歌上的产出目录。
+
+    路径历史：最初是 `03_outputs/_test_run/<Model>/<Song>/`；2026-09 板块编号化
+    重排后统一到 `03_outputs/<Model>/test/<Song>/`。这里按“存在即用”探测，
+    避免再次硬编码一个会漂移的常量（曾因此把 96 条模型轨全部扫成 0 条）。
+    """
+    cands = [
+        os.path.join(OUT_ROOT, folder, OUT_TAG, key),
+        os.path.join(OUT_ROOT, "_test_run", folder, key),
+    ]
+    for c in cands:
+        if os.path.isdir(c):
+            return c
+    return cands[0]
+
+
 def rel_url(abs_path):
-    rel = os.path.relpath(abs_path, os.path.join(ROOT, "04_reports", "01_separation", "html"))
-    return quote(rel.replace("\\", "/"), safe="/+")
+    """根绝对 URL（`/02_databases/...`），不是相对 html/ 目录的路径。
+
+    ⚠️ 为什么必须这样（用户报过「全部音频加载失败」）：
+    原实现给的是 `../../02_databases/...`，只在「HTTP 服务根 == 项目根」时成立。
+    预览面板用的是只托管**单个 HTML 文件**的独立服务，这些相对路径全部越出服务根
+    → 每个音频请求 404。改成根绝对路径后，只要页面是从本机服务器打开的
+    （start_listen.bat 起的那个），音频就一定解析得到。
+    """
+    rel = os.path.relpath(abs_path, ROOT)
+    return "/" + quote(rel.replace("\\", "/"), safe="/+")
 
 
 def track_rec(abs_path, target, label, sdr=None, extra=None):
@@ -219,7 +247,7 @@ def build():
             led_status = (row or {}).get("ledger_status")
             rec = {
                 "key": mk, "label": label, "grp": grp, "note": note,
-                "dir": os.path.join(OUT_DIR, folder, key).replace("\\", "/"),
+                "dir": model_out_dir(folder, key).replace("\\", "/"),
                 "tracks": [], "chips": {}, "status": "PASS", "reason": "",
             }
             tracks = []
@@ -230,7 +258,7 @@ def build():
                                              "被超时熔断禁用，本曲未运行")
             else:
                 for tgt, fn in files.items():
-                    p = os.path.join(OUT_DIR, folder, key, fn)
+                    p = os.path.join(model_out_dir(folder, key), fn)
                     sdr = (num(row.get("sdr_" + tgt)) if "+" not in tgt
                            else num(row.get("sdr_mean")))
                     r = track_rec(p, tgt, STEM_CN.get(tgt, tgt), sdr=sdr)
@@ -250,7 +278,7 @@ def build():
             if why:
                 # a half-written directory is the single most misleading state
                 # this sweep can produce: report the leftovers explicitly.
-                d = os.path.join(OUT_DIR, folder, key)
+                d = model_out_dir(folder, key)
                 left = []
                 if os.path.isdir(d):
                     for fn in sorted(os.listdir(d)):
@@ -436,6 +464,43 @@ footer{color:var(--muted);font-size:12.3px;margin-top:26px;text-align:center}
   color:#fff;padding:9px 16px;border-radius:9px;font-size:13px;opacity:0;pointer-events:none;
   transition:.25s;z-index:99}
 #toast.show{opacity:1}
+#mediabar{position:fixed;left:0;right:0;top:0;z-index:120;background:#b91c1c;color:#fff;
+  padding:10px 16px;font-size:13px;line-height:1.5;display:none;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+#mediabar.show{display:block}
+#mediabar code{background:rgba(255,255,255,.18);padding:1px 6px;border-radius:4px}
+
+/* ---------- live: upload -> run -> listen ---------- */
+.livecard{border-left:4px solid var(--accent)}
+.liverow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:9px 0}
+.llabel{font-size:12.5px;color:var(--muted)}
+.drop{border:2px dashed #cbd5e1;border-radius:10px;padding:16px;text-align:center;
+  background:#fbfcfe;cursor:pointer;transition:.15s;flex:1;min-width:300px}
+.drop:hover,.drop.over{border-color:var(--accent);background:#eff6ff}
+.drop b{display:block;font-size:13.5px;margin-bottom:3px}
+.drop span{color:var(--muted);font-size:12.3px}
+.drop input{display:none}
+.lmodels{display:flex;flex-wrap:wrap;gap:6px}
+.lpill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);
+  background:#fff;border-radius:999px;padding:4px 10px;font-size:12.3px;cursor:pointer}
+.lpill:hover{border-color:#c3cddd}
+.lpill.on{border-color:var(--accent);background:#eff6ff;color:#1d4ed8;font-weight:600}
+.lprog{height:6px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:6px 0 12px}
+.lprog i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.lrow{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;background:#fff}
+.lrow.skip{background:#fffbeb;border-color:#fde68a}
+.lrow.fail{background:#fef2f2;border-color:#fecaca}
+.lrow .lhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lrow .lhead b{font-size:13.5px}
+.lstat{font-size:12.2px;color:var(--muted)}
+.lstat.err{color:var(--warn)}
+.lstat.warn{color:#b45309;font-weight:600}
+.lstems{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:6px;margin-top:8px}
+.lstem{display:grid;grid-template-columns:70px 1fr;gap:6px;align-items:center;
+  border:1px solid #f1f5f9;border-radius:8px;padding:4px 7px;background:#fafcff}
+.lstem .tn{font-size:12px;color:#334155;font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.lstem .tn i{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:11px}
+.lstem audio{width:100%;height:30px}
+.lrefs{margin-top:6px}
 </style>
 </head>
 <body>
@@ -448,6 +513,49 @@ footer{color:var(--muted);font-size:12.3px;margin-top:26px;text-align:center}
 </header>
 
 <div class="wrap">
+
+<section class="card livecard" id="livebox">
+  <h2 class="sec" style="margin-top:0">实时试听 · 输入 → 当场运行分离模型 → 试听
+    <span class="badge b-oracle">单模型推理 &gt; <span id="budgetTxt">8</span> s 自动跳过</span></h2>
+  <p class="lead">
+    上传一段音频（或直接用下面三首歌的<b>前 30 秒</b>），当场在本机 GPU 上运行选中的分离模型，
+    每个 stem 立刻可播。若给了 GT（三首内置歌），每个 stem 还会给出对 GT 的 <b>SI-SDR</b>；
+    上传文件没有参考真值，就只报电平，不编造 Δ 指标。
+    输入上限 30 秒 / 44.1 kHz 立体声；单个模型<b>推理超过 <span id="budgetTxt2">8</span> 秒会被立即中止</b>，
+    标记为「运行时间过长，已跳过」。
+  </p>
+
+  <div class="liverow">
+    <div class="drop" id="ldrop">
+      <b>把音频拖到这里，或点击选择文件</b>
+      <span>wav / flac / mp3 / m4a…（≤ 64 MB；超过 30 秒会截断）</span>
+      <input type="file" id="lfile" accept="audio/*">
+    </div>
+  </div>
+
+  <div class="liverow">
+    <span class="llabel">内置样本（MUSDB18-HQ test，取前 30 s，可算 SI-SDR）：</span>
+    <span id="lsongs"></span>
+  </div>
+
+  <div class="liverow" id="lstatus"></div>
+
+  <div class="liverow">
+    <span class="llabel">模型：</span>
+    <button class="act" id="lall">全选</button>
+    <button class="act" id="lnone">全不选</button>
+    <button class="act" id="lfast">只选快速档</button>
+    <div class="lmodels" id="lmodels"></div>
+  </div>
+
+  <div class="liverow">
+    <button class="tbtn primary" id="lrun" disabled>▶ 运行选中模型</button>
+    <span class="llabel" id="lrunmsg">先选择输入（上传文件或内置样本）</span>
+  </div>
+  <div class="lprog"><i id="lprog"></i></div>
+  <div class="lrefs" id="lrefs"></div>
+  <div id="lout"></div>
+</section>
 
 <details class="help" open>
   <summary>怎么用这一页（30 秒读完）</summary>
@@ -492,6 +600,7 @@ footer{color:var(--muted);font-size:12.3px;margin-top:26px;text-align:center}
 
 <footer id="foot"></footer>
 </div>
+<div id="mediabar"></div>
 <div id="toast"></div>
 
 <script>
@@ -506,6 +615,21 @@ window.addEventListener("error", function(e){
   }
   b.textContent = "页面脚本出错：" + (e.message || e);
 });
+
+/* 音频批量加载失败时给一条**常驻**横幅：toast 会消失，而
+   「全部音频加载失败」正是被预览面板（只托管单个 HTML 的独立服务）打开时
+   相对路径全部 404 的症状 —— 用户必须知道要换成服务器 URL。 */
+window.__mediaFail = 0;
+function mediaFail(src){
+  window.__mediaFail++;
+  const b = document.getElementById("mediabar");
+  if(!b) return;
+  b.classList.add("show");
+  b.innerHTML = "⚠️ 已有 " + window.__mediaFail + " 个音频加载失败（最近：<code>"
+    + String(src).split("/").pop() + "</code>）。本页音频用<b>根绝对路径</b>引用，"
+    + "必须由本机服务托管：双击 <code>E:\\FYP_HKBU\\start_listen.bat</code>，"
+    + "再访问 <code>http://127.0.0.1:8123/sep</code>。";
+}
 const DB = /*__DB__*/;
 
 /* ------------------------------------------------------------ state --- */
@@ -658,6 +782,7 @@ function audioFor(id){
     row.querySelector(".tm").textContent = "-:-- / " + fmt(a.duration);
   });
   a.addEventListener("error", ()=>{
+    mediaFail(row.dataset.src);
     toast("音频加载失败：" + row.dataset.src.split("/").pop() + "（请用 start_listen.bat 打开）");
     row.querySelector(".nm").insertAdjacentHTML("beforeend",
       ' <span class="badge b-warn">加载失败</span>');
@@ -876,9 +1001,213 @@ document.addEventListener("keydown", ev=>{
   }
 });
 
-$("#foot").innerHTML = "数据来源：本机 03_outputs/_test_run/ 与 02_databases/MUSDB18-HQ/test/ 的实测产出 · "
+$("#foot").innerHTML = "数据来源：本机 03_outputs/&lt;模型&gt;/test/ 与 02_databases/MUSDB18-HQ/test/ 的实测产出 · "
   + "未使用任何网络数据 · 页面生成于 " + new Date().toLocaleString("zh-CN")
-  + "<br>若音频无法播放，请双击 E:\\FYP_HKBU\\start_listen.bat 后访问 http://127.0.0.1:8123/04_reports/01_separation/html/listen_compare.html";
+  + "<br>若音频无法播放，请双击 E:\\FYP_HKBU\\start_listen.bat，"
+  + "然后访问 http://127.0.0.1:8123/sep";
+
+/* ============ 实时试听：输入 → 当场运行分离模型 → 试听 ============ */
+const LV = {sid:null, name:"", sel:new Set(), fast:new Set(), meta:{},
+            budget:8, chunkS:10, maxSec:30, running:false, seq:0};
+
+function lvSay(html, cls){
+  $("#lstatus").innerHTML = html
+    ? '<span class="lstat' + (cls ? " " + cls : "") + '">' + html + "</span>" : "";
+}
+
+function lvPick(k, on){
+  const cb = $('#lmodels input[value="' + k + '"]');
+  if(!cb) return;
+  cb.checked = !!on;
+  cb.closest(".lpill").classList.toggle("on", !!on);
+  on ? LV.sel.add(k) : LV.sel.delete(k);
+}
+
+async function lvBoot(){
+  let m;
+  try{
+    m = await (await fetch("/api/sep/models")).json();
+  }catch(e){
+    lvSay("无法连接本机服务（" + e + "）。请双击 start_listen.bat 打开本页，"
+      + "不要用预览面板的链接。", "err");
+    return;
+  }
+  if(m.error){ lvSay("服务返回错误：" + m.error, "err"); return; }
+  LV.budget = m.budget_s || 8;
+  LV.chunkS = m.chunk_s || 10;
+  LV.maxSec = m.max_sec || 30;
+  $("#budgetTxt").textContent = LV.budget;
+  $("#budgetTxt2").textContent = LV.budget;
+  LV.meta = {};
+  m.models.forEach(x => { LV.meta[x.key] = x; if(x.latency_s != null && x.latency_s <= 1.5) LV.fast.add(x.key); });
+  $("#lmodels").innerHTML = m.order.map(k => {
+    const x = LV.meta[k] || {};
+    const tip = (x.label || k)
+      + (x.latency_s != null ? " · 10 s ≈ " + x.latency_s.toFixed(2) + " s" : "")
+      + (x.peak_vram_mb ? " · 峰值显存 ≈ " + Math.round(x.peak_vram_mb) + " MB" : "")
+      + (x.flops_G ? " · " + (x.flops_G / 1000).toFixed(1) + " TFLOPs(下界)" : "");
+    return '<label class="lpill" title="' + tip + '"><input type="checkbox" value="' + k
+      + '" hidden>' + k + "</label>";
+  }).join("");
+  $$("#lmodels input").forEach(cb => cb.addEventListener("change", () => lvPick(cb.value, cb.checked)));
+  ["demucs", "mdx", "bsrnn"].forEach(k => lvPick(k, true));
+  $("#lsongs").innerHTML = DB.songs.map(s =>
+    '<button class="act" data-song="' + s.key.replace(/"/g, "&quot;") + '">'
+    + s.key + "</button>").join(" ");
+  lvSay("服务就绪 · 可用模型 " + m.order.length + " 个 · 单模型预算 " + LV.budget
+    + " s · 输入上限 " + LV.maxSec + " s", "ok");
+}
+
+async function lvSetInput(j){
+  LV.sid = j.sid; LV.name = j.name;
+  $("#lrun").disabled = false;
+  $("#lout").innerHTML = "";
+  $("#lprog").style.width = "0%";
+  $("#lrefs").innerHTML = '<div class="lrow"><div class="lhead"><b>输入 · ' + j.name + "</b>"
+    + '<span class="chip">' + j.dur_s + " s</span>"
+    + (j.has_gt ? '<span class="chip">含 GT → 可算 SI-SDR</span>'
+                : '<span class="chip">无 GT → 只报电平，不编造 Δ</span>')
+    + '</div><div class="lstems"><div class="lstem"><div class="tn">mixture</div>'
+    + '<audio controls preload="metadata" src="' + j.input_src + '"></audio></div></div></div>';
+  $("#lrunmsg").textContent = "已就绪：" + j.name + " · " + j.dur_s + " s";
+}
+
+async function lvUpload(file){
+  lvSay("上传并解码 " + file.name + " …");
+  try{
+    const b64 = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(String(r.result).split(",")[1] || "");
+      r.onerror = rej; r.readAsDataURL(file);
+    });
+    const r = await fetch("/api/sep/session", {method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({name:file.name, noisy_b64:b64})});
+    const j = await r.json();
+    if(j.error) throw new Error(j.error);
+    await lvSetInput(j);
+    lvSay("已上传 " + j.name + "（截断到前 " + LV.maxSec + " s）· " + j.dur_s + " s", "ok");
+  }catch(e){ lvSay("上传失败：" + e.message, "err"); }
+}
+
+function lvRender(k, j){
+  const el = $('#lout .lrow[data-k="' + k + '"]');
+  if(!el) return;
+  const meta = LV.meta[k] || {};
+  const label = j.label || meta.label || k;
+  if(j.skipped){
+    el.className = "lrow skip";
+    el.innerHTML = '<div class="lhead"><b>' + label + "</b>"
+      + '<span class="lstat warn">⏱ ' + j.reason + "</span>"
+      + '<span class="chip">载入 ' + (j.load_s != null ? Number(j.load_s).toFixed(1) + " s" : "—") + "</span>"
+      + '<span class="chip">已用 ' + (j.elapsed_s != null ? j.elapsed_s.toFixed(1) + " s" : "—") + "</span></div>";
+    return;
+  }
+  if(j.failed){
+    el.className = "lrow fail";
+    el.innerHTML = '<div class="lhead"><b>' + label + "</b>"
+      + '<span class="lstat err">运行失败：'
+      + String(j.error || "").replace(/</g, "&lt;") + "</span></div>";
+    return;
+  }
+  const sc = j.score || {};
+  const chips = [];
+  chips.push('<span class="chip">载入 ' + (j.load_s != null ? Number(j.load_s).toFixed(1) + " s" : "—") + "</span>");
+  chips.push('<span class="chip">推理 ' + Number(j.infer_s).toFixed(2) + " s</span>");
+  if(j.chunked) chips.push('<span class="chip">分块 ' + j.n_chunks + " × " + LV.chunkS + " s</span>");
+  if(j.params) chips.push('<span class="chip">' + (j.params / 1e6).toFixed(1) + " M</span>");
+  if(sc.has_gt && sc.mean4 != null)
+    chips.push('<span class="chip sdr">四轨均值 SI-SDR ' + sc.mean4.toFixed(2) + " dB</span>");
+  const stems = (j.stems || []).map(s => {
+    const v = sc.per_target ? sc.per_target[s.target] : null;
+    const sub = (v != null) ? "<i>SI-SDR " + v.toFixed(2) + " dB</i>"
+                            : "<i>rms " + Number(s.rms).toFixed(4) + "</i>";
+    return '<div class="lstem"><div class="tn">' + s.target + sub + "</div>"
+      + '<audio controls preload="metadata" src="' + s.src + '"></audio></div>';
+  }).join("");
+  el.className = "lrow";
+  el.innerHTML = '<div class="lhead"><b>' + label + "</b>" + chips.join("")
+    + '<button class="act" data-playall>▶ 叠听该模型全部输出</button></div>'
+    + '<div class="lstems">' + stems + "</div>";
+}
+
+async function lvRun(){
+  if(LV.running) return;
+  if(!LV.sid) return toast("先选输入：上传文件，或点一个内置样本");
+  const keys = [...LV.sel];
+  if(!keys.length) return toast("至少选一个模型");
+  LV.running = true;
+  const seq = ++LV.seq;
+  $("#lrun").disabled = true;
+  $("#lout").innerHTML = "";
+  $("#lprog").style.width = "0%";
+  let done = 0, skip = 0, fail = 0;
+  for(const k of keys){
+    if(seq !== LV.seq) return;
+    const meta = LV.meta[k] || {};
+    $("#lout").insertAdjacentHTML("beforeend",
+      '<div class="lrow" data-k="' + k + '"><div class="lhead"><b>' + (meta.label || k) + "</b>"
+      + '<span class="lstat">运行中… 首次需加载权重（加载不计入 ' + LV.budget + " s 预算）</span></div></div>");
+    let j;
+    try{
+      j = await (await fetch("/api/sep/run", {method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({sid:LV.sid, model:k, budget_s:LV.budget})})).json();
+    }catch(e){ j = {failed:true, error:String(e)}; }
+    if(seq !== LV.seq) return;
+    lvRender(k, j);
+    if(j.skipped) skip++; else if(j.failed) fail++;
+    done++;
+    $("#lprog").style.width = Math.round(done / keys.length * 100) + "%";
+    $("#lrunmsg").textContent = "已完成 " + done + "/" + keys.length
+      + (skip ? " · 跳过 " + skip : "") + (fail ? " · 失败 " + fail : "");
+  }
+  LV.running = false;
+  $("#lrun").disabled = false;
+  $("#lrunmsg").textContent = "完成：" + keys.length + " 个模型 · 跳过 " + skip
+    + " · 失败 " + fail + " · 输入 " + LV.name;
+}
+
+$("#ldrop").onclick = () => $("#lfile").click();
+$("#lfile").onchange = e => { if(e.target.files[0]) lvUpload(e.target.files[0]); };
+["dragenter", "dragover"].forEach(ev => $("#ldrop").addEventListener(ev, e => {
+  e.preventDefault(); $("#ldrop").classList.add("over"); }));
+["dragleave", "drop"].forEach(ev => $("#ldrop").addEventListener(ev, e => {
+  e.preventDefault(); $("#ldrop").classList.remove("over"); }));
+$("#ldrop").addEventListener("drop", e => {
+  const f = e.dataTransfer.files[0]; if(f) lvUpload(f); });
+$("#lrun").onclick = lvRun;
+$("#lall").onclick = () => $$("#lmodels input").forEach(cb => lvPick(cb.value, true));
+$("#lnone").onclick = () => $$("#lmodels input").forEach(cb => lvPick(cb.value, false));
+$("#lfast").onclick = () => $$("#lmodels input").forEach(cb => lvPick(cb.value, LV.fast.has(cb.value)));
+
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-song]");
+  if(b){
+    lvSay("载入内置样本 " + b.dataset.song + " 的前 " + LV.maxSec + " s …");
+    try{
+      const j = await (await fetch("/api/sep/sample?id=" + encodeURIComponent(b.dataset.song))).json();
+      if(j.error) throw new Error(j.error);
+      await lvSetInput(j);
+      lvSay("已载入 " + j.name + " · " + j.dur_s + " s"
+        + (j.has_gt ? " · 含 GT" : " · 无 GT"), "ok");
+    }catch(err){ lvSay("载入失败：" + err.message, "err"); }
+    return;
+  }
+  const p = e.target.closest("[data-playall]");
+  if(p){
+    const el = p.closest(".lrow");
+    const auds = [...el.querySelectorAll("audio")];
+    const playing = auds.some(a => !a.paused);
+    auds.forEach(a => a.pause());
+    if(playing) return;
+    auds.forEach(a => {
+      try{ a.currentTime = 0; }catch(_){}
+      const pr = a.play(); if(pr && pr.catch) pr.catch(() => {});
+    });
+  }
+});
+lvBoot();
 
 select(DB.songs[0].key);
 </script>

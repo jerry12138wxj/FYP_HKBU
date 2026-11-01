@@ -1,0 +1,68 @@
+model: mel_roformer_denoise
+label: Mel-RoFormer-Denoise (aufr33)
+task: denoise
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#mel_roformer_denoise
+  architecture_source: 'model_mel_band_roformer_denoise.yaml: n_fft=2048 hop=441 chunk_size=352800 dim=384 depth=6
+    target=dry'
+  repo_commit: 050cae7345f4
+  official_config: 01_models/_weights/mel_roformer_denoise/model_mel_band_roformer_denoise.yaml
+audio_contract:
+  sample_rate: 44100
+  channels: 2
+  segment_s: 8.0
+  mono_downmix_internal: false
+  sample_rate_source: 'model_profile.csv native_sr=44100 / model_mel_band_roformer_denoise.yaml: n_fft=2048 hop=441
+    chunk_size=352800 dim=384 depth=6 target=dry'
+stft:
+  n_fft: 2048
+  hop_length: 441
+  win_length: 2048
+  window: hann
+  center: true
+  normalized: false
+  n_freq_bins: 1025
+  note: 'model_mel_band_roformer_denoise.yaml: n_fft=2048 hop=441 chunk_size=352800 dim=384 depth=6 target=dry'
+normalization:
+  scheme: none
+  applied_at: none
+outputs:
+  stems:
+  - dry
+  profile_targets:
+  - enhanced
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/mel_roformer_denoise/denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt
+  official_release: false
+  files:
+  - file: 01_models/_weights/mel_roformer_denoise/denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt
+    mb: 870.8
+    sha256: 7c1c39191edc34e942ca7f2346ce6b6c0e1208a5f76349ffce6f696bd12910de
+  primary_sha256: 7c1c39191edc34e942ca7f2346ce6b6c0e1208a5f76349ffce6f696bd12910de
+  sha256_status: verified
+  citation_note: 非官方/社区权重，引用需注明
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '2011.2'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 228.203
+  params_expected_int: 228203000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 2, 352800]'
+    expect_output: '[1, 2, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

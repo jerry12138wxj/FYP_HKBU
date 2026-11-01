@@ -1,0 +1,51 @@
+[06:02:13] rpca=500/500 dprnn_exited=False log_stale=True best=2026-10-31 00:57:25
+bench dprnn_v2  ckpt_dir=D:\FYP_HKBU_runs\dprnn_v2\checkpoints
+dprnn_v2: 500 segments, 0 already done -> dprnn_v2.csv
+  loaded in 9.3 s  info={'kind': 'deep', 'device': 'cuda', 'repo': 'Dual-Path-RNN-Pytorch (自训 ckpt)', 'params': 3685761, 'sources': ['vocals', '
+  50/500  0.6 min
+  100/500  1.2 min
+  150/500  1.8 min
+  200/500  2.4 min
+  250/500  2.9 min
+  300/500  3.4 min
+  350/500  4.0 min
+  400/500  4.6 min
+  450/500  5.3 min
+  500/500  5.8 min
+done dprnn: 500 segments in 5.8 min -> E:\FYP_HKBU\baseline\bench500\results\dprnn_v2.csv
+  -> rc=0 rows=2000 ok=True
+bench dprnn_v2_last  ckpt_dir=D:\FYP_HKBU_runs\dprnn_v2\checkpoints
+dprnn_v2_last: 500 segments, 0 already done -> dprnn_v2_last.csv
+  loaded in 2.4 s  info={'kind': 'deep', 'device': 'cuda', 'repo': 'Dual-Path-RNN-Pytorch (自训 ckpt)', 'params': 3685761, 'sources': ['vocals', '
+  50/500  0.5 min
+  100/500  1.0 min
+  150/500  1.5 min
+  200/500  1.9 min
+  250/500  2.4 min
+  300/500  2.9 min
+  350/500  3.4 min
+  400/500  3.9 min
+  450/500  4.4 min
+  500/500  4.9 min
+done dprnn: 500 segments in 4.9 min -> E:\FYP_HKBU\baseline\bench500\results\dprnn_v2_last.csv
+  -> rc=0 rows=2000 ok=True
+mixture baseline: cached (2000 rows) <- mixture_baseline.csv
+wrote D:\FYP_HKBU_runs\bench500_table\bench500_compare.csv
+wrote D:\FYP_HKBU_runs\bench500_table\BENCH500_COMPARE.md
+models: 4-stem=11  vocals-only=4  other=1
+  mdx_extra_q      4stem        delta=+14.82 rtf=0.232 n=500
+  bsrnn_simo       4stem        delta=+14.49 rtf=0.225 n=500
+  mdx              4stem        delta=+14.27 rtf=0.242 n=500
+  bsrnn_all        4stem        delta=+13.81 rtf=0.485 n=500
+  demucs           4stem        delta=+12.88 rtf=0.041 n=500
+  bsrnn_large_all  4stem        delta=+12.84 rtf=0.485 n=500
+  mdx_q            4stem        delta=+12.16 rtf=0.307 n=500
+  mmdenselstm      4stem        delta=+9.84 rtf=0.079 n=500
+  convtasnet       4stem        delta=+9.77 rtf=0.297 n=500
+  umx              4stem        delta=+9.61 rtf=0.054 n=500
+  dprnn_v2         4stem        delta=+6.13 rtf=0.026 n=500
+  bsroformer_l12   vocals       delta=+16.29 rtf=0.418 n=500
+  bsrnn            vocals       delta=+14.95 rtf=0.157 n=500
+  bsrnn_large      vocals       delta=+14.37 rtf=0.127 n=500
+  rpca             vocals       delta=+0.29 rtf=3.425 n=500
+result: OK -> D:\FYP_HKBU_runs\bench500_table

@@ -1,0 +1,89 @@
+model: bsrnn_large
+task: separation
+status: ready_to_train
+data:
+  dataset: MUSDB18-HQ
+  root: 02_databases
+  split_policy: by_song (never by_segment)
+  train_split: train 90 songs (100 minus the 10 held-out)
+  valid_split: 10 held-out songs taken from train (whole songs, never segments)
+  test_split: official test 50 songs — evaluated exactly once, at the end
+  leakage_guard: set(train_songs) & set(valid_songs) == empty AND valid_songs & test_songs == empty
+  anti_pattern: 绝不用 test 做验证集（那与 DPRNN 的 train-as-valid 是同一类错误，只是方向相反）
+  segment_s: 10.0
+  batch_size: 8
+  num_workers: 4
+  sampling: 'random offset within song (energy-gated: skip first 30 s silence in MUSDB)'
+loss:
+  terms:
+  - name: l1_wave
+    weight: 1.0
+    domain: waveform
+    note: 分离任务主损失；对相位误差不敏感
+  - name: multi_res_stft
+    weight: 0.5
+    domain: spectral
+    fft_sizes:
+    - 512
+    - 1024
+    - 2048
+    hop_ratios:
+    - 0.25
+    - 0.25
+    - 0.25
+    note: 多分辨率谱损失，补高频细节（Demucs/BS-RoFormer 通用做法）
+  reduction: mean over batch and samples
+  multi_output_align: 按 keys 对齐，不按位置（防止 masker 静默互换）
+optim:
+  name: adamw
+  lr: 0.0003
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  weight_decay: 0.01
+  grad_clip_norm: 5.0
+  note: 默认 3e-4
+schedule:
+  type: cosine
+  warmup_steps: 500
+  min_lr_ratio: 0.05
+  epochs: 40
+amp:
+  enabled: true
+  dtype: bfloat16
+  grad_accum_steps: 1
+  note: 8 GiB 显存：大模型靠梯度累积，不靠加大 batch
+checkpoint:
+  dir: D:/FYP_HKBU_runs/bsrnn_large/checkpoints
+  save_best: best.pt (valid loss, 每个 epoch)
+  save_last: last.pt (每 N step)
+  keep_last_n: 3
+  eval_with: best.pt only — 报告测试集指标时不得用 last.pt
+overfit_test:
+  n_items: 10
+  steps: 200
+  batch_size: 8
+  pass_criterion: train loss 下降到初始值的 <10%，且重建音频无爆音/静音
+commands:
+  overfit: python tools/train_<arch>.py --config configs/train_bsrnn_large.yaml --overfit 10 --steps 200
+  train: python tools/train_<arch>.py --config configs/train_bsrnn_large.yaml
+  test: python tools/benchmark_model_universal.py --model bsrnn_large --subset test --out-tag rerun
+artifacts:
+  checkpoints: D:/FYP_HKBU_runs/bsrnn_large/checkpoints
+  tensorboard: D:/FYP_HKBU_runs/bsrnn_large/tb
+  metrics: D:/FYP_HKBU_runs/bsrnn_large/metrics.json
+  audio: D:/FYP_HKBU_runs/bsrnn_large/audio/<song>/
+archive_fields:
+- model
+- config_sha256
+- weight_init_sha256
+- git_commit
+- dataset_manifest_sha256
+- seed
+- steps
+- best_valid_loss
+- test_metrics
+- command
+- started_at
+- finished_at

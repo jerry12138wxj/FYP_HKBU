@@ -33071,8 +33071,140 @@
           "other": "other"
         }
       }
+    },
+    "rpca": {
+      "Al James - Schoolboy Facination": {
+        "model": "rpca",
+        "label": "RPCA (Inexact-ALM)",
+        "song": "Al James - Schoolboy Facination",
+        "subset": "test",
+        "duration_s": 30,
+        "offset_s": 0.0,
+        "status": "PASS",
+        "weights_downloaded": null,
+        "load_s": 0.093,
+        "infer_s": 88.483,
+        "rtf": 2.9494,
+        "targets": [
+          "vocals"
+        ],
+        "sdr": {
+          "vocals": null
+        },
+        "si_sdr": {
+          "vocals": 0.213
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-31T00:08:50",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\rpca_2026-10-31.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\_test_run\\RPCA\\Al James - Schoolboy Facination",
+        "info": {
+          "kind": "classical",
+          "targets": [
+            "vocals"
+          ]
+        },
+        "audio_format": "flac",
+        "cross_stem": {
+          "vocals": {
+            "vocals": {
+              "si_sdr": 0.213,
+              "corr": 0.7157
+            },
+            "drums": {
+              "si_sdr": -6.563,
+              "corr": 0.4252
+            },
+            "bass": {
+              "si_sdr": -8.986,
+              "corr": 0.3349
+            },
+            "other": {
+              "si_sdr": -11.633,
+              "corr": 0.2535
+            }
+          }
+        },
+        "best_match": {
+          "vocals": {
+            "stem": "vocals",
+            "si_sdr": 0.213,
+            "corr": 0.7157
+          }
+        },
+        "ref_used": {
+          "vocals": "(cross-stem; 见 cross_stem)"
+        }
+      },
+      "AM Contra - Heart Peripheral": {
+        "model": "rpca",
+        "label": "RPCA (Inexact-ALM)",
+        "song": "AM Contra - Heart Peripheral",
+        "subset": "test",
+        "duration_s": 30,
+        "offset_s": 0.0,
+        "status": "PASS",
+        "weights_downloaded": null,
+        "load_s": 0.082,
+        "infer_s": 87.887,
+        "rtf": 2.9296,
+        "targets": [
+          "vocals"
+        ],
+        "sdr": {
+          "vocals": null
+        },
+        "si_sdr": {
+          "vocals": -6.72
+        },
+        "error": null,
+        "torch_ver": "2.14.0+cu126",
+        "cuda": true,
+        "timestamp": "2026-10-31T00:10:31",
+        "log": "E:\\FYP_HKBU\\tools\\_logs\\rpca_2026-10-31.log",
+        "out_dir": "E:\\FYP_HKBU\\03_outputs\\_test_run\\RPCA\\AM Contra - Heart Peripheral",
+        "info": {
+          "kind": "classical",
+          "targets": [
+            "vocals"
+          ]
+        },
+        "audio_format": "flac",
+        "cross_stem": {
+          "vocals": {
+            "vocals": {
+              "si_sdr": -6.72,
+              "corr": 0.4189
+            },
+            "drums": {
+              "si_sdr": 1.333,
+              "corr": 0.759
+            },
+            "bass": {
+              "si_sdr": -75.488,
+              "corr": 0.0002
+            },
+            "other": {
+              "si_sdr": -6.626,
+              "corr": 0.4226
+            }
+          }
+        },
+        "best_match": {
+          "vocals": {
+            "stem": "drums",
+            "si_sdr": 1.333,
+            "corr": 0.759
+          }
+        },
+        "ref_used": {
+          "vocals": "(cross-stem; 见 cross_stem)"
+        }
+      }
     }
   },
-  "updated": "2026-09-22T10:03:20",
+  "updated": "2026-10-31T00:12:02",
   "subset": "test"
 }

@@ -1,0 +1,82 @@
+model: umx
+label: Open-Unmix (umxhq)
+task: separation
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#umx
+  architecture_source: open-unmix-pytorch/openunmix/transforms.py:16 (n_fft=4096, n_hop=1024, center=False)
+  repo_commit: null
+  official_config: null
+audio_contract:
+  sample_rate: 44100
+  channels: 2
+  segment_s: null
+  mono_downmix_internal: false
+  sample_rate_source: model_profile.csv native_sr=44100 / open-unmix-pytorch/openunmix/transforms.py:16 (n_fft=4096,
+    n_hop=1024, center=False)
+stft:
+  n_fft: 4096
+  hop_length: 1024
+  win_length: 4096
+  window: hann
+  center: false
+  normalized: false
+  n_freq_bins: 2049
+  note: open-unmix-pytorch/openunmix/transforms.py:16 (n_fft=4096, n_hop=1024, center=False)
+normalization:
+  scheme: standardize per-target
+  applied_at: per-utterance
+outputs:
+  stems:
+  - bass
+  - drums
+  - other
+  - vocals
+  profile_targets:
+  - bass
+  - drums
+  - other
+  - vocals
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/open-unmix
+  official_release: true
+  files:
+  - file: 01_models/_weights/open-unmix/bass-8d85a5bd.pth
+    mb: 34.0
+    sha256: 8d85a5bd3f996a8867fca0e8442e077e5a3f5ec747a6112742452a8f347b39c8
+  - file: 01_models/_weights/open-unmix/drums-9619578f.pth
+    mb: 34.0
+    sha256: 9619578f885c54737cb0234f9f9a4a679ee4f31438fd77fd1dbe02bb16c2da0a
+  - file: 01_models/_weights/open-unmix/other-b52fbbf7.pth
+    mb: 34.0
+    sha256: b52fbbf76479e752bd72e02304c602ac7802aa5bfbfb9cd12054b2695d5093ab
+  - file: 01_models/_weights/open-unmix/vocals-b62c91ce.pth
+    mb: 34.0
+    sha256: b62c91cedbc7a066f1778ead5b5cecb377aa3a46a31af1cce7c5c8769339d083
+  primary_sha256: 8d85a5bd3f996a8867fca0e8442e077e5a3f5ec747a6112742452a8f347b39c8
+  sha256_status: verified
+  citation_note: 官方发布
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '1226.0'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 35.577
+  params_expected_int: 35577000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 2, 0]'
+    expect_output: '[4, 2, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

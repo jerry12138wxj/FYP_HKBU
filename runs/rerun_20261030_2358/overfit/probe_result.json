@@ -1,0 +1,192 @@
+{
+  "model": "demucs",
+  "device": "cuda",
+  "params": 41984456,
+  "params_M": 41.984,
+  "items": 10,
+  "seg_s": 4.0,
+  "steps": 200,
+  "batch": 2,
+  "lr": 0.0003,
+  "elapsed_s": 68.7,
+  "s_per_step": 0.343,
+  "loss_first": 0.02014,
+  "loss_last_logged": 0.02046,
+  "loss_eval_final": 0.00175,
+  "drop_ratio": 0.9131,
+  "max_vram_mb": 5450.1,
+  "history": [
+    {
+      "step": 1,
+      "loss": 0.02014,
+      "l_wave": 0.00605,
+      "l_spec": 0.0282,
+      "grad_norm": 0.135,
+      "vram_mb": 4928.5
+    },
+    {
+      "step": 10,
+      "loss": 0.02158,
+      "l_wave": 0.00535,
+      "l_spec": 0.03245,
+      "grad_norm": 0.719,
+      "vram_mb": 5445.9
+    },
+    {
+      "step": 20,
+      "loss": 0.01586,
+      "l_wave": 0.00364,
+      "l_spec": 0.02444,
+      "grad_norm": 0.51,
+      "vram_mb": 5448.7
+    },
+    {
+      "step": 30,
+      "loss": 0.01366,
+      "l_wave": 0.00317,
+      "l_spec": 0.02096,
+      "grad_norm": 0.498,
+      "vram_mb": 5448.7
+    },
+    {
+      "step": 40,
+      "loss": 0.02348,
+      "l_wave": 0.00955,
+      "l_spec": 0.02786,
+      "grad_norm": 1.412,
+      "vram_mb": 5449.6
+    },
+    {
+      "step": 50,
+      "loss": 0.02043,
+      "l_wave": 0.00462,
+      "l_spec": 0.03162,
+      "grad_norm": 0.529,
+      "vram_mb": 5449.6
+    },
+    {
+      "step": 60,
+      "loss": 0.02089,
+      "l_wave": 0.00533,
+      "l_spec": 0.03112,
+      "grad_norm": 0.332,
+      "vram_mb": 5449.6
+    },
+    {
+      "step": 70,
+      "loss": 0.01381,
+      "l_wave": 0.00349,
+      "l_spec": 0.02063,
+      "grad_norm": 0.406,
+      "vram_mb": 5449.6
+    },
+    {
+      "step": 80,
+      "loss": 0.0085,
+      "l_wave": 0.00177,
+      "l_spec": 0.01347,
+      "grad_norm": 0.726,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 90,
+      "loss": 0.00414,
+      "l_wave": 0.00089,
+      "l_spec": 0.00652,
+      "grad_norm": 0.288,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 100,
+      "loss": 0.00468,
+      "l_wave": 0.00127,
+      "l_spec": 0.00682,
+      "grad_norm": 0.685,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 110,
+      "loss": 0.01907,
+      "l_wave": 0.00469,
+      "l_spec": 0.02876,
+      "grad_norm": 0.474,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 120,
+      "loss": 0.00446,
+      "l_wave": 0.00119,
+      "l_spec": 0.00654,
+      "grad_norm": 0.913,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 130,
+      "loss": 0.02403,
+      "l_wave": 0.00644,
+      "l_spec": 0.03519,
+      "grad_norm": 0.314,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 140,
+      "loss": 0.01283,
+      "l_wave": 0.00327,
+      "l_spec": 0.01911,
+      "grad_norm": 0.464,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 150,
+      "loss": 0.00294,
+      "l_wave": 0.00065,
+      "l_spec": 0.00457,
+      "grad_norm": 0.524,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 160,
+      "loss": 0.00696,
+      "l_wave": 0.00153,
+      "l_spec": 0.01086,
+      "grad_norm": 0.534,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 170,
+      "loss": 0.01725,
+      "l_wave": 0.00429,
+      "l_spec": 0.0259,
+      "grad_norm": 0.147,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 180,
+      "loss": 0.00204,
+      "l_wave": 0.00055,
+      "l_spec": 0.00298,
+      "grad_norm": 0.145,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 190,
+      "loss": 0.01241,
+      "l_wave": 0.0033,
+      "l_spec": 0.01821,
+      "grad_norm": 0.094,
+      "vram_mb": 5450.1
+    },
+    {
+      "step": 200,
+      "loss": 0.02046,
+      "l_wave": 0.0051,
+      "l_spec": 0.03073,
+      "grad_norm": 0.208,
+      "vram_mb": 5450.1
+    }
+  ],
+  "pass_criterion": "final loss < 10% of first-10-step loss (drop_ratio > 0.9)",
+  "passed": true,
+  "ckpt": "E:\\FYP_HKBU\\01_models\\_weights\\Demucs\\955717e8-8726e21a.th",
+  "ckpt_sha256_head": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4"
+}

@@ -1,0 +1,94 @@
+model: mmdenselstm
+label: MMDenseLSTM (musdb18)
+task: separation
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#mmdenselstm
+  architecture_source: 'best.pth args: n_fft=4096 hop_length=1024 window_fn=hann sample_rate=44100 bands=[low,middle,high]'
+  repo_commit: 8663d6fc5c0a
+  official_config: n_fft=4096 hop=1024 sections=[380,644,1025] (in code)
+audio_contract:
+  sample_rate: 44100
+  channels: 2
+  segment_s: null
+  mono_downmix_internal: false
+  sample_rate_source: 'model_profile.csv native_sr=44100 / best.pth args: n_fft=4096 hop_length=1024 window_fn=hann
+    sample_rate=44100 bands=[low,middle,high]'
+stft:
+  n_fft: 4096
+  hop_length: 1024
+  win_length: 4096
+  window: hann
+  center: true
+  normalized: false
+  n_freq_bins: 2049
+  note: 'best.pth args: n_fft=4096 hop_length=1024 window_fn=hann sample_rate=44100 bands=[low,middle,high]'
+normalization:
+  scheme: none
+  applied_at: none
+outputs:
+  stems:
+  - bass
+  - drums
+  - other
+  - vocals
+  profile_targets:
+  - bass
+  - drums
+  - other
+  - vocals
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper
+  official_release: true
+  files:
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/bass/best.pth
+    mb: 5.5
+    sha256: f7203469934e14d8b26d7a5967c024a14aa187900dea5e0111dde3121d27b1b9
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/bass/last.pth
+    mb: 5.5
+    sha256: d26ea118f441a47086f83dcf3b91976a02d9c7a737b47ca1ef725c5f500ab693
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/drums/best.pth
+    mb: 5.5
+    sha256: 826bb74e21e8800ea669e1527e92b5249691fb918a7e211a312aba4a61e8c7a2
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/drums/last.pth
+    mb: 5.5
+    sha256: 5651c643e7543a80c139e33cb06630e9869c02dd99dfb505b4506419acf834e1
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/other/best.pth
+    mb: 5.5
+    sha256: 0db10bfd4a1684e232042389a1d1713755747ab81d47a9ccbae8deed726690b6
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/other/last.pth
+    mb: 5.5
+    sha256: 7e3090bc465554765e1798582c13bb2848742e6d81337c5502789c20599d30da
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/vocals/best.pth
+    mb: 5.5
+    sha256: c0eac124856d0a0d0490acf638851d0591867eb9e174ffae8451fb9a33f4b937
+  - file: 01_models/_weights/DNN-based_source_separation/MMDenseLSTM/musdb18/sr44100/paper/model/vocals/last.pth
+    mb: 5.5
+    sha256: 9f2f9e066d71c79470c0c20a31e69ad431304b117834e1fdcd39bb68f483ec9d
+  primary_sha256: f7203469934e14d8b26d7a5967c024a14aa187900dea5e0111dde3121d27b1b9
+  sha256_status: verified
+  citation_note: 官方发布
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '643.4'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 5.487
+  params_expected_int: 5487000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 2, 0]'
+    expect_output: '[4, 2, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

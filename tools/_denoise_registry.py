@@ -84,6 +84,7 @@ ROOT = str(_paths.PROJECT_ROOT)
 W = os.path.join(ROOT, "01_models", "_weights")
 ZF = os.path.join(ROOT, "01_models", "_third_party", "Music-Source-Separation-Training")
 DEN = os.path.join(ROOT, "01_models", "_third_party", "denoiser")
+WF = os.path.join(ROOT, "01_models", "_third_party", "wiener_filter")
 
 SR = 44100
 
@@ -202,6 +203,36 @@ def _make_denoiser_loader(fname, hidden):
     return load
 
 
+def _make_wiener_loader():
+    """Classical Wiener filter (NumPy-only, parameter-free baseline)."""
+
+    def load():
+        if WF not in sys.path:
+            sys.path.insert(0, WF)
+        from wiener_filter import WienerParams, wiener_stereo
+
+        t0 = time.time()
+        params = WienerParams(n_fft=2048, hop=512, noise_frames=8)
+        dt = time.time() - t0
+
+        def run(mix):
+            out = wiener_stereo(np.asarray(mix, dtype=np.float32), SR, params)
+            return {"enhanced": out}
+
+        run.contract_sr = SR
+
+        return run, dt, {
+            "kind": "classical", "repo": "self-contained (NumPy)",
+            "arch": "Wiener filter (decision-directed)",
+            "params": 0, "targets": ["enhanced"], "n_stems": 1,
+            "sample_rate": SR, "channels": 2,
+            "ckpt": None, "device": "cpu",
+            "license": "public-domain algorithm",
+        }
+
+    return load
+
+
 # ------------------------------------------------------------------ registry
 REGISTRY = {
     "mel_roformer_denoise": dict(
@@ -249,6 +280,10 @@ REGISTRY = {
     "denoiser_master64": dict(
         loader=_make_denoiser_loader("master64-8a5dfb4bb92753dd.th", 64),
         needs_gt=False, label="denoiser master64 (16 kHz)"),
+
+    "wiener_filter": dict(
+        loader=_make_wiener_loader(),
+        needs_gt=False, label="Wiener filter (classical baseline)"),
 }
 
 # group label used by the profile figure
@@ -260,4 +295,5 @@ GROUP = {
     "denoiser_master64": "denoise",
     "mel_roformer_dereverb": "dereverb",
     "mel_roformer_dereverb_echo": "dereverb",
+    "wiener_filter": "denoise",
 }

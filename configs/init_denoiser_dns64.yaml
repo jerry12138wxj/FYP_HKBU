@@ -1,0 +1,66 @@
+model: denoiser_dns64
+label: denoiser dns64 (16 kHz mono)
+task: denoise
+kind: deep
+provenance:
+  profile_row: 04_reports/00_shared/data/model_analysis/model_profile.csv#denoiser_dns64
+  architecture_source: denoiser/conf/config.yaml (same); dns64 = wider denoiser
+  repo_commit: 8afd7c166699
+  official_config: none (architecture fully in code)
+audio_contract:
+  sample_rate: 16000
+  channels: 1
+  segment_s: 4.0
+  mono_downmix_internal: true
+  sample_rate_source: model_profile.csv native_sr=16000 / denoiser/conf/config.yaml (same); dns64 = wider denoiser
+stft:
+  n_fft: null
+  hop_length: null
+  win_length: null
+  window: null
+  center: null
+  normalized: false
+  n_freq_bins: null
+  note: time-domain model, no STFT (denoiser/conf/config.yaml (same); dns64 = wider denoiser)
+normalization:
+  scheme: demucs internal
+  applied_at: per-utterance
+outputs:
+  stems:
+  - enhanced
+  profile_targets:
+  - enhanced
+  order_matters: true
+  order_note: output index -> stem order is fixed; swapping silently scrambles stems
+weights:
+  source_path: 01_models/_weights/denoiser/dns64-a7761ff99a7d5bb6.th
+  official_release: true
+  files:
+  - file: 01_models/_weights/denoiser/dns64-a7761ff99a7d5bb6.th
+    mb: 127.9
+    sha256: a7761ff99a7d5bb69c16a61b3089469805cf3afd82e128103f0f77e79dfead5f
+  primary_sha256: a7761ff99a7d5bb69c16a61b3089469805cf3afd82e128103f0f77e79dfead5f
+  sha256_status: verified
+  citation_note: 官方发布
+device:
+  device: cuda
+  dtype: float32
+  amp: true
+  amp_dtype: bfloat16
+  peak_vram_mb_infer: '343.2'
+  vram_source: model_profile.csv peak_vram_mb
+freeze:
+  strategy: freeze_encoder_2_epochs_then_unfreeze
+  epochs_frozen: 2
+  encoder_modules: first-stage encoder / STFT front-end (per architecture)
+  note: 材料 B 规则：先冻 encoder 2 epoch 再解冻；解析类模型无 encoder
+selfcheck:
+  params_M_expected: 33.534
+  params_expected_int: 33534000
+  params_source: model_profile.csv params_M
+  print_params: true
+  shape_probe:
+    input: '[1, 1, 64000]'
+    expect_output: '[1, 1, T]'
+  assert: abs(sum(p.numel()) - params_expected_int) / max(1,params_expected_int) < 0.02
+status: ready

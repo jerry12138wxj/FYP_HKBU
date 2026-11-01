@@ -1,0 +1,11 @@
+model: oracle
+task: separation
+status: not_applicable
+reason: 解析/古典方法，无参数可训练（oracle 需要 GT，RPCA 是凸优化闭式迭代）
+loss: not_applicable
+optimizer: not_applicable
+gradient_clip: not_applicable
+amp: not_applicable
+checkpoint: not_applicable
+evaluation_command: python tools/benchmark_model_universal.py --model oracle --subset test --duration 30
+artifact_path: 03_outputs/_test_run/Oracle-IRM/<song>/
